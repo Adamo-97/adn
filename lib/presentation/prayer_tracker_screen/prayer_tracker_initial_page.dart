@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_export.dart';
-import '../../widgets/custom_icon_button.dart';
 import '../../widgets/custom_image_view.dart';
 import '../../widgets/custom_text_field_with_icon.dart';
 import './models/prayer_tracker_model.dart';
 import './widgets/prayer_action_item_widget.dart';
-import './widgets/prayer_row_widget.dart';
 import 'notifier/prayer_tracker_notifier.dart';
 
 class PrayerTrackerInitialPage extends ConsumerStatefulWidget {
