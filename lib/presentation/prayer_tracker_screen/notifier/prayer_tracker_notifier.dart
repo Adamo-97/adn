@@ -19,13 +19,10 @@ class PrayerTrackerNotifier extends StateNotifier<PrayerTrackerState> {
   }
 
   static const List<String> _prayers = [
-    'Fajr',
-    'Sunrise',
-    'Dhuhr',
-    'Asr',
-    'Maghrib',
-    'Isha',
+    'Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha',
   ];
+
+  int _indexOf(String name) => _prayers.indexOf(name);
 
   void initialize() {
     List<PrayerActionModel> prayerActions = [
@@ -113,6 +110,11 @@ class PrayerTrackerNotifier extends StateNotifier<PrayerTrackerState> {
 
   /// Toggle done/undone for a prayer card.
   void togglePrayerCompleted(String name) {
+    final currentIdx = _indexOf(state.currentPrayer);
+    final targetIdx = _indexOf(name);
+
+  if(targetIdx <0 || currentIdx <0 || targetIdx > currentIdx) return; // cannot mark future prayers
+
     final updated = Map<String, bool>.from(state.completedByPrayer);
     final current = updated[name] ?? false;
     updated[name] = !current;

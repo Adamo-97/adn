@@ -17,100 +17,119 @@ class PrayerTrackerInitialPage extends ConsumerStatefulWidget {
 
 class PrayerTrackerInitialPageState
     extends ConsumerState<PrayerTrackerInitialPage> {
-  static const double _bottomBarHeightApprox = 76; // matches CustomBottomBar
+      static const List<String> _fardPrayers = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
 
   @override
   Widget build(BuildContext context) {
+    final topInset = MediaQuery.of(context).padding.top;
+    final double headerBodyHeight = 125.h; // visible part below the status bar
+    final double headerTotalHeight = topInset + headerBodyHeight;
+
     return ColoredBox(
       color: appTheme.gray_900,
-      child: SingleChildScrollView(
-        // keep content clear of the bottom bar
-        padding: EdgeInsets.fromLTRB(25.h, 0, 25.h, (_bottomBarHeightApprox + 12).h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _buildPrayerHeader(context),
-            SizedBox(height: 20.h),
-            _buildPrayerContent(context),
-          ],
-        ),
+      child: Stack(
+        children: [
+          // Scrollable content UNDER the fixed header
+          SingleChildScrollView(
+            padding: EdgeInsets.fromLTRB(
+              25.h,
+              headerTotalHeight + 12.h,                  // push content below header
+              25.h,
+              15.h,           // keep clear of bottom bar
+            ),
+            child: _buildPrayerContent(context),
+          ),
+
+          // Fixed header on top
+          _buildFixedPrayerHeader(context,
+            topInset: topInset,
+            totalHeight: headerTotalHeight,
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildPrayerHeader(BuildContext context) {
+  Widget _buildFixedPrayerHeader(
+    BuildContext context, {
+    required double topInset,
+    required double totalHeight,
+  }) {
     final state = ref.watch(prayerTrackerNotifierProvider);
-    // ✅ your model field name is prayerTrackerModel
-    final PrayerTrackerModel m =
-        state.prayerTrackerModel ?? PrayerTrackerModel();
+    final m = state.prayerTrackerModel ?? PrayerTrackerModel();
 
-    return Container(
-      decoration: BoxDecoration(
-        color: appTheme.gray_700,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(14.h),
-          bottomRight: Radius.circular(14.h),
-        ),
-      ),
-      padding: EdgeInsets.all(24.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SizedBox(height: 40.h),
-          Text(
-            'Prayers',
-            textAlign: TextAlign.center,
-            style: TextStyleHelper.instance.title20BoldPoppins,
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      height: totalHeight,
+      child: Container(
+        decoration: BoxDecoration(
+          color: appTheme.gray_700,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(14.h),
+            bottomRight: Radius.circular(14.h),
           ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      m.nextPrayer ?? 'Next Prayer',
-                      style: TextStyleHelper.instance.body15RegularPoppins
-                          .copyWith(color: appTheme.white_A700),
-                    ),
-                    SizedBox(height: 8.h),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          '${m.prayerTime ?? '--:--'} |',
-                          style: TextStyleHelper.instance.body12RegularPoppins
-                              .copyWith(color: appTheme.orange_200),
-                        ),
-                        SizedBox(width: 4.h),
-                        CustomImageView(
-                          imagePath: ImageConstant.imgLocationIcon,
-                          height: 8.h,
-                          width: 8.h,
-                        ),
-                        SizedBox(width: 4.h),
-                        Flexible(
-                          child: Text(
-                            m.location ?? '',
-                            overflow: TextOverflow.ellipsis,
+        ),
+        padding: EdgeInsets.fromLTRB(25.h, topInset + 16.h, 25.h, 8.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Prayers',
+              textAlign: TextAlign.center,
+              style: TextStyleHelper.instance.title20BoldPoppins,
+            ),
+            SizedBox(height: 8.h),
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        m.nextPrayer ?? 'Next Prayer',
+                        style: TextStyleHelper.instance.body15RegularPoppins
+                            .copyWith(color: appTheme.white_A700),
+                      ),
+                      SizedBox(height: 8.h),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            '${m.prayerTime ?? '--:--'} |',
                             style: TextStyleHelper.instance.body12RegularPoppins
                                 .copyWith(color: appTheme.orange_200),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          SizedBox(width: 4.h),
+                          CustomImageView(
+                            imagePath: ImageConstant.imgLocationIcon,
+                            height: 8.h,
+                            width: 8.h,
+                          ),
+                          SizedBox(width: 4.h),
+                          Flexible(
+                            child: Text(
+                              m.location ?? '',
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyleHelper.instance.body12RegularPoppins
+                                  .copyWith(color: appTheme.orange_200),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              CustomImageView(
-                imagePath: ImageConstant.imgDhuhrIcon,
-                height: 42.h,
-                width: 42.h,
-              ),
-            ],
-          ),
-        ],
+                CustomImageView(
+                  imagePath: ImageConstant.imgDhuhrIcon,
+                  height: 42.h,
+                  width: 42.h,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -138,105 +157,128 @@ class PrayerTrackerInitialPageState
     );
   }
 
-Widget _buildPrayerCards(BuildContext context) {
-  final state = ref.watch(prayerTrackerNotifierProvider);
-  final times = state.dailyTimes;
-  final done = state.completedByPrayer;
-  final current = state.currentPrayer;
+  Widget _buildPrayerCards(BuildContext context) {
+    final state   = ref.watch(prayerTrackerNotifierProvider);
+    final times   = state.dailyTimes;
+    final done    = state.completedByPrayer;
+    final current = state.currentPrayer;
 
-  const names = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+    const names = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+    final currentIdx = names.indexOf(current);
 
-  return Column(
-    children: [
-      for (final name in names) ...[
-        _buildPrayerCardRow(
-          context,
-          name: name,
-          time: times[name] ?? '00:00',
-          isCompleted: done[name] ?? false,
-          isCurrent: name == current,
-        ),
-        SizedBox(height: 10.h),
-      ]
-    ],
-  );
-}
-
-Widget _buildPrayerCardRow(
-  BuildContext context, {
-  required String name,
-  required String time,
-  required bool isCompleted,
-  required bool isCurrent,
-}) {
-  final Color baseText = appTheme.white_A700;
-  // Only the current prayer should be green; use Material green for now (TODO: map to theme token)
-  final Color accent = isCurrent ? Colors.greenAccent : baseText;
-
-  final TextStyle nameStyle = TextStyleHelper.instance.body15RegularPoppins.copyWith(
-    color: accent.withOpacity(isCompleted ? 0.7 : 1.0),
-    decoration: isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
-  );
-
-  final TextStyle timeStyle = TextStyleHelper.instance.body15RegularPoppins.copyWith(
-    color: accent.withOpacity(isCompleted ? 0.7 : 1.0),
-    decoration: isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
-  );
-
-  return Container(
-    decoration: BoxDecoration(
-      color: appTheme.gray_700,
-      borderRadius: BorderRadius.circular(20.h),
-    ),
-    padding: EdgeInsets.all(14.h),
-    child: Row(
+    return Column(
       children: [
-        // Checkbox zone (tap to toggle)
-        GestureDetector(
-          onTap: () => _onToggleCompleted(name),
-          behavior: HitTestBehavior.opaque,
-          child: SizedBox(
-            width: 28.h,
-            height: 28.h,
-            child: isCompleted
-                ? CustomImageView(
-                    imagePath: ImageConstant.imgCheckedIcon,
-                    height: 24.h,
-                    width: 24.h,
-                  )
-                : Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: appTheme.gray_500, width: 2.h),
-                      borderRadius: BorderRadius.circular(6.h),
-                    ),
-                    // empty box look
-                    margin: EdgeInsets.all(2.h),
-                  ),
+        for (var i = 0; i < names.length; i++) ...[
+          _buildPrayerCardRow(
+            context,
+            name: names[i],
+            time: times[names[i]] ?? '00:00',
+            isCompleted: done[names[i]] ?? false,
+            isCurrent: i == currentIdx,
+            isAfterCurrent: i > currentIdx,
           ),
-        ),
-        SizedBox(width: 10.h),
-        // Name
-        Expanded(
-          child: Text(name, style: nameStyle),
-        ),
-        SizedBox(width: 12.h),
-        // Time
-        Text(time, style: timeStyle),
-        SizedBox(width: 12.h),
-        // Bell (kept as-is; can make interactive later)
-        CustomImageView(
-          imagePath: ImageConstant.imgNotificationOn,
-          height: 26.h,
-          width: 24.h,
-        ),
+          SizedBox(height: 10.h),
+        ]
       ],
-    ),
-  );
-}
+    );
+  }
 
-void _onToggleCompleted(String name) {
-  ref.read(prayerTrackerNotifierProvider.notifier).togglePrayerCompleted(name);
-}
+  Widget _buildPrayerCardRow(
+    BuildContext context, {
+    required String name,
+    required String time,
+    required bool isCompleted,
+    required bool isCurrent,
+    required bool isAfterCurrent,
+  }) {
+    // Colors per spec
+    const nonCurrentBg = Color(0x1A5C6248); // 10% alpha on #5C6248
+    final nameColor = isCurrent ? Colors.white : Colors.white.withValues(alpha :0.5);
+    final timeColor = isCurrent ? Colors.white : Colors.white.withValues(alpha :0.5);
+
+    // Strike-through ONLY on name, not time; line color per spec
+    final decorationColor = isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
+    // Container background: current uses your original card bg; others use 5C6248@10%
+    final bgColor = isCurrent ? appTheme.gray_700 : nonCurrentBg;
+    // Custom unchecked SVG
+    const uncheckedSvgPath = 'assets/images/ic_checkbox_unchecked.svg';
+
+    return Opacity(
+      opacity: isAfterCurrent ? 0.5 : 1.0, // visually indicate disabled
+      child: Container(
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(20.h),
+        ),
+        padding: EdgeInsets.all(14.h),
+        child: Row(
+          children: [
+            // Checkbox - custom svg for unchecked, existing check icon for checked
+            GestureDetector(
+              onTap: isAfterCurrent
+                  ? null
+                  : () => _onToggleCompleted(name),
+              behavior: HitTestBehavior.opaque,
+              child: SizedBox(
+                width: 28.h,
+                height: 28.h,
+                child: isCompleted
+                    ? CustomImageView(
+                        imagePath: ImageConstant.imgCheckedIcon,
+                        height: 24.h,
+                        width: 24.h,
+                      )
+                    : CustomImageView(
+                        imagePath: uncheckedSvgPath, // <-- your custom svg
+                        height: 24.h,
+                        width: 24.h,
+                      ),
+              ),
+            ),
+            SizedBox(width: 10.h),
+
+            // Name (strike-through only here)
+            Expanded(
+              child: Text(
+                name,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
+                  color: nameColor,
+                  decoration: isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+                  decorationColor: decorationColor,
+                  decorationThickness: 2,
+                ),
+              ),
+            ),
+
+            SizedBox(width: 12.h),
+
+            // Time (no strike-through)
+            Text(
+              time,
+              style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
+                color: timeColor,
+              ),
+            ),
+
+            SizedBox(width: 12.h),
+
+            // Bell - unchanged
+            CustomImageView(
+              imagePath: ImageConstant.imgNotificationOn,
+              height: 26.h,
+              width: 24.h,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _onToggleCompleted(String name) {
+    ref.read(prayerTrackerNotifierProvider.notifier).togglePrayerCompleted(name);
+  }
+
   Widget _buildPrayerActions(BuildContext context) {
     final state = ref.watch(prayerTrackerNotifierProvider);
     final PrayerTrackerModel m =
@@ -273,16 +315,20 @@ void _onToggleCompleted(String name) {
 
   Widget _buildPhoneInstructions(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center, // center the whole row
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CustomImageView(
           imagePath: ImageConstant.imgMobileIcon,
           height: 22.h,
           width: 26.h,
         ),
-        SizedBox(width: 24.h),
-        Expanded(
+        SizedBox(width: 12.h),
+        // Let the text wrap and stay centered
+        Flexible(
           child: Text(
             'Please place your phone on a flat surface',
+            textAlign: TextAlign.center,
             style: TextStyleHelper.instance.label10LightPoppins,
           ),
         ),
@@ -291,7 +337,25 @@ void _onToggleCompleted(String name) {
   }
 
   Widget _buildProgressIndicators(BuildContext context) {
-    Widget bar(Color c) => Expanded(
+    final state    = ref.watch(prayerTrackerNotifierProvider);
+    final done     = state.completedByPrayer;   // map<String,bool>
+    final current  = state.currentPrayer;       // e.g. "Asr"
+    final currentIsFard = _fardPrayers.contains(current);
+
+    List<Widget> bars = [];
+    for (int i = 0; i < _fardPrayers.length; i++) {
+      final name = _fardPrayers[i];
+      final isCompleted = done[name] == true;
+      final isCurrent   = currentIsFard && (name == current);
+
+      final Color c = isCompleted
+          ? appTheme.gray_700           // completed = dark (your existing)
+          : (isCurrent
+              ? appTheme.gray_500       // current (not completed) = light (your existing)
+              : appTheme.white_A700);   // not done = white
+
+      bars.add(
+        Expanded(
           child: Container(
             height: 8.h,
             decoration: BoxDecoration(
@@ -299,34 +363,29 @@ void _onToggleCompleted(String name) {
               borderRadius: BorderRadius.circular(4.h),
             ),
           ),
-        );
+        ),
+      );
+      if (i != _fardPrayers.length - 1) bars.add(SizedBox(width: 10.h));
+    }
 
     return Padding(
       padding: EdgeInsets.all(10.h),
-      child: Row(
-        children: [
-          bar(appTheme.gray_700),
-          SizedBox(width: 10.h),
-          bar(appTheme.gray_500),
-          SizedBox(width: 10.h),
-          bar(appTheme.white_A700),
-          SizedBox(width: 10.h),
-          bar(appTheme.white_A700),
-          SizedBox(width: 10.h),
-          bar(appTheme.white_A700),
-        ],
-      ),
+      child: Row(children: bars),
     );
   }
 
   Widget _buildPrayerStatusInput(BuildContext context) {
+    final state = ref.watch(prayerTrackerNotifierProvider);
+    final completedCount = _fardPrayers.where((p) => state.completedByPrayer[p] == true).length;
+
     return CustomTextFieldWithIcon(
       leftIcon: ImageConstant.imgCheck,
-      hintText: '1/5 prayers completed today.',
+      hintText: '$completedCount/5 prayers completed today.',
       textStyle: TextStyleHelper.instance.body15RegularPoppins
           .copyWith(color: appTheme.white_A700),
     );
   }
+
 
   Widget _buildDateNavigation(BuildContext context) {
     return Row(

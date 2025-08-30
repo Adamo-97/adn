@@ -26,13 +26,15 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: false,
+        bottom: true,
         child: Navigator(
           key: navigatorKey,
           initialRoute: AppRoutes.prayerTrackerScreenInitialPage,
           onGenerateRoute: (routeSetting) => PageRouteBuilder(
             pageBuilder: (ctx, a1, a2) =>
                 getCurrentPage(context, routeSetting.name!),
-            transitionDuration: Duration(seconds: 0),
+            transitionDuration: Duration.zero,
           ),
         ),
       ),

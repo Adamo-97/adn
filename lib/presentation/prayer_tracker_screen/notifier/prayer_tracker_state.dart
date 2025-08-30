@@ -39,7 +39,7 @@ class PrayerTrackerState extends Equatable {
               'Maghrib': false,
               'Isha': false,
             },
-        currentPrayer = currentPrayer ?? 'Fajr'; //TODO: compute from real times
+        currentPrayer = currentPrayer ?? 'Asr'; //TODO: compute from real times
 
   List<PrayerActionModel> get prayerActions =>
       prayerTrackerModel?.prayerActions ?? [];
