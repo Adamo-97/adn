@@ -2,12 +2,17 @@ part of 'prayer_tracker_notifier.dart';
 
 class PrayerTrackerState extends Equatable {
   final PrayerTrackerModel? prayerTrackerModel;
-  final bool isLoading;
+  /// The currently selected calendar day (date-only).
+  final DateTime selectedDate;
 
-  const PrayerTrackerState({
+  PrayerTrackerState({
     this.prayerTrackerModel,
-    this.isLoading = false,
-  });
+    DateTime? selectedDate,
+  }) : selectedDate = DateTime(
+          (selectedDate ?? DateTime.now()).year,
+          (selectedDate ?? DateTime.now()).month,
+          (selectedDate ?? DateTime.now()).day,
+        );
 
   List<PrayerActionModel> get prayerActions =>
       prayerTrackerModel?.prayerActions ?? [];
@@ -16,19 +21,19 @@ class PrayerTrackerState extends Equatable {
 
   List<PrayerRowModel> get prayerRows => prayerTrackerModel?.prayerRows ?? [];
 
-  @override
-  List<Object?> get props => [
-        prayerTrackerModel,
-        isLoading,
-      ];
-
   PrayerTrackerState copyWith({
     PrayerTrackerModel? prayerTrackerModel,
-    bool? isLoading,
+    DateTime? selectedDate,
   }) {
     return PrayerTrackerState(
       prayerTrackerModel: prayerTrackerModel ?? this.prayerTrackerModel,
-      isLoading: isLoading ?? this.isLoading,
+      selectedDate: selectedDate ?? this.selectedDate,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        prayerTrackerModel,
+        selectedDate,
+      ];
 }

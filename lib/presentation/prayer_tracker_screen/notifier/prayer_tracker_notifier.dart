@@ -67,6 +67,16 @@ class PrayerTrackerNotifier extends StateNotifier<PrayerTrackerState> {
     );
   }
 
+  /// Set the selected calendar day (date-only).
+  void selectDate(DateTime date) {
+    final d = DateTime(date.year, date.month, date.day);
+    state = state.copyWith(selectedDate: d);
+    // TODO: react to date change here:
+    // - recompute daily prayer times for [d]
+    // - update prayerRows / progress for that day
+    // - schedule notifications if needed (per your policies)
+  }
+  
   void selectPrayerAction(PrayerActionModel action) {
     List<PrayerActionModel> updatedActions = state.prayerActions.map((item) {
       if (item.id == action.id) {

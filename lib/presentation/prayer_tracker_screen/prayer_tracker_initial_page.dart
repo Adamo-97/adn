@@ -19,12 +19,17 @@ class PrayerTrackerInitialPage extends ConsumerStatefulWidget {
 
 class PrayerTrackerInitialPageState
     extends ConsumerState<PrayerTrackerInitialPage> {
+  static const double _bottomBarHeightApprox = 76; // matches CustomBottomBar
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: appTheme.gray_900,
       child: SingleChildScrollView(
+        // keep content clear of the bottom bar
+        padding: EdgeInsets.fromLTRB(25.h, 0, 25.h, (_bottomBarHeightApprox + 12).h),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _buildPrayerHeader(context),
             SizedBox(height: 20.h),
@@ -36,6 +41,11 @@ class PrayerTrackerInitialPageState
   }
 
   Widget _buildPrayerHeader(BuildContext context) {
+    final state = ref.watch(prayerTrackerNotifierProvider);
+    // ✅ your model field name is prayerTrackerModel
+    final PrayerTrackerModel m =
+        state.prayerTrackerModel ?? PrayerTrackerModel();
+
     return Container(
       decoration: BoxDecoration(
         color: appTheme.gray_700,
@@ -46,10 +56,12 @@ class PrayerTrackerInitialPageState
       ),
       padding: EdgeInsets.all(24.h),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(height: 40.h),
           Text(
             'Prayers',
+            textAlign: TextAlign.center,
             style: TextStyleHelper.instance.title20BoldPoppins,
           ),
           SizedBox(height: 8.h),
@@ -60,15 +72,16 @@ class PrayerTrackerInitialPageState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Next Prayer is Fajr',
+                      m.nextPrayer ?? 'Next Prayer',
                       style: TextStyleHelper.instance.body15RegularPoppins
                           .copyWith(color: appTheme.white_A700),
                     ),
                     SizedBox(height: 8.h),
                     Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          '00:00 AM |',
+                          '${m.prayerTime ?? '--:--'} |',
                           style: TextStyleHelper.instance.body12RegularPoppins
                               .copyWith(color: appTheme.orange_200),
                         ),
@@ -79,10 +92,13 @@ class PrayerTrackerInitialPageState
                           width: 8.h,
                         ),
                         SizedBox(width: 4.h),
-                        Text(
-                          'Ronneby, SE',
-                          style: TextStyleHelper.instance.body12RegularPoppins
-                              .copyWith(color: appTheme.orange_200),
+                        Flexible(
+                          child: Text(
+                            m.location ?? '',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyleHelper.instance.body12RegularPoppins
+                                .copyWith(color: appTheme.orange_200),
+                          ),
                         ),
                       ],
                     ),
@@ -102,88 +118,59 @@ class PrayerTrackerInitialPageState
   }
 
   Widget _buildPrayerContent(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 870.h,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-            alignment: Alignment.topCenter,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.h),
-              child: Column(
-                children: [
-                  _buildPrayerActions(context),
-                  SizedBox(height: 38.h),
-                  _buildCompassSection(context),
-                  SizedBox(height: 40.h),
-                  _buildPhoneInstructions(context),
-                  SizedBox(height: 26.h),
-                  _buildProgressIndicators(context),
-                  SizedBox(height: 4.h),
-                  _buildPrayerStatusInput(context),
-                  SizedBox(height: 12.h),
-                  _buildDateNavigation(context),
-                  SizedBox(height: 16.h),
-                  _buildPrayerCalendar(context),
-                  SizedBox(height: 14.h),
-                  _buildFajrPrayerRow(context),
-                ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: CustomImageView(
-              imagePath: ImageConstant.imgShadowButtom1,
-              height: 76.h,
-              width: double.infinity,
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              margin: EdgeInsets.only(left: 40.h, bottom: 152.h),
-              child: CustomIconButton(
-                iconPath: ImageConstant.imgGroup10,
-                backgroundColor: appTheme.gray_500,
-                borderRadius: 28.h,
-                height: 56.h,
-                width: 56.h,
-                padding: EdgeInsets.all(10.h),
-              ),
-            ),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildPrayerActions(context),
+        SizedBox(height: 28.h),
+        _buildCompassSection(context),
+        SizedBox(height: 28.h),
+        _buildPhoneInstructions(context),
+        SizedBox(height: 16.h),
+        _buildProgressIndicators(context),
+        SizedBox(height: 8.h),
+        _buildPrayerStatusInput(context),
+        SizedBox(height: 12.h),
+        _buildDateNavigation(context),
+        SizedBox(height: 16.h),
+        _buildPrayerCalendar(context),
+        SizedBox(height: 16.h),
+        _buildFajrPrayerRow(context),
+      ],
     );
   }
 
   Widget _buildPrayerActions(BuildContext context) {
     final state = ref.watch(prayerTrackerNotifierProvider);
+    final PrayerTrackerModel m =
+        state.prayerTrackerModel ?? PrayerTrackerModel();
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ...state.prayerActions.map(
-            (action) => PrayerActionItemWidget(
-              action: action,
-              onTap: () => _onPrayerActionTap(action),
-            ),
-          ),
-        ],
+      child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        runSpacing: 12.h,
+        spacing: 12.h,
+        children: (m.prayerActions ?? const <PrayerActionModel>[])
+            .map(
+              (action) => PrayerActionItemWidget(
+                action: action,
+                onTap: () => _onPrayerActionTap(action),
+              ),
+            )
+            .toList(),
       ),
     );
   }
 
   Widget _buildCompassSection(BuildContext context) {
-    return CustomImageView(
-      imagePath: ImageConstant.imgCompassIcon,
-      height: 202.h,
-      width: 194.h,
+    return Align(
+      alignment: Alignment.center,
+      child: CustomImageView(
+        imagePath: ImageConstant.imgCompassIcon,
+        height: 202.h,
+        width: 194.h,
+      ),
     );
   }
 
@@ -207,59 +194,29 @@ class PrayerTrackerInitialPageState
   }
 
   Widget _buildProgressIndicators(BuildContext context) {
-    return Container(
+    Widget bar(Color c) => Expanded(
+          child: Container(
+            height: 8.h,
+            decoration: BoxDecoration(
+              color: c,
+              borderRadius: BorderRadius.circular(4.h),
+            ),
+          ),
+        );
+
+    return Padding(
       padding: EdgeInsets.all(10.h),
       child: Row(
         children: [
-          Expanded(
-            child: Container(
-              height: 8.h,
-              decoration: BoxDecoration(
-                color: appTheme.gray_700,
-                borderRadius: BorderRadius.circular(4.h),
-              ),
-            ),
-          ),
+          bar(appTheme.gray_700),
           SizedBox(width: 10.h),
-          Expanded(
-            child: Container(
-              height: 8.h,
-              decoration: BoxDecoration(
-                color: appTheme.gray_500,
-                borderRadius: BorderRadius.circular(4.h),
-              ),
-            ),
-          ),
+          bar(appTheme.gray_500),
           SizedBox(width: 10.h),
-          Expanded(
-            child: Container(
-              height: 8.h,
-              decoration: BoxDecoration(
-                color: appTheme.white_A700,
-                borderRadius: BorderRadius.circular(4.h),
-              ),
-            ),
-          ),
+          bar(appTheme.white_A700),
           SizedBox(width: 10.h),
-          Expanded(
-            child: Container(
-              height: 8.h,
-              decoration: BoxDecoration(
-                color: appTheme.white_A700,
-                borderRadius: BorderRadius.circular(4.h),
-              ),
-            ),
-          ),
+          bar(appTheme.white_A700),
           SizedBox(width: 10.h),
-          Expanded(
-            child: Container(
-              height: 8.h,
-              decoration: BoxDecoration(
-                color: appTheme.white_A700,
-                borderRadius: BorderRadius.circular(4.h),
-              ),
-            ),
-          ),
+          bar(appTheme.white_A700),
         ],
       ),
     );
@@ -299,9 +256,23 @@ class PrayerTrackerInitialPageState
 
   Widget _buildPrayerCalendar(BuildContext context) {
     final state = ref.watch(prayerTrackerNotifierProvider);
+    final m = state.prayerTrackerModel ?? PrayerTrackerModel();
+
+    // 7 equal columns
+    final Map<int, TableColumnWidth> cols = {
+      for (int i = 0; i < 7; i++) i: const FlexColumnWidth(1),
+    };
+
+    // Build a matrix of DateTime? for the current month (Sunday-first)
+    final now = DateTime.now();
+    final monthStart = DateTime(now.year, now.month, 1);
+    final monthEnd = DateTime(now.year, now.month + 1, 0);
+    final weeks = _buildMonthMatrix(monthStart, monthEnd); // List<List<DateTime?>>
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        // Header (top rounded)
         Container(
           decoration: BoxDecoration(
             color: appTheme.gray_700,
@@ -310,30 +281,125 @@ class PrayerTrackerInitialPageState
               topRight: Radius.circular(10.h),
             ),
           ),
-          padding: EdgeInsets.all(12.h),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.h),
+          child: Table(
+            columnWidths: cols,
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
             children: [
-              ...state.weekDays.map(
-                (day) => Text(
-                  day,
-                  style: TextStyleHelper.instance.body15RegularPoppins
-                      .copyWith(color: appTheme.orange_200),
-                ),
+              TableRow(
+                children: List.generate(7, (i) {
+                  final day = (m.weekDays != null && i < m.weekDays!.length)
+                      ? m.weekDays![i]
+                      : const ['Su','Mo','Tu','We','Th','Fr','Sa'][i];
+                  return Center(
+                    child: Text(
+                      day,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyleHelper.instance.body15RegularPoppins
+                          .copyWith(color: appTheme.orange_200),
+                    ),
+                  );
+                }),
               ),
             ],
           ),
         ),
-        ...state.prayerRows.map(
-          (row) => PrayerRowWidget(
-            row: row,
-            isFirstRow: state.prayerRows.indexOf(row) == 0,
-            isLastRow:
-                state.prayerRows.indexOf(row) == state.prayerRows.length - 1,
+
+        // Grid rows (bottom rounded), today circled, past disabled/grey
+        ClipRRect(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(10.h),
+            bottomRight: Radius.circular(10.h),
+          ),
+          child: Container(
+            color: appTheme.gray_900_01,
+            padding: EdgeInsets.symmetric(horizontal: 12.h),
+            child: Table(
+              columnWidths: cols,
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: List.generate(weeks.length, (r) {
+                final row = weeks[r];
+                return TableRow(
+                  children: List.generate(7, (c) {
+                    final date = row[c];
+                    if (date == null) {
+                      return SizedBox(height: 40.h); // empty cell spacer
+                    }
+
+                    final isToday = _isSameDay(date, now);
+                    final isPast = date.isBefore(DateTime(now.year, now.month, now.day));
+
+                    final textStyle = TextStyleHelper.instance.label10LightPoppins
+                        .copyWith(
+                          color: isPast ? appTheme.gray_600 : appTheme.white_A700,
+                        );
+
+                    final inner = Center(
+                      child: isToday
+                          ? Container(
+                              width: 36.h,
+                              height: 36.h,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: appTheme.gray_700, width: 3.h),
+                                borderRadius: BorderRadius.circular(18.h),
+                              ),
+                              child: Center(child: Text('${date.day}', style: textStyle)),
+                            )
+                          : Text('${date.day}', style: textStyle),
+                    );
+
+                    // Past days are not tappable; today/future can be tapped
+                    return Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                      child: isPast
+                          ? inner
+                          : GestureDetector(
+                              onTap: () => _onDateTap(date),
+                              behavior: HitTestBehavior.opaque,
+                              child: inner,
+                            ),
+                    );
+                  }),
+                );
+              }),
+            ),
           ),
         ),
       ],
     );
+  }
+
+  /// Builds a month matrix (weeks × 7) starting on Sunday.
+  /// Cells outside the current month are `null`.
+  List<List<DateTime?>> _buildMonthMatrix(DateTime monthStart, DateTime monthEnd) {
+    // Dart weekday: 1=Mon ... 7=Sun. We want Sunday index 0.
+    int sundayBasedIndex(int weekday) => weekday % 7;
+
+    final firstCol = sundayBasedIndex(monthStart.weekday);
+    final totalDays = monthEnd.day;
+
+    // Fill a flat list with leading nulls, then month days, then trailing nulls to complete weeks.
+    final cells = <DateTime?>[];
+    for (int i = 0; i < firstCol; i++) cells.add(null);
+    for (int d = 1; d <= totalDays; d++) {
+      cells.add(DateTime(monthStart.year, monthStart.month, d));
+    }
+    while (cells.length % 7 != 0) cells.add(null);
+
+    // Chunk into rows of 7
+    final rows = <List<DateTime?>>[];
+    for (int i = 0; i < cells.length; i += 7) {
+      rows.add(cells.sublist(i, i + 7));
+    }
+    return rows;
+  }
+
+  bool _isSameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
+
+  /// Hook to use when a clickable (today/future) date is tapped
+  void _onDateTap(DateTime date) {
+    ref.read(prayerTrackerNotifierProvider.notifier).selectDate(date);
   }
 
   Widget _buildFajrPrayerRow(BuildContext context) {
@@ -362,7 +428,7 @@ class PrayerTrackerInitialPageState
             style: TextStyleHelper.instance.body15RegularPoppins
                 .copyWith(color: appTheme.white_A700),
           ),
-          Spacer(),
+          const Spacer(),
           CustomImageView(
             imagePath: ImageConstant.imgNotificationOn,
             height: 26.h,
@@ -374,15 +440,18 @@ class PrayerTrackerInitialPageState
   }
 
   void _onPrayerActionTap(PrayerActionModel action) {
-    if (action.navigateTo != null) {
-      switch (action.navigateTo) {
-        case '576:475':
-          NavigatorService.pushNamed(AppRoutes.purificationSelectionScreen);
-          break;
-        case '508:307':
-          NavigatorService.pushNamed(AppRoutes.salahGuideMenuScreen);
-          break;
-      }
+    final dest = action.navigateTo;
+    if (dest == null || dest.isEmpty) return;
+
+    switch (dest) {
+      case '576:475':
+        NavigatorService.pushNamed(AppRoutes.purificationSelectionScreen);
+        break;
+      case '508:307':
+        NavigatorService.pushNamed(AppRoutes.salahGuideMenuScreen);
+        break;
+      default:
+        break;
     }
   }
 }
