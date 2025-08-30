@@ -135,11 +135,110 @@ class PrayerTrackerInitialPageState
         SizedBox(height: 16.h),
         _buildPrayerCalendar(context),
         SizedBox(height: 16.h),
-        _buildFajrPrayerRow(context),
+        _buildPrayerCards(context),
       ],
     );
   }
 
+Widget _buildPrayerCards(BuildContext context) {
+  final state = ref.watch(prayerTrackerNotifierProvider);
+  final times = state.dailyTimes;
+  final done = state.completedByPrayer;
+  final current = state.currentPrayer;
+
+  const names = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+
+  return Column(
+    children: [
+      for (final name in names) ...[
+        _buildPrayerCardRow(
+          context,
+          name: name,
+          time: times[name] ?? '00:00',
+          isCompleted: done[name] ?? false,
+          isCurrent: name == current,
+        ),
+        SizedBox(height: 10.h),
+      ]
+    ],
+  );
+}
+
+Widget _buildPrayerCardRow(
+  BuildContext context, {
+  required String name,
+  required String time,
+  required bool isCompleted,
+  required bool isCurrent,
+}) {
+  final Color baseText = appTheme.white_A700;
+  // Only the current prayer should be green; use Material green for now (TODO: map to theme token)
+  final Color accent = isCurrent ? Colors.greenAccent : baseText;
+
+  final TextStyle nameStyle = TextStyleHelper.instance.body15RegularPoppins.copyWith(
+    color: accent.withOpacity(isCompleted ? 0.7 : 1.0),
+    decoration: isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+  );
+
+  final TextStyle timeStyle = TextStyleHelper.instance.body15RegularPoppins.copyWith(
+    color: accent.withOpacity(isCompleted ? 0.7 : 1.0),
+    decoration: isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+  );
+
+  return Container(
+    decoration: BoxDecoration(
+      color: appTheme.gray_700,
+      borderRadius: BorderRadius.circular(20.h),
+    ),
+    padding: EdgeInsets.all(14.h),
+    child: Row(
+      children: [
+        // Checkbox zone (tap to toggle)
+        GestureDetector(
+          onTap: () => _onToggleCompleted(name),
+          behavior: HitTestBehavior.opaque,
+          child: SizedBox(
+            width: 28.h,
+            height: 28.h,
+            child: isCompleted
+                ? CustomImageView(
+                    imagePath: ImageConstant.imgCheckedIcon,
+                    height: 24.h,
+                    width: 24.h,
+                  )
+                : Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: appTheme.gray_500, width: 2.h),
+                      borderRadius: BorderRadius.circular(6.h),
+                    ),
+                    // empty box look
+                    margin: EdgeInsets.all(2.h),
+                  ),
+          ),
+        ),
+        SizedBox(width: 10.h),
+        // Name
+        Expanded(
+          child: Text(name, style: nameStyle),
+        ),
+        SizedBox(width: 12.h),
+        // Time
+        Text(time, style: timeStyle),
+        SizedBox(width: 12.h),
+        // Bell (kept as-is; can make interactive later)
+        CustomImageView(
+          imagePath: ImageConstant.imgNotificationOn,
+          height: 26.h,
+          width: 24.h,
+        ),
+      ],
+    ),
+  );
+}
+
+void _onToggleCompleted(String name) {
+  ref.read(prayerTrackerNotifierProvider.notifier).togglePrayerCompleted(name);
+}
   Widget _buildPrayerActions(BuildContext context) {
     final state = ref.watch(prayerTrackerNotifierProvider);
     final PrayerTrackerModel m =

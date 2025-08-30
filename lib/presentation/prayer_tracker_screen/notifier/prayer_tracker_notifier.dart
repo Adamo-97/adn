@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 import '../../../core/app_export.dart';
 import '../models/prayer_tracker_model.dart';
 
@@ -16,6 +18,15 @@ class PrayerTrackerNotifier extends StateNotifier<PrayerTrackerState> {
   PrayerTrackerNotifier(PrayerTrackerState state) : super(state) {
     initialize();
   }
+
+  static const List<String> _prayers = [
+    'Fajr',
+    'Sunrise',
+    'Dhuhr',
+    'Asr',
+    'Maghrib',
+    'Isha',
+  ];
 
   void initialize() {
     List<PrayerActionModel> prayerActions = [
@@ -65,18 +76,51 @@ class PrayerTrackerNotifier extends StateNotifier<PrayerTrackerState> {
         prayerRows: prayerRows,
       ),
     );
+
+    fetchDailyTimes(state.selectedDate);
+    // TODO: compute currentPrayer from real times; for now, keep default or pick from dailyTimes
+    // state = state.copyWith(currentPrayer: _computeCurrentPrayerFromTimes(state.dailyTimes, state.selectedDate));
+
+  }
+
+  /// Fetch daily times for [date]. Currently a placeholder returning "00:00".
+  /// TODO: Replace with real API call and map into the 6 prayer keys.
+  Future<void> fetchDailyTimes(DateTime date) async {
+    // TODO: after real API: recompute currentPrayer
+    // state = state.copyWith(currentPrayer: _computeCurrentPrayerFromTimes(times, date));
+    // Example shape (replace with actual API integration):
+    // final result = await api.getPrayerTimes(lat, lng, date, method: ...);
+    // final times = {
+    //   'Fajr': result.fajr,
+    //   'Sunrise': result.sunrise,
+    //   'Dhuhr': result.dhuhr,
+    //   'Asr': result.asr,
+    //   'Maghrib': result.maghrib,
+    //   'Isha': result.isha,
+    // };
+    final Map<String, String> times = {
+      for (final p in _prayers) p: '00:00',
+    };
+    state = state.copyWith(dailyTimes: times);
   }
 
   /// Set the selected calendar day (date-only).
   void selectDate(DateTime date) {
     final d = DateTime(date.year, date.month, date.day);
     state = state.copyWith(selectedDate: d);
-    // TODO: react to date change here:
-    // - recompute daily prayer times for [d]
-    // - update prayerRows / progress for that day
-    // - schedule notifications if needed (per your policies)
+    // Kick off fetching times for the newly selected day (placeholder today).
+    fetchDailyTimes(d); // TODO: implement with real API
   }
-  
+
+  /// Toggle done/undone for a prayer card.
+  void togglePrayerCompleted(String name) {
+    final updated = Map<String, bool>.from(state.completedByPrayer);
+    final current = updated[name] ?? false;
+    updated[name] = !current;
+    state = state.copyWith(completedByPrayer: updated);
+    // TODO: persist locally (and sync) if needed.
+  }
+
   void selectPrayerAction(PrayerActionModel action) {
     List<PrayerActionModel> updatedActions = state.prayerActions.map((item) {
       if (item.id == action.id) {
