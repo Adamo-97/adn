@@ -1,6 +1,10 @@
 
-#  Flutter
+# Flutter
+
+[![License: All Rights Reserved](https://img.shields.io/badge/license-All%20Rights%20Reserved-red.svg)](./LICENSE)
+
 A modern Flutter-based mobile application utilizing the latest mobile development technologies and tools for building responsive cross-platform applications.
+
 ## 📋 Prerequisites
 - Flutter SDK (^3.29.2)
 - Dart SDK
@@ -86,3 +90,6 @@ flutter build apk --release
 # For iOS
 flutter build ios --release
 ```
+---
+
+© 2025 **Adn app / Adam Abdullah** — All Rights Reserved
