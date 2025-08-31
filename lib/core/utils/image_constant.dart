@@ -1,10 +1,57 @@
 // lib/core/utils/image_constant.dart
+
+// Prayer types for icons
+enum PrayerType { fajr, sunrise, dhuhr, asr, maghrib, isha }
+
+extension PrayerTypeAsset on PrayerType {
+  String get icon {
+    switch (this) {
+      case PrayerType.fajr:    return ImageConstant.imgFajr;
+      case PrayerType.sunrise: return ImageConstant.imgSunrise;
+      case PrayerType.dhuhr:   return ImageConstant.imgDhuhr;
+      case PrayerType.asr:     return ImageConstant.imgAsr;
+      case PrayerType.maghrib: return ImageConstant.imgMaghrib;
+      case PrayerType.isha:    return ImageConstant.imgIsha;
+    }
+  }
+}
+
 class ImageConstant {
   // Base path for all assets
   static String _basePath = 'assets/images/';
-
   // Placeholder image for fallback
   static String imgPlaceholder = '${_basePath}placeholder.png';
+  
+
+  // Six prayer SVGs — placed directly under assets/images/
+  static String imgFajr    = '${_basePath}fajr.svg';
+  static String imgSunrise = '${_basePath}sunrise.svg';
+  static String imgDhuhr   = '${_basePath}dhuhr.svg';
+  static String imgAsr     = '${_basePath}asr.svg';
+  static String imgMaghrib = '${_basePath}maghrib.svg';
+  static String imgIsha    = '${_basePath}isha.svg';
+
+  static String iconForPrayer(Object current) {
+    final key = current.toString().trim().toLowerCase();
+    switch (key) {
+      case 'fajr':    return imgFajr;
+      case 'sunrise': return imgSunrise;
+      case 'dhuhr':   return imgDhuhr;
+      case 'asr':     return imgAsr;
+      case 'maghrib': return imgMaghrib;
+      case 'isha':    return imgIsha;
+     default:
+       // Show an obvious error image so it’s visible in UI.
+       assert(() {
+         // Helpful in debug to see what was passed.
+         // ignore: avoid_print
+         print('[iconForPrayer] Unknown key: "$key" -> using imgImageNotFound');
+         return true;
+       }());
+       return imgImageNotFound;
+  }
+}
+
 
   // Common Images
   static String imgAfterPrayGroup = '${_basePath}img_after_pray_group.svg';

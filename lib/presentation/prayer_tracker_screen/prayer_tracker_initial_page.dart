@@ -6,6 +6,7 @@ import '../../widgets/custom_text_field_with_icon.dart';
 import './models/prayer_tracker_model.dart';
 import './widgets/prayer_action_item_widget.dart';
 import 'notifier/prayer_tracker_notifier.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PrayerTrackerInitialPage extends ConsumerStatefulWidget {
   const PrayerTrackerInitialPage({Key? key}) : super(key: key);
@@ -122,7 +123,7 @@ class PrayerTrackerInitialPageState
                   ),
                 ),
                 CustomImageView(
-                  imagePath: ImageConstant.imgDhuhrIcon,
+                  imagePath: ImageConstant.iconForPrayer(state.currentPrayer), //TODO here i need 6 icons but there are five for now 
                   height: 42.h,
                   width: 42.h,
                 ),
