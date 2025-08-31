@@ -7,6 +7,9 @@ import './models/prayer_tracker_model.dart';
 import './widgets/prayer_action_item_widget.dart';
 import 'notifier/prayer_tracker_notifier.dart';
 
+import './widgets/fixed_prayer_header.dart';
+import './widgets/prayer_actions.dart';
+
 class PrayerTrackerInitialPage extends ConsumerStatefulWidget {
   const PrayerTrackerInitialPage({Key? key}) : super(key: key);
 
@@ -44,95 +47,8 @@ class PrayerTrackerInitialPageState
           ),
 
           // Fixed header on top
-          _buildFixedPrayerHeader(context,
-            topInset: topInset,
-            totalHeight: headerTotalHeight,
-          ),
+          FixedPrayerHeader(topInset: topInset, totalHeight: headerTotalHeight)
         ],
-      ),
-    );
-  }
-
-  Widget _buildFixedPrayerHeader(
-    BuildContext context, {
-    required double topInset,
-    required double totalHeight,
-  }) {
-    final state = ref.watch(prayerTrackerNotifierProvider);
-    final m = state.prayerTrackerModel ?? PrayerTrackerModel();
-
-    return Positioned(
-      top: 0,
-      left: 0,
-      right: 0,
-      height: totalHeight,
-      child: Container(
-        decoration: BoxDecoration(
-          color: appTheme.gray_700,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(14.h),
-            bottomRight: Radius.circular(14.h),
-          ),
-        ),
-        padding: EdgeInsets.fromLTRB(25.h, topInset + 16.h, 25.h, 8.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Prayers',
-              textAlign: TextAlign.center,
-              style: TextStyleHelper.instance.title20BoldPoppins,
-            ),
-            SizedBox(height: 8.h),
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        m.nextPrayer ?? 'Next Prayer',
-                        style: TextStyleHelper.instance.body15RegularPoppins
-                            .copyWith(color: appTheme.white_A700),
-                      ),
-                      SizedBox(height: 8.h),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            '${m.prayerTime ?? '--:--'} |',
-                            style: TextStyleHelper.instance.body12RegularPoppins
-                                .copyWith(color: appTheme.orange_200),
-                          ),
-                          SizedBox(width: 4.h),
-                          CustomImageView(
-                            imagePath: ImageConstant.imgLocationIcon,
-                            height: 8.h,
-                            width: 8.h,
-                          ),
-                          SizedBox(width: 4.h),
-                          Flexible(
-                            child: Text(
-                              m.location ?? '',
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyleHelper.instance.body12RegularPoppins
-                                  .copyWith(color: appTheme.orange_200),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                CustomImageView(
-                  imagePath: ImageConstant.iconForPrayer(state.currentPrayer), //TODO here i need 6 icons but there are five for now 
-                  height: 42.h,
-                  width: 42.h,
-                ),
-              ],
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -141,7 +57,7 @@ class PrayerTrackerInitialPageState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _buildPrayerActions(context),
+        PrayerActions(onActionTap: _onPrayerActionTap),
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 240),
             switchInCurve: Curves.easeInOut,
@@ -297,29 +213,6 @@ class PrayerTrackerInitialPageState
 
   void _onToggleCompleted(String name) {
     ref.read(prayerTrackerNotifierProvider.notifier).togglePrayerCompleted(name);
-  }
-
-  Widget _buildPrayerActions(BuildContext context) {
-    final state = ref.watch(prayerTrackerNotifierProvider);
-    final PrayerTrackerModel m =
-        state.prayerTrackerModel ?? PrayerTrackerModel();
-
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.h),
-      child: Wrap(
-        alignment: WrapAlignment.spaceBetween,
-        runSpacing: 12.h,
-        spacing: 12.h,
-        children: (m.prayerActions ?? const <PrayerActionModel>[])
-            .map(
-              (action) => PrayerActionItemWidget(
-                action: action,
-                onTap: () => _onPrayerActionTap(action),
-              ),
-            )
-            .toList(),
-      ),
-    );
   }
 
   Widget _buildCompassSection(BuildContext context) {
