@@ -23,13 +23,13 @@ import './custom_image_view.dart';
  * @param horizontalPadding - Horizontal padding inside the bottom bar
  */
 class CustomBottomBar extends StatelessWidget implements PreferredSizeWidget {
-  CustomBottomBar({
+  const CustomBottomBar({
     Key? key,
     required this.bottomBarItemList,
     required this.onChanged,
     this.selectedIndex = 0,
-    this.backgroundColor,
-    this.borderRadius,
+    this.backgroundColor,   // NOTE: ignored — outer wrapper paints bg
+    this.borderRadius,      // NOTE: ignored — outer wrapper clips corners
     this.height,
     this.horizontalPadding,
   }) : super(key: key);
@@ -43,10 +43,10 @@ class CustomBottomBar extends StatelessWidget implements PreferredSizeWidget {
   /// Callback function triggered when a bottom bar item is tapped
   final Function(int) onChanged;
 
-  /// Background color of the bottom bar
+  /// Background color of the bottom bar (ignored)
   final Color? backgroundColor;
 
-  /// Border radius for the bottom bar container
+  /// Border radius for the bottom bar container (ignored)
   final BorderRadius? borderRadius;
 
   /// Height of the bottom bar
@@ -60,52 +60,115 @@ class CustomBottomBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height ?? 76.h,
-      decoration: BoxDecoration(
-        color: backgroundColor ?? Color(0xFF5C6248),
-        borderRadius: borderRadius ??
-            BorderRadius.only(
-              topLeft: Radius.circular(10.h),
-              topRight: Radius.circular(10.h),
-              bottomLeft: Radius.circular(5.h),
-              bottomRight: Radius.circular(5.h),
-            ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding ?? 14.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: List.generate(bottomBarItemList.length, (index) {
-            final isSelected = selectedIndex == index;
-            final item = bottomBarItemList[index];
+    // Colors per spec
+    const goldActive = Color(0xFFE0C389);        // selected icon (gold)
+    const lightGreenCircle = Color(0xFF8F9B87);  // selected circle (light green)
+    final holeColor = appTheme.gray_900;         // #212121 — true cutout color
+    final liftY = 12.h;                          // lift selected a bit higher
+    final notchTop = 0.h;                       // notch slightly above top edge
+    final bottomPad = 10.h;                      // bottom padding inside the bar
 
-            return Expanded(
-              child: InkWell(
-                onTap: () => onChanged(index),
-                child: _buildBottomBarItem(item, isSelected, index),
-              ),
+    // Transparent — the outer wrapper paints the olive rectangle.
+    return SizedBox(
+      height: height ?? 76.h,
+      child: Padding(
+        // keep your horizontal padding + add bottom padding
+        padding: EdgeInsets.fromLTRB(
+          horizontalPadding ?? 14.h,
+          0,
+          horizontalPadding ?? 14.h,
+          bottomPad,
+        ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final count = bottomBarItemList.length;
+            final rowWidth = constraints.maxWidth;
+            final cellWidth = rowWidth / count;
+            // Center X of selected cell inside the padded area
+            final notchCenterX = cellWidth * (selectedIndex + 0.5);
+
+            return Stack(
+              clipBehavior: Clip.none,
+              children: [
+                // --- Moving notch behind the selected item (visible dark cutout) ---
+                Positioned(
+                  top: notchTop, // nudge up so it reads as a “cutout”
+                  left: notchCenterX - (110.h / 2), // 110.h = asset width
+                  child: CustomImageView(
+                    imagePath: ImageConstant.imgSubtract,
+                    height: 58.h,  // asset height
+                    width: 110.h,  // asset width
+                    // dark “hole” — match page/dark background exactly
+                    color: holeColor,
+                  ),
+                ),
+
+                // --- Row of items on top ---
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: List.generate(count, (index) {
+                    final isSelected = selectedIndex == index;
+                    final item = bottomBarItemList[index];
+                    return Expanded(
+                      child: InkWell(
+                        onTap: () => onChanged(index),
+                        child: _buildBottomBarItem(
+                          item,
+                          isSelected,
+                          index,
+                          goldActive,
+                          lightGreenCircle,
+                          liftY,
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ],
             );
-          }),
+          },
         ),
       ),
     );
   }
 
   Widget _buildBottomBarItem(
-      CustomBottomBarItem item, bool isSelected, int index) {
-    // Check if this is a special center item (larger icon)
-    bool isSpecialItem = item.isSpecialItem ?? false;
+    CustomBottomBarItem item,
+    bool isSelected,
+    int index,
+    Color goldActive,
+    Color lightGreenCircle,
+    double liftY,
+  ) {
+    final icon = CustomImageView(
+      imagePath: isSelected && item.activeIcon != null ? item.activeIcon! : item.icon,
+      height: (item.height ?? 30.h),
+      width: (item.width ?? 34.h),
+      fit: BoxFit.contain,
+      color: isSelected ? goldActive : appTheme.white_A700,
+    );
 
-    return Container(
-      alignment: Alignment.center,
-      child: CustomImageView(
-        imagePath: isSelected && item.activeIcon != null
-            ? item.activeIcon!
-            : item.icon,
-        height: isSpecialItem ? 58.h : (item.height ?? 30.h),
-        width: isSpecialItem ? 110.h : (item.width ?? 34.h),
-        fit: BoxFit.contain,
+    if (!isSelected) {
+      return Container(alignment: Alignment.center, child: icon);
+    }
+
+    // Selected: center icon in a light-green circle and lift both slightly.
+    // TODO: If the notch appears 1px off on certain devices, tweak `notchTop` +/- 2.h.
+    return Transform.translate(
+      offset: Offset(0, -liftY),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            height: 46.h,
+            width: 46.h,
+            decoration: BoxDecoration(
+              color: lightGreenCircle,
+              shape: BoxShape.circle,
+            ),
+          ),
+          icon,
+        ],
       ),
     );
   }
@@ -113,7 +176,7 @@ class CustomBottomBar extends StatelessWidget implements PreferredSizeWidget {
 
 /// Item data model for custom bottom bar
 class CustomBottomBarItem {
-  CustomBottomBarItem({
+  const CustomBottomBarItem({
     required this.icon,
     required this.routeName,
     this.activeIcon,
