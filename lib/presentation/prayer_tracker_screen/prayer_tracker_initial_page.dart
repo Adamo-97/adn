@@ -6,7 +6,6 @@ import '../../widgets/custom_text_field_with_icon.dart';
 import './models/prayer_tracker_model.dart';
 import './widgets/prayer_action_item_widget.dart';
 import 'notifier/prayer_tracker_notifier.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PrayerTrackerInitialPage extends ConsumerStatefulWidget {
   const PrayerTrackerInitialPage({Key? key}) : super(key: key);
@@ -20,6 +19,9 @@ class PrayerTrackerInitialPageState
     extends ConsumerState<PrayerTrackerInitialPage> {
       static const List<String> _fardPrayers = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
 
+    // Qibla UI local state (can be moved to your notifier later)
+  bool _qiblaOpen = false;        // clicked / unclicked
+  
   @override
   Widget build(BuildContext context) {
     final topInset = MediaQuery.of(context).padding.top;
@@ -140,10 +142,27 @@ class PrayerTrackerInitialPageState
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _buildPrayerActions(context),
-        SizedBox(height: 28.h),
-        _buildCompassSection(context),
-        SizedBox(height: 28.h),
-        _buildPhoneInstructions(context),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 240),
+            switchInCurve: Curves.easeInOut,
+            switchOutCurve: Curves.easeInOut,
+            transitionBuilder: (child, anim) => SizeTransition(
+              sizeFactor: anim,
+            axisAlignment: -1.0,
+            child: FadeTransition(opacity: anim, child: child),
+          ),
+          child: !_qiblaOpen
+              ? const SizedBox.shrink(key: ValueKey('qibla-off'))
+              : Column(
+                  key: const ValueKey('qibla-on'),
+                  children: [
+                    SizedBox(height: 28.h),
+                    _buildCompassSection(context),
+                    SizedBox(height: 16.h),
+                    _buildPhoneInstructions(context),
+                  ],
+                ),
+        ),
         SizedBox(height: 16.h),
         _buildProgressIndicators(context),
         SizedBox(height: 8.h),
@@ -559,44 +578,19 @@ class PrayerTrackerInitialPageState
     ref.read(prayerTrackerNotifierProvider.notifier).selectDate(date);
   }
 
-  Widget _buildFajrPrayerRow(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: appTheme.gray_700,
-        borderRadius: BorderRadius.circular(20.h),
-      ),
-      padding: EdgeInsets.all(14.h),
-      child: Row(
-        children: [
-          CustomImageView(
-            imagePath: ImageConstant.imgCheckedIcon,
-            height: 24.h,
-            width: 24.h,
-          ),
-          SizedBox(width: 10.h),
-          Text(
-            'Fajr',
-            style: TextStyleHelper.instance.body15RegularPoppins
-                .copyWith(color: appTheme.white_A700),
-          ),
-          SizedBox(width: 16.h),
-          Text(
-            '00:00',
-            style: TextStyleHelper.instance.body15RegularPoppins
-                .copyWith(color: appTheme.white_A700),
-          ),
-          const Spacer(),
-          CustomImageView(
-            imagePath: ImageConstant.imgNotificationOn,
-            height: 26.h,
-            width: 24.h,
-          ),
-        ],
-      ),
-    );
-  }
-
   void _onPrayerActionTap(PrayerActionModel action) {
+    final label = (action.label ?? '').toLowerCase().trim();
+    final aid   = (action.id ?? '').toLowerCase().trim();
+    final isQibla = label.contains('qibla') || aid.contains('qibla');
+
+    if (isQibla) {
+      setState(() => _qiblaOpen = !_qiblaOpen); // show/hide compass + phone row
+      return;                                   // DO NOT navigate for Qibla
+    }
+
+    // For any other action: reset state BEFORE navigating away.
+    setState(() => _qiblaOpen = false);
+
     final dest = action.navigateTo;
     if (dest == null || dest.isEmpty) return;
 
