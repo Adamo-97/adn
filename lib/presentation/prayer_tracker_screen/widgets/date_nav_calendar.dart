@@ -14,7 +14,11 @@ class DateNavCalendar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(prayerTrackerNotifierProvider);
     final m = state.prayerTrackerModel ?? PrayerTrackerModel();
-    final now = DateTime.now();
+
+    // label text + color depend on open/closed
+    final isOpen = state.calendarOpen;
+    final labelText  = isOpen ? state.monthLabel : state.navLabel;
+    final labelColor = isOpen ? appTheme.orange_200 : appTheme.white_A700;
 
     // 7 equal columns
     final Map<int, TableColumnWidth> cols = {
@@ -24,14 +28,18 @@ class DateNavCalendar extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // Date navigation row — arrows change day; label toggles calendar
+        // === NAV ROW === arrows change day (closed) or month (open); label toggles calendar
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: () => ref.read(prayerTrackerNotifierProvider.notifier).prevDay(),
+              onTap: () {
+                final n = ref.read(prayerTrackerNotifierProvider.notifier);
+                isOpen ? n.prevMonth() : n.prevDay();
+              },
               child: CustomImageView(
-                imagePath: ImageConstant.imgArrowPrev, // if this is an SVG, use svgPath:
+                // if this is an SVG, use svgPath:
+                imagePath: ImageConstant.imgArrowPrev,
                 height: 24.h,
                 width: 24.h,
                 color: appTheme.gray_700, // olive tint
@@ -41,15 +49,18 @@ class DateNavCalendar extends ConsumerWidget {
               behavior: HitTestBehavior.opaque,
               onTap: () => ref.read(prayerTrackerNotifierProvider.notifier).toggleCalendar(),
               child: Text(
-                state.navLabel, // single source of truth from state
+                labelText,
                 style: TextStyleHelper.instance.title18SemiBoldPoppins
-                    .copyWith(color: appTheme.orange_200),
+                    .copyWith(color: labelColor),
               ),
             ),
             GestureDetector(
-              onTap: () => ref.read(prayerTrackerNotifierProvider.notifier).nextDay(),
+              onTap: () {
+                final n = ref.read(prayerTrackerNotifierProvider.notifier);
+                isOpen ? n.nextMonth() : n.nextDay();
+              },
               child: CustomImageView(
-                imagePath: ImageConstant.imgArrowNext, // if SVG, use svgPath:
+                imagePath: ImageConstant.imgArrowNext, // or svgPath
                 height: 24.h,
                 width: 24.h,
                 color: appTheme.gray_700, // olive tint
@@ -57,7 +68,8 @@ class DateNavCalendar extends ConsumerWidget {
             ),
           ],
         ),
-        // Smooth show/hide calendar (hidden by default)
+
+        // === CALENDAR (smooth show/hide) ===
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 240),
           switchInCurve: Curves.easeInOut,
@@ -67,7 +79,7 @@ class DateNavCalendar extends ConsumerWidget {
             axisAlignment: -1.0,
             child: FadeTransition(opacity: anim, child: child),
           ),
-          child: !state.calendarOpen
+          child: !isOpen
               ? const SizedBox.shrink(key: ValueKey('cal-off'))
               : Column(
                   key: const ValueKey('cal-on'),
@@ -108,7 +120,7 @@ class DateNavCalendar extends ConsumerWidget {
                       ),
                     ),
 
-                    // Grid rows (bottom rounded), today circled, past grey
+                    // Grid rows (bottom rounded) — symmetric 6x7, no empty cells
                     ClipRRect(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(10.h),
@@ -125,47 +137,49 @@ class DateNavCalendar extends ConsumerWidget {
                             return TableRow(
                               children: List.generate(7, (c) {
                                 final date = row[c];
-                                if (date == null) {
-                                  return SizedBox(height: 40.h); // empty cell
-                                }
+                                final isSelected = _sameDay(date, state.selectedDate);
+                                final isOutOfMonth = date.month != state.calendarMonth.month;
 
-                                final isToday = (date.year == now.year &&
-                                    date.month == now.month &&
-                                    date.day == now.day);
-                                final todayMid = DateTime(now.year, now.month, now.day);
-                                final isPast = date.isBefore(todayMid);
+                                // color for day number
+                                final dayColor = isOutOfMonth
+                                    ? const Color(0xFFE74C3C) // RED for other months
+                                    : appTheme.white_A700;
 
                                 final textStyle = TextStyleHelper.instance
                                     .label10LightPoppins
-                                    .copyWith(
-                                      color: isPast ? appTheme.gray_600 : appTheme.white_A700,
-                                    );
+                                    .copyWith(color: dayColor);
 
-                                final inner = Center(
-                                  child: isToday
+                                // fixed cell height → symmetric grid
+                                final child = Center(
+                                  child: isSelected
                                       ? Container(
                                           width: 36.h,
                                           height: 36.h,
                                           decoration: BoxDecoration(
-                                            border: Border.all(color: appTheme.gray_700, width: 3.h),
+                                            border: Border.all(
+                                              color: appTheme.gray_700,
+                                              width: 3.h,
+                                            ),
                                             borderRadius: BorderRadius.circular(18.h),
                                           ),
-                                          child: Center(child: Text('${date.day}', style: textStyle)),
+                                          child: Center(
+                                            child: Text('${date.day}', style: textStyle),
+                                          ),
                                         )
                                       : Text('${date.day}', style: textStyle),
                                 );
 
                                 return Padding(
                                   padding: EdgeInsets.symmetric(vertical: 10.h),
-                                  child: isPast
-                                      ? inner
-                                      : GestureDetector(
-                                          behavior: HitTestBehavior.opaque,
-                                          onTap: () => ref
-                                              .read(prayerTrackerNotifierProvider.notifier)
-                                              .selectDate(date),
-                                          child: inner,
-                                        ),
+                                  child: GestureDetector(
+                                    behavior: HitTestBehavior.opaque,
+                                    onTap: () {
+                                      final n = ref.read(prayerTrackerNotifierProvider.notifier);
+                                      n.selectDate(date);         // update selected day
+                                      n.setCalendarOpen(false);   // hide calendar after pick
+                                    },
+                                    child: SizedBox(height: 40.h, child: child), // uniform height
+                                  ),
                                 );
                               }),
                             );
@@ -179,4 +193,9 @@ class DateNavCalendar extends ConsumerWidget {
       ],
     );
   }
+
+  // local helper (widget)
+  bool _sameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
+
 }

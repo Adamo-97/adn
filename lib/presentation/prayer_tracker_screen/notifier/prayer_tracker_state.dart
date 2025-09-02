@@ -1,17 +1,56 @@
  part of 'prayer_tracker_notifier.dart';
 
+// All card names, including Sunrise 
+const List<String> kAllPrayerKeys = <String>[
+  'Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha',
+];
+
+class PrayerCardItem {
+  final String name;
+  final String time;
+  final bool isCompleted;
+  final bool isCurrent;
+  final bool isAfterCurrent;
+  const PrayerCardItem({
+    required this.name,
+    required this.time,
+    required this.isCompleted,
+    required this.isCurrent,
+    required this.isAfterCurrent,
+  });
+}
+
  class PrayerTrackerState extends Equatable {
    final PrayerTrackerModel? prayerTrackerModel;
    final DateTime selectedDate;
+   final DateTime calendarMonth;
    final Map<String,String> dailyTimes;
    final Map<String, bool> completedByPrayer;
    final String currentPrayer;
   /// UI: calendar panel open/closed (hidden by default)
   final bool calendarOpen;
 
-   PrayerTrackerState({
+  int get currentIndexInAll => kAllPrayerKeys.indexOf(currentPrayer);
+
+  /// Build the 6 UI rows for the cards (names, times, flags). Single source of truth.
+  List<PrayerCardItem> get cardItems {
+    final ci = currentIndexInAll;
+    return List<PrayerCardItem>.generate(kAllPrayerKeys.length, (i) {
+      final name = kAllPrayerKeys[i];
+      return PrayerCardItem(
+        name: name,
+        time: dailyTimes[name] ?? '00:00',
+        isCompleted: completedByPrayer[name] ?? false,
+        isCurrent: i == ci,
+        isAfterCurrent: i > ci,
+      );
+    });
+  }
+
+  PrayerTrackerState({
      this.prayerTrackerModel,
      DateTime? selectedDate,
+     DateTime? calendarMonth,
      Map<String, String>? dailyTimes,
      Map<String, bool>? completedByPrayer,
      String? currentPrayer,
@@ -21,6 +60,12 @@
             (selectedDate ?? DateTime.now()).month,
             (selectedDate ?? DateTime.now()).day,
          ),
+         calendarMonth = calendarMonth ??
+              DateTime(
+                (selectedDate ?? DateTime.now()).year,
+                (selectedDate ?? DateTime.now()).month,
+                1,
+          ),
          dailyTimes = dailyTimes ?? const {
            'Fajr': '00:00',
            'Sunrise': '00:00',
@@ -68,47 +113,55 @@
     return '$d, ${two(selectedDate.day)}/${two(selectedDate.month)}/${selectedDate.year}';
   }
 
-   // —— Month grid (weeks × 7), Sunday-first; cells outside month are null ——
-   List<List<DateTime?>> get monthWeeks {
-     final start = DateTime(selectedDate.year, selectedDate.month, 1);
-     final end   = DateTime(selectedDate.year, selectedDate.month + 1, 0);
-     return _buildMonthMatrix(start, end);
-   }
+  // Label when calendar is open: Month Year (e.g., September 2025)
+  String get monthLabel {
+    const months = [
+      'January','February','March','April','May','June',
+      'July','August','September','October','November','December'
+    ];
+    return '${months[calendarMonth.month - 1]} ${calendarMonth.year}';
+  }
+
+  // Grid uses the displayed month (calendarMonth) when open
+  List<List<DateTime>> get monthWeeks {
+    final firstOfMonth = DateTime(calendarMonth.year, calendarMonth.month, 1);
+    final start = _calendarGridStart(firstOfMonth);
+    final daysInMonth = DateTime(firstOfMonth.year, firstOfMonth.month + 1, 0).day;
+    final offset = firstOfMonth.weekday % 7;
+    final totalCells = offset + daysInMonth;
+    final rows = ((totalCells + 6) ~/ 7).clamp(4, 6);
+
+    return List<List<DateTime>>.generate(rows, (r) {
+      return List<DateTime>.generate(7, (c) {
+        final idx = r * 7 + c;
+        final d = start.add(Duration(days: idx));
+        return DateTime(d.year, d.month, d.day);
+      });
+    });
+  }
 
    // ——— helpers ———
-   bool _sameDay(DateTime a, DateTime b) =>
-       a.year == b.year && a.month == b.month && a.day == b.day;
+  DateTime _calendarGridStart(DateTime firstOfMonth) {
+    final sundayIndex = firstOfMonth.weekday % 7; // 0..6
+    return firstOfMonth.subtract(Duration(days: sundayIndex));
+  }
 
-   List<List<DateTime?>> _buildMonthMatrix(DateTime monthStart, DateTime monthEnd) {
-     int sundayIndex(int weekday) => weekday % 7; // Dart: 1=Mon..7=Sun → 0=Sun
-     final firstCol = sundayIndex(monthStart.weekday);
-     final totalDays = monthEnd.day;
+  bool _sameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
 
-     final cells = <DateTime?>[];
-     for (int i = 0; i < firstCol; i++) cells.add(null);
-     for (int d = 1; d <= totalDays; d++) {
-       cells.add(DateTime(monthStart.year, monthStart.month, d));
-     }
-     while (cells.length % 7 != 0) cells.add(null);
-
-     final rows = <List<DateTime?>>[];
-     for (int i = 0; i < cells.length; i += 7) {
-       rows.add(cells.sublist(i, i + 7));
-     }
-     return rows;
-   }
-
-   PrayerTrackerState copyWith({
-     PrayerTrackerModel? prayerTrackerModel,
-     DateTime? selectedDate,
-     Map<String, String>? dailyTimes,
-     Map<String, bool>? completedByPrayer,
+  PrayerTrackerState copyWith({
+    PrayerTrackerModel? prayerTrackerModel,
+    DateTime? selectedDate,
+    DateTime? calendarMonth,
+    Map<String, String>? dailyTimes,
+    Map<String, bool>? completedByPrayer,
      String? currentPrayer,
     bool? calendarOpen,
   }) {
      return PrayerTrackerState(
        prayerTrackerModel: prayerTrackerModel ?? this.prayerTrackerModel,
        selectedDate: selectedDate ?? this.selectedDate,
+       calendarMonth: calendarMonth ?? this.calendarMonth,
        dailyTimes: dailyTimes ?? this.dailyTimes,
        completedByPrayer: completedByPrayer ?? this.completedByPrayer,
        currentPrayer: currentPrayer ?? this.currentPrayer,
@@ -120,6 +173,7 @@
    List<Object?> get props => [
      prayerTrackerModel,
      selectedDate,
+     calendarMonth,
      dailyTimes,
      completedByPrayer,
      currentPrayer,

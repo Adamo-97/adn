@@ -3,8 +3,8 @@ import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/widgets/custom_text_field_with_icon.dart';
 
 class ProgressColors {
-  final Color completed; // olive green
-  final Color current;   // light green
+  final Color completed; // gold when used with filled bg
+  final Color current;   // keep your existing
   final Color upcoming;  // white
   const ProgressColors({
     required this.completed,
@@ -13,13 +13,19 @@ class ProgressColors {
   });
 }
 
-/// Paints 5 bars using statuses: "completed" | "current" | "upcoming",
-/// and shows a centered counter underneath (e.g. "3/5 prayers completed today.")
+/// Bars + centered counter. Optionally wraps everything in a rounded filled card.
 class ProgressIndicatorsRow extends StatelessWidget {
   final List<String> statuses; // "completed" | "current" | "upcoming"
   final ProgressColors colors;
   final int completedCount;
   final int totalFard;
+
+  final bool filled;                   // wrap in a bg container
+  final Color? backgroundColor;        // defaults to olive (your theme token)
+  final double radius;                 // card radius
+  final EdgeInsets? cardPadding;       // inner padding of the card
+
+  final bool fullBleed;
 
   const ProgressIndicatorsRow({
     super.key,
@@ -27,13 +33,18 @@ class ProgressIndicatorsRow extends StatelessWidget {
     required this.colors,
     required this.completedCount,
     this.totalFard = 5,
+    this.filled = false,
+    this.backgroundColor,
+    this.radius = 20,          // will be scaled with .h
+    this.cardPadding,          // default provided below
+    this.fullBleed = false,
   });
 
   Color _map(String s) {
     switch (s) {
-      case 'completed': return colors.completed;
-      case 'current':   return colors.current;
-      default:          return colors.upcoming;
+      case 'completed': return colors.completed; // gold
+      case 'current':   return colors.current;   // keep as-is
+      default:          return colors.upcoming;  // white
     }
   }
 
@@ -49,12 +60,13 @@ class ProgressIndicatorsRow extends StatelessWidget {
       ),
     );
 
-    return Column(
+    // Content (bars + counter)
+    final content = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // Bars row: fixed height, responsive width
+        // Bars row — trimmed bottom to sit closer to the counter
         Padding(
-          padding: EdgeInsets.all(10.h),
+          padding: EdgeInsets.fromLTRB(10.h, 10.h, 10.h, 2.h),
           child: Row(
             children: [
               for (int i = 0; i < statuses.length; i++) ...[
@@ -64,10 +76,8 @@ class ProgressIndicatorsRow extends StatelessWidget {
             ],
           ),
         ),
-
-        SizedBox(height: 8.h),
-
-        // Counter: responsive (fills width), visually centered within page padding
+        SizedBox(height: 4.h),
+        // Counter: fills width, centered by parent padding
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.h),
           child: SizedBox(
@@ -81,6 +91,18 @@ class ProgressIndicatorsRow extends StatelessWidget {
           ),
         ),
       ],
+    );
+
+    if (!filled) return content;
+
+    // Filled card wrapper (olive bg)
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor ?? appTheme.gray_700, // your olive card bg
+        borderRadius: BorderRadius.circular(radius.h),
+      ),
+      padding: cardPadding ?? EdgeInsets.all(12.h),
+      child: content,
     );
   }
 }

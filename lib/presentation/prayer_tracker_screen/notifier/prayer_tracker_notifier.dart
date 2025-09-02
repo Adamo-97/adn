@@ -107,7 +107,11 @@ class PrayerTrackerNotifier extends StateNotifier<PrayerTrackerState> {
   /// Set the selected calendar day (date-only).
   void selectDate(DateTime date) {
     final d = DateTime(date.year, date.month, date.day);
-    state = state.copyWith(selectedDate: d);
+    state = state.copyWith(
+      selectedDate: d,
+      calendarMonth: DateTime(d.year, d.month, 1), // ensure month view matches
+      calendarOpen: false, // close calendar after pick
+    );
     // Kick off fetching times for the newly selected day (placeholder today).
     fetchDailyTimes(d); // TODO: implement with real API
   }
@@ -143,12 +147,38 @@ class PrayerTrackerNotifier extends StateNotifier<PrayerTrackerState> {
 
   /// Toggle calendar panel visibility
   void toggleCalendar() {
-    state = state.copyWith(calendarOpen: !state.calendarOpen);
+    final opening = !state.calendarOpen;
+    if (opening) {
+      final s = state.selectedDate;
+      state = state.copyWith(
+        calendarOpen: true,
+        calendarMonth: DateTime(s.year, s.month, 1),
+      );
+    } else {
+      state = state.copyWith(calendarOpen: false);
+    }
   }
 
-  ///  hook prev/next icons
+  void setCalendarOpen(bool open) {
+    if (state.calendarOpen == open) return;
+    state = state.copyWith(calendarOpen: open);
+  }
+
+  // Day navigation (used when calendar is CLOSED)
   void prevDay() => selectDate(state.selectedDate.subtract(const Duration(days: 1)));
   void nextDay() => selectDate(state.selectedDate.add(const Duration(days: 1)));
+
+  // Month navigation (used when calendar is OPEN)
+  // Keeps the day-of-month if possible, clamps to last day of month if needed.
+  void prevMonth() => _shiftMonth(-1);
+  void nextMonth() => _shiftMonth(1);
+
+  void _shiftMonth(int delta) {
+    final cm = state.calendarMonth;
+    // Move the DISPLAYED month; do NOT change selectedDate here.
+    final newMonth = DateTime(cm.year, cm.month + delta, 1); // DateTime handles year rollover
+    state = state.copyWith(calendarMonth: newMonth);
+  }
 
 }
 
