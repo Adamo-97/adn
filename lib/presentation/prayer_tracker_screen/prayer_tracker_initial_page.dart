@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_export.dart';
 import '../../widgets/custom_image_view.dart';
-import '../../widgets/custom_text_field_with_icon.dart';
 import './models/prayer_tracker_model.dart';
-import './widgets/prayer_action_item_widget.dart';
 import 'notifier/prayer_tracker_notifier.dart';
 
 import './widgets/fixed_prayer_header.dart';
 import './widgets/prayer_actions.dart';
+import './widgets/qibla_panel.dart';
+import './widgets/progress_indicators_row.dart';
+import './widgets/date_nav_calendar.dart';
 
 class PrayerTrackerInitialPage extends ConsumerStatefulWidget {
   const PrayerTrackerInitialPage({Key? key}) : super(key: key);
@@ -54,39 +55,28 @@ class PrayerTrackerInitialPageState
   }
 
   Widget _buildPrayerContent(BuildContext context) {
+    final m = ref.watch(prayerTrackerNotifierProvider); // Riverpod state
+    //count the completed prayers
+    final completedCount = _fardPrayers.where((p) => m.completedByPrayer[p] == true).length;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         PrayerActions(onActionTap: _onPrayerActionTap),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 240),
-            switchInCurve: Curves.easeInOut,
-            switchOutCurve: Curves.easeInOut,
-            transitionBuilder: (child, anim) => SizeTransition(
-              sizeFactor: anim,
-            axisAlignment: -1.0,
-            child: FadeTransition(opacity: anim, child: child),
-          ),
-          child: !_qiblaOpen
-              ? const SizedBox.shrink(key: ValueKey('qibla-off'))
-              : Column(
-                  key: const ValueKey('qibla-on'),
-                  children: [
-                    SizedBox(height: 28.h),
-                    _buildCompassSection(context),
-                    SizedBox(height: 16.h),
-                    _buildPhoneInstructions(context),
-                  ],
-                ),
-        ),
+        QiblaPanel(isOpen: _qiblaOpen),
         SizedBox(height: 16.h),
-        _buildProgressIndicators(context),
-        SizedBox(height: 8.h),
-        _buildPrayerStatusInput(context),
-        SizedBox(height: 12.h),
-        _buildDateNavigation(context),
-        SizedBox(height: 16.h),
-        _buildPrayerCalendar(context),
+       ProgressIndicatorsRow(
+         statuses: m.progressStatusesRaw,
+         colors: ProgressColors(
+           completed: appTheme.gray_700,  // completed
+           current:   appTheme.gray_500,  // current
+           upcoming:  appTheme.white_A700,  // upcoming/uncompleted
+         ),
+        completedCount: completedCount,
+        totalFard: _fardPrayers.length, // 5
+      ),
+
+        const DateNavCalendar(),
         SizedBox(height: 16.h),
         _buildPrayerCards(context),
       ],
@@ -214,91 +204,6 @@ class PrayerTrackerInitialPageState
   void _onToggleCompleted(String name) {
     ref.read(prayerTrackerNotifierProvider.notifier).togglePrayerCompleted(name);
   }
-
-  Widget _buildCompassSection(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: CustomImageView(
-        imagePath: ImageConstant.imgCompassIcon,
-        height: 202.h,
-        width: 194.h,
-      ),
-    );
-  }
-
-  Widget _buildPhoneInstructions(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center, // center the whole row
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CustomImageView(
-          imagePath: ImageConstant.imgMobileIcon,
-          height: 22.h,
-          width: 26.h,
-        ),
-        SizedBox(width: 12.h),
-        // Let the text wrap and stay centered
-        Flexible(
-          child: Text(
-            'Please place your phone on a flat surface',
-            textAlign: TextAlign.center,
-            style: TextStyleHelper.instance.label10LightPoppins,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildProgressIndicators(BuildContext context) {
-    final state    = ref.watch(prayerTrackerNotifierProvider);
-    final done     = state.completedByPrayer;   // map<String,bool>
-    final current  = state.currentPrayer;       // e.g. "Asr"
-    final currentIsFard = _fardPrayers.contains(current);
-
-    List<Widget> bars = [];
-    for (int i = 0; i < _fardPrayers.length; i++) {
-      final name = _fardPrayers[i];
-      final isCompleted = done[name] == true;
-      final isCurrent   = currentIsFard && (name == current);
-
-      final Color c = isCompleted
-          ? appTheme.gray_700           // completed = dark (your existing)
-          : (isCurrent
-              ? appTheme.gray_500       // current (not completed) = light (your existing)
-              : appTheme.white_A700);   // not done = white
-
-      bars.add(
-        Expanded(
-          child: Container(
-            height: 8.h,
-            decoration: BoxDecoration(
-              color: c,
-              borderRadius: BorderRadius.circular(4.h),
-            ),
-          ),
-        ),
-      );
-      if (i != _fardPrayers.length - 1) bars.add(SizedBox(width: 10.h));
-    }
-
-    return Padding(
-      padding: EdgeInsets.all(10.h),
-      child: Row(children: bars),
-    );
-  }
-
-  Widget _buildPrayerStatusInput(BuildContext context) {
-    final state = ref.watch(prayerTrackerNotifierProvider);
-    final completedCount = _fardPrayers.where((p) => state.completedByPrayer[p] == true).length;
-
-    return CustomTextFieldWithIcon(
-      leftIcon: ImageConstant.imgCheck,
-      hintText: '$completedCount/5 prayers completed today.',
-      textStyle: TextStyleHelper.instance.body15RegularPoppins
-          .copyWith(color: appTheme.white_A700),
-    );
-  }
-
 
   Widget _buildDateNavigation(BuildContext context) {
     return Row(

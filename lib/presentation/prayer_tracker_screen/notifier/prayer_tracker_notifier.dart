@@ -4,6 +4,10 @@ import '../models/prayer_tracker_model.dart';
 
 part 'prayer_tracker_state.dart';
 
+const List<String> kOrderedPrayerKeys = <String>[
+  'Fajr','Dhuhr','Asr','Maghrib','Isha',
+];
+
 final prayerTrackerNotifierProvider = StateNotifierProvider.autoDispose<
     PrayerTrackerNotifier, PrayerTrackerState>(
   (ref) => PrayerTrackerNotifier(
@@ -136,4 +140,15 @@ class PrayerTrackerNotifier extends StateNotifier<PrayerTrackerState> {
       ),
     );
   }
+
+  /// Toggle calendar panel visibility
+  void toggleCalendar() {
+    state = state.copyWith(calendarOpen: !state.calendarOpen);
+  }
+
+  ///  hook prev/next icons
+  void prevDay() => selectDate(state.selectedDate.subtract(const Duration(days: 1)));
+  void nextDay() => selectDate(state.selectedDate.add(const Duration(days: 1)));
+
 }
+

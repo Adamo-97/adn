@@ -1,100 +1,87 @@
 import 'package:flutter/material.dart';
-import '../../../core/app_export.dart';
-import '../../../widgets/custom_image_view.dart';
+import 'package:adam_s_application/core/app_export.dart';
+import 'package:adam_s_application/widgets/custom_image_view.dart';
 
 class QiblaPanel extends StatelessWidget {
-  const QiblaPanel({super.key, required this.onToggle});
-  final VoidCallback onToggle;
+  final bool isOpen;
+  const QiblaPanel({super.key, required this.isOpen});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      key: const ValueKey('qibla-open'),
-      padding: EdgeInsets.all(12.h),
-      decoration: BoxDecoration(
-        color: appTheme.gray_700,
-        borderRadius: BorderRadius.circular(10.h),
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 240),
+      switchInCurve: Curves.easeInOut,
+      switchOutCurve: Curves.easeInOut,
+      transitionBuilder: (child, anim) => SizeTransition(
+        sizeFactor: anim,
+        axisAlignment: -1.0,
+        child: FadeTransition(opacity: anim, child: child),
       ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Text(
-                'Qibla',
-                style: TextStyleHelper.instance.title18SemiBoldPoppins
-                    .copyWith(color: appTheme.orange_200),
-              ),
-              const Spacer(),
-              GestureDetector(
-                onTap: onToggle,
-                child: CustomImageView(
-                  imagePath: ImageConstant.imgArrowNext, // collapse icon
-                  height: 24.h,
-                  width: 24.h,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 12.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomImageView(
-                imagePath: ImageConstant.imgCompassIcon,
-                height: 120.h,
-                width: 120.h,
-              ),
-              SizedBox(width: 12.h),
-              Flexible(
-                child: Text(
-                  'Please place your phone on a flat surface',
-                  textAlign: TextAlign.center,
-                  style: TextStyleHelper.instance.label10LightPoppins,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+      child: !isOpen
+          ? const SizedBox.shrink(key: ValueKey('qibla-off'))
+          : Column(
+              key: const ValueKey('qibla-on'),
+              children: const [
+                _QiblaSpacingTop(),
+                _Compass(),
+                _QiblaSpacingBetween(),
+                _PhoneInstructions(),
+              ],
+            ),
     );
-  }
-
-  static Widget Collapsed({Key? key, required VoidCallback onToggle}) {
-    return _QiblaCollapsed(key: key, onToggle: onToggle);
   }
 }
 
-class _QiblaCollapsed extends StatelessWidget {
-  const _QiblaCollapsed({super.key, required this.onToggle});
-  final VoidCallback onToggle;
+class _QiblaSpacingTop extends StatelessWidget {
+  const _QiblaSpacingTop();
+  @override
+  Widget build(BuildContext context) => SizedBox(height: 28.h);
+}
 
+class _QiblaSpacingBetween extends StatelessWidget {
+  const _QiblaSpacingBetween();
+  @override
+  Widget build(BuildContext context) => SizedBox(height: 16.h);
+}
+
+class _Compass extends StatelessWidget {
+  const _Compass();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      key: const ValueKey('qibla-closed'),
-      padding: EdgeInsets.all(12.h),
-      decoration: BoxDecoration(
-        color: appTheme.gray_700,
-        borderRadius: BorderRadius.circular(10.h),
+    return Align(
+      alignment: Alignment.center,
+      child: CustomImageView(
+        imagePath: ImageConstant.imgCompassIcon,
+        height: 202.h,
+        width: 194.h,
       ),
-      child: Row(
-        children: [
-          Text(
-            'Qibla',
-            style: TextStyleHelper.instance.title18SemiBoldPoppins
-                .copyWith(color: appTheme.orange_200),
+    );
+  }
+}
+
+class _PhoneInstructions extends StatelessWidget {
+  const _PhoneInstructions();
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center, // centered row
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        CustomImageView(
+          imagePath: ImageConstant.imgMobileIcon,
+          height: 22.h,
+          width: 26.h,
+        ),
+        SizedBox(width: 12.h),
+        Flexible(
+          child: Text(
+            'Please place your phone on a flat surface',
+            textAlign: TextAlign.center,
+            style: TextStyleHelper.instance.body15RegularPoppins
+                .copyWith(color: appTheme.white_A700),
           ),
-          const Spacer(),
-          GestureDetector(
-            onTap: onToggle,
-            child: CustomImageView(
-              imagePath: ImageConstant.imgArrowNext,
-              height: 24.h,
-              width: 24.h,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

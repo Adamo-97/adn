@@ -57,7 +57,7 @@ try {
 }
 
 # --- fixed wait ---
-$WAIT_SECS = 30
+$WAIT_SECS = 10
 Info ("Waiting {0}s for the emulator to boot..." -f $WAIT_SECS)
 Start-Sleep -Seconds $WAIT_SECS
 
