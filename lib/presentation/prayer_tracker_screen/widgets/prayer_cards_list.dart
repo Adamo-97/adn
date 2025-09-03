@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/widgets/custom_image_view.dart';
 import '../notifier/prayer_tracker_notifier.dart';
-
+import '../widgets/prayer_notification_icon.dart';
 class PrayerCardsList extends ConsumerWidget {
   const PrayerCardsList({super.key});
 
@@ -99,10 +99,9 @@ class _CardRow extends ConsumerWidget {
             SizedBox(width: 12.h),
 
             // Bell (unchanged)
-            CustomImageView(
-              imagePath: ImageConstant.imgNotificationOn,
-              height: 26.h,
-              width: 24.h,
+            PrayerNotificationIcon(
+              prayerId: item.name, // use the prayer name as ID ("Fajr", "Asr", etc.)
+              size: 26,            // we’ll wrap in a transparent square
             ),
           ],
         ),

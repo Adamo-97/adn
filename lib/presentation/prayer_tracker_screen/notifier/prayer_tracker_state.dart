@@ -5,6 +5,8 @@ const List<String> kAllPrayerKeys = <String>[
   'Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha',
 ];
 
+enum PrayerBellMode { adhan, pling, mute }
+
 class PrayerCardItem {
   final String name;
   final String time;
@@ -32,6 +34,8 @@ class PrayerCardItem {
 
   int get currentIndexInAll => kAllPrayerKeys.indexOf(currentPrayer);
 
+  final Map<String, PrayerBellMode> bellByPrayer;
+
   /// Build the 6 UI rows for the cards (names, times, flags). Single source of truth.
   List<PrayerCardItem> get cardItems {
     final ci = currentIndexInAll;
@@ -55,6 +59,7 @@ class PrayerCardItem {
      Map<String, bool>? completedByPrayer,
      String? currentPrayer,
     bool? calendarOpen,
+    Map<String, PrayerBellMode>? bellByPrayer,
    })  : selectedDate = DateTime(
             (selectedDate ?? DateTime.now()).year,
             (selectedDate ?? DateTime.now()).month,
@@ -83,7 +88,15 @@ class PrayerCardItem {
            'Isha': false,
          },
         currentPrayer = currentPrayer ?? 'Asr',
-        calendarOpen = calendarOpen ?? false;
+        calendarOpen = calendarOpen ?? false,
+        bellByPrayer = bellByPrayer ?? const {
+          'Fajr': PrayerBellMode.adhan,
+          'Sunrise': PrayerBellMode.mute,
+          'Dhuhr': PrayerBellMode.pling,
+          'Asr': PrayerBellMode.pling,
+          'Maghrib': PrayerBellMode.adhan,
+          'Isha': PrayerBellMode.pling,
+        };
 
    List<PrayerActionModel> get prayerActions =>
        prayerTrackerModel?.prayerActions ?? [];
@@ -157,6 +170,7 @@ class PrayerCardItem {
     Map<String, bool>? completedByPrayer,
      String? currentPrayer,
     bool? calendarOpen,
+    Map<String, PrayerBellMode>? bellByPrayer,
   }) {
      return PrayerTrackerState(
        prayerTrackerModel: prayerTrackerModel ?? this.prayerTrackerModel,
@@ -166,6 +180,7 @@ class PrayerCardItem {
        completedByPrayer: completedByPrayer ?? this.completedByPrayer,
        currentPrayer: currentPrayer ?? this.currentPrayer,
        calendarOpen: calendarOpen ?? this.calendarOpen,
+       bellByPrayer: bellByPrayer ?? this.bellByPrayer,
      );
    }
 
@@ -178,5 +193,6 @@ class PrayerCardItem {
      completedByPrayer,
      currentPrayer,
      calendarOpen,
+     bellByPrayer,
    ];
  }

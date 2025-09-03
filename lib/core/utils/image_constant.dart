@@ -22,6 +22,10 @@ class ImageConstant {
   // Placeholder image for fallback
   static String imgPlaceholder = '${_basePath}placeholder.png';
   
+  // Notification bell states
+  static const String bellAdhan = 'assets/images/notifications/bell_adhan.svg';
+  static const String bellPling = 'assets/images/notifications/bell_pling.svg';
+  static const String bellMute  = 'assets/images/notifications/bell_mute.svg';
 
   // Six prayer SVGs — placed directly under assets/images/
   static String imgFajr    = '${_basePath}fajr.svg';
@@ -97,7 +101,6 @@ class ImageConstant {
   static String imgImportantIcon = '${_basePath}img_important_icon.svg';
   static String imgLocationIcon = '${_basePath}img_location_icon.svg';
   static String imgMobileIcon = '${_basePath}img_mobile_icon.svg';
-  static String imgNotificationOn = '${_basePath}img_notification_on.svg';
   static String imgPrayerTimes = '${_basePath}img_prayer_times.svg';
   static String imgQiblaButton = '${_basePath}img_qibla_button.svg';
   static String imgSearchWhiteA700 = '${_basePath}img_search_white_a700.svg';

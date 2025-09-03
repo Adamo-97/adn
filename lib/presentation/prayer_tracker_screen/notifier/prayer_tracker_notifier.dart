@@ -180,5 +180,19 @@ class PrayerTrackerNotifier extends StateNotifier<PrayerTrackerState> {
     state = state.copyWith(calendarMonth: newMonth);
   }
 
-}
+  PrayerBellMode bellFor(String prayerId) {
+    return state.bellByPrayer[prayerId] ?? PrayerBellMode.adhan;
+  }
 
+   void cycleBell(String prayerId) {
+     final current = bellFor(prayerId);
+     final next = switch (current) {
+       PrayerBellMode.adhan => PrayerBellMode.pling,
+       PrayerBellMode.pling => PrayerBellMode.mute,
+       PrayerBellMode.mute  => PrayerBellMode.adhan,
+     };
+     final nextMap = Map<String, PrayerBellMode>.from(state.bellByPrayer)
+       ..[prayerId] = next;
+     state = state.copyWith(bellByPrayer: nextMap);
+   }
+}
