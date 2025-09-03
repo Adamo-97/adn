@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:adam_s_application/core/app_export.dart';
 import '../notifier/prayer_tracker_notifier.dart';
