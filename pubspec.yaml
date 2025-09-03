@@ -16,6 +16,7 @@ dependencies:
   equatable: ^2.0.5
   universal_html: ^2.2.4
 dev_dependencies: 
+  flutter_launcher_icons: ^0.13.1
   flutter_test:    # 🚨 CRITICAL: Required for Flutter project testing - DO NOT REMOVE
     sdk: flutter    # 🚨 CRITICAL: Required for Flutter project testing - DO NOT REMOVE
 flutter: 
@@ -38,6 +39,15 @@ flutter:
       fonts: 
         - asset: assets/fonts/NotoKufiArabicMedium.ttf
           weight: 500
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: web/icons/Icon-1024.png
+  adaptive_icon_background: "#FFFFFF"   # or any solid color you prefer
+  adaptive_icon_foreground: web/icons/Icon-foreground.png
+  min_sdk_android: 21
+
 
   # 🚨 CRITICAL ASSET MANAGEMENT RULES:
   # - DO NOT ADD NEW ASSET DIRECTORIES (assets/svg/, assets/icons/, etc.)
