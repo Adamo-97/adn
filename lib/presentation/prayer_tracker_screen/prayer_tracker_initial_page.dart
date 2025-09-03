@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_export.dart';
-import '../../widgets/custom_image_view.dart';
 import './models/prayer_tracker_model.dart';
 import 'notifier/prayer_tracker_notifier.dart';
 
