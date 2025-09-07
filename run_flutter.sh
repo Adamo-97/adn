@@ -10,6 +10,9 @@ set -euo pipefail
 # -----------------------------------------------------------------------------
 
 AVD_NAME="Medium_Phone_API_36.0"   # exact name from `emulator -list-avds`
+export ANDROID_SDK_ROOT="${HOME}/Android/Sdk"
+export PATH="$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$PATH"
+export ADB_INSTALL_TIMEOUT=180
 
 KILL_FIRST="no"
 if [[ "${1-}" == "--kill" ]]; then
