@@ -5,7 +5,7 @@ import '../../core/app_export.dart';
 import '../../widgets/custom_bottom_bar.dart';
 
 // Tab root screens (existing)
-import '../azkhar_categories_screen/azkhar_categories_screen.dart';
+import '../salah_guide_screen/azkhar_categories_screen.dart';
 import '../quran_main_screen/quran_main_screen.dart';
 import '../profile_settings_screen/profile_settings_screen.dart';
 import './prayer_tracker_initial_page.dart';
@@ -116,7 +116,7 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
         width: 34.h,
       ),
       CustomBottomBarItem(
-        icon: ImageConstant.imgDikrnavicon,
+        icon: ImageConstant.imgIconPlaceholder7,
         routeName: AppRoutes.azkharCategoriesScreen,
         height: 32.h,
         width: 34.h,
