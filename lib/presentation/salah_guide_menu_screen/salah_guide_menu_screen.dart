@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_export.dart';
-import '../../widgets/custom_image_view.dart';
 import './models/salah_guide_menu_model.dart';
 import './widgets/prayer_guide_grid_item_widget.dart';
 import './widgets/prayer_list_item_widget.dart';
 import 'notifier/salah_guide_menu_notifier.dart';
+import './widgets/fixed_salah_header.dart';
 
 class SalahGuideMenuScreen extends ConsumerStatefulWidget {
   const SalahGuideMenuScreen({Key? key}) : super(key: key);
@@ -26,46 +26,13 @@ class SalahGuideMenuScreenState extends ConsumerState<SalahGuideMenuScreen> {
           child: Column(
             children: [
               SizedBox(height: 14.h),
-              _buildHeader(context),
+              FixedSalahHeader(title: 'Salah Guide', onBack: () => onTapBackButton(context)),
               SizedBox(height: 15.h),
               _buildScrollableContent(context),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  /// Section Widget
-  Widget _buildHeader(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                onTapBackButton(context);
-              },
-              child: CustomImageView(
-                imagePath: ImageConstant.imgBackButton,
-                height: 30.h,
-                width: 30.h,
-              ),
-            ),
-            SizedBox(width: 70.h),
-            Text(
-              'Salah Guide',
-              style: TextStyleHelper.instance.title20BoldPoppins,
-            ),
-          ],
-        ),
-        SizedBox(height: 12.h),
-        Container(
-          height: 1.h,
-          width: double.maxFinite,
-          color: appTheme.orange_200,
-        ),
-      ],
     );
   }
 
