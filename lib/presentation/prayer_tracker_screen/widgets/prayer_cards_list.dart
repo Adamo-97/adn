@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:adam_s_application/core/app_export.dart';
-import 'package:adam_s_application/widgets/custom_image_view.dart';
 import '../notifier/prayer_tracker_notifier.dart';
 import '../widgets/prayer_notification_icon.dart';
+
 class PrayerCardsList extends ConsumerWidget {
   const PrayerCardsList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(prayerTrackerNotifierProvider);
-    final items = state.cardItems; // ← derived list from state
+    final items = state.cardItems;
 
     return Column(
       children: [
@@ -36,8 +36,6 @@ class _CardRow extends ConsumerWidget {
     final decorationColor = item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
     final bgColor = item.isCurrent ? appTheme.gray_700 : nonCurrentBg;
 
-    const uncheckedSvgPath = 'assets/images/ic_checkbox_unchecked.svg';
-
     return Opacity(
       opacity: item.isAfterCurrent ? 0.5 : 1.0,
       child: Container(
@@ -56,20 +54,16 @@ class _CardRow extends ConsumerWidget {
                       .read(prayerTrackerNotifierProvider.notifier)
                       .togglePrayerCompleted(item.name),
               behavior: HitTestBehavior.opaque,
-              child: SizedBox(
-                width: 28.h,
-                height: 28.h,
-                child: item.isCompleted
-                    ? CustomImageView(
-                        imagePath: ImageConstant.imgCheckedIcon,
-                        height: 24.h,
-                        width: 24.h,
-                      )
-                    : CustomImageView(
-                        imagePath: uncheckedSvgPath, 
-                        height: 24.h,
-                        width: 24.h,
-                      ),
+              child: _RoundCheckbox(
+                checked: item.isCompleted,
+                enabled: !item.isAfterCurrent,
+                size: 24.h, // icon visual size
+                // colors match your current vs non-current scheme
+                fillColor: item.isCurrent ? appTheme.orange_200 : appTheme.gray_700,
+                borderColor: item.isCurrent
+                    ? appTheme.orange_200
+                    : appTheme.white_A700.withValues(alpha: 0.5),
+                checkColor: appTheme.white_A700, // contrast on orange fill
               ),
             ),
             SizedBox(width: 10.h),
@@ -100,12 +94,58 @@ class _CardRow extends ConsumerWidget {
 
             // Bell (unchanged)
             PrayerNotificationIcon(
-              prayerId: item.name, // use the prayer name as ID ("Fajr", "Asr", etc.)
-              size: 26,            // we’ll wrap in a transparent square
+              prayerId: item.name,
+              size: 26,
             ),
           ],
         ),
       ),
     );
+  }
+}
+
+// keep this OUTSIDE the _CardRow class
+class _RoundCheckbox extends StatelessWidget {
+  final bool checked;
+  final bool enabled;
+  final double size;          // visual circle diameter (was 24.h)
+  final Color fillColor;      // used when checked
+  final Color borderColor;    // outline color
+  final Color checkColor;     // tick color
+
+  const _RoundCheckbox({
+    required this.checked,
+    required this.enabled,
+    required this.size,
+    required this.fillColor,
+    required this.borderColor,
+    required this.checkColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final circle = AnimatedContainer(
+      duration: const Duration(milliseconds: 150),
+      curve: Curves.easeOut,
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: checked ? fillColor : Colors.transparent,
+        border: Border.all(color: borderColor, width: 2.h),
+      ),
+      child: checked
+          ? Icon(Icons.check_rounded, size: size * 0.66, color: checkColor)
+          : const SizedBox.shrink(),
+    );
+
+    // preserve your old ~28.h tap target
+    final box = SizedBox(
+      width: size + 4.h,
+      height: size + 4.h,
+      child: Center(child: circle),
+    );
+
+    return enabled ? box : Opacity(opacity: 0.6, child: box);
   }
 }

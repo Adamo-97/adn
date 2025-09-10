@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../presentation/prayer_tracker_screen/prayer_tracker_screen.dart';
-import '../presentation/purification_selection_screen/purification_selection_screen.dart';
+//import '../presentation/purification_selection_screen/purification_selection_screen.dart';
 import '../presentation/salah_guide_menu_screen/salah_guide_menu_screen.dart';
 import '../presentation/salah_guide_screen/azkhar_categories_screen.dart';
 import '../presentation/quran_main_screen/quran_main_screen.dart';
@@ -24,7 +24,7 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> get routes => {
         prayerTrackerScreen: (context) => PrayerTrackerScreen(),
-        purificationSelectionScreen: (context) => PurificationSelectionScreen(),
+        //purificationSelectionScreen: (context) => PurificationSelectionScreen(),
         salahGuideMenuScreen: (context) => SalahGuideMenuScreen(),
         azkharCategoriesScreen: (context) => AzkharCategoriesScreen(),
         quranMainScreen: (context) => QuranMainScreen(),

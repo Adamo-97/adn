@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_export.dart';
 import '../../widgets/custom_icon_button.dart';
+import '../../widgets/custom_image_view.dart';
 import 'notifier/profile_settings_notifier.dart';
 
 class ProfileSettingsScreen extends ConsumerStatefulWidget {
@@ -100,8 +101,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
               height: 76.h,
               width: double.maxFinite,
               margin: EdgeInsets.only(bottom: 114.h),
-              child: Image.asset(
-                ImageConstant.imgShadowButtom2,
+              child: CustomImageView(
+                imagePath: ImageConstant.imgShadowButtom2,
                 height: 76.h,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
@@ -145,8 +146,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
                 icon: ImageConstant.imgVectorWhiteA700,
                 title: 'Dark Mode',
                 subtitle: 'Switch between light and dark theme',
-                trailing: Image.asset(
-                  ImageConstant.imgStatusChecked,
+                trailing: CustomImageView(
+                  imagePath: ImageConstant.imgStatusChecked,
                   height: 44.h,
                   width: 36.h,
                   fit: BoxFit.cover,
@@ -161,8 +162,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
                 icon: ImageConstant.imgCalendarIcon,
                 title: 'Hijri Calendar',
                 subtitle: 'Switch to Hijri calendar display',
-                trailing: Image.asset(
-                  ImageConstant.imgStatusUnchecked,
+                trailing: CustomImageView(
+                  imagePath: ImageConstant.imgStatusUnchecked,
                   height: 44.h,
                   width: 36.h,
                   fit: BoxFit.cover,
@@ -179,8 +180,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
                 icon: ImageConstant.imgAppmodeIcon,
                 title: 'Location',
                 subtitle: 'Update your current location',
-                trailing: Image.asset(
-                  ImageConstant.imgDropDownClick,
+                trailing: CustomImageView(
+                  imagePath: ImageConstant.imgDropDownClick,
                   height: 50.h,
                   width: 36.h,
                   fit: BoxFit.cover,
@@ -213,8 +214,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
         children: [
           Container(
             margin: EdgeInsets.only(top: 4.h),
-            child: Image.asset(
-              icon,
+            child: CustomImageView(
+              imagePath: icon,
               height: 24.h,
               width: 24.h,
               fit: BoxFit.cover,
@@ -269,14 +270,14 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
                   ),
                 ),
               ),
-              Image.asset(
-                ImageConstant.imgArrowDown,
+              CustomImageView(
+                imagePath: ImageConstant.imgArrowDown,
                 height: 24.h,
                 width: 24.h,
                 fit: BoxFit.cover,
               ),
-              Image.asset(
-                ImageConstant.imgArrowDownWhiteA700,
+              CustomImageView(
+                imagePath: ImageConstant.imgArrowDownWhiteA700,
                 height: 22.h,
                 width: 24.h,
                 fit: BoxFit.cover,
@@ -326,8 +327,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
                       'Stockholm, Sweden',
                       style: TextStyleHelper.instance.body12RegularPoppins,
                     ),
-                    Image.asset(
-                      ImageConstant.imgCheckMark,
+                    CustomImageView(
+                      imagePath: ImageConstant.imgCheckMark,
                       height: 24.h,
                       width: 24.h,
                       fit: BoxFit.cover,
@@ -366,8 +367,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
         children: [
           Container(
             margin: EdgeInsets.only(top: 2.h),
-            child: Image.asset(
-              ImageConstant.imgAppmodeIconWhiteA700,
+            child: CustomImageView(
+              imagePath: ImageConstant.imgAppmodeIconWhiteA700,
               height: 24.h,
               width: 24.h,
               fit: BoxFit.cover,
@@ -390,8 +391,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
               ],
             ),
           ),
-          Image.asset(
-            ImageConstant.imgDropDownClickWhiteA700,
+          CustomImageView(
+            imagePath: ImageConstant.imgDropDownClickWhiteA700,
             height: 44.h,
             width: 10.h,
             fit: BoxFit.cover,
@@ -419,8 +420,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
                 },
                 child: Row(
                   children: [
-                    Image.asset(
-                      ImageConstant.imgSelected,
+                    CustomImageView(
+                      imagePath: ImageConstant.imgSelected,
                       height: 24.h,
                       width: 24.h,
                       fit: BoxFit.cover,
@@ -443,8 +444,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
                 },
                 child: Row(
                   children: [
-                    Image.asset(
-                      ImageConstant.imgUnselected,
+                    CustomImageView(
+                      imagePath: ImageConstant.imgUnselected,
                       height: 24.h,
                       width: 24.h,
                       fit: BoxFit.cover,
@@ -474,8 +475,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
       children: [
         Container(
           margin: EdgeInsets.only(top: 4.h),
-          child: Image.asset(
-            ImageConstant.imgAppmodeIconWhiteA70024x24,
+          child: CustomImageView(
+            imagePath: ImageConstant.imgAppmodeIconWhiteA70024x24,
             height: 24.h,
             width: 24.h,
             fit: BoxFit.cover,
@@ -505,8 +506,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
         ),
         Container(
           margin: EdgeInsets.only(right: 24.h, left: 10.h),
-          child: Image.asset(
-            ImageConstant.imgDropDownClick,
+          child: CustomImageView(
+            imagePath: ImageConstant.imgDropDownClick,
             height: 50.h,
             width: 36.h,
             fit: BoxFit.cover,
@@ -597,8 +598,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
           ),
           Container(
             margin: EdgeInsets.only(right: 24.h),
-            child: Image.asset(
-              ImageConstant.imgStatusChecked,
+            child: CustomImageView(
+              imagePath: ImageConstant.imgStatusChecked,
               height: 22.h,
               width: 36.h,
               fit: BoxFit.cover,

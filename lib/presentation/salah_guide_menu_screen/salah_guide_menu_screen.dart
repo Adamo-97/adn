@@ -54,6 +54,7 @@ class SalahGuideMenuScreenState extends ConsumerState<SalahGuideMenuScreen> {
 
   /// Section Widget
   Widget _buildPrayerGuideGrid(BuildContext context) {
+    debugPrint('[SalahGrid] Building grid');
     return Consumer(
       builder: (context, ref, _) {
         final state = ref.watch(salahGuideMenuNotifier);
@@ -65,7 +66,8 @@ class SalahGuideMenuScreenState extends ConsumerState<SalahGuideMenuScreen> {
             crossAxisCount: 2,
             mainAxisSpacing: 10.h,
             crossAxisSpacing: 10.h,
-            childAspectRatio: 1.0,
+            // exact tile height; tweak this number to shrink/grow rows
+            mainAxisExtent: 110.h,
           ),
           itemCount: state.prayerGuideItems?.length ?? 0,
           itemBuilder: (context, index) {
