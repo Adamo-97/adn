@@ -9,7 +9,7 @@ set -euo pipefail
 # - Runs `flutter run` ONLY against that emulator (no Chrome fallback)
 # -----------------------------------------------------------------------------
 
-AVD_NAME="Medium_Phone_API_36.0"   # exact name from `emulator -list-avds`
+AVD_NAME="flutter_emulator"   # exact name from `emulator -list-avds`
 export ANDROID_SDK_ROOT="${HOME}/Android/Sdk"
 export PATH="$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$PATH"
 export ADB_INSTALL_TIMEOUT=180
