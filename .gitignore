@@ -9,3 +9,10 @@
 /.idea/.wiseGPT/
 /ios/Podfile
 /pubspec.lock
+
+# Kotlin/Gradle build caches
+android/.kotlin/
+android/.gradle/
+android/app/build/
+build/
+.dart_tool/
