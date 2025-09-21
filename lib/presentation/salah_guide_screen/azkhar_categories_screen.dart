@@ -46,13 +46,13 @@ class AzkharCategoriesScreenState extends ConsumerState<AzkharCategoriesScreen> 
             SizedBox(height: 16.h), // space below header content
             GridView.builder(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              primary: false,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: 12.h,
-                crossAxisSpacing: 12.h,
-                // slightly taller cells to avoid minor overflows
-                childAspectRatio: 0.9,
+                crossAxisSpacing: 8.h,
+                mainAxisSpacing: 8.h,
+                // precise, compact height per tile
+                mainAxisExtent: 60.h,
               ),
               itemCount: items.length,
               itemBuilder: (_, i) => PurificationItemWidget(
@@ -66,4 +66,3 @@ class AzkharCategoriesScreenState extends ConsumerState<AzkharCategoriesScreen> 
     );
   }
 }
-

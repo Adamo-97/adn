@@ -14,38 +14,43 @@ class AzkharCategoryItemWidget extends StatelessWidget {
     this.onTapCategory,
   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTapCategory,
-      child: Container(
-        padding: EdgeInsets.all(8.h),
-        decoration: BoxDecoration(
-          color: category.backgroundColor ?? Color(0xFF5C6248),
-          border: Border.all(
-            color: category.borderColor ?? Color(0xFF8F9B87),
-            width: 3.h,
-          ),
-          borderRadius: BorderRadius.circular(12.h),
-        ),
-        child: Row(
+   @override
+   Widget build(BuildContext context) {
+     return GestureDetector(
+       onTap: onTapCategory,
+       child: Container(
+         // tighter padding so the tile is shorter
+         padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 6.h),
+         constraints: BoxConstraints(minHeight: 44.h), // compact but tappable
+         decoration: BoxDecoration(
+           color: category.backgroundColor ?? Color(0xFF5C6248),
+           border: Border.all(
+             color: category.borderColor ?? Color(0xFF8F9B87),
+             width: 2.h, // slimmer border reduces overall height feel
+           ),
+           borderRadius: BorderRadius.circular(12.h),
+         ),
+         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Text(
-                category.title ?? '',
-                style: TextStyleHelper.instance.body15RegularPoppins
-                    .copyWith(color: appTheme.white_A700, height: 1.33),
+           children: [
+              Expanded( // clamps text so it doesn't force extra height
+                child: Text(
+                  category.title ?? '',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyleHelper.instance.body15RegularPoppins
+                      .copyWith(color: appTheme.white_A700, height: 1.10),
+                ),
               ),
-            ),
-            CustomImageView(
-              imagePath: category.iconPath ?? '',
-              height: 30.h,
-              width: 30.h,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+             SizedBox(width: 6.h),
+             CustomImageView(
+               imagePath: category.iconPath ?? '',
+               height: 18.h, // smaller icon
+               width: 18.h,
+             ),
+           ],
+         ),
+       ),
+     );
+   }
+ }
