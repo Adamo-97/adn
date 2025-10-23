@@ -10,10 +10,16 @@ class PrayerActions extends ConsumerWidget {
     super.key,
     required this.onActionTap,
     this.qiblaSelected = false,
+    this.weeklyStatSelected = false,
+    this.monthlyStatSelected = false,
+    this.quadStatSelected = false,
   });
 
   final void Function(PrayerActionModel action) onActionTap;
   final bool qiblaSelected;
+  final bool weeklyStatSelected;
+  final bool monthlyStatSelected;
+  final bool quadStatSelected;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,13 +36,27 @@ class PrayerActions extends ConsumerWidget {
         runSpacing: 12.h,
         spacing: 12.h,
         children: actions.map((action) {
-          // Check if this is the Qibla button
-          final isQibla = action.label.toLowerCase().contains('qibla');
+          // Check button type
+          final id = action.id.toLowerCase();
+          final isQibla = id.contains('qibla');
+          final isWeeklyStat = id.contains('weekly');
+          final isMonthlyStat = id.contains('monthly');
+          final isQuadStat = id.contains('quad');
+
+          // Determine if this button is selected
+          bool isSelected = false;
+          if (isQibla)
+            isSelected = qiblaSelected;
+          else if (isWeeklyStat)
+            isSelected = weeklyStatSelected;
+          else if (isMonthlyStat)
+            isSelected = monthlyStatSelected;
+          else if (isQuadStat) isSelected = quadStatSelected;
 
           return PrayerActionItemWidget(
             action: action,
             onTap: () => onActionTap(action),
-            isSelected: isQibla ? qiblaSelected : false,
+            isSelected: isSelected,
           );
         }).toList(),
       ),

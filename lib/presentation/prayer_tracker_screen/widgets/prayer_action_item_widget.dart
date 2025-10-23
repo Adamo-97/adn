@@ -18,16 +18,26 @@ class PrayerActionItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Determine if this is Qibla button by checking the label
-    final isQiblaButton = action.label.toLowerCase().contains('qibla');
+    // Determine button type
+    final id = action.id.toLowerCase();
+    final label = action.label.toLowerCase();
 
-    // For Qibla button, use different SVG based on selected state
+    final isQiblaButton = id.contains('qibla') || label.contains('qibla');
+    final isWeeklyStat = id.contains('weekly');
+    final isMonthlyStat = id.contains('monthly');
+    final isQuadStat = id.contains('quad');
+
+    // Determine icon based on button type and selected state
     String iconPath = action.icon;
 
-    if (isQiblaButton) {
-      if (isSelected) {
-        iconPath = ImageConstant.imgQiblaButtonSelected;
-      }
+    if (isQiblaButton && isSelected) {
+      iconPath = ImageConstant.imgQiblaButtonSelected;
+    } else if (isWeeklyStat && isSelected) {
+      iconPath = ImageConstant.imgWeeklyStatSelected;
+    } else if (isMonthlyStat && isSelected) {
+      iconPath = ImageConstant.imgMonthlyStatSelected;
+    } else if (isQuadStat && isSelected) {
+      iconPath = ImageConstant.imgQuadStatSelected;
     }
 
     return GestureDetector(
@@ -38,7 +48,6 @@ class PrayerActionItemWidget extends StatelessWidget {
             imagePath: iconPath,
             height: 50.h,
             width: 50.h,
-            // Don't apply color filter - SVG already has correct colors
           ),
           SizedBox(height: 6.h),
           Text(

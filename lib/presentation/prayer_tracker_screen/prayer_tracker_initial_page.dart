@@ -29,8 +29,10 @@ class PrayerTrackerInitialPageState
     'Isha'
   ];
 
-  // Qibla UI local state (can be moved to your notifier later)
-  bool _qiblaOpen = false; // clicked / unclicked
+  // UI state for buttons (can be moved to notifier later if needed)
+  bool _qiblaOpen = false;
+  String?
+      _openStatButton; // Track which stat button is open: 'weekly', 'monthly', 'quad', or null
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +74,9 @@ class PrayerTrackerInitialPageState
         PrayerActions(
           onActionTap: _onPrayerActionTap,
           qiblaSelected: _qiblaOpen,
+          weeklyStatSelected: _openStatButton == 'weekly',
+          monthlyStatSelected: _openStatButton == 'monthly',
+          quadStatSelected: _openStatButton == 'quad',
         ),
         QiblaPanel(isOpen: _qiblaOpen),
         SizedBox(height: 16.h),
@@ -96,17 +101,56 @@ class PrayerTrackerInitialPageState
   void _onPrayerActionTap(PrayerActionModel action) {
     final label = action.label.toLowerCase().trim();
     final aid = action.id.toLowerCase().trim();
+
+    // Check if this is Qibla button
     final isQibla = label.contains('qibla') || aid.contains('qibla');
+
+    // Check if this is a stat button
+    final isWeeklyStat = aid.contains('weekly');
+    final isMonthlyStat = aid.contains('monthly');
+    final isQuadStat = aid.contains('quad');
 
     if (isQibla) {
       setState(() {
+        // Toggle Qibla, close any open stat button
         _qiblaOpen = !_qiblaOpen;
-      }); // show/hide compass + phone row
-      return; // DO NOT navigate for Qibla
+        _openStatButton = null;
+      });
+      return;
+    }
+
+    if (isWeeklyStat) {
+      setState(() {
+        // Toggle weekly stat: if already open, close it; otherwise open it
+        _qiblaOpen = false; // Close Qibla
+        _openStatButton = (_openStatButton == 'weekly') ? null : 'weekly';
+      });
+      return;
+    }
+
+    if (isMonthlyStat) {
+      setState(() {
+        // Toggle monthly stat: if already open, close it; otherwise open it
+        _qiblaOpen = false; // Close Qibla
+        _openStatButton = (_openStatButton == 'monthly') ? null : 'monthly';
+      });
+      return;
+    }
+
+    if (isQuadStat) {
+      setState(() {
+        // Toggle quarterly stat: if already open, close it; otherwise open it
+        _qiblaOpen = false; // Close Qibla
+        _openStatButton = (_openStatButton == 'quad') ? null : 'quad';
+      });
+      return;
     }
 
     // For any other action: reset state BEFORE navigating away.
-    setState(() => _qiblaOpen = false);
+    setState(() {
+      _qiblaOpen = false;
+      _openStatButton = null;
+    });
 
     final dest = action.navigateTo;
     if (dest == null || dest.isEmpty) return;

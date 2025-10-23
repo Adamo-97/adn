@@ -48,20 +48,22 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
       PrayerActionModel(
         icon: ImageConstant.imgQiblaButton,
         label: 'Qibla',
+        id: 'qibla',
       ),
       PrayerActionModel(
-        icon: ImageConstant.imgWhuduGroup,
-        label: 'Purification',
-        navigateTo: '576:475',
+        icon: ImageConstant.imgWeeklyStat,
+        label: 'Weekly Stats',
+        id: 'weekly_stats',
       ),
       PrayerActionModel(
-        icon: ImageConstant.imgHowToPrayGroup,
-        label: 'Salah Guide',
-        navigateTo: '508:307',
+        icon: ImageConstant.imgMonthlyStat,
+        label: 'Monthly Stats',
+        id: 'monthly_stats',
       ),
       PrayerActionModel(
-        icon: ImageConstant.imgAfterPrayGroup,
-        label: 'Rituals',
+        icon: ImageConstant.imgQuadStat,
+        label: 'Quarterly Stats',
+        id: 'quad_stats',
       ),
     ];
 

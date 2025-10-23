@@ -59,7 +59,6 @@ class ImageConstant {
 
 
   // Common Images - Home/Prayer Tracker
-  static String imgAfterPrayGroup = '${_homePath}img_after_pray_group.svg';
   static String imgArrowNext = '${_homePath}img_arrow_next.svg';
   static String imgArrowPrev = '${_homePath}img_arrow_prev.svg';
   static String imgCheck = '${_homePath}img_check.svg';
@@ -70,7 +69,6 @@ class ImageConstant {
   static String imgGhuslIcon = '${_basePath}img_ghusl_icon.svg';
   static String imgGroup10 = '${_basePath}img_group_10.svg';
   static String imgHowToIcon = '${_basePath}img_how_to_icon.svg';
-  static String imgHowToPrayGroup = '${_homePath}img_how_to_pray_group.svg';
   static String imgIconPlaceholder = '${_basePath}img_icon_placeholder.svg';
   static String imgIconPlaceholder1 = '${_basePath}img_icon_placeholder_1.svg';
   static String imgIconPlaceholder10 =
@@ -105,10 +103,18 @@ class ImageConstant {
   static String imgPrayerTimes = '${_homePath}img_prayer_times.svg';
   static String imgQiblaButton = '${_homePath}img_qibla_button_unselected.svg';
   static String imgQiblaButtonSelected = '${_homePath}img_qibla_button_selected.svg';
+  
+  // Stats buttons - Weekly (7 days), Monthly (30 days), Quarterly (90 days)
+  static String imgWeeklyStat = '${_homePath}weekly_stat.svg';
+  static String imgWeeklyStatSelected = '${_homePath}weekly_stat_selected.svg';
+  static String imgMonthlyStat = '${_homePath}monthly_stat.svg';
+  static String imgMonthlyStatSelected = '${_homePath}monthly_stat_selected.svg';
+  static String imgQuadStat = '${_homePath}quad_stat.svg';
+  static String imgQuadStatSelected = '${_homePath}quad_stat_selected.svg';
+  
   static String imgSearchWhiteA700 = '${_basePath}img_search_white_a700.svg';
   static String imgShadowButtom1 = '${_basePath}img_shadow_buttom_1.png';
   static String imgTayammumIcon = '${_basePath}img_tayammum_icon.svg';
-  static String imgWhuduGroup = '${_homePath}img_whudu_group.svg';
   static String imgWuduIcon = '${_basePath}img_wudu_icon.svg';
 
   // Azkhar Categories Screen
