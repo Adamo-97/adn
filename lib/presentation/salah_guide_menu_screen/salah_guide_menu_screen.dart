@@ -8,7 +8,7 @@ import 'notifier/salah_guide_menu_notifier.dart';
 import './widgets/fixed_salah_header.dart';
 
 class SalahGuideMenuScreen extends ConsumerStatefulWidget {
-  const SalahGuideMenuScreen({Key? key}) : super(key: key);
+  const SalahGuideMenuScreen({super.key});
 
   @override
   SalahGuideMenuScreenState createState() => SalahGuideMenuScreenState();

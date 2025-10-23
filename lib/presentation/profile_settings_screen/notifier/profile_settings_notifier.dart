@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/profile_settings_model.dart';
 import '../../../core/app_export.dart';
 

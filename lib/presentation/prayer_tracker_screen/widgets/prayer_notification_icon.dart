@@ -25,7 +25,7 @@ class PrayerNotificationIcon extends ConsumerWidget {
       ),
     );
 
-    String _asset(PrayerBellMode m) {
+    String asset(PrayerBellMode m) {
       switch (m) {
         case PrayerBellMode.adhan: return ImageConstant.bellAdhan;
         case PrayerBellMode.pling: return ImageConstant.bellPling;
@@ -40,7 +40,7 @@ class PrayerNotificationIcon extends ConsumerWidget {
       height: size,
       child: Center(
         child: SvgPicture.asset(
-          _asset(mode),
+          asset(mode),
           fit: BoxFit.contain,
         ),
       ),

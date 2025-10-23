@@ -161,16 +161,6 @@ class LoginENG extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: ElevatedButton(
-                          child: Text(
-                            "Log In",
-                            style: TextStyle(
-                              fontSize: fs18,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600,
-                              height: 1.11,
-                              letterSpacing: -0.23,
-                            ),
-                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: darkGreen,
                             foregroundColor: gold,
@@ -190,13 +180,8 @@ class LoginENG extends StatelessWidget {
                             elevation: 0,
                           ),
                           onPressed: onLoginButtonPress,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: ElevatedButton(
                           child: Text(
-                            "Sign Up",
+                            "Log In",
                             style: TextStyle(
                               fontSize: fs18,
                               fontFamily: 'Poppins',
@@ -205,6 +190,11 @@ class LoginENG extends StatelessWidget {
                               letterSpacing: -0.23,
                             ),
                           ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: darkGreen,
                             foregroundColor: white,
@@ -224,6 +214,16 @@ class LoginENG extends StatelessWidget {
                             elevation: 0,
                           ),
                           onPressed: onSignupButtonPress,
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(
+                              fontSize: fs18,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600,
+                              height: 1.11,
+                              letterSpacing: -0.23,
+                            ),
+                          ),
                         ),
                       ),
                     ],

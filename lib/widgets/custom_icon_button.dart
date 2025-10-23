@@ -18,8 +18,8 @@ import './custom_image_view.dart';
 /// @param iconColor - Color tint for the icon
 /// @param variant - Predefined styling variant (large or small)
 class CustomIconButton extends StatelessWidget {
-  CustomIconButton({
-    Key? key,
+  const CustomIconButton({
+    super.key,
     required this.iconPath,
     this.onPressed,
     this.height,
@@ -29,7 +29,7 @@ class CustomIconButton extends StatelessWidget {
     this.padding,
     this.iconColor,
     this.variant = CustomIconButtonVariant.large,
-  }) : super(key: key);
+  });
 
   /// Path to the SVG icon asset
   final String iconPath;

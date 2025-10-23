@@ -8,7 +8,7 @@ import './widgets/surah_item_widget.dart';
 import 'notifier/quran_main_notifier.dart';
 
 class QuranMainScreen extends ConsumerStatefulWidget {
-  const QuranMainScreen({Key? key}) : super(key: key);
+  const QuranMainScreen({super.key});
 
   @override
   QuranMainScreenState createState() => QuranMainScreenState();
@@ -20,7 +20,7 @@ class QuranMainScreenState extends ConsumerState<QuranMainScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: appTheme.gray_900,
-        body: Container(
+        body: SizedBox(
           width: double.maxFinite,
           child: Column(
             children: [
@@ -214,7 +214,7 @@ class QuranMainScreenState extends ConsumerState<QuranMainScreen> {
 
   /// Section Widget - Floating Button
   Widget _buildFloatingButton(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.maxFinite,
       height: 84.h,
       child: Stack(

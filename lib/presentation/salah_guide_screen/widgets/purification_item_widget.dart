@@ -8,9 +8,9 @@ class PurificationItemWidget extends StatelessWidget {
   final PurificationItemModel purificationItem;
 
   const PurificationItemWidget({
-    Key? key,
+    super.key,
     required this.purificationItem,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

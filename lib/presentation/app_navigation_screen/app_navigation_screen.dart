@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_export.dart';
 
 class AppNavigationScreen extends ConsumerStatefulWidget {
-  const AppNavigationScreen({Key? key}) : super(key: key);
+  const AppNavigationScreen({super.key});
 
   @override
   AppNavigationScreenState createState() => AppNavigationScreenState();
@@ -43,9 +43,9 @@ class AppNavigationScreenState extends ConsumerState<AppNavigationScreen> {
                       ),
                       _buildScreenTitle(
                         context,
-                        screenTitle: "azkhar_screen_EN",
+                        screenTitle: "salah_guide_screen",
                         onTapScreenTitle: () => onTapScreenTitle(
-                            context, AppRoutes.azkharCategoriesScreen),
+                            context, AppRoutes.salahGuideScreen),
                       ),
                       _buildScreenTitle(
                         context,

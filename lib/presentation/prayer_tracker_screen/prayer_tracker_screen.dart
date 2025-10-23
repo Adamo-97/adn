@@ -5,13 +5,13 @@ import '../../core/app_export.dart';
 import '../../widgets/custom_bottom_bar.dart';
 
 // Tab root screens (existing)
-import '../salah_guide_screen/azkhar_categories_screen.dart';
+import '../salah_guide_screen/salah_guide_screen.dart';
 import '../quran_main_screen/quran_main_screen.dart';
 import '../profile_settings_screen/profile_settings_screen.dart';
 import './prayer_tracker_initial_page.dart';
 
 class PrayerTrackerScreen extends ConsumerStatefulWidget {
-  const PrayerTrackerScreen({Key? key}) : super(key: key);
+  const PrayerTrackerScreen({super.key});
 
   @override
   PrayerTrackerScreenState createState() => PrayerTrackerScreenState();
@@ -23,16 +23,17 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
 
   // --- Indices must match your old bar order ---
   static const int _tabTracker = 0;
-  static const int _tabAzkhar  = 1;
-  static const int _tabQuran   = 2;
+  static const int _tabSalahGuide = 1;
+  static const int _tabQuran = 2;
   static const int _tabProfile = 3;
 
   int _selectedIndex = _tabTracker;
 
   // --- Reuse your AppRoutes names as tab roots (local to inner Navigators) ---
-  static const String _routeTrackerRoot = AppRoutes.prayerTrackerScreenInitialPage;
-  static const String _routeAzkharRoot  = AppRoutes.azkharCategoriesScreen;
-  static const String _routeQuranRoot   = AppRoutes.quranMainScreen;
+  static const String _routeTrackerRoot =
+      AppRoutes.prayerTrackerScreenInitialPage;
+  static const String _routeSalahGuideRoot = AppRoutes.salahGuideScreen;
+  static const String _routeQuranRoot = AppRoutes.quranMainScreen;
   static const String _routeProfileRoot = AppRoutes.profileSettingsScreen;
 
   // Build a dedicated Navigator for each tab (zero-duration transitions)
@@ -50,9 +51,9 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
             transitionDuration: Duration.zero,
           );
         }
-        if (index == _tabAzkhar && settings.name == _routeAzkharRoot) {
+        if (index == _tabSalahGuide && settings.name == _routeSalahGuideRoot) {
           return PageRouteBuilder(
-            pageBuilder: (_, __, ___) => AzkharCategoriesScreen(),
+            pageBuilder: (_, __, ___) => SalahGuideScreen(),
             transitionDuration: Duration.zero,
           );
         }
@@ -73,11 +74,15 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
         return PageRouteBuilder(
           pageBuilder: (_, __, ___) {
             switch (index) {
-              case _tabAzkhar:  return AzkharCategoriesScreen();
-              case _tabQuran:   return QuranMainScreen();
-              case _tabProfile: return ProfileSettingsScreen();
+              case _tabSalahGuide:
+                return SalahGuideScreen();
+              case _tabQuran:
+                return QuranMainScreen();
+              case _tabProfile:
+                return ProfileSettingsScreen();
               case _tabTracker:
-              default:          return PrayerTrackerInitialPage();
+              default:
+                return PrayerTrackerInitialPage();
             }
           },
           transitionDuration: Duration.zero,
@@ -117,7 +122,7 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
       ),
       CustomBottomBarItem(
         icon: ImageConstant.imgIconPlaceholder7,
-        routeName: AppRoutes.azkharCategoriesScreen,
+        routeName: AppRoutes.salahGuideScreen,
         height: 32.h,
         width: 34.h,
       ),
@@ -147,10 +152,14 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
           child: IndexedStack(
             index: _selectedIndex,
             children: <Widget>[
-              _buildTabNavigator(index: _tabTracker, initialRoute: _routeTrackerRoot),
-              _buildTabNavigator(index: _tabAzkhar,  initialRoute: _routeAzkharRoot),
-              _buildTabNavigator(index: _tabQuran,   initialRoute: _routeQuranRoot),
-              _buildTabNavigator(index: _tabProfile, initialRoute: _routeProfileRoot),
+              _buildTabNavigator(
+                  index: _tabTracker, initialRoute: _routeTrackerRoot),
+              _buildTabNavigator(
+                  index: _tabSalahGuide, initialRoute: _routeSalahGuideRoot),
+              _buildTabNavigator(
+                  index: _tabQuran, initialRoute: _routeQuranRoot),
+              _buildTabNavigator(
+                  index: _tabProfile, initialRoute: _routeProfileRoot),
             ],
           ),
         ),

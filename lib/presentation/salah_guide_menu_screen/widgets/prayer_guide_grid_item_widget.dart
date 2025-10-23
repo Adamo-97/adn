@@ -9,10 +9,10 @@ class PrayerGuideGridItemWidget extends StatelessWidget {
   final VoidCallback? onTapGuideItem;
 
   const PrayerGuideGridItemWidget({
-    Key? key,
+    super.key,
     required this.prayerGuideItem,
     this.onTapGuideItem,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

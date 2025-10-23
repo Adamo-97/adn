@@ -3,25 +3,23 @@ import 'package:flutter/material.dart';
 import '../core/app_export.dart';
 import './custom_image_view.dart';
 
-/**
- * CustomSearchView - A reusable search input widget with customizable icons and styling
- * 
- * This widget provides a text input field specifically designed for search functionality,
- * featuring left and right icons, custom placeholder text, and consistent bottom border styling.
- * 
- * @param controller - TextEditingController for managing input text
- * @param hintText - Placeholder text displayed when field is empty
- * @param prefixIconPath - Path to the left icon (search icon)
- * @param suffixIconPath - Path to the right icon (action icon)
- * @param onChanged - Callback function when text changes
- * @param onSubmitted - Callback function when user submits text
- * @param validator - Validation function for form validation
- * @param keyboardType - Type of keyboard to display
- * @param contentPadding - Internal padding of the text field
- */
+/// CustomSearchView - A reusable search input widget with customizable icons and styling
+/// 
+/// This widget provides a text input field specifically designed for search functionality,
+/// featuring left and right icons, custom placeholder text, and consistent bottom border styling.
+/// 
+/// @param controller - TextEditingController for managing input text
+/// @param hintText - Placeholder text displayed when field is empty
+/// @param prefixIconPath - Path to the left icon (search icon)
+/// @param suffixIconPath - Path to the right icon (action icon)
+/// @param onChanged - Callback function when text changes
+/// @param onSubmitted - Callback function when user submits text
+/// @param validator - Validation function for form validation
+/// @param keyboardType - Type of keyboard to display
+/// @param contentPadding - Internal padding of the text field
 class CustomSearchView extends StatelessWidget {
-  CustomSearchView({
-    Key? key,
+  const CustomSearchView({
+    super.key,
     this.controller,
     this.hintText,
     this.prefixIconPath,
@@ -33,7 +31,7 @@ class CustomSearchView extends StatelessWidget {
     this.contentPadding,
     this.prefixIconSize,
     this.suffixIconSize,
-  }) : super(key: key);
+  });
 
   /// Controller for managing the text input
   final TextEditingController? controller;

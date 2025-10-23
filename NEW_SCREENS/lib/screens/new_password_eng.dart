@@ -274,19 +274,9 @@ class NewPasswordENG extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    child: Text(
-                      "Change Password",
-                      style: TextStyle(
-                        fontSize: fs18,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        height: 1.11,
-                        letterSpacing: -0.23,
-                      ),
-                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: darkGreen,
                       foregroundColor: gold,
@@ -299,6 +289,16 @@ class NewPasswordENG extends StatelessWidget {
                       elevation: 0,
                     ),
                     onPressed: onChangePassButtonPress,
+                    child: Text(
+                      "Change Password",
+                      style: TextStyle(
+                        fontSize: fs18,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                        height: 1.11,
+                        letterSpacing: -0.23,
+                      ),
+                    ),
                   ),
                 ),
                 Container(

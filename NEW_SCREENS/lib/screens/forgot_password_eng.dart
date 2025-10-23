@@ -143,19 +143,9 @@ class ForgotPasswordENG extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    child: Text(
-                      "Next step",
-                      style: TextStyle(
-                        fontSize: fs18,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        height: 1.11,
-                        letterSpacing: -0.23,
-                      ),
-                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: darkGreen,
                       foregroundColor: gold,
@@ -173,6 +163,16 @@ class ForgotPasswordENG extends StatelessWidget {
                       elevation: 0,
                     ),
                     onPressed: onLogInDarkPress,
+                    child: Text(
+                      "Next step",
+                      style: TextStyle(
+                        fontSize: fs18,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                        height: 1.11,
+                        letterSpacing: -0.23,
+                      ),
+                    ),
                   ),
                 ),
                 const GoogleAppleContinue(),

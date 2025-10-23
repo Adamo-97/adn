@@ -1,11 +1,11 @@
 import '../../../core/app_export.dart';
 import 'package:flutter/material.dart';
 
-/// This class represents an individual Azkhar category item.
+/// This class represents an individual Salah guide card item (e.g., Wudu, Ghusl, How to Pray).
 
 // ignore_for_file: must_be_immutable
-class AzkharCategoryModel extends Equatable {
-  AzkharCategoryModel({
+class SalahGuideCardModel extends Equatable {
+  SalahGuideCardModel({
     this.title,
     this.iconPath,
     this.backgroundColor,
@@ -25,14 +25,14 @@ class AzkharCategoryModel extends Equatable {
   Color? borderColor;
   bool? isSelected;
 
-  AzkharCategoryModel copyWith({
+  SalahGuideCardModel copyWith({
     String? title,
     String? iconPath,
     Color? backgroundColor,
     Color? borderColor,
     bool? isSelected,
   }) {
-    return AzkharCategoryModel(
+    return SalahGuideCardModel(
       title: title ?? this.title,
       iconPath: iconPath ?? this.iconPath,
       backgroundColor: backgroundColor ?? this.backgroundColor,

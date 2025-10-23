@@ -45,9 +45,9 @@ class PrayerActions extends ConsumerWidget {
 
           // Determine if this button is selected
           bool isSelected = false;
-          if (isQibla)
+          if (isQibla) {
             isSelected = qiblaSelected;
-          else if (isWeeklyStat)
+          } else if (isWeeklyStat)
             isSelected = weeklyStatSelected;
           else if (isMonthlyStat)
             isSelected = monthlyStatSelected;

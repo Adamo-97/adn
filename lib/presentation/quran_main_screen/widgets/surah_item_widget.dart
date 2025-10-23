@@ -9,10 +9,10 @@ class SurahItemWidget extends StatelessWidget {
   final VoidCallback? onTapSurah;
 
   const SurahItemWidget({
-    Key? key,
+    super.key,
     this.surahModel,
     this.onTapSurah,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

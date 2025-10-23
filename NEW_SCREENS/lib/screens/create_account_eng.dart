@@ -10,7 +10,7 @@ class CreateAccountENG extends StatefulWidget {
 }
 
 class _CreateAccountENGState extends State<CreateAccountENG> {
-  DateTime? _selectedDate = null;
+  DateTime? _selectedDate;
 
   Future _showDatePicker(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
@@ -359,19 +359,9 @@ class _CreateAccountENGState extends State<CreateAccountENG> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    child: Text(
-                      "Sign Up",
-                      style: TextStyle(
-                        fontSize: fs18,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        height: 1.11,
-                        letterSpacing: -0.23,
-                      ),
-                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: darkGreen,
                       foregroundColor: gold,
@@ -389,6 +379,16 @@ class _CreateAccountENGState extends State<CreateAccountENG> {
                       elevation: 0,
                     ),
                     onPressed: onSignupButtonPress,
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        fontSize: fs18,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                        height: 1.11,
+                        letterSpacing: -0.23,
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(

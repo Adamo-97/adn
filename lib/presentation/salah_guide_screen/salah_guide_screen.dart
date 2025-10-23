@@ -4,14 +4,14 @@ import 'models/purification_item_model.dart';
 import 'widgets/purification_item_widget.dart';
 import 'widgets/salah_header.dart';
 
-class AzkharCategoriesScreen extends ConsumerStatefulWidget {
-  const AzkharCategoriesScreen({Key? key}) : super(key: key);
+class SalahGuideScreen extends ConsumerStatefulWidget {
+  const SalahGuideScreen({super.key});
 
   @override
-  AzkharCategoriesScreenState createState() => AzkharCategoriesScreenState();
+  SalahGuideScreenState createState() => SalahGuideScreenState();
 }
 
-class AzkharCategoriesScreenState extends ConsumerState<AzkharCategoriesScreen> {
+class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
   final TextEditingController _searchCtrl = TextEditingController();
 
   @override

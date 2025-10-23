@@ -1,83 +1,82 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/app_export.dart';
-import '../models/azkhar_categories_model.dart';
-import '../models/azkhar_category_model.dart';
+import '../models/salah_guide_model.dart';
+import '../models/salah_guide_card_model.dart';
 
-part 'azkhar_categories_state.dart';
+part 'salah_guide_state.dart';
 
-final azkharCategoriesNotifier = NotifierProvider.autoDispose<
-    AzkharCategoriesNotifier, AzkharCategoriesState>(
-  () => AzkharCategoriesNotifier(),
+final salahGuideNotifier =
+    NotifierProvider.autoDispose<SalahGuideNotifier, SalahGuideState>(
+  () => SalahGuideNotifier(),
 );
 
-class AzkharCategoriesNotifier extends Notifier<AzkharCategoriesState> {
+class SalahGuideNotifier extends Notifier<SalahGuideState> {
   @override
-  AzkharCategoriesState build() {
-    final initialState = AzkharCategoriesState(
-      azkharCategoriesModel: AzkharCategoriesModel(),
+  SalahGuideState build() {
+    final initialState = SalahGuideState(
+      salahGuideModel: SalahGuideModel(),
     );
     Future.microtask(() => initialize());
     return initialState;
   }
 
   void initialize() {
-    final categories = [
-      AzkharCategoryModel(
-        title: 'Morning\nAzkar',
+    final cards = [
+      SalahGuideCardModel(
+        title: 'Wudu',
         iconPath: ImageConstant.imgSearchWhiteA700,
         backgroundColor: appTheme.gray_700,
         borderColor: appTheme.gray_500,
       ),
-      AzkharCategoryModel(
-        title: 'Upon \nWaking',
+      SalahGuideCardModel(
+        title: 'Ghusl',
         iconPath: ImageConstant.imgIconPlaceholder,
         backgroundColor: appTheme.gray_700,
         borderColor: appTheme.gray_500,
       ),
-      AzkharCategoryModel(
-        title: 'Evening \nAzkar\t',
+      SalahGuideCardModel(
+        title: 'How to Pray',
         iconPath: ImageConstant.imgIconPlaceholderWhiteA700,
         backgroundColor: appTheme.gray_700,
         borderColor: appTheme.gray_500,
       ),
-      AzkharCategoryModel(
-        title: 'After \nPrayer\t',
+      SalahGuideCardModel(
+        title: 'Tayammum',
         iconPath: ImageConstant.imgIconPlaceholderWhiteA70030x30,
         backgroundColor: appTheme.gray_700,
         borderColor: appTheme.gray_500,
       ),
-      AzkharCategoryModel(
-        title: 'Before\nSleep\t',
+      SalahGuideCardModel(
+        title: 'Prayer Times',
         iconPath: ImageConstant.imgIconPlaceholder30x30,
         backgroundColor: appTheme.gray_700,
         borderColor: appTheme.gray_500,
       ),
-      AzkharCategoryModel(
-        title: 'Travel\nAzkar\t',
+      SalahGuideCardModel(
+        title: 'Qibla Direction',
         iconPath: ImageConstant.imgIconPlaceholder1,
         backgroundColor: appTheme.gray_700,
         borderColor: appTheme.gray_500,
       ),
-      AzkharCategoryModel(
-        title: 'Home Entry/Exit\t',
+      SalahGuideCardModel(
+        title: 'Prayer Rulings',
         iconPath: ImageConstant.imgIconPlaceholder2,
         backgroundColor: appTheme.gray_700,
         borderColor: appTheme.gray_500,
       ),
-      AzkharCategoryModel(
-        title: 'Seeking Refuge',
+      SalahGuideCardModel(
+        title: 'Sujood Types',
         iconPath: ImageConstant.imgIconPlaceholder3,
         backgroundColor: appTheme.gray_700,
         borderColor: appTheme.gray_500,
       ),
-      AzkharCategoryModel(
-        title: 'Seeking Forgiveness',
+      SalahGuideCardModel(
+        title: 'Missed Prayers',
         iconPath: ImageConstant.imgIconPlaceholder4,
         backgroundColor: appTheme.gray_700,
         borderColor: appTheme.gray_500,
       ),
-      AzkharCategoryModel(
-        title: 'General \nZikr\t',
+      SalahGuideCardModel(
+        title: 'Friday Prayer',
         iconPath: ImageConstant.imgIconPplaceholder,
         backgroundColor: appTheme.gray_700,
         borderColor: appTheme.gray_500,
@@ -85,14 +84,14 @@ class AzkharCategoriesNotifier extends Notifier<AzkharCategoriesState> {
     ];
 
     state = state.copyWith(
-      categories: categories,
+      cards: cards,
       isLoading: false,
     );
   }
 
-  void selectCategory(AzkharCategoryModel category) {
+  void selectCard(SalahGuideCardModel card) {
     state = state.copyWith(
-      selectedCategory: category,
+      selectedCard: card,
     );
   }
 }

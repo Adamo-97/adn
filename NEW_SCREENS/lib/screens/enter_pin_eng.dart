@@ -210,16 +210,6 @@ class EnterPinENG extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: ElevatedButton(
-                          child: Text(
-                            "Accept",
-                            style: TextStyle(
-                              fontSize: fs18,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600,
-                              height: 1.11,
-                              letterSpacing: -0.23,
-                            ),
-                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: darkGreen,
                             foregroundColor: gold,
@@ -234,13 +224,8 @@ class EnterPinENG extends StatelessWidget {
                             elevation: 0,
                           ),
                           onPressed: onAcceptButtonPress,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: ElevatedButton(
                           child: Text(
-                            "Send again",
+                            "Accept",
                             style: TextStyle(
                               fontSize: fs18,
                               fontFamily: 'Poppins',
@@ -249,6 +234,11 @@ class EnterPinENG extends StatelessWidget {
                               letterSpacing: -0.23,
                             ),
                           ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: darkGreen,
                             foregroundColor: greyHighlight,
@@ -268,6 +258,16 @@ class EnterPinENG extends StatelessWidget {
                             elevation: 0,
                           ),
                           onPressed: () {},
+                          child: Text(
+                            "Send again",
+                            style: TextStyle(
+                              fontSize: fs18,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600,
+                              height: 1.11,
+                              letterSpacing: -0.23,
+                            ),
+                          ),
                         ),
                       ),
                     ],

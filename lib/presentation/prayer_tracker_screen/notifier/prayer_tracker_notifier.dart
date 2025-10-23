@@ -137,8 +137,9 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
     final currentIdx = _indexOf(state.currentPrayer);
     final targetIdx = _indexOf(name);
 
-    if (targetIdx < 0 || currentIdx < 0 || targetIdx > currentIdx)
+    if (targetIdx < 0 || currentIdx < 0 || targetIdx > currentIdx) {
       return; // cannot mark future prayers
+    }
 
     final updated = Map<String, bool>.from(state.completedByPrayer);
     final current = updated[name] ?? false;

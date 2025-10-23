@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/quran_main_model.dart';
 import '../models/surah_item_model.dart';
 import '../../../core/app_export.dart';

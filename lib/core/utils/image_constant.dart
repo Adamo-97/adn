@@ -6,12 +6,18 @@ enum PrayerType { fajr, sunrise, dhuhr, asr, maghrib, isha }
 extension PrayerTypeAsset on PrayerType {
   String get icon {
     switch (this) {
-      case PrayerType.fajr:    return ImageConstant.imgFajr;
-      case PrayerType.sunrise: return ImageConstant.imgSunrise;
-      case PrayerType.dhuhr:   return ImageConstant.imgDhuhr;
-      case PrayerType.asr:     return ImageConstant.imgAsr;
-      case PrayerType.maghrib: return ImageConstant.imgMaghrib;
-      case PrayerType.isha:    return ImageConstant.imgIsha;
+      case PrayerType.fajr:
+        return ImageConstant.imgFajr;
+      case PrayerType.sunrise:
+        return ImageConstant.imgSunrise;
+      case PrayerType.dhuhr:
+        return ImageConstant.imgDhuhr;
+      case PrayerType.asr:
+        return ImageConstant.imgAsr;
+      case PrayerType.maghrib:
+        return ImageConstant.imgMaghrib;
+      case PrayerType.isha:
+        return ImageConstant.imgIsha;
     }
   }
 }
@@ -22,41 +28,47 @@ class ImageConstant {
   static final String _homePath = 'assets/images/home/';
   // Placeholder image for fallback
   static String imgPlaceholder = '${_basePath}placeholder.png';
-  
+
   // Notification bell states
   static const String bellAdhan = 'assets/images/notifications/bell_adhan.svg';
   static const String bellPling = 'assets/images/notifications/bell_pling.svg';
-  static const String bellMute  = 'assets/images/notifications/bell_mute.svg';
+  static const String bellMute = 'assets/images/notifications/bell_mute.svg';
 
   // Six prayer SVGs — organized in home/ subdirectory
-  static String imgFajr    = '${_homePath}fajr.svg';
+  static String imgFajr = '${_homePath}fajr.svg';
   static String imgSunrise = '${_homePath}sunrise.svg';
-  static String imgDhuhr   = '${_homePath}dhuhr.svg';
-  static String imgAsr     = '${_homePath}asr.svg';
+  static String imgDhuhr = '${_homePath}dhuhr.svg';
+  static String imgAsr = '${_homePath}asr.svg';
   static String imgMaghrib = '${_homePath}maghrib.svg';
-  static String imgIsha    = '${_homePath}isha.svg';
+  static String imgIsha = '${_homePath}isha.svg';
 
   static String iconForPrayer(Object current) {
     final key = current.toString().trim().toLowerCase();
     switch (key) {
-      case 'fajr':    return imgFajr;
-      case 'sunrise': return imgSunrise;
-      case 'dhuhr':   return imgDhuhr;
-      case 'asr':     return imgAsr;
-      case 'maghrib': return imgMaghrib;
-      case 'isha':    return imgIsha;
-     default:
-       // Show an obvious error image so it’s visible in UI.
-       assert(() {
-         // Helpful in debug to see what was passed.
-         // ignore: avoid_print
-         print('[iconForPrayer] Unknown key: "$key" -> using imgImageNotFound');
-         return true;
-       }());
-       return imgImageNotFound;
+      case 'fajr':
+        return imgFajr;
+      case 'sunrise':
+        return imgSunrise;
+      case 'dhuhr':
+        return imgDhuhr;
+      case 'asr':
+        return imgAsr;
+      case 'maghrib':
+        return imgMaghrib;
+      case 'isha':
+        return imgIsha;
+      default:
+        // Show an obvious error image so it’s visible in UI.
+        assert(() {
+          // Helpful in debug to see what was passed.
+          // ignore: avoid_print
+          print(
+              '[iconForPrayer] Unknown key: "$key" -> using imgImageNotFound');
+          return true;
+        }());
+        return imgImageNotFound;
+    }
   }
-}
-
 
   // Common Images - Home/Prayer Tracker
   static String imgArrowNext = '${_homePath}img_arrow_next.svg';
@@ -102,22 +114,24 @@ class ImageConstant {
   static String imgMobileIcon = '${_homePath}img_mobile_icon.svg';
   static String imgPrayerTimes = '${_homePath}img_prayer_times.svg';
   static String imgQiblaButton = '${_homePath}img_qibla_button_unselected.svg';
-  static String imgQiblaButtonSelected = '${_homePath}img_qibla_button_selected.svg';
-  
+  static String imgQiblaButtonSelected =
+      '${_homePath}img_qibla_button_selected.svg';
+
   // Stats buttons - Weekly (7 days), Monthly (30 days), Quarterly (90 days)
   static String imgWeeklyStat = '${_homePath}weekly_stat.svg';
   static String imgWeeklyStatSelected = '${_homePath}weekly_stat_selected.svg';
   static String imgMonthlyStat = '${_homePath}monthly_stat.svg';
-  static String imgMonthlyStatSelected = '${_homePath}monthly_stat_selected.svg';
+  static String imgMonthlyStatSelected =
+      '${_homePath}monthly_stat_selected.svg';
   static String imgQuadStat = '${_homePath}quad_stat.svg';
   static String imgQuadStatSelected = '${_homePath}quad_stat_selected.svg';
-  
+
   static String imgSearchWhiteA700 = '${_basePath}img_search_white_a700.svg';
   static String imgShadowButtom1 = '${_basePath}img_shadow_buttom_1.png';
   static String imgTayammumIcon = '${_basePath}img_tayammum_icon.svg';
   static String imgWuduIcon = '${_basePath}img_wudu_icon.svg';
 
-  // Azkhar Categories Screen
+  // Salah Guide Screen
   static String imgAddicon = '${_basePath}img_addicon.svg';
   static String imgFavoriteIconPlaceholder =
       '${_basePath}img_favorite_icon_placeholder.svg';

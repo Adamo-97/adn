@@ -3,30 +3,28 @@ import 'package:flutter/material.dart';
 import '../core/app_export.dart';
 import './custom_image_view.dart';
 
-/**
- * CustomBottomBar - A customizable bottom navigation bar component with liquid animations
- * 
- * Features:
- * - Liquid morph animation on tab selection
- * - Icon rising animation with smooth curves
- * - Support for multiple navigation items with icons
- * - Special center icon with larger size
- * - Active/inactive states for navigation items
- * - Customizable styling and colors
- * - Navigation routing support
- * - Responsive design with proper scaling
- * 
- * @param bottomBarItemList - List of bottom bar navigation items
- * @param onChanged - Callback function when navigation item is tapped
- * @param selectedIndex - Currently selected navigation item index
- * @param backgroundColor - Background color of the bottom bar
- * @param borderRadius - Border radius for the bottom bar container
- * @param height - Height of the bottom bar
- * @param horizontalPadding - Horizontal padding inside the bottom bar
- */
+/// CustomBottomBar - A customizable bottom navigation bar component with liquid animations
+/// 
+/// Features:
+/// - Liquid morph animation on tab selection
+/// - Icon rising animation with smooth curves
+/// - Support for multiple navigation items with icons
+/// - Special center icon with larger size
+/// - Active/inactive states for navigation items
+/// - Customizable styling and colors
+/// - Navigation routing support
+/// - Responsive design with proper scaling
+/// 
+/// @param bottomBarItemList - List of bottom bar navigation items
+/// @param onChanged - Callback function when navigation item is tapped
+/// @param selectedIndex - Currently selected navigation item index
+/// @param backgroundColor - Background color of the bottom bar
+/// @param borderRadius - Border radius for the bottom bar container
+/// @param height - Height of the bottom bar
+/// @param horizontalPadding - Horizontal padding inside the bottom bar
 class CustomBottomBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomBottomBar({
-    Key? key,
+    super.key,
     required this.bottomBarItemList,
     required this.onChanged,
     this.selectedIndex = 0,
@@ -34,7 +32,7 @@ class CustomBottomBar extends StatefulWidget implements PreferredSizeWidget {
     this.borderRadius,
     this.height,
     this.horizontalPadding,
-  }) : super(key: key);
+  });
 
   final List<CustomBottomBarItem> bottomBarItemList;
   final int selectedIndex;

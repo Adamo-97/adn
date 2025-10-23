@@ -6,7 +6,7 @@ import '../../widgets/custom_image_view.dart';
 import 'notifier/profile_settings_notifier.dart';
 
 class ProfileSettingsScreen extends ConsumerStatefulWidget {
-  const ProfileSettingsScreen({Key? key}) : super(key: key);
+  const ProfileSettingsScreen({super.key});
 
   @override
   ProfileSettingsScreenState createState() => ProfileSettingsScreenState();
@@ -18,7 +18,7 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: appTheme.gray_900,
-        body: Container(
+        body: SizedBox(
           width: double.maxFinite,
           child: Column(
             children: [
@@ -62,7 +62,7 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
 
   /// Section Widget
   Widget _buildMainContent(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.maxFinite,
       height: 940.h,
       child: Stack(

@@ -34,7 +34,7 @@ class PrayerGuideItemModel extends Equatable {
   final String title;
   final String subtitle;
 
-  PrayerGuideItemModel({
+  const PrayerGuideItemModel({
     String? iconPath,
     String? title,
     String? subtitle,
@@ -62,7 +62,7 @@ class PrayerTypeModel extends Equatable {
   final String title;
   final String iconPath;
 
-  PrayerTypeModel({
+  const PrayerTypeModel({
     String? title,
     String? iconPath,
   })  : title = title ?? '',

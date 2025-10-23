@@ -12,7 +12,7 @@ class ProfileSettingsState extends Equatable {
   final bool? azkarNotifications;
   final bool? locationDropdownOpen;
 
-  ProfileSettingsState({
+  const ProfileSettingsState({
     this.profileSettingsModel,
     this.darkMode,
     this.hijriCalendar,

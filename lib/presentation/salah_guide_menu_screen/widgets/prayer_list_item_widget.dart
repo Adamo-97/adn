@@ -9,10 +9,10 @@ class PrayerListItemWidget extends StatelessWidget {
   final VoidCallback? onTapPrayerType;
 
   const PrayerListItemWidget({
-    Key? key,
+    super.key,
     required this.prayerType,
     this.onTapPrayerType,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

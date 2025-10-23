@@ -12,7 +12,7 @@ import './widgets/date_nav_calendar.dart';
 import './widgets/prayer_cards_list.dart';
 
 class PrayerTrackerInitialPage extends ConsumerStatefulWidget {
-  const PrayerTrackerInitialPage({Key? key}) : super(key: key);
+  const PrayerTrackerInitialPage({super.key});
 
   @override
   PrayerTrackerInitialPageState createState() =>

@@ -3,27 +3,25 @@ import 'package:flutter/material.dart';
 import '../core/app_export.dart';
 import './custom_image_view.dart';
 
-/**
- * CustomTextFieldWithIcon - A reusable text input field component with optional left icon
- * 
- * This component provides a TextFormField with customizable left icon, placeholder text,
- * text styling, and validation support. It's designed to be responsive and follows
- * Material Design guidelines.
- * 
- * @param controller - TextEditingController for managing text input
- * @param hintText - Placeholder text displayed when field is empty  
- * @param leftIcon - Path to the left icon image (SVG/PNG supported)
- * @param textStyle - Custom text style for the input text
- * @param hintStyle - Custom text style for the hint text
- * @param validator - Validation function for form validation
- * @param keyboardType - Type of keyboard to show for input
- * @param onTap - Callback function when field is tapped
- * @param readOnly - Whether the field is read-only
- * @param enabled - Whether the field is enabled for interaction
- */
+/// CustomTextFieldWithIcon - A reusable text input field component with optional left icon
+/// 
+/// This component provides a TextFormField with customizable left icon, placeholder text,
+/// text styling, and validation support. It's designed to be responsive and follows
+/// Material Design guidelines.
+/// 
+/// @param controller - TextEditingController for managing text input
+/// @param hintText - Placeholder text displayed when field is empty  
+/// @param leftIcon - Path to the left icon image (SVG/PNG supported)
+/// @param textStyle - Custom text style for the input text
+/// @param hintStyle - Custom text style for the hint text
+/// @param validator - Validation function for form validation
+/// @param keyboardType - Type of keyboard to show for input
+/// @param onTap - Callback function when field is tapped
+/// @param readOnly - Whether the field is read-only
+/// @param enabled - Whether the field is enabled for interaction
 class CustomTextFieldWithIcon extends StatelessWidget {
-  CustomTextFieldWithIcon({
-    Key? key,
+  const CustomTextFieldWithIcon({
+    super.key,
     this.controller,
     this.hintText,
     this.leftIcon,
@@ -34,7 +32,7 @@ class CustomTextFieldWithIcon extends StatelessWidget {
     this.onTap,
     this.readOnly,
     this.enabled,
-  }) : super(key: key);
+  });
 
   /// Controller for managing text input
   final TextEditingController? controller;

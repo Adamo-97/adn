@@ -9,11 +9,11 @@ class PrayerRowWidget extends StatelessWidget {
   final bool isLastRow;
 
   const PrayerRowWidget({
-    Key? key,
+    super.key,
     required this.row,
     this.isFirstRow = false,
     this.isLastRow = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

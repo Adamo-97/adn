@@ -58,7 +58,7 @@ class PrayerActionModel extends Equatable {
   final bool isSelected;
   final String id;
 
-  PrayerActionModel({
+  const PrayerActionModel({
     String? icon,
     String? label,
     this.navigateTo,
