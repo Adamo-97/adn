@@ -1,12 +1,16 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/app_export.dart';
 import '../models/app_navigation_model.dart';
 part 'app_navigation_state.dart';
 
-final appNavigationNotifier = StateNotifierProvider.autoDispose<
+final appNavigationNotifier = NotifierProvider.autoDispose<
     AppNavigationNotifier,
-    AppNavigationState>((ref) => AppNavigationNotifier(AppNavigationState()));
+    AppNavigationState>(() => AppNavigationNotifier());
 
 /// A notifier that manages the state of a AppNavigation according to the event that is dispatched to it.
-class AppNavigationNotifier extends StateNotifier<AppNavigationState> {
-  AppNavigationNotifier(AppNavigationState state) : super(state);
+class AppNavigationNotifier extends Notifier<AppNavigationState> {
+  @override
+  AppNavigationState build() {
+    return AppNavigationState();
+  }
 }

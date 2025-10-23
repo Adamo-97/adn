@@ -17,10 +17,15 @@ This is a Flutter-based Islamic prayer application (Athan/Adhan app) that helps 
 
 ### Asset Management
 
-- **NEVER** add new asset directories beyond `assets/`, `assets/images/`, `assets/images/notifications/`
-- **PLANNED**: SVG assets will be reorganized into categorized subdirectories (e.g., `assets/images/icons/`, `assets/images/prayers/`, etc.)
+- **Asset Directory Structure**: Use only these existing subdirectories:
+  - `assets/` - General assets
+  - `assets/images/` - General images
+  - `assets/images/home/` - Prayer tracker (home screen) specific assets (prayer icons, Qibla button, navigation arrows, etc.)
+  - `assets/images/notifications/` - Notification bell icons (bell_adhan.svg, bell_pling.svg, bell_mute.svg)
+- **NEVER** add new asset directories (e.g., `assets/svg/`, `assets/icons/`, etc.)
 - **NEVER** add new local fonts - only use existing fonts: Poppins (weights: 300, 400, 600, 700) and Noto Kufi Arabic (weight: 500)
 - All images must be referenced through `ImageConstant` class in `lib/core/utils/image_constant.dart`
+- Use `_homePath` for home screen assets, `_basePath` for general assets
 - **PLANNED**: JSON data files will be added to support static content display (prayer guides, mosque info templates, etc.)
 
 ### Core Application Configuration
@@ -54,27 +59,35 @@ Each screen follows this structure under `lib/presentation/<feature_name>/`:
 
 Example: `prayer_tracker_screen/` contains models, notifier (with state), widgets, and the main screen file.
 
-### State Management (Riverpod + StateNotifier)
+### State Management (Riverpod 3.x + Notifier)
 
-- Uses `flutter_riverpod` ^2.5.1 with `StateNotifierProvider.autoDispose`
+- Uses `flutter_riverpod` ^3.0.3 with `NotifierProvider.autoDispose`
 - **Single Source of Truth**: Riverpod notifiers manage ALL state - avoid mixing frontend state with Riverpod state
 - Pattern for all features:
 
   ```dart
-  // Provider definition
-  final featureNotifierProvider = StateNotifierProvider.autoDispose<
-      FeatureNotifier, FeatureState>((ref) => FeatureNotifier(FeatureState(...)));
+  // Provider definition (Riverpod 3.x)
+  final featureNotifierProvider = NotifierProvider.autoDispose<
+      FeatureNotifier, FeatureState>(() => FeatureNotifier());
 
-  // Notifier class
-  class FeatureNotifier extends StateNotifier<FeatureState> {
-    FeatureNotifier(FeatureState state) : super(state) {
-      initialize();
+  // Notifier class (Riverpod 3.x)
+  class FeatureNotifier extends Notifier<FeatureState> {
+    @override
+    FeatureState build() {
+      final initialState = FeatureState(...);
+      Future.microtask(() => initialize());
+      return initialState;
+    }
+    
+    void initialize() {
+      // Initialize state here
     }
   }
   ```
 
 - Widgets consume state with `ref.watch(featureNotifierProvider)` and call methods via `ref.read(featureNotifierProvider.notifier)`
 - All screens extend `ConsumerStatefulWidget` or `ConsumerWidget`
+- **IMPORTANT**: In Riverpod 3.x, `StateNotifier` and `StateNotifierProvider` have been removed - use `Notifier` and `NotifierProvider` instead
 - **PLANNED**: Extensive refactoring to ensure notifiers are the single source of truth, eliminating duplicate state
 
 ### Navigation System

@@ -62,7 +62,10 @@ class PrayerTrackerInitialPageState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        PrayerActions(onActionTap: _onPrayerActionTap),
+        PrayerActions(
+          onActionTap: _onPrayerActionTap,
+          qiblaSelected: _qiblaOpen,
+        ),
         QiblaPanel(isOpen: _qiblaOpen),
         SizedBox(height: 16.h),
         ProgressIndicatorsRow(
@@ -89,7 +92,9 @@ class PrayerTrackerInitialPageState
     final isQibla = label.contains('qibla') || aid.contains('qibla');
 
     if (isQibla) {
-      setState(() => _qiblaOpen = !_qiblaOpen); // show/hide compass + phone row
+      setState(() {
+        _qiblaOpen = !_qiblaOpen;
+      }); // show/hide compass + phone row
       return;                                   // DO NOT navigate for Qibla
     }
 

@@ -1,21 +1,23 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/app_export.dart';
 import '../models/azkhar_categories_model.dart';
 import '../models/azkhar_category_model.dart';
 
 part 'azkhar_categories_state.dart';
 
-final azkharCategoriesNotifier = StateNotifierProvider.autoDispose<
+final azkharCategoriesNotifier = NotifierProvider.autoDispose<
     AzkharCategoriesNotifier, AzkharCategoriesState>(
-  (ref) => AzkharCategoriesNotifier(
-    AzkharCategoriesState(
-      azkharCategoriesModel: AzkharCategoriesModel(),
-    ),
-  ),
+  () => AzkharCategoriesNotifier(),
 );
 
-class AzkharCategoriesNotifier extends StateNotifier<AzkharCategoriesState> {
-  AzkharCategoriesNotifier(AzkharCategoriesState state) : super(state) {
-    initialize();
+class AzkharCategoriesNotifier extends Notifier<AzkharCategoriesState> {
+  @override
+  AzkharCategoriesState build() {
+    final initialState = AzkharCategoriesState(
+      azkharCategoriesModel: AzkharCategoriesModel(),
+    );
+    Future.microtask(() => initialize());
+    return initialState;
   }
 
   void initialize() {

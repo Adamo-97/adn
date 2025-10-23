@@ -9,9 +9,11 @@ class PrayerActions extends ConsumerWidget {
   const PrayerActions({
     super.key,
     required this.onActionTap,
+    this.qiblaSelected = false,
   });
 
   final void Function(PrayerActionModel action) onActionTap;
+  final bool qiblaSelected;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,9 +29,13 @@ class PrayerActions extends ConsumerWidget {
         runSpacing: 12.h,
         spacing: 12.h,
         children: actions.map((action) {
+          // Check if this is the Qibla button
+          final isQibla = (action.label ?? '').toLowerCase().contains('qibla');
+          
           return PrayerActionItemWidget(
             action: action,
             onTap: () => onActionTap(action),
+            isSelected: isQibla ? qiblaSelected : false,
           );
         }).toList(),
       ),

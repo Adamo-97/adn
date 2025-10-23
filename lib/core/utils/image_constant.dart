@@ -19,6 +19,7 @@ extension PrayerTypeAsset on PrayerType {
 class ImageConstant {
   // Base path for all assets
   static String _basePath = 'assets/images/';
+  static String _homePath = 'assets/images/home/';
   // Placeholder image for fallback
   static String imgPlaceholder = '${_basePath}placeholder.png';
   
@@ -27,13 +28,13 @@ class ImageConstant {
   static const String bellPling = 'assets/images/notifications/bell_pling.svg';
   static const String bellMute  = 'assets/images/notifications/bell_mute.svg';
 
-  // Six prayer SVGs — placed directly under assets/images/
-  static String imgFajr    = '${_basePath}fajr.svg';
-  static String imgSunrise = '${_basePath}sunrise.svg';
-  static String imgDhuhr   = '${_basePath}dhuhr.svg';
-  static String imgAsr     = '${_basePath}asr.svg';
-  static String imgMaghrib = '${_basePath}maghrib.svg';
-  static String imgIsha    = '${_basePath}isha.svg';
+  // Six prayer SVGs — organized in home/ subdirectory
+  static String imgFajr    = '${_homePath}fajr.svg';
+  static String imgSunrise = '${_homePath}sunrise.svg';
+  static String imgDhuhr   = '${_homePath}dhuhr.svg';
+  static String imgAsr     = '${_homePath}asr.svg';
+  static String imgMaghrib = '${_homePath}maghrib.svg';
+  static String imgIsha    = '${_homePath}isha.svg';
 
   static String iconForPrayer(Object current) {
     final key = current.toString().trim().toLowerCase();
@@ -57,19 +58,19 @@ class ImageConstant {
 }
 
 
-  // Common Images
-  static String imgAfterPrayGroup = '${_basePath}img_after_pray_group.svg';
-  static String imgArrowNext = '${_basePath}img_arrow_next.svg';
-  static String imgArrowPrev = '${_basePath}img_arrow_prev.svg';
-  static String imgCheck = '${_basePath}img_check.svg';
+  // Common Images - Home/Prayer Tracker
+  static String imgAfterPrayGroup = '${_homePath}img_after_pray_group.svg';
+  static String imgArrowNext = '${_homePath}img_arrow_next.svg';
+  static String imgArrowPrev = '${_homePath}img_arrow_prev.svg';
+  static String imgCheck = '${_homePath}img_check.svg';
   static String imgCheckedIcon = '${_basePath}img_checked_icon.svg';
-  static String imgCompassIcon = '${_basePath}img_compass_icon.svg';
+  static String imgCompassIcon = '${_homePath}img_compass_icon.svg';
   static String imgConditionsIcon = '${_basePath}img_conditions_icon.svg';
   static String imgDhuhrIcon = '${_basePath}img_dhuhr_icon.svg';
   static String imgGhuslIcon = '${_basePath}img_ghusl_icon.svg';
   static String imgGroup10 = '${_basePath}img_group_10.svg';
   static String imgHowToIcon = '${_basePath}img_how_to_icon.svg';
-  static String imgHowToPrayGroup = '${_basePath}img_how_to_pray_group.svg';
+  static String imgHowToPrayGroup = '${_homePath}img_how_to_pray_group.svg';
   static String imgIconPlaceholder = '${_basePath}img_icon_placeholder.svg';
   static String imgIconPlaceholder1 = '${_basePath}img_icon_placeholder_1.svg';
   static String imgIconPlaceholder10 =
@@ -99,14 +100,15 @@ class ImageConstant {
   static String imgIconPlaceholoder = '${_basePath}img_icon_placeholoder.svg';
   static String imgIconPplaceholder = '${_basePath}img_icon_pplaceholder.svg';
   static String imgImportantIcon = '${_basePath}img_important_icon.svg';
-  static String imgLocationIcon = '${_basePath}img_location_icon.svg';
-  static String imgMobileIcon = '${_basePath}img_mobile_icon.svg';
-  static String imgPrayerTimes = '${_basePath}img_prayer_times.svg';
-  static String imgQiblaButton = '${_basePath}img_qibla_button.svg';
+  static String imgLocationIcon = '${_homePath}img_location_icon.svg';
+  static String imgMobileIcon = '${_homePath}img_mobile_icon.svg';
+  static String imgPrayerTimes = '${_homePath}img_prayer_times.svg';
+  static String imgQiblaButton = '${_homePath}img_qibla_button_unselected.svg';
+  static String imgQiblaButtonSelected = '${_homePath}img_qibla_button_selected.svg';
   static String imgSearchWhiteA700 = '${_basePath}img_search_white_a700.svg';
   static String imgShadowButtom1 = '${_basePath}img_shadow_buttom_1.png';
   static String imgTayammumIcon = '${_basePath}img_tayammum_icon.svg';
-  static String imgWhuduGroup = '${_basePath}img_whudu_group.svg';
+  static String imgWhuduGroup = '${_homePath}img_whudu_group.svg';
   static String imgWuduIcon = '${_basePath}img_wudu_icon.svg';
 
   // Azkhar Categories Screen

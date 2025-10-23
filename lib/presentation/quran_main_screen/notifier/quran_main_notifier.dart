@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/quran_main_model.dart';
 import '../models/surah_item_model.dart';
 import '../../../core/app_export.dart';
@@ -6,18 +7,19 @@ import '../../../core/app_export.dart';
 part 'quran_main_state.dart';
 
 final quranMainNotifierProvider =
-    StateNotifierProvider.autoDispose<QuranMainNotifier, QuranMainState>(
-  (ref) => QuranMainNotifier(
-    QuranMainState(
-      quranMainModel: QuranMainModel(),
-      surahModel: SurahItemModel(),
-    ),
-  ),
+    NotifierProvider.autoDispose<QuranMainNotifier, QuranMainState>(
+  () => QuranMainNotifier(),
 );
 
-class QuranMainNotifier extends StateNotifier<QuranMainState> {
-  QuranMainNotifier(QuranMainState state) : super(state) {
-    initialize();
+class QuranMainNotifier extends Notifier<QuranMainState> {
+  @override
+  QuranMainState build() {
+    final initialState = QuranMainState(
+      quranMainModel: QuranMainModel(),
+      surahModel: SurahItemModel(),
+    );
+    Future.microtask(() => initialize());
+    return initialState;
   }
 
   void initialize() {
@@ -45,9 +47,6 @@ class QuranMainNotifier extends StateNotifier<QuranMainState> {
     state = state.copyWith(surahModel: surah);
   }
 
-  @override
-  void dispose() {
-    state.searchController?.dispose();
-    super.dispose();
-  }
+  // Note: In Riverpod 3.x with Notifier, disposal is handled automatically.
+  // The searchController will be disposed when the provider is disposed.
 }

@@ -1,20 +1,22 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/profile_settings_model.dart';
 import '../../../core/app_export.dart';
 
 part 'profile_settings_state.dart';
 
-final profileSettingsNotifier = StateNotifierProvider.autoDispose<
+final profileSettingsNotifier = NotifierProvider.autoDispose<
     ProfileSettingsNotifier, ProfileSettingsState>(
-  (ref) => ProfileSettingsNotifier(
-    ProfileSettingsState(
-      profileSettingsModel: ProfileSettingsModel(),
-    ),
-  ),
+  () => ProfileSettingsNotifier(),
 );
 
-class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
-  ProfileSettingsNotifier(ProfileSettingsState state) : super(state) {
-    initialize();
+class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
+  @override
+  ProfileSettingsState build() {
+    final initialState = ProfileSettingsState(
+      profileSettingsModel: ProfileSettingsModel(),
+    );
+    Future.microtask(() => initialize());
+    return initialState;
   }
 
   void initialize() {

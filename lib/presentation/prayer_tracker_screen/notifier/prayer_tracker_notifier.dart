@@ -1,4 +1,5 @@
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/app_export.dart';
 import '../models/prayer_tracker_model.dart';
 
@@ -8,18 +9,24 @@ const List<String> kOrderedPrayerKeys = <String>[
   'Fajr','Dhuhr','Asr','Maghrib','Isha',
 ];
 
-final prayerTrackerNotifierProvider = StateNotifierProvider.autoDispose<
+// Riverpod 3.x: Using NotifierProvider with manual Notifier subclass  
+final prayerTrackerNotifierProvider = NotifierProvider.autoDispose<
     PrayerTrackerNotifier, PrayerTrackerState>(
-  (ref) => PrayerTrackerNotifier(
-    PrayerTrackerState(
-      prayerTrackerModel: PrayerTrackerModel(),
-    ),
-  ),
+  () => PrayerTrackerNotifier(),
 );
 
-class PrayerTrackerNotifier extends StateNotifier<PrayerTrackerState> {
-  PrayerTrackerNotifier(PrayerTrackerState state) : super(state) {
-    initialize();
+class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
+  @override
+  PrayerTrackerState build() {
+    // Initialize state
+    final initialState = PrayerTrackerState(
+      prayerTrackerModel: PrayerTrackerModel(),
+    );
+    
+    // Schedule initialization to run after build
+    Future.microtask(() => initialize());
+    
+    return initialState;
   }
 
   static const List<String> _prayers = [

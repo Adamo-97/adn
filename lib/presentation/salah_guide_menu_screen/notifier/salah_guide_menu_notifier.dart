@@ -1,20 +1,22 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/app_export.dart';
 import '../models/salah_guide_menu_model.dart';
 
 part 'salah_guide_menu_state.dart';
 
-final salahGuideMenuNotifier = StateNotifierProvider.autoDispose<
+final salahGuideMenuNotifier = NotifierProvider.autoDispose<
     SalahGuideMenuNotifier, SalahGuideMenuState>(
-  (ref) => SalahGuideMenuNotifier(
-    SalahGuideMenuState(
-      salahGuideMenuModel: SalahGuideMenuModel(),
-    ),
-  ),
+  () => SalahGuideMenuNotifier(),
 );
 
-class SalahGuideMenuNotifier extends StateNotifier<SalahGuideMenuState> {
-  SalahGuideMenuNotifier(SalahGuideMenuState state) : super(state) {
-    initialize();
+class SalahGuideMenuNotifier extends Notifier<SalahGuideMenuState> {
+  @override
+  SalahGuideMenuState build() {
+    final initialState = SalahGuideMenuState(
+      salahGuideMenuModel: SalahGuideMenuModel(),
+    );
+    Future.microtask(() => initialize());
+    return initialState;
   }
 
   void initialize() {

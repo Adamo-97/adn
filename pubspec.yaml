@@ -2,21 +2,22 @@ name: adam_s_application
 description: A new Flutter project.
 version: 1.0.0+1
 environment: 
-  sdk: ^3.6.0
+  sdk: '>=3.6.0 <4.0.0'
 dependencies: 
   flutter:   # 🚨 CRITICAL: Required for every Flutter project - DO NOT REMOVE
     sdk: flutter # 🚨 CRITICAL: Required for every Flutter project - DO NOT REMOVE
   flutter_localizations: 
     sdk: flutter
-  flutter_svg: ^2.0.12
+  flutter_svg: ^2.0.14
   cached_network_image: ^3.4.1
-  shared_preferences: ^2.3.3
-  connectivity_plus: ^6.1.0
-  flutter_riverpod: ^2.5.1
-  equatable: ^2.0.5
+  shared_preferences: ^2.3.4
+  connectivity_plus: ^7.0.0
+  flutter_riverpod: ^3.0.3
+  equatable: ^2.0.7
   universal_html: ^2.2.4
 dev_dependencies: 
-  flutter_launcher_icons: ^0.13.1
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
   flutter_test:    # 🚨 CRITICAL: Required for Flutter project testing - DO NOT REMOVE
     sdk: flutter    # 🚨 CRITICAL: Required for Flutter project testing - DO NOT REMOVE
 flutter: 
@@ -24,6 +25,7 @@ flutter:
   assets: 
     - assets/
     - assets/images/
+    - assets/images/home/
     - assets/images/notifications/
   fonts: 
     - family: Poppins
@@ -52,7 +54,7 @@ flutter_launcher_icons:
 
   # 🚨 CRITICAL ASSET MANAGEMENT RULES:
   # - DO NOT ADD NEW ASSET DIRECTORIES (assets/svg/, assets/icons/, etc.)
-  # - ONLY USE EXISTING AND ITEMS AVAILABLE IN THE DIRECTORIES LISTED ABOVE (assets/, assets/images/)
+  # - ONLY USE EXISTING SUBDIRECTORIES: assets/, assets/images/, assets/images/home/, assets/images/notifications/
 
   # 🚨 CRITICAL FONTS RULE:
   # - DO NOT ADD NEW LOCAL FONTS TO assets/fonts/ 
