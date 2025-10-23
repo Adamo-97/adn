@@ -135,7 +135,7 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
   Widget _buildSettingsList(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        final state = ref.watch(profileSettingsNotifier);
+        ref.watch(profileSettingsNotifier);
 
         return Container(
           margin: EdgeInsets.only(right: 24.h),
@@ -248,7 +248,7 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
   Widget _buildLocationDropdown(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        final state = ref.watch(profileSettingsNotifier);
+        ref.watch(profileSettingsNotifier);
 
         return Container(
           margin: EdgeInsets.only(right: 24.h),
@@ -293,7 +293,7 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
   Widget _buildLocationOptions(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        final state = ref.watch(profileSettingsNotifier);
+        ref.watch(profileSettingsNotifier);
 
         return Container(
           margin: EdgeInsets.only(right: 24.h),
@@ -406,7 +406,7 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
   Widget _buildLanguageOptions(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        final state = ref.watch(profileSettingsNotifier);
+        ref.watch(profileSettingsNotifier);
 
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 46.h),

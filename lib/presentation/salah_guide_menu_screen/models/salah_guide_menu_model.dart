@@ -1,19 +1,17 @@
 import '../../../core/app_export.dart';
 
 class SalahGuideMenuModel extends Equatable {
-  String? title;
-  List<PrayerGuideItemModel>? prayerGuideItems;
-  List<PrayerTypeModel>? prayerTypes;
+  final String title;
+  final List<PrayerGuideItemModel> prayerGuideItems;
+  final List<PrayerTypeModel> prayerTypes;
 
   SalahGuideMenuModel({
-    this.title,
-    this.prayerGuideItems,
-    this.prayerTypes,
-  }) {
-    title = title ?? 'Salah Guide';
-    prayerGuideItems = prayerGuideItems ?? [];
-    prayerTypes = prayerTypes ?? [];
-  }
+    String? title,
+    List<PrayerGuideItemModel>? prayerGuideItems,
+    List<PrayerTypeModel>? prayerTypes,
+  })  : title = title ?? 'Salah Guide',
+        prayerGuideItems = prayerGuideItems ?? [],
+        prayerTypes = prayerTypes ?? [];
 
   @override
   List<Object?> get props => [title, prayerGuideItems, prayerTypes];
@@ -32,19 +30,17 @@ class SalahGuideMenuModel extends Equatable {
 }
 
 class PrayerGuideItemModel extends Equatable {
-  String? iconPath;
-  String? title;
-  String? subtitle;
+  final String iconPath;
+  final String title;
+  final String subtitle;
 
   PrayerGuideItemModel({
-    this.iconPath,
-    this.title,
-    this.subtitle,
-  }) {
-    iconPath = iconPath ?? '';
-    title = title ?? '';
-    subtitle = subtitle ?? '';
-  }
+    String? iconPath,
+    String? title,
+    String? subtitle,
+  })  : iconPath = iconPath ?? '',
+        title = title ?? '',
+        subtitle = subtitle ?? '';
 
   @override
   List<Object?> get props => [iconPath, title, subtitle];
@@ -63,16 +59,14 @@ class PrayerGuideItemModel extends Equatable {
 }
 
 class PrayerTypeModel extends Equatable {
-  String? title;
-  String? iconPath;
+  final String title;
+  final String iconPath;
 
   PrayerTypeModel({
-    this.title,
-    this.iconPath,
-  }) {
-    title = title ?? '';
-    iconPath = iconPath ?? '';
-  }
+    String? title,
+    String? iconPath,
+  })  : title = title ?? '',
+        iconPath = iconPath ?? '';
 
   @override
   List<Object?> get props => [title, iconPath];

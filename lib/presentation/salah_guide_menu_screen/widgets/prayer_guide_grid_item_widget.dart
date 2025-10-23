@@ -16,7 +16,7 @@ class PrayerGuideGridItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      debugPrint('[SalahGrid] Building tile: ${prayerGuideItem.title}');
+    debugPrint('[SalahGrid] Building tile: ${prayerGuideItem.title}');
 
     return GestureDetector(
       onTap: onTapGuideItem,
@@ -34,19 +34,19 @@ class PrayerGuideGridItemWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomImageView(
-              imagePath: prayerGuideItem.iconPath ?? '',
+              imagePath: prayerGuideItem.iconPath,
               height: 20.h,
               width: 20.h,
             ),
             SizedBox(height: 8.h),
             Text(
-              prayerGuideItem.title ?? '',
+              prayerGuideItem.title,
               style: TextStyleHelper.instance.body15RegularPoppins
                   .copyWith(color: appTheme.orange_200),
             ),
             SizedBox(height: 4.h),
             Text(
-              prayerGuideItem.subtitle ?? '',
+              prayerGuideItem.subtitle,
               style: TextStyleHelper.instance.body15RegularPoppins
                   .copyWith(color: appTheme.white_A700),
             ),

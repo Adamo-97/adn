@@ -16,7 +16,7 @@ class DateNavCalendar extends ConsumerWidget {
 
     // label text + color depend on open/closed
     final isOpen = state.calendarOpen;
-    final labelText  = isOpen ? state.monthLabel : state.navLabel;
+    final labelText = isOpen ? state.monthLabel : state.navLabel;
     final labelColor = isOpen ? appTheme.orange_200 : appTheme.white_A700;
 
     // 7 equal columns
@@ -46,7 +46,9 @@ class DateNavCalendar extends ConsumerWidget {
             ),
             GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTap: () => ref.read(prayerTrackerNotifierProvider.notifier).toggleCalendar(),
+              onTap: () => ref
+                  .read(prayerTrackerNotifierProvider.notifier)
+                  .toggleCalendar(),
               child: Text(
                 labelText,
                 style: TextStyleHelper.instance.title18SemiBoldPoppins
@@ -95,21 +97,32 @@ class DateNavCalendar extends ConsumerWidget {
                           topRight: Radius.circular(10.h),
                         ),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.h),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 12.h, horizontal: 12.h),
                       child: Table(
                         columnWidths: cols,
-                        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                        defaultVerticalAlignment:
+                            TableCellVerticalAlignment.middle,
                         children: [
                           TableRow(
                             children: List.generate(7, (i) {
-                              final day = (m.weekDays != null && i < m.weekDays!.length)
-                                  ? m.weekDays![i]
-                                  : const ['Su','Mo','Tu','We','Th','Fr','Sa'][i];
+                              final day = (i < m.weekDays.length)
+                                  ? m.weekDays[i]
+                                  : const [
+                                      'Su',
+                                      'Mo',
+                                      'Tu',
+                                      'We',
+                                      'Th',
+                                      'Fr',
+                                      'Sa'
+                                    ][i];
                               return Center(
                                 child: Text(
                                   day,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyleHelper.instance.body15RegularPoppins
+                                  style: TextStyleHelper
+                                      .instance.body15RegularPoppins
                                       .copyWith(color: appTheme.orange_200),
                                 ),
                               );
@@ -130,22 +143,26 @@ class DateNavCalendar extends ConsumerWidget {
                         padding: EdgeInsets.symmetric(horizontal: 12.h),
                         child: Table(
                           columnWidths: cols,
-                          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
                           children: List.generate(state.monthWeeks.length, (r) {
                             final row = state.monthWeeks[r];
                             return TableRow(
                               children: List.generate(7, (c) {
                                 final date = row[c];
-                                final isSelected = _sameDay(date, state.selectedDate);
-                                final isOutOfMonth = date.month != state.calendarMonth.month;
+                                final isSelected =
+                                    _sameDay(date, state.selectedDate);
+                                final isOutOfMonth =
+                                    date.month != state.calendarMonth.month;
 
                                 // color for day number
                                 final dayColor = isOutOfMonth
-                                    ? const Color(0xFFE74C3C) // RED for other months
+                                    ? const Color(
+                                        0xFFE74C3C) // RED for other months
                                     : appTheme.white_A700;
 
-                                final textStyle = TextStyleHelper.instance
-                                    .label10LightPoppins
+                                final textStyle = TextStyleHelper
+                                    .instance.label10LightPoppins
                                     .copyWith(color: dayColor);
 
                                 // fixed cell height → symmetric grid
@@ -159,10 +176,12 @@ class DateNavCalendar extends ConsumerWidget {
                                               color: appTheme.gray_700,
                                               width: 3.h,
                                             ),
-                                            borderRadius: BorderRadius.circular(18.h),
+                                            borderRadius:
+                                                BorderRadius.circular(18.h),
                                           ),
                                           child: Center(
-                                            child: Text('${date.day}', style: textStyle),
+                                            child: Text('${date.day}',
+                                                style: textStyle),
                                           ),
                                         )
                                       : Text('${date.day}', style: textStyle),
@@ -173,11 +192,16 @@ class DateNavCalendar extends ConsumerWidget {
                                   child: GestureDetector(
                                     behavior: HitTestBehavior.opaque,
                                     onTap: () {
-                                      final n = ref.read(prayerTrackerNotifierProvider.notifier);
-                                      n.selectDate(date);         // update selected day
-                                      n.setCalendarOpen(false);   // hide calendar after pick
+                                      final n = ref.read(
+                                          prayerTrackerNotifierProvider
+                                              .notifier);
+                                      n.selectDate(date); // update selected day
+                                      n.setCalendarOpen(
+                                          false); // hide calendar after pick
                                     },
-                                    child: SizedBox(height: 40.h, child: child), // uniform height
+                                    child: SizedBox(
+                                        height: 40.h,
+                                        child: child), // uniform height
                                   ),
                                 );
                               }),
@@ -196,5 +220,4 @@ class DateNavCalendar extends ConsumerWidget {
   // local helper (widget)
   bool _sameDay(DateTime a, DateTime b) =>
       a.year == b.year && a.month == b.month && a.day == b.day;
-
 }

@@ -21,11 +21,17 @@ class PrayerTrackerInitialPage extends ConsumerStatefulWidget {
 
 class PrayerTrackerInitialPageState
     extends ConsumerState<PrayerTrackerInitialPage> {
-      static const List<String> _fardPrayers = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+  static const List<String> _fardPrayers = [
+    'Fajr',
+    'Dhuhr',
+    'Asr',
+    'Maghrib',
+    'Isha'
+  ];
 
-    // Qibla UI local state (can be moved to your notifier later)
-  bool _qiblaOpen = false;        // clicked / unclicked
-  
+  // Qibla UI local state (can be moved to your notifier later)
+  bool _qiblaOpen = false; // clicked / unclicked
+
   @override
   Widget build(BuildContext context) {
     final topInset = MediaQuery.of(context).padding.top;
@@ -40,9 +46,9 @@ class PrayerTrackerInitialPageState
           SingleChildScrollView(
             padding: EdgeInsets.fromLTRB(
               25.h,
-              headerTotalHeight + 12.h,                  // push content below header
+              headerTotalHeight + 12.h, // push content below header
               25.h,
-              15.h,           // keep clear of bottom bar
+              15.h, // keep clear of bottom bar
             ),
             child: _buildPrayerContent(context),
           ),
@@ -57,7 +63,8 @@ class PrayerTrackerInitialPageState
   Widget _buildPrayerContent(BuildContext context) {
     final m = ref.watch(prayerTrackerNotifierProvider); // Riverpod state
     //count the completed prayers
-    final completedCount = _fardPrayers.where((p) => m.completedByPrayer[p] == true).length;
+    final completedCount =
+        _fardPrayers.where((p) => m.completedByPrayer[p] == true).length;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -71,13 +78,13 @@ class PrayerTrackerInitialPageState
         ProgressIndicatorsRow(
           statuses: m.progressStatusesRaw,
           colors: ProgressColors(
-            completed: appTheme.gray_700,  // completed
-            current:   appTheme.gray_500,  // current
-            upcoming:  appTheme.white_A700,  // upcoming/uncompleted
+            completed: appTheme.gray_700, // completed
+            current: appTheme.gray_500, // current
+            upcoming: appTheme.white_A700, // upcoming/uncompleted
           ),
-        completedCount: completedCount,
-        totalFard: _fardPrayers.length, // 5
-      ),
+          completedCount: completedCount,
+          totalFard: _fardPrayers.length, // 5
+        ),
         SizedBox(height: 16.h),
         const DateNavCalendar(),
         SizedBox(height: 20.h),
@@ -87,15 +94,15 @@ class PrayerTrackerInitialPageState
   }
 
   void _onPrayerActionTap(PrayerActionModel action) {
-    final label = (action.label ?? '').toLowerCase().trim();
-    final aid   = (action.id ?? '').toLowerCase().trim();
+    final label = action.label.toLowerCase().trim();
+    final aid = action.id.toLowerCase().trim();
     final isQibla = label.contains('qibla') || aid.contains('qibla');
 
     if (isQibla) {
       setState(() {
         _qiblaOpen = !_qiblaOpen;
       }); // show/hide compass + phone row
-      return;                                   // DO NOT navigate for Qibla
+      return; // DO NOT navigate for Qibla
     }
 
     // For any other action: reset state BEFORE navigating away.

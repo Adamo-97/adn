@@ -1,28 +1,26 @@
 import '../../../core/app_export.dart';
 
 class PrayerTrackerModel extends Equatable {
-  List<PrayerActionModel>? prayerActions;
-  List<String>? weekDays;
-  List<PrayerRowModel>? prayerRows;
-  String? nextPrayer;
-  String? prayerTime;
-  String? location;
+  final List<PrayerActionModel> prayerActions;
+  final List<String> weekDays;
+  final List<PrayerRowModel> prayerRows;
+  final String nextPrayer;
+  final String prayerTime;
+  final String location;
 
   PrayerTrackerModel({
-    this.prayerActions,
-    this.weekDays,
-    this.prayerRows,
-    this.nextPrayer,
-    this.prayerTime,
-    this.location,
-  }) {
-    prayerActions = prayerActions ?? [];
-    weekDays = weekDays ?? [];
-    prayerRows = prayerRows ?? [];
-    nextPrayer = nextPrayer ?? 'Next Prayer is Fajr';
-    prayerTime = prayerTime ?? '00:00 AM';
-    location = location ?? 'Ronneby, SE';
-  }
+    List<PrayerActionModel>? prayerActions,
+    List<String>? weekDays,
+    List<PrayerRowModel>? prayerRows,
+    String? nextPrayer,
+    String? prayerTime,
+    String? location,
+  })  : prayerActions = prayerActions ?? [],
+        weekDays = weekDays ?? [],
+        prayerRows = prayerRows ?? [],
+        nextPrayer = nextPrayer ?? 'Next Prayer is Fajr',
+        prayerTime = prayerTime ?? '00:00 AM',
+        location = location ?? 'Ronneby, SE';
 
   @override
   List<Object?> get props => [
@@ -54,25 +52,22 @@ class PrayerTrackerModel extends Equatable {
 }
 
 class PrayerActionModel extends Equatable {
-  String? icon;
-  String? label;
-  String? navigateTo;
-  bool? isSelected;
-  String? id;
+  final String icon;
+  final String label;
+  final String? navigateTo;
+  final bool isSelected;
+  final String id;
 
   PrayerActionModel({
-    this.icon,
-    this.label,
+    String? icon,
+    String? label,
     this.navigateTo,
-    this.isSelected,
-    this.id,
-  }) {
-    icon = icon ?? '';
-    label = label ?? '';
-    navigateTo = navigateTo ?? '';
-    isSelected = isSelected ?? false;
-    id = id ?? '';
-  }
+    bool? isSelected,
+    String? id,
+  })  : icon = icon ?? '',
+        label = label ?? '',
+        isSelected = isSelected ?? false,
+        id = id ?? '';
 
   @override
   List<Object?> get props => [icon, label, navigateTo, isSelected, id];
@@ -95,22 +90,20 @@ class PrayerActionModel extends Equatable {
 }
 
 class PrayerRowModel extends Equatable {
-  List<String>? values;
-  bool? isFirstRow;
-  bool? isLastRow;
-  String? id;
+  final List<String?> values;
+  final bool isFirstRow;
+  final bool isLastRow;
+  final String id;
 
   PrayerRowModel({
-    this.values,
-    this.isFirstRow,
-    this.isLastRow,
-    this.id,
-  }) {
-    values = values ?? [];
-    isFirstRow = isFirstRow ?? false;
-    isLastRow = isLastRow ?? false;
-    id = id ?? '';
-  }
+    List<String?>? values,
+    bool? isFirstRow,
+    bool? isLastRow,
+    String? id,
+  })  : values = values ?? [],
+        isFirstRow = isFirstRow ?? false,
+        isLastRow = isLastRow ?? false,
+        id = id ?? '';
 
   @override
   List<Object?> get props => [values, isFirstRow, isLastRow, id];

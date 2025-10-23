@@ -19,17 +19,17 @@ class PrayerActionItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Determine if this is Qibla button by checking the label
-    final isQiblaButton = (action.label ?? '').toLowerCase().contains('qibla');
-    
+    final isQiblaButton = action.label.toLowerCase().contains('qibla');
+
     // For Qibla button, use different SVG based on selected state
-    String iconPath = action.icon ?? '';
-    
+    String iconPath = action.icon;
+
     if (isQiblaButton) {
       if (isSelected) {
         iconPath = ImageConstant.imgQiblaButtonSelected;
       }
     }
-    
+
     return GestureDetector(
       onTap: onTap,
       child: Column(
@@ -42,7 +42,7 @@ class PrayerActionItemWidget extends StatelessWidget {
           ),
           SizedBox(height: 6.h),
           Text(
-            action.label ?? '',
+            action.label,
             style: TextStyleHelper.instance.label10LightPoppins
                 .copyWith(color: appTheme.colorCCFFFF),
           ),

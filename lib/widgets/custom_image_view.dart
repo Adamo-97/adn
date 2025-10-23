@@ -26,25 +26,8 @@ extension ImageTypeExtension on String {
 enum ImageType { svg, png, network, networkSvg, file, unknown }
 
 class CustomImageView extends StatelessWidget {
-  CustomImageView(
-      {this.imagePath,
-      this.height,
-      this.width,
-      this.color,
-      this.fit,
-      this.alignment,
-      this.onTap,
-      this.radius,
-      this.margin,
-      this.border,
-      this.placeHolder}) {
-    if (imagePath == null || imagePath!.isEmpty) {
-      imagePath = ImageConstant.imgImageNotFound;
-    }
-  }
-
   ///[imagePath] is required parameter for showing image
-  late String? imagePath;
+  final String? imagePath;
 
   final double? height;
 
@@ -65,6 +48,22 @@ class CustomImageView extends StatelessWidget {
   final BorderRadius? radius;
 
   final BoxBorder? border;
+
+  CustomImageView({
+    String? imagePath,
+    this.height,
+    this.width,
+    this.color,
+    this.fit,
+    this.alignment,
+    this.onTap,
+    this.radius,
+    this.margin,
+    this.border,
+    this.placeHolder,
+  }) : imagePath = (imagePath == null || imagePath.isEmpty)
+            ? ImageConstant.imgImageNotFound
+            : imagePath;
 
   @override
   Widget build(BuildContext context) {

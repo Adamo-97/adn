@@ -1,4 +1,3 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/app_export.dart';
 import '../models/prayer_tracker_model.dart';
@@ -6,12 +5,16 @@ import '../models/prayer_tracker_model.dart';
 part 'prayer_tracker_state.dart';
 
 const List<String> kOrderedPrayerKeys = <String>[
-  'Fajr','Dhuhr','Asr','Maghrib','Isha',
+  'Fajr',
+  'Dhuhr',
+  'Asr',
+  'Maghrib',
+  'Isha',
 ];
 
-// Riverpod 3.x: Using NotifierProvider with manual Notifier subclass  
-final prayerTrackerNotifierProvider = NotifierProvider.autoDispose<
-    PrayerTrackerNotifier, PrayerTrackerState>(
+// Riverpod 3.x: Using NotifierProvider with manual Notifier subclass
+final prayerTrackerNotifierProvider =
+    NotifierProvider.autoDispose<PrayerTrackerNotifier, PrayerTrackerState>(
   () => PrayerTrackerNotifier(),
 );
 
@@ -22,15 +25,20 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
     final initialState = PrayerTrackerState(
       prayerTrackerModel: PrayerTrackerModel(),
     );
-    
+
     // Schedule initialization to run after build
     Future.microtask(() => initialize());
-    
+
     return initialState;
   }
 
   static const List<String> _prayers = [
-    'Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha',
+    'Fajr',
+    'Sunrise',
+    'Dhuhr',
+    'Asr',
+    'Maghrib',
+    'Isha',
   ];
 
   int _indexOf(String name) => _prayers.indexOf(name);
@@ -87,7 +95,6 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
     fetchDailyTimes(state.selectedDate);
     // TODO: compute currentPrayer from real times; for now, keep default or pick from dailyTimes
     // state = state.copyWith(currentPrayer: _computeCurrentPrayerFromTimes(state.dailyTimes, state.selectedDate));
-
   }
 
   /// Fetch daily times for [date]. Currently a placeholder returning "00:00".
@@ -128,7 +135,8 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
     final currentIdx = _indexOf(state.currentPrayer);
     final targetIdx = _indexOf(name);
 
-  if(targetIdx <0 || currentIdx <0 || targetIdx > currentIdx) return; // cannot mark future prayers
+    if (targetIdx < 0 || currentIdx < 0 || targetIdx > currentIdx)
+      return; // cannot mark future prayers
 
     final updated = Map<String, bool>.from(state.completedByPrayer);
     final current = updated[name] ?? false;
@@ -140,7 +148,7 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
   void selectPrayerAction(PrayerActionModel action) {
     List<PrayerActionModel> updatedActions = state.prayerActions.map((item) {
       if (item.id == action.id) {
-        return item.copyWith(isSelected: !(item.isSelected ?? false));
+        return item.copyWith(isSelected: !item.isSelected);
       }
       return item;
     }).toList();
@@ -172,7 +180,8 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
   }
 
   // Day navigation (used when calendar is CLOSED)
-  void prevDay() => selectDate(state.selectedDate.subtract(const Duration(days: 1)));
+  void prevDay() =>
+      selectDate(state.selectedDate.subtract(const Duration(days: 1)));
   void nextDay() => selectDate(state.selectedDate.add(const Duration(days: 1)));
 
   // Month navigation (used when calendar is OPEN)
@@ -183,7 +192,8 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
   void _shiftMonth(int delta) {
     final cm = state.calendarMonth;
     // Move the DISPLAYED month; do NOT change selectedDate here.
-    final newMonth = DateTime(cm.year, cm.month + delta, 1); // DateTime handles year rollover
+    final newMonth = DateTime(
+        cm.year, cm.month + delta, 1); // DateTime handles year rollover
     state = state.copyWith(calendarMonth: newMonth);
   }
 
@@ -191,15 +201,15 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
     return state.bellByPrayer[prayerId] ?? PrayerBellMode.adhan;
   }
 
-   void cycleBell(String prayerId) {
-     final current = bellFor(prayerId);
-     final next = switch (current) {
-       PrayerBellMode.adhan => PrayerBellMode.pling,
-       PrayerBellMode.pling => PrayerBellMode.mute,
-       PrayerBellMode.mute  => PrayerBellMode.adhan,
-     };
-     final nextMap = Map<String, PrayerBellMode>.from(state.bellByPrayer)
-       ..[prayerId] = next;
-     state = state.copyWith(bellByPrayer: nextMap);
-   }
+  void cycleBell(String prayerId) {
+    final current = bellFor(prayerId);
+    final next = switch (current) {
+      PrayerBellMode.adhan => PrayerBellMode.pling,
+      PrayerBellMode.pling => PrayerBellMode.mute,
+      PrayerBellMode.mute => PrayerBellMode.adhan,
+    };
+    final nextMap = Map<String, PrayerBellMode>.from(state.bellByPrayer)
+      ..[prayerId] = next;
+    state = state.copyWith(bellByPrayer: nextMap);
+  }
 }

@@ -34,7 +34,7 @@ class PrayerListItemWidget extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(left: 4.h),
                 child: Text(
-                  prayerType.title ?? '',
+                  prayerType.title,
                   style: TextStyleHelper.instance.body15RegularPoppins
                       .copyWith(color: appTheme.white_A700, height: 1.3),
                 ),
@@ -42,7 +42,7 @@ class PrayerListItemWidget extends StatelessWidget {
             ),
             SizedBox(width: 6.h),
             CustomImageView(
-              imagePath: prayerType.iconPath ?? '',
+              imagePath: prayerType.iconPath,
               height: 30.h,
               width: 30.h,
             ),

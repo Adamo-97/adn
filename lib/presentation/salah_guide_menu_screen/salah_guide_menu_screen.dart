@@ -26,7 +26,8 @@ class SalahGuideMenuScreenState extends ConsumerState<SalahGuideMenuScreen> {
           child: Column(
             children: [
               SizedBox(height: 14.h),
-              FixedSalahHeader(title: 'Salah Guide', onBack: () => onTapBackButton(context)),
+              FixedSalahHeader(
+                  title: 'Salah Guide', onBack: () => onTapBackButton(context)),
               SizedBox(height: 15.h),
               _buildScrollableContent(context),
             ],
@@ -96,10 +97,6 @@ class SalahGuideMenuScreenState extends ConsumerState<SalahGuideMenuScreen> {
                 ((state.prayerTypes?.length ?? 0) % 2),
             (rowIndex) {
               final startIndex = rowIndex * 2;
-              final endIndex =
-                  (startIndex + 2 < (state.prayerTypes?.length ?? 0))
-                      ? startIndex + 2
-                      : state.prayerTypes?.length ?? 0;
 
               return Padding(
                 padding: EdgeInsets.only(bottom: 10.h),

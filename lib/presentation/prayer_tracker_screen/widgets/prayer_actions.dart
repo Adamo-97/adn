@@ -18,8 +18,9 @@ class PrayerActions extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(prayerTrackerNotifierProvider);
-    final PrayerTrackerModel m = state.prayerTrackerModel ?? PrayerTrackerModel();
-    final actions = m.prayerActions ?? const <PrayerActionModel>[];
+    final PrayerTrackerModel m =
+        state.prayerTrackerModel ?? PrayerTrackerModel();
+    final actions = m.prayerActions;
 
     // EXACT same layout you had: Padding -> Wrap(spaceBetween) with spacing/runSpacing 12.h
     return Padding(
@@ -30,8 +31,8 @@ class PrayerActions extends ConsumerWidget {
         spacing: 12.h,
         children: actions.map((action) {
           // Check if this is the Qibla button
-          final isQibla = (action.label ?? '').toLowerCase().contains('qibla');
-          
+          final isQibla = action.label.toLowerCase().contains('qibla');
+
           return PrayerActionItemWidget(
             action: action,
             onTap: () => onActionTap(action),

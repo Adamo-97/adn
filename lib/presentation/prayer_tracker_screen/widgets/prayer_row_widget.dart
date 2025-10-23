@@ -17,12 +17,13 @@ class PrayerRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final values = row.values ?? const <String>[];
+    final values = row.values;
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final double hPad = isFirstRow ? 4.h : 18.h;           // row’s horizontal padding
-        final double inner = constraints.maxWidth - (hPad * 2); // <— inner width
+        final double hPad = isFirstRow ? 4.h : 18.h; // row’s horizontal padding
+        final double inner =
+            constraints.maxWidth - (hPad * 2); // <— inner width
         final double colWidth = inner / 7.0;
 
         return Container(
@@ -41,7 +42,7 @@ class PrayerRowWidget extends StatelessWidget {
           ),
           child: Row(
             children: List.generate(7, (i) {
-              final value = i < values.length ? values[i] : '';
+              final value = i < values.length ? values[i] ?? '' : '';
               Widget cell = Center(
                 child: Text(
                   value,

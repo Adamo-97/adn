@@ -51,7 +51,7 @@ class FixedPrayerHeader extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        m.nextPrayer ?? 'Next Prayer',
+                        m.nextPrayer,
                         style: TextStyleHelper.instance.body15RegularPoppins
                             .copyWith(color: appTheme.white_A700),
                       ),
@@ -60,7 +60,7 @@ class FixedPrayerHeader extends ConsumerWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            '${m.prayerTime ?? '--:--'} |',
+                            '${m.prayerTime} |',
                             style: TextStyleHelper.instance.body12RegularPoppins
                                 .copyWith(color: appTheme.orange_200),
                           ),
@@ -73,9 +73,10 @@ class FixedPrayerHeader extends ConsumerWidget {
                           SizedBox(width: 4.h),
                           Flexible(
                             child: Text(
-                              m.location ?? '',
+                              m.location,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyleHelper.instance.body12RegularPoppins
+                              style: TextStyleHelper
+                                  .instance.body12RegularPoppins
                                   .copyWith(color: appTheme.orange_200),
                             ),
                           ),
@@ -86,7 +87,8 @@ class FixedPrayerHeader extends ConsumerWidget {
                 ),
                 // Right: icon (unchanged)
                 CustomImageView(
-                  imagePath: ImageConstant.iconForPrayer(state.currentPrayer), // same helper you use
+                  imagePath: ImageConstant.iconForPrayer(
+                      state.currentPrayer), // same helper you use
                   height: 42.h,
                   width: 42.h,
                 ),

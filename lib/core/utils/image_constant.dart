@@ -18,8 +18,8 @@ extension PrayerTypeAsset on PrayerType {
 
 class ImageConstant {
   // Base path for all assets
-  static String _basePath = 'assets/images/';
-  static String _homePath = 'assets/images/home/';
+  static final String _basePath = 'assets/images/';
+  static final String _homePath = 'assets/images/home/';
   // Placeholder image for fallback
   static String imgPlaceholder = '${_basePath}placeholder.png';
   
