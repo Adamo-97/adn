@@ -15,6 +15,19 @@ This is a Flutter-based Islamic prayer application (Athan/Adhan app) that helps 
 
 ## Critical Rules (DO NOT VIOLATE)
 
+### NEW_SCREENS Directory (Code Staging Area)
+
+- **Purpose**: `NEW_SCREENS/` directory contains ready-to-integrate screen implementations that are staged for gradual migration into the main app
+- **Status**: These screens are complete and functional but not yet integrated into the app's navigation/routing system
+- **Integration Workflow**:
+  - When user requests a specific screen integration, move it from `NEW_SCREENS/` to appropriate `lib/presentation/` location
+  - Update routing in `lib/routes/app_routes.dart` to include the new screen
+  - Connect with existing navigation flows (e.g., `CustomBottomBar` tabs, screen transitions)
+  - Update any dependencies, imports, or state management integration as needed
+- **Cleanup**: Once all screens are migrated and integrated, the `NEW_SCREENS/` directory will be deleted
+- **DO NOT** modify or refactor screens in `NEW_SCREENS/` unless explicitly requested - they are source code backups
+- **DO NOT** reference `NEW_SCREENS/` paths in production code - always move/integrate first
+
 ### Asset Management
 
 - **Asset Directory Structure**: Use only these existing subdirectories:
@@ -78,7 +91,7 @@ Example: `prayer_tracker_screen/` contains models, notifier (with state), widget
       Future.microtask(() => initialize());
       return initialState;
     }
-    
+
     void initialize() {
       // Initialize state here
     }
