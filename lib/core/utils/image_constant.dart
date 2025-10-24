@@ -76,43 +76,51 @@ class ImageConstant {
   static String imgCheck = '${_homePath}img_check.svg';
   static String imgCheckedIcon = '${_basePath}img_checked_icon.svg';
   static String imgCompassIcon = '${_homePath}img_compass_icon.svg';
-  static String imgConditionsIcon = '${_basePath}img_conditions_icon.svg';
+  static String imgConditionsIcon =
+      '${_basePath}salah_guide/img_conditions_icon.svg';
   static String imgDhuhrIcon = '${_basePath}img_dhuhr_icon.svg';
   static String imgGhuslIcon = '${_basePath}img_ghusl_icon.svg';
   static String imgGroup10 = '${_basePath}img_group_10.svg';
-  static String imgHowToIcon = '${_basePath}img_how_to_icon.svg';
+  static String imgHowToIcon = '${_basePath}salah_guide/img_how_to_icon.svg';
   static String imgIconPlaceholder = '${_basePath}img_icon_placeholder.svg';
   static String imgIconPlaceholder1 = '${_basePath}img_icon_placeholder_1.svg';
   static String imgIconPlaceholder10 =
-      '${_basePath}img_icon_placeholder_10.svg';
+      '${_basePath}salah_guide/img_icon_placeholder_10.svg';
   static String imgIconPlaceholder11 =
-      '${_basePath}img_icon_placeholder_11.svg';
+      '${_basePath}salah_guide/img_icon_placeholder_11.svg';
   static String imgIconPlaceholder12 =
-      '${_basePath}img_icon_placeholder_12.svg';
+      '${_basePath}salah_guide/img_icon_placeholder_12.svg';
   static String imgIconPlaceholder13 =
-      '${_basePath}img_icon_placeholder_13.svg';
+      '${_basePath}salah_guide/img_icon_placeholder_13.svg';
   static String imgIconPlaceholder14 =
-      '${_basePath}img_icon_placeholder_14.svg';
+      '${_basePath}salah_guide/img_icon_placeholder_14.svg';
   static String imgIconPlaceholder2 = '${_basePath}img_icon_placeholder_2.svg';
   static String imgIconPlaceholder3 = '${_basePath}img_icon_placeholder_3.svg';
   static String imgIconPlaceholder30x30 =
       '${_basePath}img_icon_placeholder_30x30.svg';
   static String imgIconPlaceholder4 = '${_basePath}img_icon_placeholder_4.svg';
-  static String imgIconPlaceholder5 = '${_basePath}img_icon_placeholder_5.svg';
-  static String imgIconPlaceholder6 = '${_basePath}img_icon_placeholder_6.svg';
-  static String imgIconPlaceholder7 = '${_basePath}img_icon_placeholder_7.svg';
-  static String imgIconPlaceholder8 = '${_basePath}img_icon_placeholder_8.svg';
-  static String imgIconPlaceholder9 = '${_basePath}img_icon_placeholder_9.svg';
+  static String imgIconPlaceholder5 =
+      '${_basePath}salah_guide/img_icon_placeholder_5.svg';
+  static String imgIconPlaceholder6 =
+      '${_basePath}salah_guide/img_icon_placeholder_6.svg';
+  static String imgIconPlaceholder7 =
+      '${_basePath}salah_guide/img_icon_placeholder_7.svg';
+  static String imgIconPlaceholder8 =
+      '${_basePath}salah_guide/img_icon_placeholder_8.svg';
+  static String imgIconPlaceholder9 =
+      '${_basePath}salah_guide/img_icon_placeholder_9.svg';
   static String imgIconPlaceholderWhiteA700 =
       '${_basePath}img_icon_placeholder_white_a700.svg';
   static String imgIconPlaceholderWhiteA70030x30 =
       '${_basePath}img_icon_placeholder_white_a700_30x30.svg';
-  static String imgIconPlaceholoder = '${_basePath}img_icon_placeholoder.svg';
+  static String imgIconPlaceholoder =
+      '${_basePath}salah_guide/img_icon_placeholoder.svg';
   static String imgIconPplaceholder = '${_basePath}img_icon_pplaceholder.svg';
-  static String imgImportantIcon = '${_basePath}img_important_icon.svg';
+  static String imgImportantIcon =
+      '${_basePath}salah_guide/img_important_icon.svg';
   static String imgLocationIcon = '${_homePath}img_location_icon.svg';
   static String imgMobileIcon = '${_homePath}img_mobile_icon.svg';
-  static String imgPrayerTimes = '${_homePath}img_prayer_times.svg';
+  static String imgPrayerTimes = '${_basePath}salah_guide/img_prayer_times.svg';
   static String imgQiblaButton = '${_homePath}img_qibla_button_unselected.svg';
   static String imgQiblaButtonSelected =
       '${_homePath}img_qibla_button_selected.svg';

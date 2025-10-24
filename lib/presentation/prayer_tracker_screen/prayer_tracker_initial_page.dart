@@ -146,24 +146,10 @@ class PrayerTrackerInitialPageState
       return;
     }
 
-    // For any other action: reset state BEFORE navigating away.
+    // For any other action (if added in future): reset state
     setState(() {
       _qiblaOpen = false;
       _openStatButton = null;
     });
-
-    final dest = action.navigateTo;
-    if (dest == null || dest.isEmpty) return;
-
-    switch (dest) {
-      case '576:475':
-        NavigatorService.pushNamed(AppRoutes.purificationSelectionScreen);
-        break;
-      case '508:307':
-        NavigatorService.pushNamed(AppRoutes.salahGuideMenuScreen);
-        break;
-      default:
-        break;
-    }
   }
 }

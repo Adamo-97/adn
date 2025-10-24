@@ -54,14 +54,12 @@ class PrayerTrackerModel extends Equatable {
 class PrayerActionModel extends Equatable {
   final String icon;
   final String label;
-  final String? navigateTo;
   final bool isSelected;
   final String id;
 
   const PrayerActionModel({
     String? icon,
     String? label,
-    this.navigateTo,
     bool? isSelected,
     String? id,
   })  : icon = icon ?? '',
@@ -70,19 +68,17 @@ class PrayerActionModel extends Equatable {
         id = id ?? '';
 
   @override
-  List<Object?> get props => [icon, label, navigateTo, isSelected, id];
+  List<Object?> get props => [icon, label, isSelected, id];
 
   PrayerActionModel copyWith({
     String? icon,
     String? label,
-    String? navigateTo,
     bool? isSelected,
     String? id,
   }) {
     return PrayerActionModel(
       icon: icon ?? this.icon,
       label: label ?? this.label,
-      navigateTo: navigateTo ?? this.navigateTo,
       isSelected: isSelected ?? this.isSelected,
       id: id ?? this.id,
     );

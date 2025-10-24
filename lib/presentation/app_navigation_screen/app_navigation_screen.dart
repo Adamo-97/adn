@@ -25,37 +25,25 @@ class AppNavigationScreenState extends ConsumerState<AppNavigationScreen> {
                     children: [
                       _buildScreenTitle(
                         context,
-                        screenTitle: "prayers_screen_EN",
+                        screenTitle: "Prayer Tracker Screen",
                         onTapScreenTitle: () => onTapScreenTitle(
                             context, AppRoutes.prayerTrackerScreen),
                       ),
                       _buildScreenTitle(
                         context,
-                        screenTitle: "purification_screen_EN",
-                        onTapScreenTitle: () => onTapScreenTitle(
-                            context, AppRoutes.purificationSelectionScreen),
-                      ),
-                      _buildScreenTitle(
-                        context,
-                        screenTitle: "salah_screen_EN",
-                        onTapScreenTitle: () => onTapScreenTitle(
-                            context, AppRoutes.salahGuideMenuScreen),
-                      ),
-                      _buildScreenTitle(
-                        context,
-                        screenTitle: "salah_guide_screen",
+                        screenTitle: "Salah Guide Screen",
                         onTapScreenTitle: () => onTapScreenTitle(
                             context, AppRoutes.salahGuideScreen),
                       ),
                       _buildScreenTitle(
                         context,
-                        screenTitle: "quran_screen_EN",
+                        screenTitle: "Quran Screen",
                         onTapScreenTitle: () => onTapScreenTitle(
                             context, AppRoutes.quranMainScreen),
                       ),
                       _buildScreenTitle(
                         context,
-                        screenTitle: "profile_screen_ENG",
+                        screenTitle: "Profile Settings Screen",
                         onTapScreenTitle: () => onTapScreenTitle(
                             context, AppRoutes.profileSettingsScreen),
                       ),

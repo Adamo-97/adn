@@ -4,7 +4,7 @@ import '../core/app_export.dart';
 import './custom_image_view.dart';
 
 /// CustomBottomBar - A customizable bottom navigation bar component with liquid animations
-/// 
+///
 /// Features:
 /// - Liquid morph animation on tab selection
 /// - Icon rising animation with smooth curves
@@ -14,7 +14,7 @@ import './custom_image_view.dart';
 /// - Customizable styling and colors
 /// - Navigation routing support
 /// - Responsive design with proper scaling
-/// 
+///
 /// @param bottomBarItemList - List of bottom bar navigation items
 /// @param onChanged - Callback function when navigation item is tapped
 /// @param selectedIndex - Currently selected navigation item index
@@ -64,16 +64,16 @@ class _CustomBottomBarState extends State<CustomBottomBar>
     super.initState();
     _previousIndex = widget.selectedIndex;
 
-    // Liquid morph animation (300ms)
+    // Liquid morph animation (350ms) - synchronized with icon animation
     _liquidController = AnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 350),
       vsync: this,
       value: 1.0, // Start at full position so it's visible on first load
     );
 
-    // Icon rise animation (400ms with delay)
+    // Icon rise animation (350ms) - same duration as liquid for consistency
     _iconRiseController = AnimationController(
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 350),
       vsync: this,
       value: 1.0, // Start at full value so icon is visible on first load
     );
@@ -84,16 +84,16 @@ class _CustomBottomBarState extends State<CustomBottomBar>
       curve: Curves.easeInOutCubic,
     );
 
-    // Icon rising with ease out curve (no overshoot)
+    // Icon rising with matching curve for synchronization
     _iconRiseAnimation = CurvedAnimation(
       parent: _iconRiseController,
-      curve: Curves.easeOut,
+      curve: Curves.easeInOutCubic,
     );
 
-    // Circle scale animation
+    // Circle scale animation with same curve
     _circleScaleAnimation = CurvedAnimation(
       parent: _iconRiseController,
-      curve: Curves.easeOutCubic,
+      curve: Curves.easeInOutCubic,
     );
   }
 
@@ -111,12 +111,9 @@ class _CustomBottomBarState extends State<CustomBottomBar>
   }
 
   void _playLiquidAnimation() {
+    // Start both animations simultaneously for consistent movement
     _liquidController.forward(from: 0.0);
-    Future.delayed(const Duration(milliseconds: 150), () {
-      if (mounted) {
-        _iconRiseController.forward(from: _iconRiseController.value);
-      }
-    });
+    _iconRiseController.forward(from: 0.0);
   }
 
   @override
