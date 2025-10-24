@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../core/app_export.dart';
-import 'models/purification_item_model.dart';
-import 'widgets/purification_item_widget.dart';
+import 'models/salah_guide_card_model.dart';
 import 'notifier/salah_guide_notifier.dart';
-import 'widgets/salah_guide_card_widget.dart';
+import 'widgets/salah_guide_card.dart';
 import 'widgets/salah_header.dart';
 
 class SalahGuideScreen extends ConsumerStatefulWidget {
@@ -36,69 +35,134 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    final purificationItems = PurificationItemModel.forSalahGuide();
-
     return Consumer(
       builder: (context, ref, _) {
         final state = ref.watch(salahGuideNotifier);
-        final prayerCards = state.cards ?? [];
+        final categorizedCards = state.categorizedCards;
 
-        return SingleChildScrollView(
-          child: Padding(
+        if (categorizedCards.isEmpty) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: appTheme.white_A700,
+            ),
+          );
+        }
+
+        return Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 24.h),
+
+                  // Build sections for each category
+                  ...SalahCategory.values.map((category) {
+                    final cards = categorizedCards[category] ?? [];
+                    if (cards.isEmpty) return SizedBox.shrink();
+
+                    return _buildCategorySection(
+                      category: category,
+                      cards: cards,
+                      ref: ref,
+                    );
+                  }).toList(),
+
+                  SizedBox(height: 24.h),
+                ],
+              ),
+            ),
+
+            // Bottom fade effect
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: IgnorePointer(
+                child: Container(
+                  height: 45.h,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: const [0.0, 0.4, 0.7, 1.0],
+                      colors: [
+                        appTheme.gray_900.withOpacity(0.0),
+                        appTheme.gray_900.withOpacity(0.3),
+                        appTheme.gray_900.withOpacity(0.7),
+                        appTheme.gray_900,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildCategorySection({
+    required SalahCategory category,
+    required List<SalahGuideCardModel> cards,
+    required WidgetRef ref,
+  }) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 24.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Category header
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            child: Row(
               children: [
-                SizedBox(height: 16.h),
-
-                // Original 3 purification cards
-                GridView.builder(
-                  shrinkWrap: true,
-                  primary: false,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 8.h,
-                    mainAxisSpacing: 8.h,
-                    mainAxisExtent: 60.h,
-                  ),
-                  itemCount: purificationItems.length,
-                  itemBuilder: (_, i) => PurificationItemWidget(
-                    purificationItem: purificationItems[i],
+                Container(
+                  width: 4.h,
+                  height: 20.h,
+                  decoration: BoxDecoration(
+                    color: category.accentColor,
+                    borderRadius: BorderRadius.circular(2.h),
                   ),
                 ),
-
-                SizedBox(height: 16.h),
-
-                // Prayer cards from salah_guide_menu
-                GridView.builder(
-                  shrinkWrap: true,
-                  primary: false,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10.h,
-                    mainAxisSpacing: 10.h,
-                    mainAxisExtent: 70.h,
-                  ),
-                  itemCount: prayerCards.length,
-                  itemBuilder: (_, i) => SalahGuideCardWidget(
-                    card: prayerCards[i],
-                    onTapCard: () {
-                      ref
-                          .read(salahGuideNotifier.notifier)
-                          .selectCard(prayerCards[i]);
-                      // TODO: Navigate to card details
-                    },
+                SizedBox(width: 10.h),
+                Text(
+                  category.title,
+                  style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
+                    color: appTheme.white_A700,
+                    fontSize: 18.fSize,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-
-                SizedBox(height: 24.h),
               ],
             ),
           ),
-        );
-      },
+
+          SizedBox(height: 12.h),
+
+          // Horizontal scrollable cards
+          SizedBox(
+            height: 145.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 20.h),
+              itemCount: cards.length,
+              itemBuilder: (context, index) {
+                return SalahGuideCard(
+                  card: cards[index],
+                  onTap: () {
+                    ref
+                        .read(salahGuideNotifier.notifier)
+                        .selectCard(cards[index]);
+                    // TODO: Navigate to card details
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

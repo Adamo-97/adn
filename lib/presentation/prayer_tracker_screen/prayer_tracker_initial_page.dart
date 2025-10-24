@@ -56,7 +56,32 @@ class PrayerTrackerInitialPageState
           ),
 
           // Fixed header on top
-          FixedPrayerHeader(topInset: topInset, totalHeight: headerTotalHeight)
+          FixedPrayerHeader(topInset: topInset, totalHeight: headerTotalHeight),
+
+          // Bottom fade effect
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: IgnorePointer(
+              child: Container(
+                height: 45.h,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: const [0.0, 0.4, 0.7, 1.0],
+                    colors: [
+                      appTheme.gray_900.withOpacity(0.0),
+                      appTheme.gray_900.withOpacity(0.3),
+                      appTheme.gray_900.withOpacity(0.7),
+                      appTheme.gray_900,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

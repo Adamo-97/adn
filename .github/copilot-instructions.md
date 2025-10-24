@@ -49,6 +49,17 @@ This is a Flutter-based Islamic prayer application (Athan/Adhan app) that helps 
   ```
 - **NEVER** modify the `textScaler: TextScaler.linear(1.0)` wrapper in `MaterialApp.builder` - it prevents user font scaling overrides
 
+### Naming Conventions
+
+- **Use logical, semantic naming** for files, classes, and widgets based on their purpose and functionality
+- **DO NOT** name files based on user requests (e.g., "modern_cards", "new_feature") - instead use descriptive names that reflect what the component does
+- **Examples**:
+  - ✅ `salah_guide_card.dart` (describes purpose)
+  - ❌ `modern_salah_card.dart` (describes style/request)
+  - ✅ `prayer_time_widget.dart` (describes function)
+  - ❌ `new_prayer_widget.dart` (describes when it was added)
+- Widget class names should match file names in PascalCase (e.g., `SalahGuideCard` in `salah_guide_card.dart`)
+
 ### Dependencies
 
 - **NEVER** remove `flutter:`, `flutter_localizations:`, or `flutter_test:` from `pubspec.yaml` (marked with 🚨 CRITICAL)

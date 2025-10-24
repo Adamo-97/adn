@@ -21,7 +21,8 @@ class SalahHeaderWithSearch extends StatefulWidget {
 class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _offsetAnimation = const AlwaysStoppedAnimation<double>(0);
+  late Animation<double> _offsetAnimation =
+      const AlwaysStoppedAnimation<double>(0);
   bool _exceeded = false;
 
   @override
@@ -41,7 +42,6 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
       TweenSequenceItem(tween: Tween(begin: -6.0, end: 0.0), weight: 1),
     ]).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
   }
-
 
   void _handleChange(String value) {
     if (value.length > 35) {
@@ -72,10 +72,12 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
     return Container(
       padding: EdgeInsets.fromLTRB(20.h, widget.topInset + 16.h, 20.h, 20.h),
       decoration: BoxDecoration(
-        color: appTheme.gray_700,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(14.h),
-          bottomRight: Radius.circular(14.h),
+        color: appTheme.gray_900,
+        border: Border(
+          bottom: BorderSide(
+            color: appTheme.gray_700.withOpacity(0.3),
+            width: 1,
+          ),
         ),
       ),
       child: Column(
@@ -86,6 +88,8 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
             widget.title,
             style: TextStyleHelper.instance.title20BoldPoppins.copyWith(
               color: appTheme.white_A700,
+              fontSize: 22.fSize,
+              fontWeight: FontWeight.w700,
             ),
             textAlign: TextAlign.center,
           ),
@@ -101,10 +105,10 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
               );
             },
             child: Container(
-              height: 44.h,
+              height: 48.h,
               decoration: BoxDecoration(
-                color: appTheme.gray_900,
-                borderRadius: BorderRadius.circular(22.h),
+                color: appTheme.gray_700.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(12.h),
               ),
               padding: EdgeInsets.symmetric(horizontal: 14.h),
               child: Row(
@@ -120,24 +124,30 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
                   Expanded(
                     child: AnimatedBuilder(
                       animation: _offsetAnimation,
-                      builder: (context, child) =>
-                          Transform.translate(offset: Offset(_offsetAnimation.value, 0), child: child),
+                      builder: (context, child) => Transform.translate(
+                          offset: Offset(_offsetAnimation.value, 0),
+                          child: child),
                       child: TextField(
                         controller: widget.searchController,
                         onChanged: _handleChange,
-                      style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
-                        color: _exceeded ? appTheme.white_A700 : appTheme.white_A700,
-                      ),
-                      decoration: InputDecoration(
-                        isDense: true,
-                        border: InputBorder.none,
-                        hintText: 'Search for a title or keyword',
-                        hintStyle: TextStyleHelper.instance.body15RegularPoppins.copyWith(
-                          color: appTheme.gray_600,
+                        style: TextStyleHelper.instance.body15RegularPoppins
+                            .copyWith(
+                          color: _exceeded
+                              ? appTheme.white_A700
+                              : appTheme.white_A700,
+                        ),
+                        decoration: InputDecoration(
+                          isDense: true,
+                          border: InputBorder.none,
+                          hintText: 'Search for a title or keyword',
+                          hintStyle: TextStyleHelper
+                              .instance.body15RegularPoppins
+                              .copyWith(
+                            color: appTheme.gray_600,
+                          ),
                         ),
                       ),
                     ),
-                  ),
                   ),
                 ],
               ),

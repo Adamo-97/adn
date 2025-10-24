@@ -20,110 +20,116 @@ class SalahGuideNotifier extends Notifier<SalahGuideState> {
   }
 
   void initialize() {
-    final cards = [
-      // Prayer guide cards from salah_guide_menu_screen (keeping exact titles and icons)
-      SalahGuideCardModel(
-        title: 'The Importance\nof Prayer',
-        iconPath: ImageConstant.imgImportantIcon,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'How To\nPray',
-        iconPath: ImageConstant.imgHowToIcon,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Times of\nRequired Prayers',
-        iconPath: ImageConstant.imgPrayerTimes,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Conditions\nof Prayer',
-        iconPath: ImageConstant.imgConditionsIcon,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
+    final categorizedCards = <SalahCategory, List<SalahGuideCardModel>>{
+      // Essentials Category
+      SalahCategory.essentials: [
+        SalahGuideCardModel(
+          title: 'Importance of Prayer',
+          iconPath: ImageConstant.imgImportantIcon,
+          category: SalahCategory.essentials,
+        ),
+        SalahGuideCardModel(
+          title: 'How To Pray',
+          iconPath: ImageConstant.imgHowToIcon,
+          category: SalahCategory.essentials,
+        ),
+        SalahGuideCardModel(
+          title: 'Prayer Times',
+          iconPath: ImageConstant.imgPrayerTimes,
+          category: SalahCategory.essentials,
+        ),
+        SalahGuideCardModel(
+          title: 'Conditions of Prayer',
+          iconPath: ImageConstant.imgConditionsIcon,
+          category: SalahCategory.essentials,
+        ),
+      ],
 
-      // Specific prayer types (keeping exact titles from menu screen)
-      SalahGuideCardModel(
-        title: 'Istikharah\nPrayer',
-        iconPath: ImageConstant.imgIconPlaceholder5,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Forgetfulness\nProstration',
-        iconPath: ImageConstant.imgIconPlaceholder6,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Rawatib\nPrayers',
-        iconPath: ImageConstant.imgIconPlaceholder7,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Prayer\nof the Ill',
-        iconPath: ImageConstant.imgIconPlaceholder8,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Witr\nPrayer',
-        iconPath: ImageConstant.imgIconPlaceholder9,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Tahajjud\nPrayer',
-        iconPath: ImageConstant.imgIconPlaceholoder,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Congregational Prayer',
-        iconPath: ImageConstant.imgIconPlaceholder10,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Traveling\nPrayer',
-        iconPath: ImageConstant.imgIconPlaceholder1,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Janazah\nPrayer',
-        iconPath: ImageConstant.imgIconPlaceholder11,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Kusuf\nPrayer',
-        iconPath: ImageConstant.imgIconPlaceholder12,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Eid\nPrayer',
-        iconPath: ImageConstant.imgIconPlaceholder13,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-      SalahGuideCardModel(
-        title: 'Jumu\'ah\nPrayer',
-        iconPath: ImageConstant.imgIconPlaceholder14,
-        backgroundColor: appTheme.gray_700,
-        borderColor: appTheme.gray_500,
-      ),
-    ];
+      // Optional Prayers Category
+      SalahCategory.optionalPrayers: [
+        SalahGuideCardModel(
+          title: 'Rawatib Prayers',
+          iconPath: ImageConstant.imgIconPlaceholder7,
+          category: SalahCategory.optionalPrayers,
+        ),
+        SalahGuideCardModel(
+          title: 'Witr Prayer',
+          iconPath: ImageConstant.imgIconPlaceholder9,
+          category: SalahCategory.optionalPrayers,
+        ),
+        SalahGuideCardModel(
+          title: 'Tahajjud Prayer',
+          iconPath: ImageConstant.imgIconPlaceholoder,
+          category: SalahCategory.optionalPrayers,
+        ),
+        SalahGuideCardModel(
+          title: 'Istikharah Prayer',
+          iconPath: ImageConstant.imgIconPlaceholder5,
+          category: SalahCategory.optionalPrayers,
+        ),
+      ],
+
+      // Special Situations Category
+      SalahCategory.specialSituations: [
+        SalahGuideCardModel(
+          title: 'Traveling Prayer',
+          iconPath: ImageConstant.imgIconPlaceholder11,
+          category: SalahCategory.specialSituations,
+        ),
+        SalahGuideCardModel(
+          title: 'Prayer of the Ill',
+          iconPath: ImageConstant.imgIconPlaceholder8,
+          category: SalahCategory.specialSituations,
+        ),
+        SalahGuideCardModel(
+          title: 'Janazah Prayer',
+          iconPath: ImageConstant.imgIconPlaceholder12,
+          category: SalahCategory.specialSituations,
+        ),
+        SalahGuideCardModel(
+          title: 'Congregational Prayer',
+          iconPath: ImageConstant.imgIconPlaceholder10,
+          category: SalahCategory.specialSituations,
+        ),
+        SalahGuideCardModel(
+          title: 'Forgetfulness Prostration',
+          iconPath: ImageConstant.imgIconPlaceholder6,
+          category: SalahCategory.specialSituations,
+        ),
+        SalahGuideCardModel(
+          title: 'Eid Prayer',
+          iconPath: ImageConstant.imgIconPlaceholder13,
+          category: SalahCategory.specialSituations,
+        ),
+        SalahGuideCardModel(
+          title: 'Jumu\'ah Prayer',
+          iconPath: ImageConstant.imgIconPlaceholder14,
+          category: SalahCategory.specialSituations,
+        ),
+      ],
+
+      // Purification Category
+      SalahCategory.purification: [
+        SalahGuideCardModel(
+          title: 'Wudu (Ablution)',
+          iconPath: ImageConstant.imgWuduIcon,
+          category: SalahCategory.purification,
+        ),
+        SalahGuideCardModel(
+          title: 'Ghusl (Full Bath)',
+          iconPath: ImageConstant.imgGhuslIcon,
+          category: SalahCategory.purification,
+        ),
+        SalahGuideCardModel(
+          title: 'Tayammum',
+          iconPath: ImageConstant.imgTayammumIcon,
+          category: SalahCategory.purification,
+        ),
+      ],
+    };
 
     state = state.copyWith(
-      cards: cards,
+      categorizedCards: categorizedCards,
       isLoading: false,
     );
   }
