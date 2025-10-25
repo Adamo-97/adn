@@ -66,7 +66,7 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
                       cards: cards,
                       ref: ref,
                     );
-                  }).toList(),
+                  }),
 
                   SizedBox(height: 24.h),
                 ],
