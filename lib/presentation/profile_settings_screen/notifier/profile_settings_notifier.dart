@@ -3,8 +3,8 @@ import '../../../core/app_export.dart';
 
 part 'profile_settings_state.dart';
 
-final profileSettingsNotifier = NotifierProvider.autoDispose<
-    ProfileSettingsNotifier, ProfileSettingsState>(
+final profileSettingsNotifier =
+    NotifierProvider.autoDispose<ProfileSettingsNotifier, ProfileSettingsState>(
   () => ProfileSettingsNotifier(),
 );
 
@@ -60,6 +60,7 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
   void selectLanguage(String language) {
     state = state.copyWith(
       selectedLanguage: language,
+      languageDropdownOpen: false,
     );
   }
 
@@ -84,6 +85,27 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
   void toggleAzkarNotifications() {
     state = state.copyWith(
       azkarNotifications: !(state.azkarNotifications ?? false),
+    );
+  }
+
+  void toggleLanguageDropdown() {
+    state = state.copyWith(
+      languageDropdownOpen: !(state.languageDropdownOpen ?? false),
+    );
+  }
+
+  void updateSearchQuery(String query) {
+    state = state.copyWith(searchQuery: query);
+  }
+
+  /// Reset state to initial when navigating away
+  void resetState() {
+    state = state.copyWith(
+      locationDropdownOpen: false,
+      languageDropdownOpen: false,
+      searchQuery: '',
+      scrollPosition: 0.0,
+      resetTimestamp: DateTime.now().millisecondsSinceEpoch,
     );
   }
 }

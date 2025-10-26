@@ -29,6 +29,7 @@ flutter:
     - assets/images/notifications/
     - assets/images/salah_guide/
     - assets/images/mosques/
+    - assets/images/profile/
   fonts: 
     - family: Poppins
       fonts: 

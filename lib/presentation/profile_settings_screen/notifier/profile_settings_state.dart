@@ -11,6 +11,10 @@ class ProfileSettingsState extends Equatable {
   final bool? prayerReminders;
   final bool? azkarNotifications;
   final bool? locationDropdownOpen;
+  final bool? languageDropdownOpen;
+  final String searchQuery;
+  final double scrollPosition;
+  final int resetTimestamp; // Forces state change on reset
 
   const ProfileSettingsState({
     this.profileSettingsModel,
@@ -23,6 +27,10 @@ class ProfileSettingsState extends Equatable {
     this.prayerReminders,
     this.azkarNotifications,
     this.locationDropdownOpen,
+    this.languageDropdownOpen,
+    this.searchQuery = '',
+    this.scrollPosition = 0.0,
+    this.resetTimestamp = 0,
   });
 
   @override
@@ -37,6 +45,10 @@ class ProfileSettingsState extends Equatable {
         prayerReminders,
         azkarNotifications,
         locationDropdownOpen,
+        languageDropdownOpen,
+        searchQuery,
+        scrollPosition,
+        resetTimestamp,
       ];
 
   ProfileSettingsState copyWith({
@@ -50,6 +62,10 @@ class ProfileSettingsState extends Equatable {
     bool? prayerReminders,
     bool? azkarNotifications,
     bool? locationDropdownOpen,
+    bool? languageDropdownOpen,
+    String? searchQuery,
+    double? scrollPosition,
+    int? resetTimestamp,
   }) {
     return ProfileSettingsState(
       profileSettingsModel: profileSettingsModel ?? this.profileSettingsModel,
@@ -62,6 +78,10 @@ class ProfileSettingsState extends Equatable {
       prayerReminders: prayerReminders ?? this.prayerReminders,
       azkarNotifications: azkarNotifications ?? this.azkarNotifications,
       locationDropdownOpen: locationDropdownOpen ?? this.locationDropdownOpen,
+      languageDropdownOpen: languageDropdownOpen ?? this.languageDropdownOpen,
+      searchQuery: searchQuery ?? this.searchQuery,
+      scrollPosition: scrollPosition ?? this.scrollPosition,
+      resetTimestamp: resetTimestamp ?? this.resetTimestamp,
     );
   }
 }

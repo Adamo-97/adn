@@ -10,6 +10,7 @@ import '../salah_guide_screen/notifier/salah_guide_notifier.dart';
 import '../nearby_mosques_screen/nearby_mosques_screen.dart';
 import '../nearby_mosques_screen/notifier/nearby_mosques_notifier.dart';
 import '../profile_settings_screen/profile_settings_screen.dart';
+import '../profile_settings_screen/notifier/profile_settings_notifier.dart';
 import './prayer_tracker_initial_page.dart';
 import './notifier/prayer_tracker_notifier.dart';
 
@@ -129,7 +130,8 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
         ref.read(nearbyMosquesNotifierProvider.notifier).resetState();
         break;
       case _tabProfile:
-        // Profile has no state to reset currently
+        // Reset profile state
+        ref.read(profileSettingsNotifier.notifier).resetState();
         break;
     }
   }

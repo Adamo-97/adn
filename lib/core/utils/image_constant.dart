@@ -27,6 +27,7 @@ class ImageConstant {
   static final String _basePath = 'assets/images/';
   static final String _homePath = 'assets/images/home/';
   static final String _mosquesPath = 'assets/images/mosques/';
+  static final String _profilePath = 'assets/images/profile/';
   // Placeholder image for fallback
   static String imgPlaceholder = '${_basePath}placeholder.png';
 
@@ -150,13 +151,13 @@ class ImageConstant {
       '${_basePath}img_shadow_buttom_76x374.png';
 
   // Model Profile Settings Model Screen
-  static String imgAppmodeIcon = '${_basePath}img_appmode_icon.svg';
+  static String imgAppmodeIcon = '${_profilePath}img_appmode_icon.svg';
   static String imgAppmodeIconWhiteA700 =
-      '${_basePath}img_appmode_icon_white_a700.svg';
+      '${_profilePath}img_appmode_icon_white_a700.svg';
   static String imgAppmodeIconWhiteA70024x24 =
-      '${_basePath}img_appmode_icon_white_a700_24x24.svg';
-  static String imgCalendarIcon = '${_basePath}img_calendar_icon.svg';
-  static String imgVectorWhiteA700 = '${_basePath}img_vector_white_a700.svg';
+      '${_profilePath}img_appmode_icon_white_a700_24x24.svg';
+  static String imgCalendarIcon = '${_profilePath}img_calendar_icon.svg';
+  static String imgVectorWhiteA700 = '${_profilePath}img_vector_white_a700.svg';
 
   // Prayer Tracker Screen
   static String imgDikrnavicon = '${_basePath}img_dikrnavicon.svg';
@@ -174,25 +175,24 @@ class ImageConstant {
   static String imgMapPlaceholder = '${_mosquesPath}MAP_EXAMPLE.jpg';
 
   // Profile Settings Screen
-  static String imgArrowDown = '${_basePath}img_arrow_down.svg';
+  static String imgArrowDown = '${_profilePath}img_arrow_down.svg';
   static String imgArrowDownWhiteA700 =
-      '${_basePath}img_arrow_down_white_a700.svg';
-  static String imgCheckMark = '${_basePath}img_check_mark.svg';
-  static String imgDropDownClick = '${_basePath}img_drop_down_click.svg';
+      '${_profilePath}img_arrow_down_white_a700.svg';
+  static String imgCheckMark = '${_profilePath}img_check_mark.svg';
+  static String imgDropDownClick = '${_profilePath}img_drop_down_click.svg';
   static String imgDropDownClickWhiteA700 =
-      '${_basePath}img_drop_down_click_white_a700.svg';
-  static String imgGroup3 = '${_basePath}img_group_3.svg';
-  static String imgIconFrame = '${_basePath}img_icon_frame.svg';
+      '${_profilePath}img_drop_down_click_white_a700.svg';
+  static String imgGroup3 = '${_profilePath}img_group_3.svg';
+  static String imgIconFrame = '${_profilePath}img_icon_frame.svg';
   static String imgIconPlaceholderGray900 =
-      '${_basePath}img_icon_placeholder_gray_900.svg';
+      '${_profilePath}img_icon_placeholder_gray_900.svg';
   static String imgIconPlaceholderGray90024x24 =
-      '${_basePath}img_icon_placeholder_gray_900_24x24.svg';
+      '${_profilePath}img_icon_placeholder_gray_900_24x24.svg';
   static String imgSearchGray900 = '${_basePath}img_search_gray_900.svg';
-  static String imgSelected = '${_basePath}img_selected.svg';
-  static String imgShadowButtom2 = '${_basePath}img_shadow_buttom_2.png';
-  static String imgStatusChecked = '${_basePath}img_status_checked.svg';
-  static String imgStatusUnchecked = '${_basePath}img_status_unchecked.svg';
-  static String imgUnselected = '${_basePath}img_unselected.svg';
+  static String imgSelected = '${_profilePath}img_selected.svg';
+  static String imgStatusChecked = '${_profilePath}img_status_checked.svg';
+  static String imgStatusUnchecked = '${_profilePath}img_status_unchecked.svg';
+  static String imgUnselected = '${_profilePath}img_unselected.svg';
 
   // Purification Selection Screen
   static String imgBackButton = '${_basePath}img_back_button.svg';
