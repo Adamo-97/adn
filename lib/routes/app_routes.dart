@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import '../presentation/prayer_tracker_screen/prayer_tracker_screen.dart';
 import '../presentation/salah_guide_screen/salah_guide_screen.dart';
-import '../presentation/quran_main_screen/quran_main_screen.dart';
+import '../presentation/nearby_mosques_screen/nearby_mosques_screen.dart';
 import '../presentation/profile_settings_screen/profile_settings_screen.dart';
-
-import '../presentation/app_navigation_screen/app_navigation_screen.dart';
 
 class AppRoutes {
   static const String prayerTrackerScreen = '/prayer_tracker_screen';
   static const String prayerTrackerScreenInitialPage =
       '/prayer_tracker_screen_initial_page';
   static const String salahGuideScreen = '/salah_guide_screen';
-  static const String quranMainScreen = '/quran_main_screen';
+  static const String nearbyMosquesScreen = '/nearby_mosques_screen';
   static const String profileSettingsScreen = '/profile_settings_screen';
 
-  static const String appNavigationScreen = '/app_navigation_screen';
   static const String initialRoute = '/';
 
   static Map<String, WidgetBuilder> get routes => {
         prayerTrackerScreen: (context) => PrayerTrackerScreen(),
         salahGuideScreen: (context) => SalahGuideScreen(),
-        quranMainScreen: (context) => QuranMainScreen(),
+        nearbyMosquesScreen: (context) => NearbyMosquesScreen(),
         profileSettingsScreen: (context) => ProfileSettingsScreen(),
-        appNavigationScreen: (context) => AppNavigationScreen(),
-        initialRoute: (context) => AppNavigationScreen()
+        initialRoute: (context) => PrayerTrackerScreen()
       };
 }

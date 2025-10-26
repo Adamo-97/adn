@@ -37,9 +37,9 @@ class AppNavigationScreenState extends ConsumerState<AppNavigationScreen> {
                       ),
                       _buildScreenTitle(
                         context,
-                        screenTitle: "Quran Screen",
+                        screenTitle: "Nearby Mosques Screen",
                         onTapScreenTitle: () => onTapScreenTitle(
-                            context, AppRoutes.quranMainScreen),
+                            context, AppRoutes.nearbyMosquesScreen),
                       ),
                       _buildScreenTitle(
                         context,

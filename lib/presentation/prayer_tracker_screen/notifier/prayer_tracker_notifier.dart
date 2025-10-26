@@ -214,4 +214,30 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
       ..[prayerId] = next;
     state = state.copyWith(bellByPrayer: nextMap);
   }
+
+  void toggleQibla() {
+    state = state.copyWith(
+      qiblaOpen: !state.qiblaOpen,
+      clearOpenStatButton: true, // Close any open stat buttons
+    );
+  }
+
+  void toggleStatButton(String buttonId) {
+    // If this button is already open, close it; otherwise open it
+    final newValue = state.openStatButton == buttonId ? null : buttonId;
+    state = state.copyWith(
+      qiblaOpen: false, // Close Qibla
+      clearOpenStatButton: newValue == null,
+      openStatButton: newValue,
+    );
+  }
+
+  void resetState() {
+    state = state.copyWith(
+      calendarOpen: false,
+      qiblaOpen: false,
+      clearOpenStatButton: true,
+      selectedDate: DateTime.now(),
+    );
+  }
 }

@@ -6,9 +6,12 @@ import '../../widgets/custom_bottom_bar.dart';
 
 // Tab root screens (existing)
 import '../salah_guide_screen/salah_guide_screen.dart';
-import '../quran_main_screen/quran_main_screen.dart';
+import '../salah_guide_screen/notifier/salah_guide_notifier.dart';
+import '../nearby_mosques_screen/nearby_mosques_screen.dart';
+import '../nearby_mosques_screen/notifier/nearby_mosques_notifier.dart';
 import '../profile_settings_screen/profile_settings_screen.dart';
 import './prayer_tracker_initial_page.dart';
+import './notifier/prayer_tracker_notifier.dart';
 
 class PrayerTrackerScreen extends ConsumerStatefulWidget {
   const PrayerTrackerScreen({super.key});
@@ -24,7 +27,7 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
   // --- Indices must match your old bar order ---
   static const int _tabTracker = 0;
   static const int _tabSalahGuide = 1;
-  static const int _tabQuran = 2;
+  static const int _tabMosques = 2;
   static const int _tabProfile = 3;
 
   int _selectedIndex = _tabTracker;
@@ -33,7 +36,7 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
   static const String _routeTrackerRoot =
       AppRoutes.prayerTrackerScreenInitialPage;
   static const String _routeSalahGuideRoot = AppRoutes.salahGuideScreen;
-  static const String _routeQuranRoot = AppRoutes.quranMainScreen;
+  static const String _routeMosquesRoot = AppRoutes.nearbyMosquesScreen;
   static const String _routeProfileRoot = AppRoutes.profileSettingsScreen;
 
   // Build a dedicated Navigator for each tab (zero-duration transitions)
@@ -57,9 +60,9 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
             transitionDuration: Duration.zero,
           );
         }
-        if (index == _tabQuran && settings.name == _routeQuranRoot) {
+        if (index == _tabMosques && settings.name == _routeMosquesRoot) {
           return PageRouteBuilder(
-            pageBuilder: (_, __, ___) => QuranMainScreen(),
+            pageBuilder: (_, __, ___) => NearbyMosquesScreen(),
             transitionDuration: Duration.zero,
           );
         }
@@ -76,8 +79,8 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
             switch (index) {
               case _tabSalahGuide:
                 return SalahGuideScreen();
-              case _tabQuran:
-                return QuranMainScreen();
+              case _tabMosques:
+                return NearbyMosquesScreen();
               case _tabProfile:
                 return ProfileSettingsScreen();
               case _tabTracker:
@@ -110,6 +113,27 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
     }
   }
 
+  // Reset state when leaving a tab (IndexedStack keeps widgets alive)
+  void _resetTabState(int tabIndex) {
+    switch (tabIndex) {
+      case _tabTracker:
+        // Reset prayer tracker state (calendar, selected date, qibla, stats)
+        ref.read(prayerTrackerNotifierProvider.notifier).resetState();
+        break;
+      case _tabSalahGuide:
+        // Reset salah guide state (including scroll position)
+        ref.read(salahGuideNotifier.notifier).resetState();
+        break;
+      case _tabMosques:
+        // Reset nearby mosques state (including scroll positions)
+        ref.read(nearbyMosquesNotifierProvider.notifier).resetState();
+        break;
+      case _tabProfile:
+        // Profile has no state to reset currently
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // ✅ SAME ITEMS / ICONS / SIZES / ORDER (design unchanged)
@@ -127,10 +151,10 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
         width: 34.h,
       ),
       CustomBottomBarItem(
-        icon: ImageConstant.imgQuranNavIcon,
-        routeName: AppRoutes.quranMainScreen,
-        height: 18.h,
-        width: 34.h,
+        icon: ImageConstant.imgMosqueNavIcon,
+        routeName: AppRoutes.nearbyMosquesScreen,
+        height: 30.h,
+        width: 30.h,
       ),
       CustomBottomBarItem(
         icon: ImageConstant.imgProfileNavIcon,
@@ -145,7 +169,7 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
       child: Scaffold(
         extendBody: true,
 
-        // --- BODY: IndexedStack preserves each tab exactly ---
+        // --- BODY: IndexedStack (no animation, instant switch) ---
         body: SafeArea(
           top: false,
           bottom: true,
@@ -157,7 +181,7 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
               _buildTabNavigator(
                   index: _tabSalahGuide, initialRoute: _routeSalahGuideRoot),
               _buildTabNavigator(
-                  index: _tabQuran, initialRoute: _routeQuranRoot),
+                  index: _tabMosques, initialRoute: _routeMosquesRoot),
               _buildTabNavigator(
                   index: _tabProfile, initialRoute: _routeProfileRoot),
             ],
@@ -189,6 +213,8 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
                     if (i == _selectedIndex) {
                       _popCurrentTabToRoot();
                     } else {
+                      // Reset state of the tab we're leaving
+                      _resetTabState(_selectedIndex);
                       setState(() => _selectedIndex = i);
                     }
                   },

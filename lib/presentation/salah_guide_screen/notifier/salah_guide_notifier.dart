@@ -139,4 +139,13 @@ class SalahGuideNotifier extends Notifier<SalahGuideState> {
       selectedCard: card,
     );
   }
+
+  /// Reset state to initial when navigating away
+  void resetState() {
+    state = state.copyWith(
+      selectedCard: null,
+      scrollPosition: 0.0,
+      resetTimestamp: DateTime.now().millisecondsSinceEpoch,
+    );
+  }
 }

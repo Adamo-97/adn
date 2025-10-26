@@ -26,6 +26,7 @@ class ImageConstant {
   // Base path for all assets
   static final String _basePath = 'assets/images/';
   static final String _homePath = 'assets/images/home/';
+  static final String _mosquesPath = 'assets/images/mosques/';
   // Placeholder image for fallback
   static String imgPlaceholder = '${_basePath}placeholder.png';
 
@@ -161,8 +162,16 @@ class ImageConstant {
   static String imgDikrnavicon = '${_basePath}img_dikrnavicon.svg';
   static String imgPraynavicon = '${_basePath}img_praynavicon.svg';
   static String imgProfileNavIcon = '${_basePath}img_profile_nav_icon.svg';
-  static String imgQuranNavIcon = '${_basePath}img_quran_nav_icon.svg';
+  static String imgMosqueNavIcon = '${_mosquesPath}mosque_near_icon.svg';
   static String imgSubtract = '${_basePath}img_subtract.svg';
+
+  // Nearby Mosques Screen
+  static String imgSearchButton = '${_mosquesPath}search_button.svg';
+  static String imgOpenMapIcon = '${_mosquesPath}open_map_icon.svg';
+  static String imgMinMaxButton = '${_mosquesPath}min_max_button.svg';
+  static String imgLocationButton = '${_mosquesPath}location_button.svg';
+  static String imgDivider = '${_mosquesPath}devider.svg';
+  static String imgMapPlaceholder = '${_mosquesPath}MAP_EXAMPLE.jpg';
 
   // Profile Settings Screen
   static String imgArrowDown = '${_basePath}img_arrow_down.svg';

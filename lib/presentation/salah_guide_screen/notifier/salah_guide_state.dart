@@ -6,6 +6,8 @@ class SalahGuideState extends Equatable {
   final SalahGuideCardModel? selectedCard;
   final bool isLoading;
   final SalahGuideModel? salahGuideModel;
+  final double scrollPosition; // Track scroll position for reset
+  final int resetTimestamp; // Forces state change on reset
 
   const SalahGuideState({
     this.cards,
@@ -13,6 +15,8 @@ class SalahGuideState extends Equatable {
     this.selectedCard,
     this.isLoading = false,
     this.salahGuideModel,
+    this.scrollPosition = 0.0,
+    this.resetTimestamp = 0,
   });
 
   @override
@@ -22,6 +26,8 @@ class SalahGuideState extends Equatable {
         selectedCard,
         isLoading,
         salahGuideModel,
+        scrollPosition,
+        resetTimestamp,
       ];
 
   SalahGuideState copyWith({
@@ -30,6 +36,8 @@ class SalahGuideState extends Equatable {
     SalahGuideCardModel? selectedCard,
     bool? isLoading,
     SalahGuideModel? salahGuideModel,
+    double? scrollPosition,
+    int? resetTimestamp,
   }) {
     return SalahGuideState(
       cards: cards ?? this.cards,
@@ -37,6 +45,8 @@ class SalahGuideState extends Equatable {
       selectedCard: selectedCard ?? this.selectedCard,
       isLoading: isLoading ?? this.isLoading,
       salahGuideModel: salahGuideModel ?? this.salahGuideModel,
+      scrollPosition: scrollPosition ?? this.scrollPosition,
+      resetTimestamp: resetTimestamp ?? this.resetTimestamp,
     );
   }
 }

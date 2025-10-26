@@ -14,10 +14,56 @@ class SalahGuideScreen extends ConsumerStatefulWidget {
 
 class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
   final TextEditingController _searchCtrl = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  bool _isResetting = false; // Flag to prevent circular updates
+
+  @override
+  void initState() {
+    super.initState();
+    // Don't track scroll position - we only need to reset it
+  }
+
+  @override
+  void dispose() {
+    _searchCtrl.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final topInset = MediaQuery.of(context).padding.top;
+
+    // Listen to scroll position reset from notifier
+    ref.listen<SalahGuideState>(salahGuideNotifier, (previous, next) {
+      // Check if resetTimestamp changed (indicates reset was called)
+      if (previous != null && next.resetTimestamp != previous.resetTimestamp) {
+        if (!_isResetting) {
+          _isResetting = true;
+
+          // Reset scroll position
+          if (_scrollController.hasClients && _scrollController.offset > 0.0) {
+            _scrollController.animateTo(
+              0.0,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+            );
+          }
+
+          // Clear search text
+          if (_searchCtrl.text.isNotEmpty) {
+            _searchCtrl.clear();
+          }
+
+          // Reset flag after animations complete
+          Future.delayed(const Duration(milliseconds: 350), () {
+            if (mounted) {
+              _isResetting = false;
+            }
+          });
+        }
+      }
+    });
 
     return Scaffold(
       backgroundColor: appTheme.gray_900,
@@ -51,6 +97,7 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
         return Stack(
           children: [
             SingleChildScrollView(
+              controller: _scrollController,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:Athanapp/screens/info_page_template_en.dart';
-import 'package:Athanapp/screens/mosques_screen.dart';
 import 'package:Athanapp/screens/app_launch_eng.dart';
 import 'package:Athanapp/screens/new_password_eng.dart';
 import 'package:Athanapp/screens/enter_pin_eng.dart';
@@ -28,7 +27,6 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => const InfoPageTemplateEN(),
-        'mosques_screen': (BuildContext context) => const MosquesScreen(),
         'app_launch_eng': (BuildContext context) => const AppLaunchENG(),
         'new_password_eng': (BuildContext context) => const NewPasswordENG(),
         'enter_pin_eng': (BuildContext context) => const EnterPinENG(),

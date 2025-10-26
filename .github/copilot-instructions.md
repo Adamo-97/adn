@@ -6,6 +6,8 @@ This is a Flutter-based Islamic prayer application (Athan/Adhan app) that helps 
 
 **Current Status**: Work in progress - frontend development phase only (no backend integration yet).
 
+**Initial App Flow**: The `PrayerTrackerScreen` is the entry point (home screen). All screens/routes before it (e.g., app navigation screen, future login pages, onboarding flows) are subject to change and should not be relied upon for core functionality.
+
 **Planned Evolution**:
 
 - Original scope: Quran + Azkhar → New scope: Prayer tracking + Mosque locations + Salah guide
