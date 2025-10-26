@@ -169,12 +169,12 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        extendBody: true,
+        extendBody: true, // Extend body behind the navbar
 
         // --- BODY: IndexedStack (no animation, instant switch) ---
         body: SafeArea(
           top: false,
-          bottom: true,
+          bottom: false, // Allow content to extend behind navbar
           child: IndexedStack(
             index: _selectedIndex,
             children: <Widget>[
@@ -195,7 +195,7 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
           top: false,
           bottom: false, // fill under the home indicator
           child: Container(
-            color: appTheme.gray_900, // #212121 — page/dark background
+            color: appTheme.gray_900, // Match page background to eliminate gap
             child: Container(
               decoration: BoxDecoration(
                 color: const Color(0xFF5C6248), // olive bar

@@ -58,17 +58,46 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
       backgroundColor: appTheme.gray_900,
       body: SizedBox(
         width: double.maxFinite,
-        child: Column(
+        child: Stack(
           children: [
-            _buildHeader(context),
-            Expanded(
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                child: Column(
-                  children: [
-                    SizedBox(height: 4.h),
-                    _buildMainContent(context, state, notifier)
-                  ],
+            Column(
+              children: [
+                _buildHeader(context),
+                Expanded(
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 4.h),
+                        _buildMainContent(context, state, notifier)
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            // Bottom fade effect
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: IgnorePointer(
+                child: Container(
+                  height: 45.h,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: const [0.0, 0.4, 0.7, 1.0],
+                      colors: [
+                        appTheme.gray_900.withOpacity(0.0),
+                        appTheme.gray_900.withOpacity(0.3),
+                        appTheme.gray_900.withOpacity(0.7),
+                        appTheme.gray_900,
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -110,8 +139,9 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
     return Container(
       width: double.maxFinite,
       margin: EdgeInsets.only(left: 24.h),
-      padding:
-          EdgeInsets.only(bottom: 24.h), // Bottom padding for navbar clearance
+      padding: EdgeInsets.only(
+          bottom:
+              76.h + 24.h), // Bottom padding: navbar height + extra clearance
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

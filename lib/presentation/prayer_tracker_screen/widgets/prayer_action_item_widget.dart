@@ -43,6 +43,7 @@ class PrayerActionItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           CustomImageView(
             imagePath: iconPath,
@@ -52,6 +53,9 @@ class PrayerActionItemWidget extends StatelessWidget {
           SizedBox(height: 6.h),
           Text(
             action.label,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: TextStyleHelper.instance.label10LightPoppins
                 .copyWith(color: appTheme.colorCCFFFF),
           ),

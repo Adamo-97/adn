@@ -77,7 +77,9 @@ class _PhoneInstructions extends StatelessWidget {
           child: Text(
             'Please place your phone on a flat surface',
             textAlign: TextAlign.center,
-            style: TextStyleHelper.instance.body15RegularPoppins
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyleHelper.instance.label10LightPoppins
                 .copyWith(color: appTheme.white_A700),
           ),
         ),

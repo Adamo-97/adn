@@ -15,6 +15,8 @@ class SalahGuideScreen extends ConsumerStatefulWidget {
 class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
   final TextEditingController _searchCtrl = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  // Controllers for each horizontal category list
+  final Map<SalahCategory, ScrollController> _horizontalControllers = {};
   bool _isResetting = false; // Flag to prevent circular updates
 
   @override
@@ -27,6 +29,10 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
   void dispose() {
     _searchCtrl.dispose();
     _scrollController.dispose();
+    // Dispose horizontal controllers
+    for (final c in _horizontalControllers.values) {
+      c.dispose();
+    }
     super.dispose();
   }
 
@@ -48,6 +54,17 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeOut,
             );
+          }
+
+          // Reset all horizontal category lists to start
+          for (final controller in _horizontalControllers.values) {
+            if (controller.hasClients && controller.offset > 0.0) {
+              controller.animateTo(
+                0.0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut,
+              );
+            }
           }
 
           // Clear search text
@@ -115,7 +132,9 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
                     );
                   }),
 
-                  SizedBox(height: 24.h),
+                  SizedBox(
+                      height:
+                          76.h + 24.h), // Bottom padding: navbar height + extra
                 ],
               ),
             ),
@@ -155,6 +174,11 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
     required List<SalahGuideCardModel> cards,
     required WidgetRef ref,
   }) {
+    // Ensure a controller exists for this category
+    final controller = _horizontalControllers.putIfAbsent(
+      category,
+      () => ScrollController(),
+    );
     return Padding(
       padding: EdgeInsets.only(bottom: 24.h),
       child: Column(
@@ -192,6 +216,7 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
           SizedBox(
             height: 145.h,
             child: ListView.builder(
+              controller: controller,
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.symmetric(horizontal: 20.h),
               itemCount: cards.length,

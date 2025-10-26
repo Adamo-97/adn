@@ -70,6 +70,9 @@ class DateNavCalendar extends ConsumerWidget {
           ],
         ),
 
+        // Spacing between nav row and calendar
+        SizedBox(height: 16.h),
+
         // === CALENDAR (smooth show/hide) ===
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 240),
@@ -82,135 +85,170 @@ class DateNavCalendar extends ConsumerWidget {
           ),
           child: !isOpen
               ? const SizedBox.shrink(key: ValueKey('cal-off'))
-              : Column(
+              : Container(
                   key: const ValueKey('cal-on'),
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(height: 16.h),
-
-                    // Header (top rounded)
-                    Container(
-                      decoration: BoxDecoration(
-                        color: appTheme.gray_700,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10.h),
-                          topRight: Radius.circular(10.h),
-                        ),
-                      ),
-                      padding: EdgeInsets.symmetric(
-                          vertical: 12.h, horizontal: 12.h),
-                      child: Table(
-                        columnWidths: cols,
-                        defaultVerticalAlignment:
-                            TableCellVerticalAlignment.middle,
-                        children: [
-                          TableRow(
-                            children: List.generate(7, (i) {
-                              final day = (i < m.weekDays.length)
-                                  ? m.weekDays[i]
-                                  : const [
-                                      'Su',
-                                      'Mo',
-                                      'Tu',
-                                      'We',
-                                      'Th',
-                                      'Fr',
-                                      'Sa'
-                                    ][i];
-                              return Center(
-                                child: Text(
-                                  day,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyleHelper
-                                      .instance.body15RegularPoppins
-                                      .copyWith(color: appTheme.orange_200),
-                                ),
-                              );
-                            }),
-                          ),
-                        ],
-                      ),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: appTheme.gray_700.withOpacity(0.3),
+                      width: 1.h,
                     ),
-
-                    // Grid rows (bottom rounded) — symmetric 6x7, no empty cells
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10.h),
-                        bottomRight: Radius.circular(10.h),
-                      ),
-                      child: Container(
-                        color: appTheme.gray_900_01,
-                        padding: EdgeInsets.symmetric(horizontal: 12.h),
+                    borderRadius: BorderRadius.circular(10.h),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Header (top rounded)
+                      Container(
+                        decoration: BoxDecoration(
+                          color: appTheme.gray_900,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10.h),
+                            topRight: Radius.circular(10.h),
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 12.h, horizontal: 12.h),
                         child: Table(
                           columnWidths: cols,
                           defaultVerticalAlignment:
                               TableCellVerticalAlignment.middle,
-                          children: List.generate(state.monthWeeks.length, (r) {
-                            final row = state.monthWeeks[r];
-                            return TableRow(
-                              children: List.generate(7, (c) {
-                                final date = row[c];
-                                final isSelected =
-                                    _sameDay(date, state.selectedDate);
-                                final isOutOfMonth =
-                                    date.month != state.calendarMonth.month;
-
-                                // color for day number
-                                final dayColor = isOutOfMonth
-                                    ? const Color(
-                                        0xFFE74C3C) // RED for other months
-                                    : appTheme.white_A700;
-
-                                final textStyle = TextStyleHelper
-                                    .instance.label10LightPoppins
-                                    .copyWith(color: dayColor);
-
-                                // fixed cell height → symmetric grid
-                                final child = Center(
-                                  child: isSelected
-                                      ? Container(
-                                          width: 36.h,
-                                          height: 36.h,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color: appTheme.gray_700,
-                                              width: 3.h,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(18.h),
-                                          ),
-                                          child: Center(
-                                            child: Text('${date.day}',
-                                                style: textStyle),
-                                          ),
-                                        )
-                                      : Text('${date.day}', style: textStyle),
-                                );
-
-                                return Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 10.h),
-                                  child: GestureDetector(
-                                    behavior: HitTestBehavior.opaque,
-                                    onTap: () {
-                                      final n = ref.read(
-                                          prayerTrackerNotifierProvider
-                                              .notifier);
-                                      n.selectDate(date); // update selected day
-                                      n.setCalendarOpen(
-                                          false); // hide calendar after pick
-                                    },
-                                    child: SizedBox(
-                                        height: 40.h,
-                                        child: child), // uniform height
+                          children: [
+                            TableRow(
+                              children: List.generate(7, (i) {
+                                final day = (i < m.weekDays.length)
+                                    ? m.weekDays[i]
+                                    : const [
+                                        'Su',
+                                        'Mo',
+                                        'Tu',
+                                        'We',
+                                        'Th',
+                                        'Fr',
+                                        'Sa'
+                                      ][i];
+                                return Center(
+                                  child: Text(
+                                    day,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyleHelper
+                                        .instance.body15RegularPoppins
+                                        .copyWith(color: appTheme.orange_200),
                                   ),
                                 );
                               }),
-                            );
-                          }),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+
+                      // Divider under header
+                      Container(
+                        height: 1.h,
+                        color: appTheme.gray_700.withOpacity(0.3),
+                      ),
+
+                      // Grid rows (bottom rounded) — symmetric 6x7, no empty cells
+                      ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10.h),
+                          bottomRight: Radius.circular(10.h),
+                        ),
+                        child: Container(
+                          color: appTheme.gray_900,
+                          padding: EdgeInsets.symmetric(horizontal: 12.h),
+                          child: Table(
+                            columnWidths: cols,
+                            defaultVerticalAlignment:
+                                TableCellVerticalAlignment.middle,
+                            children:
+                                List.generate(state.monthWeeks.length, (r) {
+                              final row = state.monthWeeks[r];
+
+                              // DEBUG: Print entire row for debugging
+                              if (r == 4) {
+                                debugPrint(
+                                    'DEBUG Row 4 dates: ${row.map((d) => '${d.month}/${d.day}').join(', ')}');
+                              }
+
+                              return TableRow(
+                                children: List.generate(7, (c) {
+                                  final date = row[c];
+                                  final isSelected =
+                                      _sameDay(date, state.selectedDate);
+                                  final isOutOfMonth =
+                                      date.month != state.calendarMonth.month;
+
+                                  // DEBUG: Print date info for the 26th
+                                  if (date.day == 26 && r == 4) {
+                                    debugPrint(
+                                        'DEBUG Calendar: Row $r, Col $c: ${date.year}/${date.month}/${date.day} '
+                                        '| isSelected: $isSelected | selectedDate: ${state.selectedDate} '
+                                        '| calendarMonth: ${state.calendarMonth.month}');
+                                  }
+
+                                  // color for day number - muted gray for out-of-month
+                                  final dayColor = isOutOfMonth
+                                      ? appTheme.white_A700.withOpacity(0.25)
+                                      : appTheme.white_A700;
+
+                                  final textStyle = TextStyleHelper
+                                      .instance.body12SemiBoldPoppins
+                                      .copyWith(color: dayColor);
+
+                                  // fixed cell height → symmetric grid
+                                  final child = Center(
+                                    child: isSelected
+                                        ? Container(
+                                            width: 38.h,
+                                            height: 38.h,
+                                            decoration: BoxDecoration(
+                                              color: appTheme.orange_200
+                                                  .withOpacity(0.15),
+                                              border: Border.all(
+                                                color: appTheme.orange_200,
+                                                width: 1.5.h,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(19.h),
+                                            ),
+                                            child: Center(
+                                              child: Text('${date.day}',
+                                                  style: textStyle.copyWith(
+                                                    color: appTheme.orange_200,
+                                                    fontWeight: FontWeight.w600,
+                                                  )),
+                                            ),
+                                          )
+                                        : Text('${date.day}', style: textStyle),
+                                  );
+
+                                  return Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 10.h),
+                                    child: GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onTap: () {
+                                        final n = ref.read(
+                                            prayerTrackerNotifierProvider
+                                                .notifier);
+                                        n.selectDate(
+                                            date); // update selected day
+                                        n.setCalendarOpen(
+                                            false); // hide calendar after pick
+                                      },
+                                      child: SizedBox(
+                                          height: 40.h,
+                                          child: child), // uniform height
+                                    ),
+                                  );
+                                }),
+                              );
+                            }),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
         ),
       ],

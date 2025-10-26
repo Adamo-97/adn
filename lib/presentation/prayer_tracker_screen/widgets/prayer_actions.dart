@@ -28,37 +28,45 @@ class PrayerActions extends ConsumerWidget {
         state.prayerTrackerModel ?? PrayerTrackerModel();
     final actions = m.prayerActions;
 
-    // EXACT same layout you had: Padding -> Wrap(spaceBetween) with spacing/runSpacing 12.h
+    // Full width layout - no horizontal padding, buttons fill edge to edge
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.h),
-      child: Wrap(
-        alignment: WrapAlignment.spaceBetween,
-        runSpacing: 12.h,
-        spacing: 12.h,
-        children: actions.map((action) {
-          // Check button type
-          final id = action.id.toLowerCase();
-          final isQibla = id.contains('qibla');
-          final isWeeklyStat = id.contains('weekly');
-          final isMonthlyStat = id.contains('monthly');
-          final isQuadStat = id.contains('quad');
+      padding: EdgeInsets.symmetric(horizontal: 0.h), // No padding, fill width
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          for (int i = 0; i < actions.length; i++) ...[
+            Expanded(
+              child: Builder(
+                builder: (context) {
+                  final action = actions[i];
+                  final id = action.id.toLowerCase();
+                  final isQibla = id.contains('qibla');
+                  final isWeeklyStat = id.contains('weekly');
+                  final isMonthlyStat = id.contains('monthly');
+                  final isQuadStat = id.contains('quad');
 
-          // Determine if this button is selected
-          bool isSelected = false;
-          if (isQibla) {
-            isSelected = qiblaSelected;
-          } else if (isWeeklyStat)
-            isSelected = weeklyStatSelected;
-          else if (isMonthlyStat)
-            isSelected = monthlyStatSelected;
-          else if (isQuadStat) isSelected = quadStatSelected;
+                  bool isSelected = false;
+                  if (isQibla) {
+                    isSelected = qiblaSelected;
+                  } else if (isWeeklyStat) {
+                    isSelected = weeklyStatSelected;
+                  } else if (isMonthlyStat) {
+                    isSelected = monthlyStatSelected;
+                  } else if (isQuadStat) {
+                    isSelected = quadStatSelected;
+                  }
 
-          return PrayerActionItemWidget(
-            action: action,
-            onTap: () => onActionTap(action),
-            isSelected: isSelected,
-          );
-        }).toList(),
+                  return PrayerActionItemWidget(
+                    action: action,
+                    onTap: () => onActionTap(action),
+                    isSelected: isSelected,
+                  );
+                },
+              ),
+            ),
+            if (i < actions.length - 1) SizedBox(width: 16.h),
+          ],
+        ],
       ),
     );
   }

@@ -236,19 +236,19 @@ class NearbyMosquesScreenState extends ConsumerState<NearbyMosquesScreen> {
           },
           child: CustomImageView(
             imagePath: ImageConstant.imgLocationButton,
-            height: 30.h,
-            width: 30.h,
+            height: 44.h,
+            width: 44.h,
             fit: BoxFit.contain,
           ),
         ),
 
-        SizedBox(width: 6.h),
+        SizedBox(width: 10.h),
 
         // Search input bar
         Expanded(
           child: Container(
-            height: 30.h,
-            padding: EdgeInsets.symmetric(horizontal: 12.h),
+            height: 44.h,
+            padding: EdgeInsets.symmetric(horizontal: 16.h),
             decoration: BoxDecoration(
               color: appTheme.gray_900, // Same grey as navbar hole #212121
               borderRadius: BorderRadius.circular(64.h),
@@ -265,14 +265,14 @@ class NearbyMosquesScreenState extends ConsumerState<NearbyMosquesScreen> {
                 controller: _searchController,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: appTheme.white_A700,
-                  fontSize: 12.fSize,
+                  fontSize: 14.fSize,
                   fontFamily: 'Poppins',
                 ),
                 decoration: InputDecoration(
                   hintText: 'Enter location',
                   hintStyle: theme.textTheme.bodyMedium?.copyWith(
                     color: appTheme.white_A700.withOpacity(0.5),
-                    fontSize: 12.fSize,
+                    fontSize: 14.fSize,
                     fontFamily: 'Poppins',
                   ),
                   border: InputBorder.none,
@@ -285,7 +285,7 @@ class NearbyMosquesScreenState extends ConsumerState<NearbyMosquesScreen> {
           ),
         ),
 
-        SizedBox(width: 6.h),
+        SizedBox(width: 10.h),
 
         // Search button - SVG already has circular bg
         GestureDetector(
@@ -295,8 +295,8 @@ class NearbyMosquesScreenState extends ConsumerState<NearbyMosquesScreen> {
           },
           child: CustomImageView(
             imagePath: ImageConstant.imgSearchButton,
-            height: 30.h,
-            width: 30.h,
+            height: 44.h,
+            width: 44.h,
             fit: BoxFit.contain,
           ),
         ),
@@ -342,7 +342,12 @@ class NearbyMosquesScreenState extends ConsumerState<NearbyMosquesScreen> {
     return ListView.builder(
       controller: scrollController,
       itemCount: state.filteredMosques.length,
-      padding: EdgeInsets.symmetric(horizontal: 15.h, vertical: 0),
+      padding: EdgeInsets.only(
+        left: 15.h,
+        right: 15.h,
+        top: 0,
+        bottom: 76.h + 20.h, // Bottom padding: navbar height + extra clearance
+      ),
       itemBuilder: (context, index) {
         final mosque = state.filteredMosques[index];
         final isExpanded = state.expandedMosqueId == mosque.id;

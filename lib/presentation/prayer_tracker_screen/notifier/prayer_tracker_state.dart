@@ -175,25 +175,42 @@ class PrayerTrackerState extends Equatable {
   List<List<DateTime>> get monthWeeks {
     final firstOfMonth = DateTime(calendarMonth.year, calendarMonth.month, 1);
     final start = _calendarGridStart(firstOfMonth);
-    final daysInMonth =
-        DateTime(firstOfMonth.year, firstOfMonth.month + 1, 0).day;
-    final offset = firstOfMonth.weekday % 7;
-    final totalCells = offset + daysInMonth;
-    final rows = ((totalCells + 6) ~/ 7).clamp(4, 6);
 
-    return List<List<DateTime>>.generate(rows, (r) {
+    // Generate all 6 rows
+    final allWeeks = List<List<DateTime>>.generate(6, (r) {
       return List<DateTime>.generate(7, (c) {
         final idx = r * 7 + c;
-        final d = start.add(Duration(days: idx));
-        return DateTime(d.year, d.month, d.day);
+        // Add days to start date, ensuring we get midnight of each day
+        final resultDate = DateTime(
+          start.year,
+          start.month,
+          start.day + idx,
+        );
+        return resultDate;
       });
     });
+
+    // Check if the last row contains any dates from the current month
+    final lastRow = allWeeks.last;
+    final hasCurrentMonthDate =
+        lastRow.any((date) => date.month == calendarMonth.month);
+
+    // If last row has no dates from current month, exclude it
+    if (!hasCurrentMonthDate) {
+      return allWeeks.sublist(0, 5);
+    }
+
+    return allWeeks;
   }
 
   // ——— helpers ———
   DateTime _calendarGridStart(DateTime firstOfMonth) {
-    final sundayIndex = firstOfMonth.weekday % 7; // 0..6
-    return firstOfMonth.subtract(Duration(days: sundayIndex));
+    // DateTime.weekday: Monday=1, Tuesday=2, ..., Sunday=7
+    // We want Sunday=0, Monday=1, ..., Saturday=6
+    // Convert: Sunday(7) -> 0, Monday(1) -> 1, Tuesday(2) -> 2, etc.
+    final sundayBasedWeekday =
+        firstOfMonth.weekday % 7; // Sunday=0, Mon=1, ..., Sat=6
+    return firstOfMonth.subtract(Duration(days: sundayBasedWeekday));
   }
 
   bool _sameDay(DateTime a, DateTime b) =>

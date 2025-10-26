@@ -7,6 +7,9 @@ import 'notifier/prayer_tracker_notifier.dart';
 import './widgets/fixed_prayer_header.dart';
 import './widgets/prayer_actions.dart';
 import './widgets/qibla_panel.dart';
+import './widgets/weekly_stats_panel.dart';
+import './widgets/monthly_stats_panel.dart';
+import './widgets/quarterly_stats_panel.dart';
 import './widgets/progress_indicators_row.dart';
 import './widgets/date_nav_calendar.dart';
 import './widgets/prayer_cards_list.dart';
@@ -40,6 +43,12 @@ class PrayerTrackerInitialPageState
     final topInset = MediaQuery.of(context).padding.top;
     final double headerBodyHeight = 125.h; // visible part below the status bar
     final double headerTotalHeight = topInset + headerBodyHeight;
+    final double navbarHeight = 76.h; // Bottom navbar height
+
+    // DEBUG: Print layout measurements
+    debugPrint(
+        'DEBUG Layout: topInset=$topInset, headerTotalHeight=$headerTotalHeight, '
+        'navbarHeight=$navbarHeight, gradientHeight=${navbarHeight + 40.h}');
 
     return ColoredBox(
       color: appTheme.gray_900,
@@ -51,7 +60,7 @@ class PrayerTrackerInitialPageState
               25.h,
               headerTotalHeight + 12.h, // push content below header
               25.h,
-              15.h, // keep clear of bottom bar
+              navbarHeight + 20.h, // Bottom padding: navbar + extra clearance
             ),
             child: _buildPrayerContent(context),
           ),
@@ -59,23 +68,25 @@ class PrayerTrackerInitialPageState
           // Fixed header on top
           FixedPrayerHeader(topInset: topInset, totalHeight: headerTotalHeight),
 
-          // Bottom fade effect
+          // Bottom fade effect - positioned to start where scrollable content is
           Positioned(
             left: 0,
             right: 0,
             bottom: 0,
             child: IgnorePointer(
               child: Container(
-                height: 45.h,
+                height: navbarHeight +
+                    40.h, // Extend gradient higher to cover more content
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    stops: const [0.0, 0.4, 0.7, 1.0],
+                    stops: const [0.0, 0.3, 0.6, 0.85, 1.0],
                     colors: [
                       appTheme.gray_900.withOpacity(0.0),
-                      appTheme.gray_900.withOpacity(0.3),
-                      appTheme.gray_900.withOpacity(0.7),
+                      appTheme.gray_900.withOpacity(0.2),
+                      appTheme.gray_900.withOpacity(0.5),
+                      appTheme.gray_900.withOpacity(0.8),
                       appTheme.gray_900,
                     ],
                   ),
@@ -105,6 +116,9 @@ class PrayerTrackerInitialPageState
           quadStatSelected: m.openStatButton == 'quad',
         ),
         QiblaPanel(isOpen: m.qiblaOpen),
+        WeeklyStatsPanel(isOpen: m.openStatButton == 'weekly'),
+        MonthlyStatsPanel(isOpen: m.openStatButton == 'monthly'),
+        QuarterlyStatsPanel(isOpen: m.openStatButton == 'quad'),
         SizedBox(height: 16.h),
         ProgressIndicatorsRow(
           statuses: m.progressStatusesRaw,

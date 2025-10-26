@@ -51,17 +51,17 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
       ),
       PrayerActionModel(
         icon: ImageConstant.imgWeeklyStat,
-        label: 'Weekly Stats',
+        label: 'Weekly',
         id: 'weekly_stats',
       ),
       PrayerActionModel(
         icon: ImageConstant.imgMonthlyStat,
-        label: 'Monthly Stats',
+        label: 'Monthly',
         id: 'monthly_stats',
       ),
       PrayerActionModel(
         icon: ImageConstant.imgQuadStat,
-        label: 'Quarterly Stats',
+        label: 'Quarterly',
         id: 'quad_stats',
       ),
     ];
