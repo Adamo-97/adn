@@ -3,6 +3,7 @@ import '../presentation/prayer_tracker_screen/prayer_tracker_screen.dart';
 import '../presentation/salah_guide_screen/salah_guide_screen.dart';
 import '../presentation/nearby_mosques_screen/nearby_mosques_screen.dart';
 import '../presentation/profile_settings_screen/profile_settings_screen.dart';
+import '../presentation/full_analytics_screen/full_analytics_screen.dart';
 
 class AppRoutes {
   static const String prayerTrackerScreen = '/prayer_tracker_screen';
@@ -11,6 +12,7 @@ class AppRoutes {
   static const String salahGuideScreen = '/salah_guide_screen';
   static const String nearbyMosquesScreen = '/nearby_mosques_screen';
   static const String profileSettingsScreen = '/profile_settings_screen';
+  static const String fullAnalyticsScreen = '/full_analytics_screen';
 
   static const String initialRoute = '/';
 
@@ -19,6 +21,7 @@ class AppRoutes {
         salahGuideScreen: (context) => SalahGuideScreen(),
         nearbyMosquesScreen: (context) => NearbyMosquesScreen(),
         profileSettingsScreen: (context) => ProfileSettingsScreen(),
+        fullAnalyticsScreen: (context) => FullAnalyticsScreen(),
         initialRoute: (context) => PrayerTrackerScreen()
       };
 }

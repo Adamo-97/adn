@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
+import 'package:adam_s_application/presentation/full_analytics_screen/full_analytics_screen.dart';
 
 class WeeklyStatsPanel extends StatelessWidget {
   final bool isOpen;
@@ -357,8 +358,12 @@ class _FullAnalyticsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // TODO: Navigate to full analytics page
-        debugPrint('Navigate to full analytics');
+        // Use root navigator to escape the nested navigator in bottom bar
+        Navigator.of(context, rootNavigator: true).push(
+          MaterialPageRoute(
+            builder: (context) => FullAnalyticsScreen(analyticsType: 'weekly'),
+          ),
+        );
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 8.h),

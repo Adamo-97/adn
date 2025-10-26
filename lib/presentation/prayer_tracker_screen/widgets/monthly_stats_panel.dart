@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
+import 'package:adam_s_application/presentation/full_analytics_screen/full_analytics_screen.dart';
 
 class MonthlyStatsPanel extends StatelessWidget {
   final bool isOpen;
@@ -60,20 +61,6 @@ class _MonthlyChartState extends ConsumerState<_MonthlyChart> {
 
     // Calculate target month
     final targetMonth = DateTime(now.year, now.month + _monthOffset, 1);
-    final monthName = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ][targetMonth.month - 1];
 
     // Get weeks in month (approximately 4-5 weeks)
     final firstDayOfMonth = targetMonth;
@@ -113,7 +100,6 @@ class _MonthlyChartState extends ConsumerState<_MonthlyChart> {
           'weekIndex': weekIndex,
           'totalCompleted': totalCompleted,
           'isFuture': isFuture,
-          'monthName': monthName,
         });
         weekIndex++;
       }
@@ -213,10 +199,13 @@ class _MonthlyChartState extends ConsumerState<_MonthlyChart> {
                   final localPosition =
                       box.globalToLocal(details.globalPosition);
                   final chartWidth = box.size.width;
-                  final barWidth = chartWidth / monthData.length;
-                  final tappedIndex = (localPosition.dx / barWidth)
-                      .floor()
-                      .clamp(0, monthData.length - 1);
+                  final yAxisWidth = 30.0;
+                  final adjustedWidth = chartWidth - yAxisWidth;
+                  final barWidth = adjustedWidth / monthData.length;
+                  final tappedIndex =
+                      ((localPosition.dx - yAxisWidth) / barWidth)
+                          .floor()
+                          .clamp(0, monthData.length - 1);
 
                   setState(() {
                     _selectedWeekIndex =
@@ -409,8 +398,12 @@ class _FullAnalyticsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // TODO: Navigate to full analytics page
-        debugPrint('Navigate to full analytics');
+        // Use root navigator to escape the nested navigator in bottom bar
+        Navigator.of(context, rootNavigator: true).push(
+          MaterialPageRoute(
+            builder: (context) => FullAnalyticsScreen(analyticsType: 'monthly'),
+          ),
+        );
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 8.h),
