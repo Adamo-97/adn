@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/presentation/full_analytics_screen/full_analytics_screen.dart';
+import 'package:adam_s_application/presentation/prayer_tracker_screen/notifier/prayer_analytics_notifier.dart';
 
 class MonthlyStatsPanel extends StatelessWidget {
   final bool isOpen;
@@ -56,60 +57,23 @@ class _MonthlyChartState extends ConsumerState<_MonthlyChart> {
   int? _selectedWeekIndex;
 
   List<Map<String, dynamic>> _getMonthData() {
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
+    // Get data from analytics provider
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final monthStats = analyticsNotifier.getMonthData(_monthOffset);
 
-    // Calculate target month
-    final targetMonth = DateTime(now.year, now.month + _monthOffset, 1);
+    // Convert weekly data to format expected by the chart
+    return monthStats.weeklyData.asMap().entries.map((entry) {
+      final weekIndex = entry.key;
+      final weekStats = entry.value;
 
-    // Get weeks in month (approximately 4-5 weeks)
-    final firstDayOfMonth = targetMonth;
-    final lastDayOfMonth = DateTime(targetMonth.year, targetMonth.month + 1, 0);
-
-    // Calculate weeks (group by Sunday to Saturday)
-    final weeksData = <Map<String, dynamic>>[];
-    DateTime currentWeekStart = firstDayOfMonth.subtract(
-      Duration(days: firstDayOfMonth.weekday % 7),
-    );
-
-    int weekIndex = 0;
-    while (currentWeekStart.isBefore(lastDayOfMonth) ||
-        currentWeekStart.isAtSameMomentAs(lastDayOfMonth)) {
-      final weekEnd = currentWeekStart.add(const Duration(days: 6));
-      final isFuture = currentWeekStart.isAfter(today);
-
-      // Calculate completed prayers for this week (mock data)
-      int totalCompleted = 0;
-      if (!isFuture) {
-        for (int i = 0; i < 7; i++) {
-          final day = currentWeekStart.add(Duration(days: i));
-          if (day.month == targetMonth.month && !day.isAfter(today)) {
-            totalCompleted += (3 + (day.day % 3)); // Mock: 3-5 per day
-          }
-        }
-      }
-
-      // Check if week overlaps with target month
-      final hasMonthDays = currentWeekStart.month == targetMonth.month ||
-          weekEnd.month == targetMonth.month;
-
-      if (hasMonthDays) {
-        weeksData.add({
-          'weekStart': currentWeekStart,
-          'weekEnd': weekEnd,
-          'weekIndex': weekIndex,
-          'totalCompleted': totalCompleted,
-          'isFuture': isFuture,
-        });
-        weekIndex++;
-      }
-
-      currentWeekStart = currentWeekStart.add(const Duration(days: 7));
-
-      if (weekIndex >= 6) break; // Max 6 weeks
-    }
-
-    return weeksData;
+      return {
+        'weekStart': weekStats.weekStart,
+        'weekEnd': weekStats.weekEnd,
+        'weekIndex': weekIndex,
+        'totalCompleted': weekStats.totalCompleted,
+        'isFuture': weekStats.dailyData.every((day) => day.isFuture),
+      };
+    }).toList();
   }
 
   bool _canGoNext() {
@@ -142,12 +106,11 @@ class _MonthlyChartState extends ConsumerState<_MonthlyChart> {
   Widget build(BuildContext context) {
     final monthData = _getMonthData();
 
-    // Get first and last day of the month for date range
-    final now = DateTime.now();
-    final targetMonth = DateTime(now.year, now.month + _monthOffset, 1);
-    final lastDayOfMonth = DateTime(targetMonth.year, targetMonth.month + 1, 0);
+    // Get month stats for date range
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final monthStats = analyticsNotifier.getMonthData(_monthOffset);
     final dateRange =
-        '${targetMonth.day}/${targetMonth.month} - ${lastDayOfMonth.day}/${lastDayOfMonth.month}';
+        '${monthStats.monthStart.day}/${monthStats.monthStart.month} - ${monthStats.monthEnd.day}/${monthStats.monthEnd.month}';
 
     return Container(
       height: 202.h, // Same height as Qibla compass

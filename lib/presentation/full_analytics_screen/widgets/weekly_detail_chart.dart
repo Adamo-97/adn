@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
+import 'package:adam_s_application/presentation/prayer_tracker_screen/notifier/prayer_analytics_notifier.dart';
 
 class WeeklyDetailChart extends ConsumerStatefulWidget {
   const WeeklyDetailChart({super.key});
@@ -13,28 +14,23 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
   int? _selectedDayIndex;
 
   List<Map<String, dynamic>> _getWeekData() {
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final currentWeekStart = today.subtract(Duration(days: today.weekday % 7));
-    final weekStart = currentWeekStart.add(Duration(days: _weekOffset * 7));
+    // Get data from analytics provider
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final weekStats = analyticsNotifier.getWeekData(_weekOffset);
 
-    return List.generate(7, (index) {
-      final date = weekStart.add(Duration(days: index));
-      final isFuture = date.isAfter(today);
-      final completed = isFuture
-          ? 0
-          : (index % 5 + (index == today.weekday % 7 ? 1 : 0)).clamp(0, 5);
+    return weekStats.dailyData.asMap().entries.map((entry) {
+      final index = entry.key;
+      final dayData = entry.value;
+      final dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
       return {
-        'date': date,
-        'dayName': ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][index],
-        'completed': completed,
-        'isToday': date.day == today.day &&
-            date.month == today.month &&
-            date.year == today.year,
-        'isFuture': isFuture,
+        'date': dayData.date,
+        'dayName': dayNames[index],
+        'completed': dayData.completedPrayers,
+        'isToday': dayData.isToday,
+        'isFuture': dayData.isFuture,
       };
-    });
+    }).toList();
   }
 
   @override

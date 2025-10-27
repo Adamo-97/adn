@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'ninety_day_trend_chart.dart';
-import 'statistics_cards.dart';
+import 'quarterly_statistics.dart';
 import 'section_header.dart';
 
 class QuarterlyAnalytics extends StatelessWidget {
@@ -14,9 +14,9 @@ class QuarterlyAnalytics extends StatelessWidget {
       children: [
         const NinetyDayTrendChart(),
         SizedBox(height: 32.h),
-        const SectionHeader(title: 'Statistics'),
+        const SectionHeader(title: 'Quarterly Statistics'),
         SizedBox(height: 16.h),
-        const StatisticsCards(),
+        const QuarterlyStatistics(),
       ],
     );
   }

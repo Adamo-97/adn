@@ -1,35 +1,71 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
+import 'package:adam_s_application/presentation/prayer_tracker_screen/notifier/prayer_analytics_notifier.dart';
 
-class NinetyDayTrendChart extends StatefulWidget {
-  const NinetyDayTrendChart({super.key});
+class NinetyDayTrendChart extends ConsumerStatefulWidget {
+  final bool showNavigation;
+
+  const NinetyDayTrendChart({super.key, this.showNavigation = true});
 
   @override
-  State<NinetyDayTrendChart> createState() => _NinetyDayTrendChartState();
+  ConsumerState<NinetyDayTrendChart> createState() =>
+      _NinetyDayTrendChartState();
 }
 
-class _NinetyDayTrendChartState extends State<NinetyDayTrendChart> {
+class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
   int? _selectedWeekIndex;
+  int _quarterOffset = 0; // 0 = current quarter, -1 = previous quarter, etc.
 
-  // Mock data: 13 weeks (90 days) with average prayer completion per week
-  final List<Map<String, dynamic>> quarterData = [
-    {'week': 'W1', 'avg': 4.2},
-    {'week': 'W2', 'avg': 4.5},
-    {'week': 'W3', 'avg': 3.8},
-    {'week': 'W4', 'avg': 4.7},
-    {'week': 'W5', 'avg': 4.3},
-    {'week': 'W6', 'avg': 4.9},
-    {'week': 'W7', 'avg': 4.6},
-    {'week': 'W8', 'avg': 4.1},
-    {'week': 'W9', 'avg': 4.4},
-    {'week': 'W10', 'avg': 4.8},
-    {'week': 'W11', 'avg': 4.2},
-    {'week': 'W12', 'avg': 4.5},
-    {'week': 'W13', 'avg': 4.3},
-  ];
+  List<Map<String, dynamic>> _getQuarterData() {
+    // Get data from analytics provider
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final quarterStats = analyticsNotifier.getQuarterData(_quarterOffset);
+
+    // Convert weekly data to format expected by the chart
+    return quarterStats.weeklyData.asMap().entries.map((entry) {
+      final weekIndex = entry.key + 1;
+      final weekStats = entry.value;
+      final avgPrayers = weekStats.totalCompleted / weekStats.dailyData.length;
+
+      return {
+        'week': 'W$weekIndex',
+        'avg': avgPrayers,
+      };
+    }).toList();
+  }
+
+  String _getQuarterLabel() {
+    // Get data from analytics provider
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final quarterStats = analyticsNotifier.getQuarterData(_quarterOffset);
+    return quarterStats.quarterLabel;
+  }
+
+  bool _canGoNext() => _quarterOffset < 0;
+  bool _canGoPrev() => true;
+
+  void _nextQuarter() {
+    if (_canGoNext()) {
+      setState(() {
+        _quarterOffset++;
+        _selectedWeekIndex = null;
+      });
+    }
+  }
+
+  void _prevQuarter() {
+    if (_canGoPrev()) {
+      setState(() {
+        _quarterOffset--;
+        _selectedWeekIndex = null;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final quarterData = _getQuarterData();
+
     return Container(
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
@@ -43,31 +79,47 @@ class _NinetyDayTrendChartState extends State<NinetyDayTrendChart> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Quarter navigation header
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: Icon(Icons.chevron_left,
-                    color: appTheme.white_A700, size: 20.h),
-                onPressed: () {},
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              ),
-              Text(
-                'Q4 2025 (Oct - Dec)',
+          // Quarter navigation header (conditional)
+          if (widget.showNavigation)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.chevron_left,
+                      color: _canGoPrev()
+                          ? appTheme.white_A700
+                          : appTheme.gray_700,
+                      size: 20.h),
+                  onPressed: _canGoPrev() ? _prevQuarter : null,
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                ),
+                Text(
+                  _getQuarterLabel(),
+                  style: TextStyleHelper.instance.body14SemiBoldPoppins
+                      .copyWith(color: appTheme.white_A700),
+                ),
+                IconButton(
+                  icon: Icon(Icons.chevron_right,
+                      color: _canGoNext()
+                          ? appTheme.white_A700
+                          : appTheme.gray_700,
+                      size: 20.h),
+                  onPressed: _canGoNext() ? _nextQuarter : null,
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                ),
+              ],
+            )
+          else
+            // Just show the quarter label without navigation
+            Center(
+              child: Text(
+                _getQuarterLabel(),
                 style: TextStyleHelper.instance.body14SemiBoldPoppins
                     .copyWith(color: appTheme.white_A700),
               ),
-              IconButton(
-                icon: Icon(Icons.chevron_right,
-                    color: appTheme.white_A700, size: 20.h),
-                onPressed: () {},
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              ),
-            ],
-          ),
+            ),
           SizedBox(height: 16.h),
           // Trend description
           Text(

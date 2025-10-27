@@ -1,27 +1,77 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
+import 'package:adam_s_application/presentation/prayer_tracker_screen/notifier/prayer_analytics_notifier.dart';
 
-class MonthlyHeatmapChart extends StatefulWidget {
-  const MonthlyHeatmapChart({super.key});
+class MonthlyHeatmapChart extends ConsumerStatefulWidget {
+  final bool showNavigation;
+
+  const MonthlyHeatmapChart({super.key, this.showNavigation = true});
 
   @override
-  State<MonthlyHeatmapChart> createState() => _MonthlyHeatmapChartState();
+  ConsumerState<MonthlyHeatmapChart> createState() =>
+      _MonthlyHeatmapChartState();
 }
 
-class _MonthlyHeatmapChartState extends State<MonthlyHeatmapChart> {
+class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
   int? _selectedDayIndex;
+  int _monthOffset = 0; // 0 = current month, -1 = previous month, etc.
 
-  // Mock data: 31 days in October with prayer counts (0-5)
-  final List<int> monthData = [
-    4, 5, 3, 5, 4, 5, 5, // Week 1
-    4, 3, 5, 4, 5, 4, 3, // Week 2
-    5, 4, 5, 5, 3, 4, 5, // Week 3
-    4, 5, 4, 3, 5, 4, 5, // Week 4
-    5, 4, 3, // Week 5 (partial)
-  ];
+  List<int> _getMonthData() {
+    // Get data from analytics provider
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final monthStats = analyticsNotifier.getMonthData(_monthOffset);
+
+    // Extract prayer counts from daily data
+    return monthStats.dailyData
+        .map((dayData) => dayData.completedPrayers)
+        .toList();
+  }
+
+  String _getMonthLabel() {
+    // Get data from analytics provider
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final monthStats = analyticsNotifier.getMonthData(_monthOffset);
+    return monthStats.monthLabel;
+  }
+
+  int _getTodayIndex() {
+    // Get today's day index in the month (0-indexed)
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final monthStats = analyticsNotifier.getMonthData(_monthOffset);
+
+    for (int i = 0; i < monthStats.dailyData.length; i++) {
+      if (monthStats.dailyData[i].isToday) {
+        return i;
+      }
+    }
+    return -1; // Today not in this month
+  }
+
+  bool _canGoNext() => _monthOffset < 0;
+  bool _canGoPrev() => true;
+
+  void _nextMonth() {
+    if (_canGoNext()) {
+      setState(() {
+        _monthOffset++;
+        _selectedDayIndex = null;
+      });
+    }
+  }
+
+  void _prevMonth() {
+    if (_canGoPrev()) {
+      setState(() {
+        _monthOffset--;
+        _selectedDayIndex = null;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final monthData = _getMonthData();
+
     return Container(
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
@@ -35,31 +85,47 @@ class _MonthlyHeatmapChartState extends State<MonthlyHeatmapChart> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Month navigation header
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: Icon(Icons.chevron_left,
-                    color: appTheme.white_A700, size: 20.h),
-                onPressed: () {},
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              ),
-              Text(
-                'October 2025',
+          // Month navigation header (conditional)
+          if (widget.showNavigation)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.chevron_left,
+                      color: _canGoPrev()
+                          ? appTheme.white_A700
+                          : appTheme.gray_700,
+                      size: 20.h),
+                  onPressed: _canGoPrev() ? _prevMonth : null,
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                ),
+                Text(
+                  _getMonthLabel(),
+                  style: TextStyleHelper.instance.body14SemiBoldPoppins
+                      .copyWith(color: appTheme.white_A700),
+                ),
+                IconButton(
+                  icon: Icon(Icons.chevron_right,
+                      color: _canGoNext()
+                          ? appTheme.white_A700
+                          : appTheme.gray_700,
+                      size: 20.h),
+                  onPressed: _canGoNext() ? _nextMonth : null,
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                ),
+              ],
+            )
+          else
+            // Just show the month label without navigation
+            Center(
+              child: Text(
+                _getMonthLabel(),
                 style: TextStyleHelper.instance.body14SemiBoldPoppins
                     .copyWith(color: appTheme.white_A700),
               ),
-              IconButton(
-                icon: Icon(Icons.chevron_right,
-                    color: appTheme.white_A700, size: 20.h),
-                onPressed: () {},
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              ),
-            ],
-          ),
+            ),
           SizedBox(height: 16.h),
           // Weekday labels
           Row(
@@ -86,7 +152,7 @@ class _MonthlyHeatmapChartState extends State<MonthlyHeatmapChart> {
                 monthData: monthData,
                 selectedIndex: _selectedDayIndex,
                 theme: appTheme,
-                today: 26, // October 26, 2025
+                today: _getTodayIndex(),
               ),
               child: GestureDetector(
                 onTapDown: (details) {

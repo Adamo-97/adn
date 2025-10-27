@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'monthly_heatmap_chart.dart';
-import 'statistics_cards.dart';
+import 'monthly_statistics.dart';
 import 'section_header.dart';
 
 class MonthlyAnalytics extends StatelessWidget {
@@ -14,9 +14,9 @@ class MonthlyAnalytics extends StatelessWidget {
       children: [
         const MonthlyHeatmapChart(),
         SizedBox(height: 32.h),
-        const SectionHeader(title: 'Statistics'),
+        const SectionHeader(title: 'Monthly Statistics'),
         SizedBox(height: 16.h),
-        const StatisticsCards(),
+        const MonthlyStatistics(),
       ],
     );
   }

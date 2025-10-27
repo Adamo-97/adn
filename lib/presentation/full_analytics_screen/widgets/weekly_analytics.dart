@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'weekly_detail_chart.dart';
-import 'statistics_cards.dart';
+import 'weekly_statistics.dart';
 import 'section_header.dart';
 
 class WeeklyAnalytics extends StatelessWidget {
@@ -14,9 +14,9 @@ class WeeklyAnalytics extends StatelessWidget {
       children: [
         const WeeklyDetailChart(),
         SizedBox(height: 32.h),
-        const SectionHeader(title: 'Statistics'),
+        const SectionHeader(title: 'Weekly Statistics'),
         SizedBox(height: 16.h),
-        const StatisticsCards(),
+        const WeeklyStatistics(),
       ],
     );
   }

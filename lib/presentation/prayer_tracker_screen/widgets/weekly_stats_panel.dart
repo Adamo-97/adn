@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/presentation/full_analytics_screen/full_analytics_screen.dart';
+import 'package:adam_s_application/presentation/prayer_tracker_screen/notifier/prayer_analytics_notifier.dart';
 
 class WeeklyStatsPanel extends StatelessWidget {
   final bool isOpen;
@@ -56,35 +57,24 @@ class _WeeklyChartState extends ConsumerState<_WeeklyChart> {
   int? _selectedDayIndex;
 
   List<Map<String, dynamic>> _getWeekData() {
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
+    // Get data from analytics provider
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final weekStats = analyticsNotifier.getWeekData(_weekOffset);
 
-    // Calculate start of the week (Sunday) with offset
-    final currentWeekStart = today.subtract(Duration(days: today.weekday % 7));
-    final weekStart = currentWeekStart.add(Duration(days: _weekOffset * 7));
-
-    // Generate 7 days for the week
-    final weekData = List.generate(7, (index) {
-      final date = weekStart.add(Duration(days: index));
-      final isFuture = date.isAfter(today);
-
-      // Mock data - will be replaced with real data later
-      final completed = isFuture
-          ? 0
-          : (index % 5 + (index == today.weekday % 7 ? 1 : 0)).clamp(0, 5);
+    // Convert to format expected by the chart
+    return weekStats.dailyData.asMap().entries.map((entry) {
+      final index = entry.key;
+      final dayData = entry.value;
+      final dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
       return {
-        'date': date,
-        'dayName': ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][index],
-        'completed': completed,
-        'isToday': date.day == today.day &&
-            date.month == today.month &&
-            date.year == today.year,
-        'isFuture': isFuture,
+        'date': dayData.date,
+        'dayName': dayNames[index],
+        'completed': dayData.completedPrayers,
+        'isToday': dayData.isToday,
+        'isFuture': dayData.isFuture,
       };
-    });
-
-    return weekData;
+    }).toList();
   }
 
   bool _canGoNext() {

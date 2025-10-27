@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/presentation/full_analytics_screen/full_analytics_screen.dart';
+import 'package:adam_s_application/presentation/prayer_tracker_screen/notifier/prayer_analytics_notifier.dart';
 
 class QuarterlyStatsPanel extends StatelessWidget {
   final bool isOpen;
@@ -56,64 +57,35 @@ class _QuarterlyChartState extends ConsumerState<_QuarterlyChart> {
   int? _selectedMonthIndex;
 
   List<Map<String, dynamic>> _getQuarterData() {
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
+    // Get data from analytics provider
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final quarterStats = analyticsNotifier.getQuarterData(_quarterOffset);
 
-    // Calculate current quarter (Q1: Jan-Mar, Q2: Apr-Jun, Q3: Jul-Sep, Q4: Oct-Dec)
-    final currentQuarter = ((now.month - 1) ~/ 3) + 1;
-    final targetQuarter = currentQuarter + _quarterOffset;
+    const monthNames = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
 
-    // Calculate year and adjusted quarter
-    final yearOffset = (targetQuarter - 1) < 0
-        ? ((targetQuarter - 1) ~/ 4) - 1
-        : (targetQuarter - 1) ~/ 4;
-    final adjustedQuarter = ((targetQuarter - 1) % 4) + 1;
-    final targetYear = now.year + yearOffset;
-
-    // Get months in quarter
-    final firstMonthOfQuarter = (adjustedQuarter - 1) * 3 + 1;
-    final monthsData = <Map<String, dynamic>>[];
-
-    for (int i = 0; i < 3; i++) {
-      final month = firstMonthOfQuarter + i;
-      final monthDate = DateTime(targetYear, month, 1);
-      final isFuture = monthDate.isAfter(DateTime(today.year, today.month, 1));
-
-      // Mock data: Calculate completed prayers for this month
-      int totalCompleted = 0;
-      if (!isFuture) {
-        final lastDayOfMonth = DateTime(targetYear, month + 1, 0).day;
-        final daysToCount =
-            monthDate.month == today.month ? today.day : lastDayOfMonth;
-
-        for (int day = 1; day <= daysToCount; day++) {
-          totalCompleted += (3 + (day % 3)); // Mock: 3-5 prayers per day
-        }
-      }
-
-      monthsData.add({
-        'month': month,
-        'monthName': [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dec'
-        ][month - 1],
-        'totalCompleted': totalCompleted,
-        'isFuture': isFuture,
-        'quarterName': 'Q$adjustedQuarter $targetYear',
-      });
-    }
-
-    return monthsData;
+    // Convert monthly data to format expected by the chart
+    return quarterStats.monthlyData.map((monthStats) {
+      return {
+        'month': monthStats.monthStart.month,
+        'monthName': monthNames[monthStats.monthStart.month - 1],
+        'totalCompleted': monthStats.totalCompleted,
+        'isFuture': monthStats.dailyData.every((day) => day.isFuture),
+        'quarterName': quarterStats.quarterLabel,
+      };
+    }).toList();
   }
 
   bool _canGoNext() {
