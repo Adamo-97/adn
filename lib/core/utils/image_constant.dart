@@ -208,7 +208,5 @@ class ImageConstant {
   // Salah Guide Menu Screen
   // Custom Image View Screen
   static String imgImageNotFound = '${_basePath}image_not_found.png';
-
   // Surah Item Widget Screen
-  static String imgBgRectangel = '${_basePath}img_bg_rectangel.svg';
 }

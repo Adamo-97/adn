@@ -1,95 +1,47 @@
+# Athan & Prayer Times App
 
-# Flutter
+A modern, cross-platform mobile application built with Flutter to provide essential tools and information for Muslims.
 
-[![License: All Rights Reserved](https://img.shields.io/badge/license-All%20Rights%20Reserved-red.svg)](./LICENSE)
+## 🌟 Features
 
-A modern Flutter-based mobile application utilizing the latest mobile development technologies and tools for building responsive cross-platform applications.
+This application is designed to be a comprehensive daily companion for Muslims, helping users practice their faith with the aid of modern technology.
 
-## 📋 Prerequisites
-- Flutter SDK (^3.29.2)
-- Dart SDK
-- Android Studio / VS Code with Flutter extensions
-- Android SDK / Xcode (for iOS development)
-## 🛠️ Installation
+- **Prayer Times & Athan Notifications:**
+  The app provides highly accurate prayer timings based on the user's geographical location. It offers customizable notifications for each of the five daily prayers (Fajr, Dhuhr, Asr, Maghrib, Isha) and Sunrise, ensuring users are reminded of prayer times throughout the day. Users can select from various calculation methods to match their local conventions.
 
-1. Install dependencies:
-```bash
-flutter pub get
-```
+- **Detailed Salah Guide:**
+  A step-by-step guide to performing Salah correctly. This feature is designed for both beginners and those looking to refine their prayer. It breaks down the components of Salah, including positions, recitations, and their meanings, potentially using illustrations and text to guide the user.
 
-2. Run the application:
-```bash
-flutter run
-```
+- **Interactive Prayer Tracker:**
+  To encourage consistency in prayer, the app includes a tracker. Users can log their daily prayers, monitor their progress over time, and view their prayer history. This feature aims to help users build and maintain their habit of praying five times a day, with analytics to visualize their commitment.
+
+- **Nearby Mosque Finder:**
+  Using the device's location services, this feature displays a map with the locations of nearby mosques. Users can get directions, view mosque names, and potentially see information like prayer and Jumu'ah times.
+
+- **Qibla Direction (Coming Soon):**
+  An easy-to-use digital compass that will point users towards the Qibla (the direction of the Kaaba in Mecca), an essential tool for praying from any location worldwide.
+
+- **Digital Quran & Dhikr (Coming Soon):**
+  Direct access to the Holy Quran within the app, allowing users to read and search verses. This will be complemented by a Dhikr (remembrance) section, providing a collection of important supplications and a digital counter to aid in their recitation.
+
 ## 📁 Project Structure
-```
-flutter_app/
-├── android/            # Android-specific configuration
-├── ios/                # iOS-specific configuration
-├── lib/
-│   ├── core/           # Core utilities and services
-│   │   └── utils/      # Utility classes
-│   ├── presentation/   # UI screens and widgets
-│   │   └── splash_screen/ # Splash screen implementation
-│   ├── routes/         # Application routing
-│   ├── theme/          # Theme configuration
-│   ├── widgets/        # Reusable UI components
-│   └── main.dart       # Application entry point
-├── assets/             # Static assets (images, fonts, etc.)
-├── pubspec.yaml        # Project dependencies and configuration
-└── README.md           # Project documentation
-```
-## 🧩 Adding Routes
-To add new routes to the application, update the `lib/routes/app_routes.dart` file:
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:package_name/presentation/home_screen/home_screen.dart';
+The project follows a clean architecture to separate concerns:
+- `lib/presentation/`: Contains all UI-related code, including screens, widgets, and visual elements.
+- `lib/data/`: Contains the business logic, data models, and repositories for fetching data from external APIs.
+- `lib/core/`: Holds shared utilities, constants, and core application setup.
+- `lib/routes/`: Defines the application's navigation routes.
+- `assets/`: Stores all static assets like images, fonts, and mock data.
 
-class AppRoutes {
-  static const String initial = '/';
-  static const String home = '/home';
+## ⚖️ License & Usage
 
-  static Map<String, WidgetBuilder> routes = {
-    initial: (context) => const SplashScreen(),
-    home: (context) => const HomeScreen(),
-    // Add more routes as needed
-  }
-}
-```
-## 🎨 Theming
+**For Educational Use Only**
 
-This project includes a comprehensive theming system with both light and dark themes:
+This project is made publicly available for educational purposes. You are free to clone, study, and modify the code to learn about Flutter development and application architecture.
 
-```dart
-// Access the current theme
-ThemeData get theme => ThemeHelper().themeData();
+**Distribution of this application, in part or in whole, is strictly prohibited.**
 
-// Use colors
-color: theme.colorScheme.primary,
-```
+Please refer to the [LICENSE](LICENSE) file for more details.
 
-## 📱 Responsive Design
-The app is built with responsive design using the SizeUtils:
-
-```dart
-// Example of responsive sizing
-Container(
-  width: 50.h,
-  height: 20.h,
-  child: Text('Responsive Container'),
-)
-```
-## 📦 Deployment
-Build the application for production:
-
-```bash
-# For Android
-flutter build apk --release
-
-# For iOS
-flutter build ios --release
-```
 ---
-
-© 2025 **Adn app / Adam Abdullah** — All Rights Reserved
+© 2025 Adam Abdullah — All Rights Reserved

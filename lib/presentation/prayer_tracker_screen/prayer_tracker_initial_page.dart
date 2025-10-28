@@ -45,10 +45,7 @@ class PrayerTrackerInitialPageState
     final double headerTotalHeight = topInset + headerBodyHeight;
     final double navbarHeight = 76.h; // Bottom navbar height
 
-    // DEBUG: Print layout measurements
-    debugPrint(
-        'DEBUG Layout: topInset=$topInset, headerTotalHeight=$headerTotalHeight, '
-        'navbarHeight=$navbarHeight, gradientHeight=${navbarHeight + 40.h}');
+    // Layout measurements
 
     return ColoredBox(
       color: appTheme.gray_900,
