@@ -224,7 +224,7 @@ class _CustomBottomBarState extends State<CustomBottomBar>
       height: (item.height ?? 30.h),
       width: (item.width ?? 34.h),
       fit: BoxFit.contain,
-      color: isSelected ? goldActive : appTheme.white_A700,
+      color: isSelected ? goldActive : appTheme.whiteA700,
     );
 
     if (!isSelected) {

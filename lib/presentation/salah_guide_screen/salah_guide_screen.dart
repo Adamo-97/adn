@@ -106,7 +106,7 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
         if (categorizedCards.isEmpty) {
           return Center(
             child: CircularProgressIndicator(
-              color: appTheme.white_A700,
+              color: appTheme.whiteA700,
             ),
           );
         }
@@ -153,9 +153,9 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
                       end: Alignment.bottomCenter,
                       stops: const [0.0, 0.4, 0.7, 1.0],
                       colors: [
-                        appTheme.gray_900.withOpacity(0.0),
-                        appTheme.gray_900.withOpacity(0.3),
-                        appTheme.gray_900.withOpacity(0.7),
+                        appTheme.gray_900.withAlpha((0.0 * 255).round()),
+                        appTheme.gray_900.withAlpha((0.3 * 255).round()),
+                        appTheme.gray_900.withAlpha((0.7 * 255).round()),
                         appTheme.gray_900,
                       ],
                     ),
@@ -201,7 +201,7 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
                 Text(
                   category.title,
                   style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
-                    color: appTheme.white_A700,
+                    color: appTheme.whiteA700,
                     fontSize: 18.fSize,
                     fontWeight: FontWeight.w600,
                   ),

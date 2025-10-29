@@ -45,10 +45,10 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
       height: 280.h,
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        color: appTheme.gray_700.withOpacity(0.2),
+        color: appTheme.gray_700.withAlpha((0.2 * 255).round()),
         borderRadius: BorderRadius.circular(12.h),
         border: Border.all(
-          color: appTheme.gray_700.withOpacity(0.3),
+          color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
           width: 1.h,
         ),
       ),
@@ -67,14 +67,14 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
               Text(
                 dateRange,
                 style: TextStyleHelper.instance.body12SemiBoldPoppins
-                    .copyWith(color: appTheme.white_A700),
+                    .copyWith(color: appTheme.whiteA700),
               ),
               IconButton(
                 icon: Icon(
                   Icons.chevron_right,
                   color: _weekOffset < 0
                       ? appTheme.gray_700
-                      : appTheme.gray_700.withOpacity(0.3),
+                      : appTheme.gray_700.withAlpha((0.3 * 255).round()),
                 ),
                 onPressed: _weekOffset < 0
                     ? () => setState(() {
@@ -142,7 +142,7 @@ class WeeklyDetailPainter extends CustomPainter {
 
     // Draw grid and Y-axis
     final gridPaint = Paint()
-      ..color = theme.gray_700.withOpacity(0.2)
+      ..color = theme.gray_700.withAlpha((0.2 * 255).round())
       ..strokeWidth = 1;
 
     for (int i = 0; i <= maxValue; i++) {
@@ -154,7 +154,7 @@ class WeeklyDetailPainter extends CustomPainter {
         text: TextSpan(
           text: '$i',
           style: TextStyle(
-            color: theme.white_A700.withOpacity(0.4),
+            color: theme.whiteA700.withAlpha((0.4 * 255).round()),
             fontSize: 9,
             fontWeight: FontWeight.w400,
           ),
@@ -182,7 +182,7 @@ class WeeklyDetailPainter extends CustomPainter {
       Color barColor = isSelected
           ? theme.orange_200
           : isToday
-              ? theme.orange_200.withOpacity(0.7)
+              ? theme.orange_200.withAlpha((0.7 * 255).round())
               : theme.gray_700;
 
       final barRect = RRect.fromRectAndRadius(
@@ -198,7 +198,7 @@ class WeeklyDetailPainter extends CustomPainter {
         text: TextSpan(
           text: dayName,
           style: TextStyle(
-            color: theme.white_A700.withOpacity(0.6),
+            color: theme.whiteA700.withAlpha((0.6 * 255).round()),
             fontSize: 10,
             fontWeight: FontWeight.w400,
           ),

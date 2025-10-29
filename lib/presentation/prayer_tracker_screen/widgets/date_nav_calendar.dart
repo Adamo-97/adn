@@ -17,7 +17,7 @@ class DateNavCalendar extends ConsumerWidget {
     // label text + color depend on open/closed
     final isOpen = state.calendarOpen;
     final labelText = isOpen ? state.monthLabel : state.navLabel;
-    final labelColor = isOpen ? appTheme.orange_200 : appTheme.white_A700;
+    final labelColor = isOpen ? appTheme.orange_200 : appTheme.whiteA700;
 
     // 7 equal columns
     final Map<int, TableColumnWidth> cols = {
@@ -89,7 +89,7 @@ class DateNavCalendar extends ConsumerWidget {
                   key: const ValueKey('cal-on'),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: appTheme.gray_700.withOpacity(0.3),
+                      color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
                       width: 1.h,
                     ),
                     borderRadius: BorderRadius.circular(10.h),
@@ -144,7 +144,7 @@ class DateNavCalendar extends ConsumerWidget {
                       // Divider under header
                       Container(
                         height: 1.h,
-                        color: appTheme.gray_700.withOpacity(0.3),
+                        color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
                       ),
 
                       // Grid rows (bottom rounded) — symmetric 6x7, no empty cells
@@ -188,8 +188,9 @@ class DateNavCalendar extends ConsumerWidget {
 
                                   // color for day number - muted gray for out-of-month
                                   final dayColor = isOutOfMonth
-                                      ? appTheme.white_A700.withOpacity(0.25)
-                                      : appTheme.white_A700;
+                                      ? appTheme.whiteA700
+                                          .withAlpha((0.25 * 255).round())
+                                      : appTheme.whiteA700;
 
                                   final textStyle = TextStyleHelper
                                       .instance.body12SemiBoldPoppins
@@ -203,7 +204,8 @@ class DateNavCalendar extends ConsumerWidget {
                                             height: 38.h,
                                             decoration: BoxDecoration(
                                               color: appTheme.orange_200
-                                                  .withOpacity(0.15),
+                                                  .withAlpha(
+                                                      (0.15 * 255).round()),
                                               border: Border.all(
                                                 color: appTheme.orange_200,
                                                 width: 1.5.h,

@@ -91,9 +91,9 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
                       end: Alignment.bottomCenter,
                       stops: const [0.0, 0.4, 0.7, 1.0],
                       colors: [
-                        appTheme.gray_900.withOpacity(0.0),
-                        appTheme.gray_900.withOpacity(0.3),
-                        appTheme.gray_900.withOpacity(0.7),
+                        appTheme.gray_900.withAlpha(0),
+                        appTheme.gray_900.withAlpha((0.3 * 255).round()),
+                        appTheme.gray_900.withAlpha((0.7 * 255).round()),
                         appTheme.gray_900,
                       ],
                     ),

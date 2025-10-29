@@ -80,7 +80,7 @@ class _PhoneInstructions extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyleHelper.instance.label10LightPoppins
-                .copyWith(color: appTheme.white_A700),
+                .copyWith(color: appTheme.whiteA700),
           ),
         ),
       ],

@@ -42,13 +42,13 @@ class _FullAnalyticsScreenState extends ConsumerState<FullAnalyticsScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: appTheme.white_A700),
+          icon: Icon(Icons.arrow_back, color: appTheme.whiteA700),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
           _getTitle(),
           style: TextStyleHelper.instance.body14SemiBoldPoppins
-              .copyWith(color: appTheme.white_A700),
+              .copyWith(color: appTheme.whiteA700),
         ),
         centerTitle: true,
       ),

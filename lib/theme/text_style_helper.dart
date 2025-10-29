@@ -25,17 +25,17 @@ class TextStyleHelper {
         fontSize: 20.fSize,
         fontWeight: FontWeight.w700,
         fontFamily: 'Poppins',
-        color: appTheme.white_A700,
+        color: appTheme.whiteA700,
       );
 
   TextStyle get title18SemiBoldPoppins => TextStyle(
         fontSize: 18.fSize,
         fontWeight: FontWeight.w600,
         fontFamily: 'Poppins',
-        color: appTheme.white_A700,
+        color: appTheme.whiteA700,
       );
 
-  TextStyle get title17RegularSura_names => TextStyle(
+  TextStyle get title17RegularSuraNames => TextStyle(
         fontSize: 17.fSize,
         fontWeight: FontWeight.w400,
         fontFamily: 'sura_names',
@@ -55,28 +55,28 @@ class TextStyleHelper {
         fontSize: 15.fSize,
         fontWeight: FontWeight.w500,
         fontFamily: 'Noto Kufi Arabic',
-        color: appTheme.white_A700,
+        color: appTheme.whiteA700,
       );
 
   TextStyle get body14SemiBoldPoppins => TextStyle(
         fontSize: 14.fSize,
         fontWeight: FontWeight.w600,
         fontFamily: 'Poppins',
-        color: appTheme.white_A700,
+        color: appTheme.whiteA700,
       );
 
   TextStyle get body12RegularPoppins => TextStyle(
         fontSize: 12.fSize,
         fontWeight: FontWeight.w400,
         fontFamily: 'Poppins',
-        color: appTheme.white_A700,
+        color: appTheme.whiteA700,
       );
 
   TextStyle get body12SemiBoldPoppins => TextStyle(
         fontSize: 12.fSize,
         fontWeight: FontWeight.w600,
         fontFamily: 'Poppins',
-        color: appTheme.white_A700,
+        color: appTheme.whiteA700,
       );
 
   // Label Styles
@@ -86,6 +86,6 @@ class TextStyleHelper {
         fontSize: 10.fSize,
         fontWeight: FontWeight.w300,
         fontFamily: 'Poppins',
-        color: appTheme.white_A700,
+        color: appTheme.whiteA700,
       );
 }

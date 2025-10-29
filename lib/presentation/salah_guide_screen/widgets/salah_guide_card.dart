@@ -24,15 +24,15 @@ class SalahGuideCard extends StatelessWidget {
         width: 150.h,
         margin: EdgeInsets.only(right: 12.h),
         decoration: BoxDecoration(
-          color: accentColor.withOpacity(0.15),
+          color: accentColor.withAlpha((0.15 * 255).round()),
           borderRadius: BorderRadius.circular(16.h),
           border: Border.all(
-            color: accentColor.withOpacity(0.5),
+            color: accentColor.withAlpha((0.5 * 255).round()),
             width: 1.5,
           ),
           boxShadow: [
             BoxShadow(
-              color: accentColor.withOpacity(0.3),
+              color: accentColor.withAlpha((0.3 * 255).round()),
               blurRadius: 8,
               offset: Offset(0, 0),
               spreadRadius: -2,
@@ -50,8 +50,8 @@ class SalahGuideCard extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      appTheme.gray_900.withOpacity(0.3),
-                      appTheme.gray_900.withOpacity(0.6),
+                      appTheme.gray_900.withAlpha((0.3 * 255).round()),
+                      appTheme.gray_900.withAlpha((0.6 * 255).round()),
                     ],
                   ),
                 ),
@@ -68,10 +68,10 @@ class SalahGuideCard extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(12.h),
                     decoration: BoxDecoration(
-                      color: appTheme.gray_900.withOpacity(0.4),
+                      color: appTheme.gray_900.withAlpha((0.4 * 255).round()),
                       borderRadius: BorderRadius.circular(12.h),
                       border: Border.all(
-                        color: accentColor.withOpacity(0.3),
+                        color: accentColor.withAlpha((0.3 * 255).round()),
                         width: 1,
                       ),
                     ),
@@ -79,7 +79,7 @@ class SalahGuideCard extends StatelessWidget {
                       imagePath: card.iconPath ?? '',
                       height: 32.h,
                       width: 32.h,
-                      color: appTheme.white_A700,
+                      color: appTheme.whiteA700,
                     ),
                   ),
 
@@ -92,7 +92,7 @@ class SalahGuideCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style:
                         TextStyleHelper.instance.body15RegularPoppins.copyWith(
-                      color: appTheme.white_A700,
+                      color: appTheme.whiteA700,
                       fontSize: 14.fSize,
                       fontWeight: FontWeight.w500,
                       height: 1.3,

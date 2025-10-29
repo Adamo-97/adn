@@ -31,9 +31,12 @@ class _CardRow extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // Colors per your spec
     const nonCurrentBg = Color(0x1A5C6248); // 10% alpha on #5C6248
-    final nameColor = item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
-    final timeColor = item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
-    final decorationColor = item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
+    final nameColor =
+        item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
+    final timeColor =
+        item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
+    final decorationColor =
+        item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
     final bgColor = item.isCurrent ? appTheme.gray_700 : nonCurrentBg;
 
     return Opacity(
@@ -59,11 +62,12 @@ class _CardRow extends ConsumerWidget {
                 enabled: !item.isAfterCurrent,
                 size: 24.h, // icon visual size
                 // colors match your current vs non-current scheme
-                fillColor: item.isCurrent ? appTheme.orange_200 : appTheme.gray_700,
+                fillColor:
+                    item.isCurrent ? appTheme.orange_200 : appTheme.gray_700,
                 borderColor: item.isCurrent
                     ? appTheme.orange_200
-                    : appTheme.white_A700.withValues(alpha: 0.5),
-                checkColor: appTheme.white_A700, // contrast on orange fill
+                    : appTheme.whiteA700.withValues(alpha: 0.5),
+                checkColor: appTheme.whiteA700, // contrast on orange fill
               ),
             ),
             SizedBox(width: 10.h),
@@ -75,7 +79,9 @@ class _CardRow extends ConsumerWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
                   color: nameColor,
-                  decoration: item.isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+                  decoration: item.isCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
                   decorationColor: decorationColor,
                   decorationThickness: 2,
                 ),
@@ -108,10 +114,10 @@ class _CardRow extends ConsumerWidget {
 class _RoundCheckbox extends StatelessWidget {
   final bool checked;
   final bool enabled;
-  final double size;          // visual circle diameter (was 24.h)
-  final Color fillColor;      // used when checked
-  final Color borderColor;    // outline color
-  final Color checkColor;     // tick color
+  final double size; // visual circle diameter (was 24.h)
+  final Color fillColor; // used when checked
+  final Color borderColor; // outline color
+  final Color checkColor; // tick color
 
   const _RoundCheckbox({
     required this.checked,

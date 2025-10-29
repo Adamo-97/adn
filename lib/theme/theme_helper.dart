@@ -48,13 +48,13 @@ class ColorSchemes {
 
 class LightCodeColors {
   // App Colors
-  Color get white_A700 => Color(0xFFFFFFFF);
+  Color get whiteA700 => Color(0xFFFFFFFF);
   Color get gray_700 => Color(0xFF5C6248);
   Color get gray_500 => Color(0xFF8F9B87);
   Color get orange_200 => Color(0xFFE0C389);
   Color get gray_900 => Color(0xFF212121);
   Color get black_900_19 => Color(0x19000000);
-  Color get blue_gray_700 => Color(0xFF525252);
+  Color get blueGray700 => Color(0xFF525252);
   Color get gray_900_01 => Color(0xFF121111);
   Color get gray_600 => Color(0xFF6E6E6E);
   Color get gray_100 => Color(0xFFF6F6F6);

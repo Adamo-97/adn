@@ -132,7 +132,7 @@ class _MonthlyChartState extends ConsumerState<_MonthlyChart> {
               Text(
                 dateRange,
                 style: TextStyleHelper.instance.body12SemiBoldPoppins
-                    .copyWith(color: appTheme.white_A700),
+                    .copyWith(color: appTheme.whiteA700),
               ),
               GestureDetector(
                 onTap: _canGoNext() ? _nextMonth : null,
@@ -140,7 +140,7 @@ class _MonthlyChartState extends ConsumerState<_MonthlyChart> {
                   Icons.chevron_right,
                   color: _canGoNext()
                       ? appTheme.gray_700
-                      : appTheme.gray_700.withOpacity(0.3),
+                      : appTheme.gray_700.withAlpha((0.3 * 255).round()),
                   size: 24.h,
                 ),
               ),
@@ -215,7 +215,7 @@ class _MonthlyBarChartPainter extends CustomPainter {
 
     // Draw horizontal grid lines (dotted) and Y-axis values
     final gridPaint = Paint()
-      ..color = theme.gray_700.withOpacity(0.2)
+      ..color = theme.gray_700.withAlpha((0.2 * 255).round())
       ..strokeWidth = 1;
 
     for (int i = 0; i <= 5; i++) {
@@ -229,7 +229,7 @@ class _MonthlyBarChartPainter extends CustomPainter {
         text: TextSpan(
           text: '$value',
           style: TextStyle(
-            color: theme.white_A700.withOpacity(0.4),
+            color: theme.whiteA700.withAlpha((0.4 * 255).round()),
             fontSize: 9,
             fontWeight: FontWeight.w400,
           ),
@@ -270,7 +270,7 @@ class _MonthlyBarChartPainter extends CustomPainter {
         end: Alignment.topCenter,
         colors: [
           barColor,
-          barColor.withOpacity(0.7),
+          barColor.withAlpha((0.7 * 255).round()),
         ],
       );
 
@@ -285,7 +285,7 @@ class _MonthlyBarChartPainter extends CustomPainter {
         text: TextSpan(
           text: weekLabel,
           style: TextStyle(
-            color: theme.white_A700.withOpacity(0.6),
+            color: theme.whiteA700.withAlpha((0.6 * 255).round()),
             fontSize: 10,
             fontWeight: FontWeight.w400,
           ),
@@ -371,10 +371,10 @@ class _FullAnalyticsButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 8.h),
         decoration: BoxDecoration(
-          color: appTheme.gray_700.withOpacity(0.3),
+          color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
           borderRadius: BorderRadius.circular(8.h),
           border: Border.all(
-            color: appTheme.gray_700.withOpacity(0.5),
+            color: appTheme.gray_700.withAlpha((0.5 * 255).round()),
             width: 1.h,
           ),
         ),
@@ -384,12 +384,12 @@ class _FullAnalyticsButton extends StatelessWidget {
             Text(
               'Full Analytics',
               style: TextStyleHelper.instance.label10LightPoppins
-                  .copyWith(color: appTheme.white_A700),
+                  .copyWith(color: appTheme.whiteA700),
             ),
             SizedBox(width: 6.h),
             Icon(
               Icons.arrow_forward,
-              color: appTheme.white_A700,
+              color: appTheme.whiteA700,
               size: 12.h,
             ),
           ],

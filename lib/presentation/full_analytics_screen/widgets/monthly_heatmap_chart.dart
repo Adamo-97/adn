@@ -75,10 +75,10 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
     return Container(
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        color: appTheme.gray_700.withOpacity(0.2),
+        color: appTheme.gray_700.withAlpha((0.2 * 255).round()),
         borderRadius: BorderRadius.circular(12.h),
         border: Border.all(
-          color: appTheme.gray_700.withOpacity(0.3),
+          color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
           width: 1.h,
         ),
       ),
@@ -92,9 +92,8 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
               children: [
                 IconButton(
                   icon: Icon(Icons.chevron_left,
-                      color: _canGoPrev()
-                          ? appTheme.white_A700
-                          : appTheme.gray_700,
+                      color:
+                          _canGoPrev() ? appTheme.whiteA700 : appTheme.gray_700,
                       size: 20.h),
                   onPressed: _canGoPrev() ? _prevMonth : null,
                   padding: EdgeInsets.zero,
@@ -103,13 +102,12 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
                 Text(
                   _getMonthLabel(),
                   style: TextStyleHelper.instance.body14SemiBoldPoppins
-                      .copyWith(color: appTheme.white_A700),
+                      .copyWith(color: appTheme.whiteA700),
                 ),
                 IconButton(
                   icon: Icon(Icons.chevron_right,
-                      color: _canGoNext()
-                          ? appTheme.white_A700
-                          : appTheme.gray_700,
+                      color:
+                          _canGoNext() ? appTheme.whiteA700 : appTheme.gray_700,
                       size: 20.h),
                   onPressed: _canGoNext() ? _nextMonth : null,
                   padding: EdgeInsets.zero,
@@ -123,7 +121,7 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
               child: Text(
                 _getMonthLabel(),
                 style: TextStyleHelper.instance.body14SemiBoldPoppins
-                    .copyWith(color: appTheme.white_A700),
+                    .copyWith(color: appTheme.whiteA700),
               ),
             ),
           SizedBox(height: 16.h),
@@ -138,7 +136,8 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
                         textAlign: TextAlign.center,
                         style: TextStyleHelper.instance.label10LightPoppins
                             .copyWith(
-                                color: appTheme.white_A700.withOpacity(0.5)),
+                                color: appTheme.whiteA700
+                                    .withAlpha((0.5 * 255).round())),
                       ),
                     ))
                 .toList(),
@@ -182,8 +181,8 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
             children: [
               Text(
                 'Less',
-                style: TextStyleHelper.instance.label10LightPoppins
-                    .copyWith(color: appTheme.white_A700.withOpacity(0.5)),
+                style: TextStyleHelper.instance.label10LightPoppins.copyWith(
+                    color: appTheme.whiteA700.withAlpha((0.5 * 255).round())),
               ),
               SizedBox(width: 8.h),
               ...List.generate(
@@ -201,8 +200,8 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
               SizedBox(width: 8.h),
               Text(
                 'More',
-                style: TextStyleHelper.instance.label10LightPoppins
-                    .copyWith(color: appTheme.white_A700.withOpacity(0.5)),
+                style: TextStyleHelper.instance.label10LightPoppins.copyWith(
+                    color: appTheme.whiteA700.withAlpha((0.5 * 255).round())),
               ),
             ],
           ),
@@ -212,11 +211,11 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
   }
 
   Color _getHeatmapColor(int count, LightCodeColors theme) {
-    if (count == 0) return theme.gray_700.withOpacity(0.3);
-    if (count == 1) return theme.orange_200.withOpacity(0.2);
-    if (count == 2) return theme.orange_200.withOpacity(0.4);
-    if (count == 3) return theme.orange_200.withOpacity(0.6);
-    if (count == 4) return theme.orange_200.withOpacity(0.8);
+    if (count == 0) return theme.gray_700.withAlpha((0.3 * 255).round());
+    if (count == 1) return theme.orange_200.withAlpha((0.2 * 255).round());
+    if (count == 2) return theme.orange_200.withAlpha((0.4 * 255).round());
+    if (count == 3) return theme.orange_200.withAlpha((0.6 * 255).round());
+    if (count == 4) return theme.orange_200.withAlpha((0.8 * 255).round());
     return theme.orange_200; // 5 prayers
   }
 }
@@ -263,7 +262,7 @@ class MonthlyHeatmapPainter extends CustomPainter {
       // Today indicator (white border)
       if (isToday) {
         final todayPaint = Paint()
-          ..color = theme.white_A700
+          ..color = theme.whiteA700
           ..style = PaintingStyle.stroke
           ..strokeWidth = 2;
         canvas.drawRRect(cellRect, todayPaint);
@@ -282,7 +281,7 @@ class MonthlyHeatmapPainter extends CustomPainter {
           text: TextSpan(
             text: '$count',
             style: TextStyle(
-              color: theme.white_A700,
+              color: theme.whiteA700,
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -302,11 +301,11 @@ class MonthlyHeatmapPainter extends CustomPainter {
   }
 
   Color _getHeatmapColor(int count, LightCodeColors theme) {
-    if (count == 0) return theme.gray_700.withOpacity(0.3);
-    if (count == 1) return theme.orange_200.withOpacity(0.2);
-    if (count == 2) return theme.orange_200.withOpacity(0.4);
-    if (count == 3) return theme.orange_200.withOpacity(0.6);
-    if (count == 4) return theme.orange_200.withOpacity(0.8);
+    if (count == 0) return theme.gray_700.withAlpha((0.3 * 255).round());
+    if (count == 1) return theme.orange_200.withAlpha((0.2 * 255).round());
+    if (count == 2) return theme.orange_200.withAlpha((0.4 * 255).round());
+    if (count == 3) return theme.orange_200.withAlpha((0.6 * 255).round());
+    if (count == 4) return theme.orange_200.withAlpha((0.8 * 255).round());
     return theme.orange_200; // 5 prayers
   }
 

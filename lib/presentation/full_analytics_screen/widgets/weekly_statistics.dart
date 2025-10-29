@@ -99,10 +99,10 @@ class StatCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        color: appTheme.gray_700.withOpacity(0.2),
+        color: appTheme.gray_700.withAlpha((0.2 * 255).round()),
         borderRadius: BorderRadius.circular(12.h),
         border: Border.all(
-          color: appTheme.gray_700.withOpacity(0.3),
+          color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
           width: 1.h,
         ),
       ),
@@ -111,8 +111,8 @@ class StatCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyleHelper.instance.label10LightPoppins
-                .copyWith(color: appTheme.white_A700.withOpacity(0.6)),
+            style: TextStyleHelper.instance.label10LightPoppins.copyWith(
+                color: appTheme.whiteA700.withAlpha((0.6 * 255).round())),
           ),
           SizedBox(height: 8.h),
           Text(
@@ -123,8 +123,8 @@ class StatCard extends StatelessWidget {
           SizedBox(height: 4.h),
           Text(
             subtitle,
-            style: TextStyleHelper.instance.label10LightPoppins
-                .copyWith(color: appTheme.white_A700.withOpacity(0.4)),
+            style: TextStyleHelper.instance.label10LightPoppins.copyWith(
+                color: appTheme.whiteA700.withAlpha((0.4 * 255).round())),
           ),
         ],
       ),

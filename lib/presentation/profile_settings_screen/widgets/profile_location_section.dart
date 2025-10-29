@@ -33,7 +33,7 @@ class ProfileLocationSection extends ConsumerWidget {
                   child: Text(
                     'Type your country...',
                     style: TextStyleHelper.instance.body15RegularPoppins
-                        .copyWith(color: appTheme.white_A700),
+                        .copyWith(color: appTheme.whiteA700),
                   ),
                 ),
               ),

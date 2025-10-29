@@ -69,10 +69,10 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
     return Container(
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        color: appTheme.gray_700.withOpacity(0.2),
+        color: appTheme.gray_700.withAlpha((0.2 * 255).round()),
         borderRadius: BorderRadius.circular(12.h),
         border: Border.all(
-          color: appTheme.gray_700.withOpacity(0.3),
+          color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
           width: 1.h,
         ),
       ),
@@ -86,9 +86,8 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
               children: [
                 IconButton(
                   icon: Icon(Icons.chevron_left,
-                      color: _canGoPrev()
-                          ? appTheme.white_A700
-                          : appTheme.gray_700,
+                      color:
+                          _canGoPrev() ? appTheme.whiteA700 : appTheme.gray_700,
                       size: 20.h),
                   onPressed: _canGoPrev() ? _prevQuarter : null,
                   padding: EdgeInsets.zero,
@@ -97,13 +96,12 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
                 Text(
                   _getQuarterLabel(),
                   style: TextStyleHelper.instance.body14SemiBoldPoppins
-                      .copyWith(color: appTheme.white_A700),
+                      .copyWith(color: appTheme.whiteA700),
                 ),
                 IconButton(
                   icon: Icon(Icons.chevron_right,
-                      color: _canGoNext()
-                          ? appTheme.white_A700
-                          : appTheme.gray_700,
+                      color:
+                          _canGoNext() ? appTheme.whiteA700 : appTheme.gray_700,
                       size: 20.h),
                   onPressed: _canGoNext() ? _nextQuarter : null,
                   padding: EdgeInsets.zero,
@@ -117,15 +115,15 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
               child: Text(
                 _getQuarterLabel(),
                 style: TextStyleHelper.instance.body14SemiBoldPoppins
-                    .copyWith(color: appTheme.white_A700),
+                    .copyWith(color: appTheme.whiteA700),
               ),
             ),
           SizedBox(height: 16.h),
           // Trend description
           Text(
             'Weekly average prayer completion over 90 days',
-            style: TextStyleHelper.instance.label10LightPoppins
-                .copyWith(color: appTheme.white_A700.withOpacity(0.6)),
+            style: TextStyleHelper.instance.label10LightPoppins.copyWith(
+                color: appTheme.whiteA700.withAlpha((0.6 * 255).round())),
           ),
           SizedBox(height: 16.h),
           // Line chart
@@ -186,7 +184,7 @@ class NinetyDayTrendPainter extends CustomPainter {
 
     // Draw grid and Y-axis
     final gridPaint = Paint()
-      ..color = theme.gray_700.withOpacity(0.2)
+      ..color = theme.gray_700.withAlpha((0.2 * 255).round())
       ..strokeWidth = 1;
 
     for (int i = 0; i <= 5; i++) {
@@ -198,7 +196,7 @@ class NinetyDayTrendPainter extends CustomPainter {
         text: TextSpan(
           text: '$i',
           style: TextStyle(
-            color: theme.white_A700.withOpacity(0.4),
+            color: theme.whiteA700.withAlpha((0.4 * 255).round()),
             fontSize: 9,
             fontWeight: FontWeight.w400,
           ),
@@ -238,8 +236,8 @@ class NinetyDayTrendPainter extends CustomPainter {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
-          theme.orange_200.withOpacity(0.3),
-          theme.orange_200.withOpacity(0.0),
+          theme.orange_200.withAlpha((0.3 * 255).round()),
+          theme.orange_200.withAlpha((0.0 * 255).round()),
         ],
       ).createShader(Rect.fromLTWH(0, 0, size.width, chartHeight));
 
@@ -265,8 +263,9 @@ class NinetyDayTrendPainter extends CustomPainter {
 
       // Inner circle
       final innerCirclePaint = Paint()
-        ..color =
-            isSelected ? theme.orange_200 : theme.orange_200.withOpacity(0.8)
+        ..color = isSelected
+            ? theme.orange_200
+            : theme.orange_200.withAlpha((0.8 * 255).round())
         ..style = PaintingStyle.fill;
       canvas.drawCircle(point, isSelected ? 6 : 3, innerCirclePaint);
 
@@ -277,7 +276,7 @@ class NinetyDayTrendPainter extends CustomPainter {
           text: TextSpan(
             text: week,
             style: TextStyle(
-              color: theme.white_A700.withOpacity(0.5),
+              color: theme.whiteA700.withAlpha((0.5 * 255).round()),
               fontSize: 9,
               fontWeight: FontWeight.w400,
             ),

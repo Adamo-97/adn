@@ -26,9 +26,10 @@ class PurificationItemWidget extends StatelessWidget {
         final iconSize = (innerH * 0.62).clamp(24.h, 30.h).toDouble();
 
         // Always show one line. Fallback to secondary if primary is empty.
-        final title = (purificationItem.primaryTitle?.trim().isNotEmpty ?? false)
-            ? purificationItem.primaryTitle!.trim()
-            : (purificationItem.secondaryTitle ?? '').trim();
+        final title =
+            (purificationItem.primaryTitle?.trim().isNotEmpty ?? false)
+                ? purificationItem.primaryTitle!.trim()
+                : (purificationItem.secondaryTitle ?? '').trim();
 
         return Container(
           width: double.maxFinite,
@@ -39,7 +40,8 @@ class PurificationItemWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: appTheme.gray_500, // your bg
             borderRadius: BorderRadius.circular(12.h),
-            border: Border.all(color: appTheme.gray_700, width: 3.h), // your border
+            border:
+                Border.all(color: appTheme.gray_700, width: 3.h), // your border
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,10 +54,11 @@ class PurificationItemWidget extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
-                    style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
+                    style:
+                        TextStyleHelper.instance.body15RegularPoppins.copyWith(
                       fontSize: 15.0,
                       height: 1.10,
-                      color: appTheme.white_A700, // ✅ white text
+                      color: appTheme.whiteA700, // ✅ white text
                     ),
                   ),
                 ),

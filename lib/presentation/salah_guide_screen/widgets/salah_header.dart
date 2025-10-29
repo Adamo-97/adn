@@ -75,7 +75,7 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
         color: appTheme.gray_900,
         border: Border(
           bottom: BorderSide(
-            color: appTheme.gray_700.withOpacity(0.3),
+            color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
             width: 1,
           ),
         ),
@@ -87,7 +87,7 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
           Text(
             widget.title,
             style: TextStyleHelper.instance.title20BoldPoppins.copyWith(
-              color: appTheme.white_A700,
+              color: appTheme.whiteA700,
               fontSize: 22.fSize,
               fontWeight: FontWeight.w700,
             ),
@@ -107,7 +107,7 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
             child: Container(
               height: 48.h,
               decoration: BoxDecoration(
-                color: appTheme.gray_700.withOpacity(0.3),
+                color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
                 borderRadius: BorderRadius.circular(12.h),
               ),
               padding: EdgeInsets.symmetric(horizontal: 14.h),
@@ -133,8 +133,8 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
                         style: TextStyleHelper.instance.body15RegularPoppins
                             .copyWith(
                           color: _exceeded
-                              ? appTheme.white_A700
-                              : appTheme.white_A700,
+                              ? appTheme.whiteA700
+                              : appTheme.whiteA700,
                         ),
                         decoration: InputDecoration(
                           isDense: true,

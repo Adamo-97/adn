@@ -35,7 +35,7 @@ class MosqueCard extends StatelessWidget {
           border: Border.all(
             color: isExpanded
                 ? appTheme.orange_200 // Golden stroke when expanded
-                : appTheme.gray_700.withOpacity(0.3),
+                : appTheme.gray_700.withAlpha((0.3 * 255).round()),
             width: 1,
           ),
         ),
@@ -57,7 +57,7 @@ class MosqueCard extends StatelessWidget {
                     border: Border.all(
                       color: isExpanded
                           ? appTheme.orange_200 // Gold border when expanded
-                          : appTheme.gray_700.withOpacity(0.5),
+                          : appTheme.gray_700.withAlpha((0.5 * 255).round()),
                       width: 1,
                     ),
                   ),
@@ -75,7 +75,8 @@ class MosqueCard extends StatelessWidget {
                           child: Text(
                             'No Image',
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color: appTheme.white_A700.withOpacity(0.5),
+                              color: appTheme.whiteA700
+                                  .withAlpha((0.5 * 255).round()),
                               fontSize: 7.fSize,
                               fontWeight: FontWeight.w300,
                             ),
@@ -95,7 +96,7 @@ class MosqueCard extends StatelessWidget {
                       Text(
                         mosque.name,
                         style: theme.textTheme.titleMedium?.copyWith(
-                          color: appTheme.white_A700,
+                          color: appTheme.whiteA700,
                           fontWeight: FontWeight.w600,
                           fontSize: 18.fSize,
                           letterSpacing: -0.23,
@@ -107,7 +108,8 @@ class MosqueCard extends StatelessWidget {
                       Text(
                         mosque.address,
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: appTheme.white_A700.withOpacity(0.7),
+                          color:
+                              appTheme.whiteA700.withAlpha((0.7 * 255).round()),
                           fontWeight: FontWeight.w300,
                           fontSize: 10.fSize,
                         ),
@@ -136,7 +138,7 @@ class MosqueCard extends StatelessWidget {
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: isExpanded
                             ? appTheme.orange_200
-                            : appTheme.white_A700.withOpacity(0.7),
+                            : appTheme.whiteA700.withAlpha((0.7 * 255).round()),
                         fontWeight: FontWeight.w300,
                         fontSize: 7.fSize,
                         letterSpacing: -0.39,
@@ -222,7 +224,7 @@ class MosqueCard extends StatelessWidget {
           color: appTheme.gray_900,
           borderRadius: BorderRadius.circular(6.h),
           border: Border.all(
-            color: appTheme.orange_200.withOpacity(0.3),
+            color: appTheme.orange_200.withAlpha((0.3 * 255).round()),
             width: 1,
           ),
         ),
@@ -238,7 +240,7 @@ class MosqueCard extends StatelessWidget {
             Text(
               label,
               style: theme.textTheme.bodySmall?.copyWith(
-                color: appTheme.white_A700,
+                color: appTheme.whiteA700,
                 fontSize: 10.fSize,
                 fontWeight: FontWeight.w400,
               ),

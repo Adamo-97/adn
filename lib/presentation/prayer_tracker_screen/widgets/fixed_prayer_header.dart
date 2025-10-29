@@ -53,7 +53,7 @@ class FixedPrayerHeader extends ConsumerWidget {
                       Text(
                         m.nextPrayer,
                         style: TextStyleHelper.instance.body15RegularPoppins
-                            .copyWith(color: appTheme.white_A700),
+                            .copyWith(color: appTheme.whiteA700),
                       ),
                       SizedBox(height: 8.h),
                       Row(

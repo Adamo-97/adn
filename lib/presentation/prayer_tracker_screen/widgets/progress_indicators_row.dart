@@ -4,8 +4,8 @@ import 'package:adam_s_application/widgets/custom_text_field_with_icon.dart';
 
 class ProgressColors {
   final Color completed; // gold when used with filled bg
-  final Color current;   // keep your existing
-  final Color upcoming;  // white
+  final Color current; // keep your existing
+  final Color upcoming; // white
   const ProgressColors({
     required this.completed,
     required this.current,
@@ -20,10 +20,10 @@ class ProgressIndicatorsRow extends StatelessWidget {
   final int completedCount;
   final int totalFard;
 
-  final bool filled;                   // wrap in a bg container
-  final Color? backgroundColor;        // defaults to olive (your theme token)
-  final double radius;                 // card radius
-  final EdgeInsets? cardPadding;       // inner padding of the card
+  final bool filled; // wrap in a bg container
+  final Color? backgroundColor; // defaults to olive (your theme token)
+  final double radius; // card radius
+  final EdgeInsets? cardPadding; // inner padding of the card
 
   final bool fullBleed;
 
@@ -35,30 +35,33 @@ class ProgressIndicatorsRow extends StatelessWidget {
     this.totalFard = 5,
     this.filled = false,
     this.backgroundColor,
-    this.radius = 20,          // will be scaled with .h
-    this.cardPadding,          // default provided below
+    this.radius = 20, // will be scaled with .h
+    this.cardPadding, // default provided below
     this.fullBleed = false,
   });
 
   Color _map(String s) {
     switch (s) {
-      case 'completed': return colors.completed; // gold
-      case 'current':   return colors.current;   // keep as-is
-      default:          return colors.upcoming;  // white
+      case 'completed':
+        return colors.completed; // gold
+      case 'current':
+        return colors.current; // keep as-is
+      default:
+        return colors.upcoming; // white
     }
   }
 
   @override
   Widget build(BuildContext context) {
     Widget bar(Color c) => Expanded(
-      child: Container(
-        height: 8.h,
-        decoration: BoxDecoration(
-          color: c,
-          borderRadius: BorderRadius.circular(4.h),
-        ),
-      ),
-    );
+          child: Container(
+            height: 8.h,
+            decoration: BoxDecoration(
+              color: c,
+              borderRadius: BorderRadius.circular(4.h),
+            ),
+          ),
+        );
 
     // Content (bars + counter)
     final content = Column(
@@ -86,7 +89,7 @@ class ProgressIndicatorsRow extends StatelessWidget {
               leftIcon: ImageConstant.imgCheck,
               hintText: '$completedCount/$totalFard prayers completed today.',
               textStyle: TextStyleHelper.instance.body15RegularPoppins
-                  .copyWith(color: appTheme.white_A700),
+                  .copyWith(color: appTheme.whiteA700),
             ),
           ),
         ),

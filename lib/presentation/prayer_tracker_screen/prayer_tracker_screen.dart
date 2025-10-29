@@ -1,4 +1,5 @@
 // lib/presentation/prayer_tracker_screen/prayer_tracker_screen.dart
+// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 
 import '../../core/app_export.dart';

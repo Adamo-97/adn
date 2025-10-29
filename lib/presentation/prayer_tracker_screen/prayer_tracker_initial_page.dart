@@ -80,10 +80,10 @@ class PrayerTrackerInitialPageState
                     end: Alignment.bottomCenter,
                     stops: const [0.0, 0.3, 0.6, 0.85, 1.0],
                     colors: [
-                      appTheme.gray_900.withOpacity(0.0),
-                      appTheme.gray_900.withOpacity(0.2),
-                      appTheme.gray_900.withOpacity(0.5),
-                      appTheme.gray_900.withOpacity(0.8),
+                      appTheme.gray_900.withAlpha(0),
+                      appTheme.gray_900.withAlpha((0.2 * 255).round()),
+                      appTheme.gray_900.withAlpha((0.5 * 255).round()),
+                      appTheme.gray_900.withAlpha((0.8 * 255).round()),
                       appTheme.gray_900,
                     ],
                   ),
@@ -122,7 +122,7 @@ class PrayerTrackerInitialPageState
           colors: ProgressColors(
             completed: appTheme.gray_700, // completed
             current: appTheme.gray_500, // current
-            upcoming: appTheme.white_A700, // upcoming/uncompleted
+            upcoming: appTheme.whiteA700, // upcoming/uncompleted
           ),
           completedCount: completedCount,
           totalFard: _fardPrayers.length, // 5

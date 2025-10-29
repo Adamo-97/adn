@@ -4,13 +4,13 @@ import '../core/app_export.dart';
 import './custom_image_view.dart';
 
 /// CustomTextFieldWithIcon - A reusable text input field component with optional left icon
-/// 
+///
 /// This component provides a TextFormField with customizable left icon, placeholder text,
 /// text styling, and validation support. It's designed to be responsive and follows
 /// Material Design guidelines.
-/// 
+///
 /// @param controller - TextEditingController for managing text input
-/// @param hintText - Placeholder text displayed when field is empty  
+/// @param hintText - Placeholder text displayed when field is empty
 /// @param leftIcon - Path to the left icon image (SVG/PNG supported)
 /// @param textStyle - Custom text style for the input text
 /// @param hintStyle - Custom text style for the hint text
@@ -72,7 +72,7 @@ class CustomTextFieldWithIcon extends StatelessWidget {
         controller: controller,
         style: textStyle ??
             TextStyleHelper.instance.body15RegularPoppins
-                .copyWith(color: appTheme.white_A700),
+                .copyWith(color: appTheme.whiteA700),
         decoration: InputDecoration(
           hintText: hintText ?? "Enter text",
           hintStyle: hintStyle ??

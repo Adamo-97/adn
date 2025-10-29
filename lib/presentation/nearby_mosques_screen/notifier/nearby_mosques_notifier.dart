@@ -121,14 +121,12 @@ class NearbyMosquesNotifier extends Notifier<NearbyMosquesState> {
   void openMosqueInMap(MosqueModel mosque) {
     // TODO: Implement navigation to external map app
     // using url_launcher or similar package
-    print('Opening ${mosque.name} in map...');
   }
 
   /// Search for mosque on Google
   void searchGoogleForMosque(MosqueModel mosque) {
     // TODO: Implement Google search
     // using url_launcher to open google.com/search?q=mosque.name
-    print('Searching Google for ${mosque.name}...');
   }
 
   /// Reset state to initial when navigating away
