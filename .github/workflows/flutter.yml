@@ -16,7 +16,14 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
+          # Pin to the tested Flutter SDK to avoid ambiguous resolution
+          flutter-version: '3.35.7'
+
+      - name: Diagnostic - show flutter info
+        run: |
+          flutter --version || true
+          which flutter || true
+          flutter doctor -v || true
 
       - name: Install dependencies
         run: flutter pub get
