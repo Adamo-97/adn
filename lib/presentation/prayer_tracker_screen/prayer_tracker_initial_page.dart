@@ -32,14 +32,53 @@ class PrayerTrackerInitialPageState
     'Isha'
   ];
 
+  // Initialize here (not `late`) so hot-reload won't leave it uninitialized.
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void dispose() {
     ref.read(prayerTrackerNotifierProvider.notifier).resetState();
+    _scrollController.dispose();
     super.dispose();
   }
 
   @override
+  void initState() {
+    super.initState();
+    // _scrollController is initialized at declaration to survive hot-reload.
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // Listen for reset events from the notifier and scroll to top when reset occurs.
+    // NOTE: ref.listen must be called from build (or a ConsumerWidget) —
+    // calling it in initState caused an assertion.
+    ref.listen<PrayerTrackerState>(prayerTrackerNotifierProvider,
+        (previous, next) {
+      if (previous == null) return;
+
+      // Only act when a reset event was emitted
+      if (next.resetTimestamp != previous.resetTimestamp) {
+        // If either the Qibla panel or calendar were open previously, they
+        // animate closed (240ms). Wait slightly longer than that so the
+        // scroll target and layout have stabilized before jumping to top.
+        final bool wasAnyPanelOpen = previous.qiblaOpen || previous.calendarOpen;
+        final int delayMs = wasAnyPanelOpen ? 300 : 0;
+
+        Future.delayed(Duration(milliseconds: delayMs), () {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (_scrollController.hasClients) {
+              _scrollController.animateTo(
+                0.0,
+                duration: const Duration(milliseconds: 220),
+                curve: Curves.easeOut,
+              );
+            }
+          });
+        });
+      }
+    });
+
     final topInset = MediaQuery.of(context).padding.top;
     final double headerBodyHeight = 125.h; // visible part below the status bar
     final double headerTotalHeight = topInset + headerBodyHeight;
@@ -53,6 +92,7 @@ class PrayerTrackerInitialPageState
         children: [
           // Scrollable content UNDER the fixed header
           SingleChildScrollView(
+            controller: _scrollController,
             padding: EdgeInsets.fromLTRB(
               25.h,
               headerTotalHeight + 12.h, // push content below header

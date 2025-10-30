@@ -238,6 +238,9 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
       qiblaOpen: false,
       clearOpenStatButton: true,
       selectedDate: DateTime.now(),
+      // reset scroll info so UI can react and move scroll to top
+      scrollPosition: 0.0,
+      resetTimestamp: DateTime.now().millisecondsSinceEpoch,
     );
   }
 }

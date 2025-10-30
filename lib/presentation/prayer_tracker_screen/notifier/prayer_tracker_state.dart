@@ -48,6 +48,12 @@ class PrayerTrackerState extends Equatable {
 
   final Map<String, PrayerBellMode> bellByPrayer;
 
+  // Track scroll position for reset on navigation/tab switch
+  final double scrollPosition;
+
+  // Forces state change on reset so listeners can react
+  final int resetTimestamp;
+
   /// Build the 6 UI rows for the cards (names, times, flags). Single source of truth.
   List<PrayerCardItem> get cardItems {
     final ci = currentIndexInAll;
@@ -74,6 +80,8 @@ class PrayerTrackerState extends Equatable {
     bool? qiblaOpen,
     this.openStatButton,
     Map<String, PrayerBellMode>? bellByPrayer,
+    double? scrollPosition,
+    int? resetTimestamp,
   })  : selectedDate = DateTime(
           (selectedDate ?? DateTime.now()).year,
           (selectedDate ?? DateTime.now()).month,
@@ -107,14 +115,16 @@ class PrayerTrackerState extends Equatable {
         calendarOpen = calendarOpen ?? false,
         qiblaOpen = qiblaOpen ?? false,
         bellByPrayer = bellByPrayer ??
-            const {
-              'Fajr': PrayerBellMode.adhan,
-              'Sunrise': PrayerBellMode.mute,
-              'Dhuhr': PrayerBellMode.pling,
-              'Asr': PrayerBellMode.pling,
-              'Maghrib': PrayerBellMode.adhan,
-              'Isha': PrayerBellMode.pling,
-            };
+                const {
+                  'Fajr': PrayerBellMode.adhan,
+                  'Sunrise': PrayerBellMode.mute,
+                  'Dhuhr': PrayerBellMode.pling,
+                  'Asr': PrayerBellMode.pling,
+                  'Maghrib': PrayerBellMode.adhan,
+                  'Isha': PrayerBellMode.pling,
+                },
+        scrollPosition = scrollPosition ?? 0.0,
+        resetTimestamp = resetTimestamp ?? 0;
 
   List<PrayerActionModel> get prayerActions =>
       prayerTrackerModel?.prayerActions ?? [];
@@ -227,6 +237,8 @@ class PrayerTrackerState extends Equatable {
     bool? qiblaOpen,
     String? openStatButton,
     bool clearOpenStatButton = false,
+    double? scrollPosition,
+    int? resetTimestamp,
     Map<String, PrayerBellMode>? bellByPrayer,
   }) {
     return PrayerTrackerState(
@@ -241,6 +253,8 @@ class PrayerTrackerState extends Equatable {
       openStatButton:
           clearOpenStatButton ? null : (openStatButton ?? this.openStatButton),
       bellByPrayer: bellByPrayer ?? this.bellByPrayer,
+      scrollPosition: scrollPosition ?? this.scrollPosition,
+      resetTimestamp: resetTimestamp ?? this.resetTimestamp,
     );
   }
 
@@ -255,6 +269,8 @@ class PrayerTrackerState extends Equatable {
         calendarOpen,
         qiblaOpen,
         openStatButton,
-        bellByPrayer,
+    bellByPrayer,
+    scrollPosition,
+    resetTimestamp,
       ];
 }
