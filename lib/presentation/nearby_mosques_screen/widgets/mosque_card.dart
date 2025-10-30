@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../../core/app_export.dart';
 import '../../../widgets/custom_image_view.dart';
+import 'mosque_action_button.dart';
+import 'mosque_image_tile.dart';
 import '../models/mosque_model.dart';
 
 /// Mosque list item card widget with expandable details
-class MosqueCard extends StatelessWidget {
+class MosqueCard extends StatefulWidget {
   final MosqueModel mosque;
   final bool isExpanded;
   final VoidCallback? onTap;
@@ -21,9 +23,19 @@ class MosqueCard extends StatelessWidget {
   });
 
   @override
+  State<MosqueCard> createState() => _MosqueCardState();
+}
+
+class _MosqueCardState extends State<MosqueCard> {
+  @override
   Widget build(BuildContext context) {
+    // Preserve the original visual behavior but keep this widget stateful so
+    // we can move per-card animations and logic here without changing the
+    // public API used by the sheet/notifier.
+    final isExpanded = widget.isExpanded;
+
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
@@ -48,41 +60,9 @@ class MosqueCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Mosque image placeholder
-                Container(
-                  width: 47.h,
-                  height: 47.h,
-                  decoration: BoxDecoration(
-                    color: appTheme.gray_900,
-                    borderRadius: BorderRadius.circular(3.h),
-                    border: Border.all(
-                      color: isExpanded
-                          ? appTheme.orange_200 // Gold border when expanded
-                          : appTheme.gray_700.withAlpha((0.5 * 255).round()),
-                      width: 1,
-                    ),
-                  ),
-                  child: mosque.imageUrl != null
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(3.h),
-                          child: CustomImageView(
-                            imagePath: mosque.imageUrl!,
-                            fit: BoxFit.cover,
-                            width: 47.h,
-                            height: 47.h,
-                          ),
-                        )
-                      : Center(
-                          child: Text(
-                            'No Image',
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: appTheme.whiteA700
-                                  .withAlpha((0.5 * 255).round()),
-                              fontSize: 7.fSize,
-                              fontWeight: FontWeight.w300,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
+                MosqueImageTile(
+                  imageUrl: widget.mosque.imageUrl,
+                  isExpanded: isExpanded,
                 ),
 
                 SizedBox(width: 8.h),
@@ -94,7 +74,7 @@ class MosqueCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        mosque.name,
+                        widget.mosque.name,
                         style: theme.textTheme.titleMedium?.copyWith(
                           color: appTheme.whiteA700,
                           fontWeight: FontWeight.w600,
@@ -106,7 +86,7 @@ class MosqueCard extends StatelessWidget {
                       ),
                       SizedBox(height: 3.h),
                       Text(
-                        mosque.address,
+                        widget.mosque.address,
                         style: theme.textTheme.bodySmall?.copyWith(
                           color:
                               appTheme.whiteA700.withAlpha((0.7 * 255).round()),
@@ -134,7 +114,7 @@ class MosqueCard extends StatelessWidget {
                     ),
                     SizedBox(height: 3.h),
                     Text(
-                      mosque.formattedDistance,
+                      widget.mosque.formattedDistance,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: isExpanded
                             ? appTheme.orange_200
@@ -180,20 +160,18 @@ class MosqueCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
-                            child: _buildActionButton(
-                              context: context,
+                            child: MosqueActionButton(
                               label: 'Search Google',
                               icon: Icons.search,
-                              onTap: onSearchGoogle,
+                              onTap: widget.onSearchGoogle,
                             ),
                           ),
                           SizedBox(width: 8.h),
                           Expanded(
-                            child: _buildActionButton(
-                              context: context,
+                            child: MosqueActionButton(
                               label: 'Open in Maps',
                               icon: Icons.directions,
-                              onTap: onMapTap,
+                              onTap: widget.onMapTap,
                             ),
                           ),
                         ],
@@ -209,45 +187,5 @@ class MosqueCard extends StatelessWidget {
     );
   }
 
-  /// Build action button
-  Widget _buildActionButton({
-    required BuildContext context,
-    required String label,
-    required IconData icon,
-    VoidCallback? onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.h),
-        decoration: BoxDecoration(
-          color: appTheme.gray_900,
-          borderRadius: BorderRadius.circular(6.h),
-          border: Border.all(
-            color: appTheme.orange_200.withAlpha((0.3 * 255).round()),
-            width: 1,
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 14.h,
-              color: appTheme.orange_200,
-            ),
-            SizedBox(width: 6.h),
-            Text(
-              label,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: appTheme.whiteA700,
-                fontSize: 10.fSize,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Action button builder moved to MosqueActionButton widget.
 }
