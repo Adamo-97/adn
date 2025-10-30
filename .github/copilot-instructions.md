@@ -1,4 +1,4 @@
-# Copilot Instructions for Athan/Prayer App
+# Copilot Guidelines for Athan (Athan/Adhan) App
 
 ## Project Overview
 
@@ -29,6 +29,25 @@ This is a Flutter-based Islamic prayer application (Athan/Adhan app) that helps 
 - **Cleanup**: Once all screens are migrated and integrated, the `NEW_SCREENS/` directory will be deleted
 - **DO NOT** modify or refactor screens in `NEW_SCREENS/` unless explicitly requested - they are source code backups
 - **DO NOT** reference `NEW_SCREENS/` paths in production code - always move/integrate first
+
+### Refactoring & Code Quality (MANDATORY)
+
+- Whenever generating or editing code in `lib/`, produce refactored, modular, and maintainable code by default. This means:
+  - Extract UI pieces into small, focused widgets under the feature's `widgets/` folder.
+  - Prefer compositional APIs (small functions and widgets) over long, monolithic build methods.
+  - Keep visual output identical unless the user explicitly asks for visual changes; refactor for readability and testability.
+  - Add minimal unit or widget tests for any non-trivial logic you introduce or change when practical.
+
+- Do not modify files under `NEW_SCREENS/` unless the user asks for migration; instead prepare refactored code in `lib/` and follow the integration workflow.
+
+### Commenting Policy
+
+- Comments must be logical, informative, and explain intent, contracts, data shapes, and edge cases. They should not merely repeat the user's prompt or restate trivial details.
+- Prefer doc comments (`///`) on public classes, methods, and complex logic describing:
+  - Inputs and outputs (data shapes/types)
+  - Side-effects and error modes
+  - Success criteria and important invariants
+- Inline comments inside functions should explain non-obvious decisions, algorithms, or trade-offs. Avoid comments that only paraphrase code.
 
 ### Asset Management
 
