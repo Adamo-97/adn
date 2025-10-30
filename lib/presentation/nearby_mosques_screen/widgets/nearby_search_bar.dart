@@ -18,7 +18,6 @@ class NearbySearchBar extends StatelessWidget {
         GestureDetector(
           onTap: () {
             // TODO: Implement location selection
-            debugPrint('Location button tapped');
           },
           child: CustomImageView(
             imagePath: ImageConstant.imgLocationButton,

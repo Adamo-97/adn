@@ -164,11 +164,7 @@ class DateNavCalendar extends ConsumerWidget {
                                 List.generate(state.monthWeeks.length, (r) {
                               final row = state.monthWeeks[r];
 
-                              // DEBUG: Print entire row for debugging
-                              if (r == 4) {
-                                debugPrint(
-                                    'DEBUG Row 4 dates: ${row.map((d) => '${d.month}/${d.day}').join(', ')}');
-                              }
+                              // DEBUG row logging removed
 
                               return TableRow(
                                 children: List.generate(7, (c) {
@@ -178,13 +174,7 @@ class DateNavCalendar extends ConsumerWidget {
                                   final isOutOfMonth =
                                       date.month != state.calendarMonth.month;
 
-                                  // DEBUG: Print date info for the 26th
-                                  if (date.day == 26 && r == 4) {
-                                    debugPrint(
-                                        'DEBUG Calendar: Row $r, Col $c: ${date.year}/${date.month}/${date.day} '
-                                        '| isSelected: $isSelected | selectedDate: ${state.selectedDate} '
-                                        '| calendarMonth: ${state.calendarMonth.month}');
-                                  }
+                                  // detailed debug logging removed
 
                                   // color for day number - muted gray for out-of-month
                                   final dayColor = isOutOfMonth

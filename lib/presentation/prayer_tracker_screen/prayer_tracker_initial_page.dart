@@ -64,17 +64,29 @@ class PrayerTrackerInitialPageState
         // If either the Qibla panel or calendar were open previously, they
         // animate closed (240ms). Wait slightly longer than that so the
         // scroll target and layout have stabilized before jumping to top.
-        final bool wasAnyPanelOpen = previous.qiblaOpen || previous.calendarOpen;
+        final bool wasAnyPanelOpen =
+            previous.qiblaOpen || previous.calendarOpen;
         final int delayMs = wasAnyPanelOpen ? 300 : 0;
 
         Future.delayed(Duration(milliseconds: delayMs), () {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (_scrollController.hasClients) {
-              _scrollController.animateTo(
-                0.0,
-                duration: const Duration(milliseconds: 220),
-                curve: Curves.easeOut,
-              );
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            // Defensively guard animateTo to avoid crashes when the
+            // controller or its position are not available (e.g., during
+            // teardown or rapid navigation). We prefer to silently skip the
+            // scroll rather than throw.
+            try {
+              if (!mounted) return;
+              if (_scrollController.hasClients) {
+                await _scrollController.animateTo(
+                  0.0,
+                  duration: const Duration(milliseconds: 220),
+                  curve: Curves.easeOut,
+                );
+              }
+            } catch (_) {
+              // Swallow any error here — defensive: avoids app crash caused
+              // by race conditions where the ScrollPosition becomes null
+              // or detached during animation.
             }
           });
         });
