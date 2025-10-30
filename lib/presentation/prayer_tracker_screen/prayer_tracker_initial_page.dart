@@ -37,7 +37,9 @@ class PrayerTrackerInitialPageState
 
   @override
   void dispose() {
-    ref.read(prayerTrackerNotifierProvider.notifier).resetState();
+    // Do NOT call provider methods via `ref` here: accessing `ref` during
+    // widget disposal can be unsafe (and causes test-time errors). The
+    // tab-level reset is already handled by `PrayerTrackerScreen._resetTabState`.
     _scrollController.dispose();
     super.dispose();
   }
