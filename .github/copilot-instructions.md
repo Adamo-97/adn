@@ -33,6 +33,7 @@ This is a Flutter-based Islamic prayer application (Athan/Adhan app) that helps 
 ### Refactoring & Code Quality (MANDATORY)
 
 - Whenever generating or editing code in `lib/`, produce refactored, modular, and maintainable code by default. This means:
+
   - Extract UI pieces into small, focused widgets under the feature's `widgets/` folder.
   - Prefer compositional APIs (small functions and widgets) over long, monolithic build methods.
   - Keep visual output identical unless the user explicitly asks for visual changes; refactor for readability and testability.
