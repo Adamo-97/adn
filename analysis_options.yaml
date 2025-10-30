@@ -14,5 +14,12 @@ include: package:flutter_lints/flutter.yaml
 # `// ignore_for_file:` or `// ignore:` comments for any remaining
 # one-off suppressions if necessary.
 
+# Exclude generated or staging code directories that should not be
+# statically analyzed. NEW_SCREENS/ is a staging area for screens that
+# are not yet integrated into the main app (see project README).
+analyzer:
+  exclude:
+    - NEW_SCREENS/**
+
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
