@@ -61,6 +61,8 @@ class NearbySearchBar extends StatelessWidget {
                     fontFamily: 'Poppins',
                   ),
                   border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
                   isDense: true,
                   contentPadding: EdgeInsets.zero,
                 ),

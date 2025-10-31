@@ -139,6 +139,8 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
                         decoration: InputDecoration(
                           isDense: true,
                           border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
                           hintText: 'Search for a title or keyword',
                           hintStyle: TextStyleHelper
                               .instance.body15RegularPoppins
