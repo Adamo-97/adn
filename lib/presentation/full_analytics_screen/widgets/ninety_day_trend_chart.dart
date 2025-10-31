@@ -69,10 +69,10 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
     return Container(
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        color: appTheme.gray_700.withAlpha((0.2 * 255).round()),
+        color: appColors.gray_700.withAlpha((0.2 * 255).round()),
         borderRadius: BorderRadius.circular(12.h),
         border: Border.all(
-          color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
+          color: appColors.gray_700.withAlpha((0.3 * 255).round()),
           width: 1.h,
         ),
       ),
@@ -86,8 +86,9 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
               children: [
                 IconButton(
                   icon: Icon(Icons.chevron_left,
-                      color:
-                          _canGoPrev() ? appTheme.whiteA700 : appTheme.gray_700,
+                      color: _canGoPrev()
+                          ? appColors.whiteA700
+                          : appColors.gray_700,
                       size: 20.h),
                   onPressed: _canGoPrev() ? _prevQuarter : null,
                   padding: EdgeInsets.zero,
@@ -96,12 +97,13 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
                 Text(
                   _getQuarterLabel(),
                   style: TextStyleHelper.instance.body14SemiBoldPoppins
-                      .copyWith(color: appTheme.whiteA700),
+                      .copyWith(color: appColors.whiteA700),
                 ),
                 IconButton(
                   icon: Icon(Icons.chevron_right,
-                      color:
-                          _canGoNext() ? appTheme.whiteA700 : appTheme.gray_700,
+                      color: _canGoNext()
+                          ? appColors.whiteA700
+                          : appColors.gray_700,
                       size: 20.h),
                   onPressed: _canGoNext() ? _nextQuarter : null,
                   padding: EdgeInsets.zero,
@@ -115,7 +117,7 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
               child: Text(
                 _getQuarterLabel(),
                 style: TextStyleHelper.instance.body14SemiBoldPoppins
-                    .copyWith(color: appTheme.whiteA700),
+                    .copyWith(color: appColors.whiteA700),
               ),
             ),
           SizedBox(height: 16.h),
@@ -123,7 +125,7 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
           Text(
             'Weekly average prayer completion over 90 days',
             style: TextStyleHelper.instance.label10LightPoppins.copyWith(
-                color: appTheme.whiteA700.withAlpha((0.6 * 255).round())),
+                color: appColors.whiteA700.withAlpha((0.6 * 255).round())),
           ),
           SizedBox(height: 16.h),
           // Line chart
@@ -133,7 +135,7 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
               painter: NinetyDayTrendPainter(
                 quarterData: quarterData,
                 selectedIndex: _selectedWeekIndex,
-                theme: appTheme,
+                theme: appColors,
               ),
               child: GestureDetector(
                 onTapDown: (details) {
@@ -166,7 +168,7 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
 class NinetyDayTrendPainter extends CustomPainter {
   final List<Map<String, dynamic>> quarterData;
   final int? selectedIndex;
-  final LightCodeColors theme;
+  final DarkCodeColors theme;
 
   NinetyDayTrendPainter({
     required this.quarterData,

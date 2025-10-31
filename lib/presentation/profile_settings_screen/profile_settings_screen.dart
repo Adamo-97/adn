@@ -55,7 +55,7 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
     });
 
     return Scaffold(
-      backgroundColor: appTheme.gray_900,
+      backgroundColor: appColors.gray_900,
       body: SizedBox(
         width: double.maxFinite,
         child: Stack(
@@ -91,10 +91,10 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
                       end: Alignment.bottomCenter,
                       stops: const [0.0, 0.4, 0.7, 1.0],
                       colors: [
-                        appTheme.gray_900.withAlpha(0),
-                        appTheme.gray_900.withAlpha((0.3 * 255).round()),
-                        appTheme.gray_900.withAlpha((0.7 * 255).round()),
-                        appTheme.gray_900,
+                        appColors.gray_900.withAlpha(0),
+                        appColors.gray_900.withAlpha((0.3 * 255).round()),
+                        appColors.gray_900.withAlpha((0.7 * 255).round()),
+                        appColors.gray_900,
                       ],
                     ),
                   ),
@@ -116,7 +116,7 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
         bottom: 16.h,
       ),
       decoration: BoxDecoration(
-        color: appTheme.gray_900,
+        color: appColors.gray_900,
       ),
       child: Column(
         children: [

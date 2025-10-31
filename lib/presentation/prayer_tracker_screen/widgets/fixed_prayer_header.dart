@@ -27,7 +27,7 @@ class FixedPrayerHeader extends ConsumerWidget {
       height: totalHeight,
       child: Container(
         decoration: BoxDecoration(
-          color: appTheme.gray_700,
+          color: appColors.gray_700,
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(14.h),
             bottomRight: Radius.circular(14.h),
@@ -53,7 +53,7 @@ class FixedPrayerHeader extends ConsumerWidget {
                       Text(
                         m.nextPrayer,
                         style: TextStyleHelper.instance.body15RegularPoppins
-                            .copyWith(color: appTheme.whiteA700),
+                            .copyWith(color: appColors.whiteA700),
                       ),
                       SizedBox(height: 8.h),
                       Row(
@@ -62,7 +62,7 @@ class FixedPrayerHeader extends ConsumerWidget {
                           Text(
                             '${m.prayerTime} |',
                             style: TextStyleHelper.instance.body12RegularPoppins
-                                .copyWith(color: appTheme.orange_200),
+                                .copyWith(color: appColors.orange_200),
                           ),
                           SizedBox(width: 4.h),
                           CustomImageView(
@@ -77,7 +77,7 @@ class FixedPrayerHeader extends ConsumerWidget {
                               overflow: TextOverflow.ellipsis,
                               style: TextStyleHelper
                                   .instance.body12RegularPoppins
-                                  .copyWith(color: appTheme.orange_200),
+                                  .copyWith(color: appColors.orange_200),
                             ),
                           ),
                         ],

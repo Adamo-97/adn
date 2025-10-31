@@ -1,42 +1,109 @@
 import 'package:flutter/material.dart';
 
-LightCodeColors get appTheme => ThemeHelper().themeColor();
+// New, clearer name for the color palette getter. Use `appColors` in new code.
+DarkCodeColors get appColors => ThemeHelper().themeColor();
+
+// Theme helper internals
+// Use `appColors` for palette access.
+
 ThemeData get theme => ThemeHelper().themeData();
 
 /// Helper class for managing themes and colors.
 
 // ignore_for_file: must_be_immutable
 class ThemeHelper {
-  // The current app theme
-  final _appTheme = "lightCode";
+  // The current selected theme key.
+  // NOTE: Historically this project used the name "lightCode" for the
+  // dark palette. We now use `darkCode` as the active key and the
+  // `DarkCodeColors` class name to make intent clearer.
+  final _activeTheme = "darkCode";
 
   // A map of custom color themes supported by the app
-  final Map<String, LightCodeColors> _supportedCustomColor = {
-    'lightCode': LightCodeColors()
+  final Map<String, DarkCodeColors> _supportedCustomColor = {
+    'lightCode': DarkCodeColors(),
+    // Provide a darkCode entry that re-uses the same color container.
+    'darkCode': DarkCodeColors(),
   };
 
   // A map of color schemes supported by the app
   final Map<String, ColorScheme> _supportedColorScheme = {
-    'lightCode': ColorSchemes.lightCodeColorScheme
+    'lightCode': ColorSchemes.lightCodeColorScheme,
+    'darkCode': ColorSchemes.darkCodeColorScheme,
   };
 
-  /// Returns the lightCode colors for the current theme.
-  LightCodeColors _getThemeColors() {
-    return _supportedCustomColor[_appTheme] ?? LightCodeColors();
+  /// Returns the colors for the current theme (this object contains the
+  /// app color palette used for dark mode).
+  DarkCodeColors _getThemeColors() {
+    return _supportedCustomColor[_activeTheme] ?? DarkCodeColors();
   }
 
-  /// Returns the current theme data.
+  /// Returns the current theme data based on the selected color scheme.
   ThemeData _getThemeData() {
     var colorScheme =
-        _supportedColorScheme[_appTheme] ?? ColorSchemes.lightCodeColorScheme;
-    return ThemeData(
+        _supportedColorScheme[_activeTheme] ?? ColorSchemes.darkCodeColorScheme;
+
+    final colors = _getThemeColors();
+
+    // Build a complete dark ThemeData using the palette values.
+    return ThemeData.dark().copyWith(
       visualDensity: VisualDensity.standard,
       colorScheme: colorScheme,
+      scaffoldBackgroundColor: colors.gray_900_01,
+      primaryColor: colors.orange_200,
+      cardColor: colors.gray_900,
+      canvasColor: colors.gray_900,
+      dividerColor: colors.gray_700.withAlpha((0.2 * 255).round()),
+      iconTheme: IconThemeData(color: colors.whiteA700),
+      appBarTheme: AppBarTheme(
+        backgroundColor: colors.gray_900,
+        foregroundColor: colors.whiteA700,
+        elevation: 0,
+      ),
+      textTheme: TextTheme(
+        displayLarge: TextStyle(color: colors.whiteA700),
+        displayMedium: TextStyle(color: colors.whiteA700),
+        displaySmall: TextStyle(color: colors.whiteA700),
+        headlineMedium: TextStyle(color: colors.whiteA700),
+        headlineSmall: TextStyle(color: colors.whiteA700),
+        titleLarge: TextStyle(color: colors.whiteA700),
+        bodyLarge: TextStyle(color: colors.whiteA700),
+        bodyMedium: TextStyle(color: colors.gray_100),
+        bodySmall: TextStyle(color: colors.gray_100),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colors.orange_200,
+          foregroundColor: colors.gray_900,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(foregroundColor: colors.orange_200),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: colors.gray_900.withAlpha((0.05 * 255).round()),
+        hintStyle: TextStyle(color: colors.gray_600),
+        labelStyle: TextStyle(color: colors.gray_100),
+        enabledBorder: OutlineInputBorder(
+          borderSide:
+              BorderSide(color: colors.gray_700.withAlpha((0.3 * 255).round())),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: colors.orange_200),
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: colors.orange_200,
+        foregroundColor: colors.gray_900,
+      ),
     );
   }
 
-  /// Returns the lightCode colors for the current theme.
-  LightCodeColors themeColor() => _getThemeColors();
+  /// Returns the colors for the current theme.
+  DarkCodeColors themeColor() => _getThemeColors();
 
   /// Returns the current theme data.
   ThemeData themeData() => _getThemeData();
@@ -44,9 +111,20 @@ class ThemeHelper {
 
 class ColorSchemes {
   static final lightCodeColorScheme = ColorScheme.light();
+
+  // Dark variant that should be used by the app's dark mode.
+  static final darkCodeColorScheme = ColorScheme.dark(
+    primary: DarkCodeColors().orange_200,
+    onPrimary: DarkCodeColors().gray_900,
+    secondary: DarkCodeColors().gray_700,
+    onSecondary: DarkCodeColors().color7FFFFF,
+    surface: DarkCodeColors().gray_900,
+    onSurface: DarkCodeColors().gray_100,
+    error: DarkCodeColors().redCustom,
+  );
 }
 
-class LightCodeColors {
+class DarkCodeColors {
   // App Colors
   Color get whiteA700 => Color(0xFFFFFFFF);
   Color get gray_700 => Color(0xFF5C6248);

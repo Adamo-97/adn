@@ -45,10 +45,10 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
       height: 280.h,
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        color: appTheme.gray_700.withAlpha((0.2 * 255).round()),
+        color: appColors.gray_700.withAlpha((0.2 * 255).round()),
         borderRadius: BorderRadius.circular(12.h),
         border: Border.all(
-          color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
+          color: appColors.gray_700.withAlpha((0.3 * 255).round()),
           width: 1.h,
         ),
       ),
@@ -58,7 +58,7 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                icon: Icon(Icons.chevron_left, color: appTheme.gray_700),
+                icon: Icon(Icons.chevron_left, color: appColors.gray_700),
                 onPressed: () => setState(() {
                   _weekOffset--;
                   _selectedDayIndex = null;
@@ -67,14 +67,14 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
               Text(
                 dateRange,
                 style: TextStyleHelper.instance.body12SemiBoldPoppins
-                    .copyWith(color: appTheme.whiteA700),
+                    .copyWith(color: appColors.whiteA700),
               ),
               IconButton(
                 icon: Icon(
                   Icons.chevron_right,
                   color: _weekOffset < 0
-                      ? appTheme.gray_700
-                      : appTheme.gray_700.withAlpha((0.3 * 255).round()),
+                      ? appColors.gray_700
+                      : appColors.gray_700.withAlpha((0.3 * 255).round()),
                 ),
                 onPressed: _weekOffset < 0
                     ? () => setState(() {
@@ -90,7 +90,7 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
               painter: WeeklyDetailPainter(
                 weekData: weekData,
                 selectedIndex: _selectedDayIndex,
-                theme: appTheme,
+                theme: appColors,
               ),
               child: GestureDetector(
                 onTapDown: (details) {
@@ -123,7 +123,7 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
 class WeeklyDetailPainter extends CustomPainter {
   final List<Map<String, dynamic>> weekData;
   final int? selectedIndex;
-  final LightCodeColors theme;
+  final DarkCodeColors theme;
 
   WeeklyDetailPainter({
     required this.weekData,

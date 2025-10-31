@@ -21,10 +21,10 @@ class MosqueActionButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.h),
         decoration: BoxDecoration(
-          color: appTheme.gray_900,
+          color: appColors.gray_900,
           borderRadius: BorderRadius.circular(6.h),
           border: Border.all(
-            color: appTheme.orange_200.withAlpha((0.3 * 255).round()),
+            color: appColors.orange_200.withAlpha((0.3 * 255).round()),
             width: 1,
           ),
         ),
@@ -34,13 +34,13 @@ class MosqueActionButton extends StatelessWidget {
             Icon(
               icon,
               size: 14.h,
-              color: appTheme.orange_200,
+              color: appColors.orange_200,
             ),
             SizedBox(width: 6.h),
             Text(
               label,
               style: theme.textTheme.bodySmall?.copyWith(
-                color: appTheme.whiteA700,
+                color: appColors.whiteA700,
                 fontSize: 10.fSize,
                 fontWeight: FontWeight.w400,
               ),

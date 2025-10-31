@@ -68,7 +68,7 @@ class _MosqueListSheetState extends State<MosqueListSheet> {
       builder: (context, scrollController) {
         return Container(
           decoration: BoxDecoration(
-            color: appTheme.gray_900,
+            color: appColors.gray_900,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(13.h),
               topRight: Radius.circular(13.h),
@@ -112,7 +112,7 @@ class _MosqueListSheetState extends State<MosqueListSheet> {
                       widget.state.isLoading
                           ? Center(
                               child: CircularProgressIndicator(
-                                color: appTheme.orange_200,
+                                color: appColors.orange_200,
                               ),
                             )
                           : widget.state.filteredMosques.isEmpty
@@ -137,14 +137,14 @@ class _MosqueListSheetState extends State<MosqueListSheet> {
                                 end: Alignment.bottomCenter,
                                 stops: const [0.0, 0.4, 0.7, 1.0],
                                 colors: [
-                                  appTheme.gray_900.withAlpha(0),
-                                  appTheme.gray_900.withAlpha(
+                                  appColors.gray_900.withAlpha(0),
+                                  appColors.gray_900.withAlpha(
                                     (0.3 * 255).round(),
                                   ),
-                                  appTheme.gray_900.withAlpha(
+                                  appColors.gray_900.withAlpha(
                                     (0.7 * 255).round(),
                                   ),
-                                  appTheme.gray_900,
+                                  appColors.gray_900,
                                 ],
                               ),
                             ),
@@ -171,13 +171,13 @@ class _MosqueListSheetState extends State<MosqueListSheet> {
             imagePath: ImageConstant.imgMosqueNavIcon,
             height: 64.h,
             width: 64.h,
-            color: appTheme.gray_500.withAlpha((0.5 * 255).round()),
+            color: appColors.gray_500.withAlpha((0.5 * 255).round()),
           ),
           SizedBox(height: 16.h),
           Text(
             'No mosques found',
             style: theme.textTheme.titleMedium?.copyWith(
-              color: appTheme.whiteA700.withAlpha((0.7 * 255).round()),
+              color: appColors.whiteA700.withAlpha((0.7 * 255).round()),
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -185,7 +185,7 @@ class _MosqueListSheetState extends State<MosqueListSheet> {
           Text(
             'Try adjusting your search or location',
             style: theme.textTheme.bodySmall?.copyWith(
-              color: appTheme.whiteA700.withAlpha((0.5 * 255).round()),
+              color: appColors.whiteA700.withAlpha((0.5 * 255).round()),
             ),
           ),
         ],

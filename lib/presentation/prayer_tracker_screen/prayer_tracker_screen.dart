@@ -196,7 +196,7 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
           top: false,
           bottom: false, // fill under the home indicator
           child: Container(
-            color: appTheme.gray_900, // Match page background to eliminate gap
+            color: appColors.gray_900, // Match page background to eliminate gap
             child: Container(
               decoration: BoxDecoration(
                 color: const Color(0xFF5C6248), // olive bar

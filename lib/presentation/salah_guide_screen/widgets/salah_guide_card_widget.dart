@@ -40,7 +40,7 @@ class SalahGuideCardWidget extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyleHelper.instance.body15RegularPoppins
-                    .copyWith(color: appTheme.whiteA700, height: 1.10),
+                    .copyWith(color: appColors.whiteA700, height: 1.10),
               ),
             ),
             SizedBox(width: 6.h),

@@ -156,7 +156,7 @@ class _MosqueListHeadState extends State<MosqueListHead> {
           width: 45.h,
           height: 4.h,
           decoration: BoxDecoration(
-            color: appTheme.gray_700,
+            color: appColors.gray_700,
             borderRadius: BorderRadius.circular(10.h),
           ),
         ),

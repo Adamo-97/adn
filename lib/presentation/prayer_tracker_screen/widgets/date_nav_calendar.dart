@@ -17,7 +17,7 @@ class DateNavCalendar extends ConsumerWidget {
     // label text + color depend on open/closed
     final isOpen = state.calendarOpen;
     final labelText = isOpen ? state.monthLabel : state.navLabel;
-    final labelColor = isOpen ? appTheme.orange_200 : appTheme.whiteA700;
+    final labelColor = isOpen ? appColors.orange_200 : appColors.whiteA700;
 
     // 7 equal columns
     final Map<int, TableColumnWidth> cols = {
@@ -41,7 +41,7 @@ class DateNavCalendar extends ConsumerWidget {
                 imagePath: ImageConstant.imgArrowPrev,
                 height: 24.h,
                 width: 24.h,
-                color: appTheme.gray_700, // olive tint
+                color: appColors.gray_700, // olive tint
               ),
             ),
             GestureDetector(
@@ -64,7 +64,7 @@ class DateNavCalendar extends ConsumerWidget {
                 imagePath: ImageConstant.imgArrowNext, // or svgPath
                 height: 24.h,
                 width: 24.h,
-                color: appTheme.gray_700, // olive tint
+                color: appColors.gray_700, // olive tint
               ),
             ),
           ],
@@ -89,7 +89,7 @@ class DateNavCalendar extends ConsumerWidget {
                   key: const ValueKey('cal-on'),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
+                      color: appColors.gray_700.withAlpha((0.3 * 255).round()),
                       width: 1.h,
                     ),
                     borderRadius: BorderRadius.circular(10.h),
@@ -100,7 +100,7 @@ class DateNavCalendar extends ConsumerWidget {
                       // Header (top rounded)
                       Container(
                         decoration: BoxDecoration(
-                          color: appTheme.gray_900,
+                          color: appColors.gray_900,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10.h),
                             topRight: Radius.circular(10.h),
@@ -132,7 +132,7 @@ class DateNavCalendar extends ConsumerWidget {
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyleHelper
                                         .instance.body15RegularPoppins
-                                        .copyWith(color: appTheme.orange_200),
+                                        .copyWith(color: appColors.orange_200),
                                   ),
                                 );
                               }),
@@ -144,7 +144,8 @@ class DateNavCalendar extends ConsumerWidget {
                       // Divider under header
                       Container(
                         height: 1.h,
-                        color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
+                        color:
+                            appColors.gray_700.withAlpha((0.3 * 255).round()),
                       ),
 
                       // Grid rows (bottom rounded) — symmetric 6x7, no empty cells
@@ -154,7 +155,7 @@ class DateNavCalendar extends ConsumerWidget {
                           bottomRight: Radius.circular(10.h),
                         ),
                         child: Container(
-                          color: appTheme.gray_900,
+                          color: appColors.gray_900,
                           padding: EdgeInsets.symmetric(horizontal: 12.h),
                           child: Table(
                             columnWidths: cols,
@@ -178,9 +179,9 @@ class DateNavCalendar extends ConsumerWidget {
 
                                   // color for day number - muted gray for out-of-month
                                   final dayColor = isOutOfMonth
-                                      ? appTheme.whiteA700
+                                      ? appColors.whiteA700
                                           .withAlpha((0.25 * 255).round())
-                                      : appTheme.whiteA700;
+                                      : appColors.whiteA700;
 
                                   final textStyle = TextStyleHelper
                                       .instance.body12SemiBoldPoppins
@@ -193,11 +194,11 @@ class DateNavCalendar extends ConsumerWidget {
                                             width: 38.h,
                                             height: 38.h,
                                             decoration: BoxDecoration(
-                                              color: appTheme.orange_200
+                                              color: appColors.orange_200
                                                   .withAlpha(
                                                       (0.15 * 255).round()),
                                               border: Border.all(
-                                                color: appTheme.orange_200,
+                                                color: appColors.orange_200,
                                                 width: 1.5.h,
                                               ),
                                               borderRadius:
@@ -206,7 +207,7 @@ class DateNavCalendar extends ConsumerWidget {
                                             child: Center(
                                               child: Text('${date.day}',
                                                   style: textStyle.copyWith(
-                                                    color: appTheme.orange_200,
+                                                    color: appColors.orange_200,
                                                     fontWeight: FontWeight.w600,
                                                   )),
                                             ),

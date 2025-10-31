@@ -75,10 +75,10 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
     return Container(
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        color: appTheme.gray_700.withAlpha((0.2 * 255).round()),
+        color: appColors.gray_700.withAlpha((0.2 * 255).round()),
         borderRadius: BorderRadius.circular(12.h),
         border: Border.all(
-          color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
+          color: appColors.gray_700.withAlpha((0.3 * 255).round()),
           width: 1.h,
         ),
       ),
@@ -92,8 +92,9 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
               children: [
                 IconButton(
                   icon: Icon(Icons.chevron_left,
-                      color:
-                          _canGoPrev() ? appTheme.whiteA700 : appTheme.gray_700,
+                      color: _canGoPrev()
+                          ? appColors.whiteA700
+                          : appColors.gray_700,
                       size: 20.h),
                   onPressed: _canGoPrev() ? _prevMonth : null,
                   padding: EdgeInsets.zero,
@@ -102,12 +103,13 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
                 Text(
                   _getMonthLabel(),
                   style: TextStyleHelper.instance.body14SemiBoldPoppins
-                      .copyWith(color: appTheme.whiteA700),
+                      .copyWith(color: appColors.whiteA700),
                 ),
                 IconButton(
                   icon: Icon(Icons.chevron_right,
-                      color:
-                          _canGoNext() ? appTheme.whiteA700 : appTheme.gray_700,
+                      color: _canGoNext()
+                          ? appColors.whiteA700
+                          : appColors.gray_700,
                       size: 20.h),
                   onPressed: _canGoNext() ? _nextMonth : null,
                   padding: EdgeInsets.zero,
@@ -121,7 +123,7 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
               child: Text(
                 _getMonthLabel(),
                 style: TextStyleHelper.instance.body14SemiBoldPoppins
-                    .copyWith(color: appTheme.whiteA700),
+                    .copyWith(color: appColors.whiteA700),
               ),
             ),
           SizedBox(height: 16.h),
@@ -136,7 +138,7 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
                         textAlign: TextAlign.center,
                         style: TextStyleHelper.instance.label10LightPoppins
                             .copyWith(
-                                color: appTheme.whiteA700
+                                color: appColors.whiteA700
                                     .withAlpha((0.5 * 255).round())),
                       ),
                     ))
@@ -150,7 +152,7 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
               painter: MonthlyHeatmapPainter(
                 monthData: monthData,
                 selectedIndex: _selectedDayIndex,
-                theme: appTheme,
+                theme: appColors,
                 today: _getTodayIndex(),
               ),
               child: GestureDetector(
@@ -182,7 +184,7 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
               Text(
                 'Less',
                 style: TextStyleHelper.instance.label10LightPoppins.copyWith(
-                    color: appTheme.whiteA700.withAlpha((0.5 * 255).round())),
+                    color: appColors.whiteA700.withAlpha((0.5 * 255).round())),
               ),
               SizedBox(width: 8.h),
               ...List.generate(
@@ -192,7 +194,7 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
                   height: 16.h,
                   margin: EdgeInsets.symmetric(horizontal: 2.h),
                   decoration: BoxDecoration(
-                    color: _getHeatmapColor(i, appTheme),
+                    color: _getHeatmapColor(i, appColors),
                     borderRadius: BorderRadius.circular(2.h),
                   ),
                 ),
@@ -201,7 +203,7 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
               Text(
                 'More',
                 style: TextStyleHelper.instance.label10LightPoppins.copyWith(
-                    color: appTheme.whiteA700.withAlpha((0.5 * 255).round())),
+                    color: appColors.whiteA700.withAlpha((0.5 * 255).round())),
               ),
             ],
           ),
@@ -210,7 +212,7 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
     );
   }
 
-  Color _getHeatmapColor(int count, LightCodeColors theme) {
+  Color _getHeatmapColor(int count, DarkCodeColors theme) {
     if (count == 0) return theme.gray_700.withAlpha((0.3 * 255).round());
     if (count == 1) return theme.orange_200.withAlpha((0.2 * 255).round());
     if (count == 2) return theme.orange_200.withAlpha((0.4 * 255).round());
@@ -223,7 +225,7 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
 class MonthlyHeatmapPainter extends CustomPainter {
   final List<int> monthData;
   final int? selectedIndex;
-  final LightCodeColors theme;
+  final DarkCodeColors theme;
   final int today;
 
   MonthlyHeatmapPainter({
@@ -300,7 +302,7 @@ class MonthlyHeatmapPainter extends CustomPainter {
     }
   }
 
-  Color _getHeatmapColor(int count, LightCodeColors theme) {
+  Color _getHeatmapColor(int count, DarkCodeColors theme) {
     if (count == 0) return theme.gray_700.withAlpha((0.3 * 255).round());
     if (count == 1) return theme.orange_200.withAlpha((0.2 * 255).round());
     if (count == 2) return theme.orange_200.withAlpha((0.4 * 255).round());

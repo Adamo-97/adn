@@ -127,7 +127,7 @@ class _CustomBottomBarState extends State<CustomBottomBar>
   Widget build(BuildContext context) {
     const goldActive = Color(0xFFE0C389);
     const lightGreenCircle = Color(0xFF8F9B87);
-    final holeColor = appTheme.gray_900;
+    final holeColor = appColors.gray_900;
     final liftY = 12.h;
     final notchTop = 0.h;
     final bottomPad = 10.h;
@@ -224,7 +224,7 @@ class _CustomBottomBarState extends State<CustomBottomBar>
       height: (item.height ?? 30.h),
       width: (item.width ?? 34.h),
       fit: BoxFit.contain,
-      color: isSelected ? goldActive : appTheme.whiteA700,
+      color: isSelected ? goldActive : appColors.whiteA700,
     );
 
     if (!isSelected) {

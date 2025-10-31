@@ -42,12 +42,12 @@ class _MosqueCardState extends State<MosqueCard> {
         margin: EdgeInsets.only(bottom: 10.h),
         padding: EdgeInsets.all(10.h),
         decoration: BoxDecoration(
-          color: appTheme.gray_900, // Same grey as navbar hole #212121
+          color: appColors.gray_900, // Same grey as navbar hole #212121
           borderRadius: BorderRadius.circular(8.h),
           border: Border.all(
             color: isExpanded
-                ? appTheme.orange_200 // Golden stroke when expanded
-                : appTheme.gray_700.withAlpha((0.3 * 255).round()),
+                ? appColors.orange_200 // Golden stroke when expanded
+                : appColors.gray_700.withAlpha((0.3 * 255).round()),
             width: 1,
           ),
         ),
@@ -76,7 +76,7 @@ class _MosqueCardState extends State<MosqueCard> {
                       Text(
                         widget.mosque.name,
                         style: theme.textTheme.titleMedium?.copyWith(
-                          color: appTheme.whiteA700,
+                          color: appColors.whiteA700,
                           fontWeight: FontWeight.w600,
                           fontSize: 18.fSize,
                           letterSpacing: -0.23,
@@ -88,8 +88,8 @@ class _MosqueCardState extends State<MosqueCard> {
                       Text(
                         widget.mosque.address,
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color:
-                              appTheme.whiteA700.withAlpha((0.7 * 255).round()),
+                          color: appColors.whiteA700
+                              .withAlpha((0.7 * 255).round()),
                           fontWeight: FontWeight.w300,
                           fontSize: 10.fSize,
                         ),
@@ -110,15 +110,16 @@ class _MosqueCardState extends State<MosqueCard> {
                       imagePath: ImageConstant.imgOpenMapIcon,
                       height: 21.h,
                       width: 21.h,
-                      color: isExpanded ? appTheme.orange_200 : null,
+                      color: isExpanded ? appColors.orange_200 : null,
                     ),
                     SizedBox(height: 3.h),
                     Text(
                       widget.mosque.formattedDistance,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: isExpanded
-                            ? appTheme.orange_200
-                            : appTheme.whiteA700.withAlpha((0.7 * 255).round()),
+                            ? appColors.orange_200
+                            : appColors.whiteA700
+                                .withAlpha((0.7 * 255).round()),
                         fontWeight: FontWeight.w300,
                         fontSize: 7.fSize,
                         letterSpacing: -0.39,
@@ -147,7 +148,7 @@ class _MosqueCardState extends State<MosqueCard> {
                     Container(
                       width: double.infinity,
                       height: 1.h,
-                      color: appTheme.orange_200,
+                      color: appColors.orange_200,
                     ),
 
                     SizedBox(height: 10.h),

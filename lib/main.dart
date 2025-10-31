@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/app_export.dart';
+import 'notifier/theme_notifier.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 void main() {
@@ -22,8 +23,16 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Sizer(
       builder: (context, orientation, deviceType) {
+        final currentThemeMode = ref.watch(themeNotifierProvider);
+
         return MaterialApp(
-          theme: theme,
+          // Use a standard light theme for the light variant so widgets that
+          // expect a light ThemeData still work. The custom palette stored
+          // in `theme` (from `theme_helper.dart`) is the app's dark palette
+          // and will be supplied as `darkTheme` below.
+          theme: ThemeData.light(),
+          darkTheme: theme,
+          themeMode: currentThemeMode,
           title: 'adam_s_application',
           // 🚨 CRITICAL: NEVER REMOVE OR MODIFY
           builder: (context, child) {

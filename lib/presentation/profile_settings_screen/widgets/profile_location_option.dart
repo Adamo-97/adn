@@ -25,7 +25,7 @@ class ProfileLocationOption extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 4.h),
           decoration: isSelected
               ? BoxDecoration(
-                  color: appTheme.gray_900,
+                  color: appColors.gray_900,
                   borderRadius: BorderRadius.circular(4.h),
                 )
               : null,

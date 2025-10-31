@@ -83,7 +83,7 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
     });
 
     return Scaffold(
-      backgroundColor: appTheme.gray_900,
+      backgroundColor: appColors.gray_900,
       body: Column(
         children: [
           SalahHeaderWithSearch(
@@ -106,7 +106,7 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
         if (categorizedCards.isEmpty) {
           return Center(
             child: CircularProgressIndicator(
-              color: appTheme.whiteA700,
+              color: appColors.whiteA700,
             ),
           );
         }
@@ -153,10 +153,10 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
                       end: Alignment.bottomCenter,
                       stops: const [0.0, 0.4, 0.7, 1.0],
                       colors: [
-                        appTheme.gray_900.withAlpha((0.0 * 255).round()),
-                        appTheme.gray_900.withAlpha((0.3 * 255).round()),
-                        appTheme.gray_900.withAlpha((0.7 * 255).round()),
-                        appTheme.gray_900,
+                        appColors.gray_900.withAlpha((0.0 * 255).round()),
+                        appColors.gray_900.withAlpha((0.3 * 255).round()),
+                        appColors.gray_900.withAlpha((0.7 * 255).round()),
+                        appColors.gray_900,
                       ],
                     ),
                   ),
@@ -201,7 +201,7 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
                 Text(
                   category.title,
                   style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
-                    color: appTheme.whiteA700,
+                    color: appColors.whiteA700,
                     fontSize: 18.fSize,
                     fontWeight: FontWeight.w600,
                   ),

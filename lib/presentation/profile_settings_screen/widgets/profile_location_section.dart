@@ -21,7 +21,7 @@ class ProfileLocationSection extends ConsumerWidget {
           margin: EdgeInsets.only(right: 24.h),
           padding: EdgeInsets.symmetric(horizontal: 10.h),
           decoration: BoxDecoration(
-            color: appTheme.gray_900_01,
+            color: appColors.gray_900_01,
             borderRadius: BorderRadius.circular(4.h),
           ),
           child: Row(
@@ -33,7 +33,7 @@ class ProfileLocationSection extends ConsumerWidget {
                   child: Text(
                     'Type your country...',
                     style: TextStyleHelper.instance.body15RegularPoppins
-                        .copyWith(color: appTheme.whiteA700),
+                        .copyWith(color: appColors.whiteA700),
                   ),
                 ),
               ),
@@ -60,7 +60,7 @@ class ProfileLocationSection extends ConsumerWidget {
             margin: EdgeInsets.only(right: 24.h),
             padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 10.h),
             decoration: BoxDecoration(
-              color: appTheme.gray_900_01,
+              color: appColors.gray_900_01,
               borderRadius: BorderRadius.circular(4.h),
             ),
             child: Column(

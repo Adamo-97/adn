@@ -89,7 +89,7 @@ class ProgressIndicatorsRow extends StatelessWidget {
               leftIcon: ImageConstant.imgCheck,
               hintText: '$completedCount/$totalFard prayers completed today.',
               textStyle: TextStyleHelper.instance.body15RegularPoppins
-                  .copyWith(color: appTheme.whiteA700),
+                  .copyWith(color: appColors.whiteA700),
             ),
           ),
         ),
@@ -101,7 +101,7 @@ class ProgressIndicatorsRow extends StatelessWidget {
     // Filled card wrapper (olive bg)
     return Container(
       decoration: BoxDecoration(
-        color: backgroundColor ?? appTheme.gray_700, // your olive card bg
+        color: backgroundColor ?? appColors.gray_700, // your olive card bg
         borderRadius: BorderRadius.circular(radius.h),
       ),
       padding: cardPadding ?? EdgeInsets.all(12.h),

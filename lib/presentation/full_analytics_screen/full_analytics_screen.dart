@@ -36,19 +36,19 @@ class _FullAnalyticsScreenState extends ConsumerState<FullAnalyticsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appTheme.gray_900,
+      backgroundColor: appColors.gray_900,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: appTheme.whiteA700),
+          icon: Icon(Icons.arrow_back, color: appColors.whiteA700),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
           _getTitle(),
           style: TextStyleHelper.instance.body14SemiBoldPoppins
-              .copyWith(color: appTheme.whiteA700),
+              .copyWith(color: appColors.whiteA700),
         ),
         centerTitle: true,
       ),

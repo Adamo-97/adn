@@ -38,10 +38,10 @@ class PurificationItemWidget extends StatelessWidget {
             right: 12.h,
           ),
           decoration: BoxDecoration(
-            color: appTheme.gray_500, // your bg
+            color: appColors.gray_500, // your bg
             borderRadius: BorderRadius.circular(12.h),
-            border:
-                Border.all(color: appTheme.gray_700, width: 3.h), // your border
+            border: Border.all(
+                color: appColors.gray_700, width: 3.h), // your border
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,7 +58,7 @@ class PurificationItemWidget extends StatelessWidget {
                         TextStyleHelper.instance.body15RegularPoppins.copyWith(
                       fontSize: 15.0,
                       height: 1.10,
-                      color: appTheme.whiteA700, // ✅ white text
+                      color: appColors.whiteA700, // ✅ white text
                     ),
                   ),
                 ),
@@ -72,8 +72,8 @@ class PurificationItemWidget extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 // Make the icon gold. If CustomImageView doesn't expose `color`,
                 // switch to a colorFilter in that widget implementation.
-                color: appTheme.orange_200, // ✅ gold icon
-                // colorFilter: ColorFilter.mode(appTheme.orange_200, BlendMode.srcIn),
+                color: appColors.orange_200, // ✅ gold icon
+                // colorFilter: ColorFilter.mode(appColors.orange_200, BlendMode.srcIn),
               ),
             ],
           ),

@@ -26,7 +26,7 @@ class ProfileActionRow extends StatelessWidget {
             width: 24.h,
             padding: EdgeInsets.all(4.h),
             iconPath: icon,
-            backgroundColor: appTheme.whiteA700,
+            backgroundColor: appColors.whiteA700,
             borderRadius: 12.h,
             variant: CustomIconButtonVariant.small,
           ),
@@ -34,7 +34,7 @@ class ProfileActionRow extends StatelessWidget {
           Text(
             title,
             style: TextStyleHelper.instance.body15RegularPoppins
-                .copyWith(color: appTheme.whiteA700),
+                .copyWith(color: appColors.whiteA700),
           ),
         ],
       ),

@@ -110,7 +110,7 @@ class AppNavigationScreenState extends ConsumerState<AppNavigationScreen> {
         return className;
       },
       isScrollControlled: true,
-      backgroundColor: appTheme.transparentCustom,
+      backgroundColor: appColors.transparentCustom,
     );
   }
 
@@ -121,7 +121,7 @@ class AppNavigationScreenState extends ConsumerState<AppNavigationScreen> {
       builder: (context) {
         return AlertDialog(
           content: className,
-          backgroundColor: appTheme.transparentCustom,
+          backgroundColor: appColors.transparentCustom,
           insetPadding: EdgeInsets.zero,
         );
       },

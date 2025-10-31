@@ -49,7 +49,8 @@ class CustomImageView extends StatelessWidget {
 
   final BoxBorder? border;
 
-  CustomImageView({super.key, 
+  CustomImageView({
+    super.key,
     String? imagePath,
     this.height,
     this.width,
@@ -122,7 +123,7 @@ class CustomImageView extends StatelessWidget {
             fit: fit ?? BoxFit.contain,
             colorFilter: color != null
                 ? ColorFilter.mode(
-                    color ?? appTheme.transparentCustom, BlendMode.srcIn)
+                    color ?? appColors.transparentCustom, BlendMode.srcIn)
                 : null,
           ),
         );
@@ -142,7 +143,7 @@ class CustomImageView extends StatelessWidget {
           fit: fit ?? BoxFit.contain,
           colorFilter: color != null
               ? ColorFilter.mode(
-                  color ?? appTheme.transparentCustom, BlendMode.srcIn)
+                  color ?? appColors.transparentCustom, BlendMode.srcIn)
               : null,
         );
       case ImageType.network:
@@ -156,8 +157,8 @@ class CustomImageView extends StatelessWidget {
             height: 30,
             width: 30,
             child: LinearProgressIndicator(
-              color: appTheme.grey200,
-              backgroundColor: appTheme.grey100,
+              color: appColors.grey200,
+              backgroundColor: appColors.grey100,
             ),
           ),
           errorWidget: (context, url, error) => Image.asset(

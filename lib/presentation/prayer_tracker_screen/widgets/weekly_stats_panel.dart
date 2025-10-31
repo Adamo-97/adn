@@ -126,22 +126,22 @@ class _WeeklyChartState extends ConsumerState<_WeeklyChart> {
                 onTap: _prevWeek,
                 child: Icon(
                   Icons.chevron_left,
-                  color: appTheme.gray_700,
+                  color: appColors.gray_700,
                   size: 24.h,
                 ),
               ),
               Text(
                 dateRange,
                 style: TextStyleHelper.instance.body12SemiBoldPoppins
-                    .copyWith(color: appTheme.whiteA700),
+                    .copyWith(color: appColors.whiteA700),
               ),
               GestureDetector(
                 onTap: _canGoNext() ? _nextWeek : null,
                 child: Icon(
                   Icons.chevron_right,
                   color: _canGoNext()
-                      ? appTheme.gray_700
-                      : appTheme.gray_700.withAlpha((0.3 * 255).round()),
+                      ? appColors.gray_700
+                      : appColors.gray_700.withAlpha((0.3 * 255).round()),
                   size: 24.h,
                 ),
               ),
@@ -155,7 +155,7 @@ class _WeeklyChartState extends ConsumerState<_WeeklyChart> {
               painter: _WeeklyBarChartPainter(
                 weekData: weekData,
                 selectedIndex: _selectedDayIndex,
-                theme: appTheme,
+                theme: appColors,
               ),
               child: GestureDetector(
                 onTapDown: (details) {
@@ -185,7 +185,7 @@ class _WeeklyChartState extends ConsumerState<_WeeklyChart> {
 class _WeeklyBarChartPainter extends CustomPainter {
   final List<Map<String, dynamic>> weekData;
   final int? selectedIndex;
-  final LightCodeColors theme;
+  final DarkCodeColors theme;
 
   _WeeklyBarChartPainter({
     required this.weekData,
@@ -359,10 +359,10 @@ class _FullAnalyticsButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 8.h),
         decoration: BoxDecoration(
-          color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
+          color: appColors.gray_700.withAlpha((0.3 * 255).round()),
           borderRadius: BorderRadius.circular(8.h),
           border: Border.all(
-            color: appTheme.gray_700.withAlpha((0.5 * 255).round()),
+            color: appColors.gray_700.withAlpha((0.5 * 255).round()),
             width: 1.h,
           ),
         ),
@@ -372,12 +372,12 @@ class _FullAnalyticsButton extends StatelessWidget {
             Text(
               'Full Analytics',
               style: TextStyleHelper.instance.label10LightPoppins
-                  .copyWith(color: appTheme.whiteA700),
+                  .copyWith(color: appColors.whiteA700),
             ),
             SizedBox(width: 6.h),
             Icon(
               Icons.arrow_forward,
-              color: appTheme.whiteA700,
+              color: appColors.whiteA700,
               size: 12.h,
             ),
           ],

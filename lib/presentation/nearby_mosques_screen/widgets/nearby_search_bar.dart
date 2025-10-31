@@ -35,7 +35,7 @@ class NearbySearchBar extends StatelessWidget {
             height: 44.h,
             padding: EdgeInsets.symmetric(horizontal: 16.h),
             decoration: BoxDecoration(
-              color: appTheme.gray_900,
+              color: appColors.gray_900,
               borderRadius: BorderRadius.circular(64.h),
               boxShadow: [
                 BoxShadow(
@@ -49,14 +49,14 @@ class NearbySearchBar extends StatelessWidget {
               child: TextField(
                 controller: searchController,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: appTheme.whiteA700,
+                  color: appColors.whiteA700,
                   fontSize: 14.fSize,
                   fontFamily: 'Poppins',
                 ),
                 decoration: InputDecoration(
                   hintText: 'Enter location',
                   hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                    color: appTheme.whiteA700.withAlpha((0.5 * 255).round()),
+                    color: appColors.whiteA700.withAlpha((0.5 * 255).round()),
                     fontSize: 14.fSize,
                     fontFamily: 'Poppins',
                   ),

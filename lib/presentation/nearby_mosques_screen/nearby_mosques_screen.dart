@@ -82,7 +82,7 @@ class NearbyMosquesScreenState extends ConsumerState<NearbyMosquesScreen> {
     });
 
     return Scaffold(
-      backgroundColor: appTheme.gray_900,
+      backgroundColor: appColors.gray_900,
       body: Stack(
         children: [
           const MapSection(),

@@ -101,7 +101,7 @@ class PrayerTrackerInitialPageState
     // Layout measurements
 
     return ColoredBox(
-      color: appTheme.gray_900,
+      color: appColors.gray_900,
       child: Stack(
         children: [
           // Scrollable content UNDER the fixed header
@@ -134,11 +134,11 @@ class PrayerTrackerInitialPageState
                     end: Alignment.bottomCenter,
                     stops: const [0.0, 0.3, 0.6, 0.85, 1.0],
                     colors: [
-                      appTheme.gray_900.withAlpha(0),
-                      appTheme.gray_900.withAlpha((0.2 * 255).round()),
-                      appTheme.gray_900.withAlpha((0.5 * 255).round()),
-                      appTheme.gray_900.withAlpha((0.8 * 255).round()),
-                      appTheme.gray_900,
+                      appColors.gray_900.withAlpha(0),
+                      appColors.gray_900.withAlpha((0.2 * 255).round()),
+                      appColors.gray_900.withAlpha((0.5 * 255).round()),
+                      appColors.gray_900.withAlpha((0.8 * 255).round()),
+                      appColors.gray_900,
                     ],
                   ),
                 ),
@@ -174,9 +174,9 @@ class PrayerTrackerInitialPageState
         ProgressIndicatorsRow(
           statuses: m.progressStatusesRaw,
           colors: ProgressColors(
-            completed: appTheme.gray_700, // completed
-            current: appTheme.gray_500, // current
-            upcoming: appTheme.whiteA700, // upcoming/uncompleted
+            completed: appColors.gray_700, // completed
+            current: appColors.gray_500, // current
+            upcoming: appColors.whiteA700, // upcoming/uncompleted
           ),
           completedCount: completedCount,
           totalFard: _fardPrayers.length, // 5

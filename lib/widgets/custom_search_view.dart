@@ -4,10 +4,10 @@ import '../core/app_export.dart';
 import './custom_image_view.dart';
 
 /// CustomSearchView - A reusable search input widget with customizable icons and styling
-/// 
+///
 /// This widget provides a text input field specifically designed for search functionality,
 /// featuring left and right icons, custom placeholder text, and consistent bottom border styling.
-/// 
+///
 /// @param controller - TextEditingController for managing input text
 /// @param hintText - Placeholder text displayed when field is empty
 /// @param prefixIconPath - Path to the left icon (search icon)
@@ -81,11 +81,11 @@ class CustomSearchView extends StatelessWidget {
         onFieldSubmitted: onSubmitted,
         validator: validator,
         style: TextStyleHelper.instance.body12RegularPoppins
-            .copyWith(color: appTheme.color7FFFFF, height: 1.5),
+            .copyWith(color: appColors.color7FFFFF, height: 1.5),
         decoration: InputDecoration(
           hintText: hintText ?? "Search...",
           hintStyle: TextStyleHelper.instance.body12RegularPoppins
-              .copyWith(color: appTheme.color7FFFFF, height: 1.5),
+              .copyWith(color: appColors.color7FFFFF, height: 1.5),
           prefixIcon: prefixIconPath != null
               ? Padding(
                   padding: EdgeInsets.all(8.h),
@@ -115,19 +115,19 @@ class CustomSearchView extends StatelessWidget {
               ),
           border: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: appTheme.color48195C,
+              color: appColors.color48195C,
               width: 1.h,
             ),
           ),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: appTheme.color48195C,
+              color: appColors.color48195C,
               width: 1.h,
             ),
           ),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: appTheme.color48195C,
+              color: appColors.color48195C,
               width: 1.h,
             ),
           ),

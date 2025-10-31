@@ -189,7 +189,7 @@ Example: `prayer_tracker_screen/` contains models, notifier (with state), widget
 
 ## Theme System
 
-- Access via global getters: `theme` (ThemeData), `appTheme` (LightCodeColors)
+- Access via global getters: `theme` (ThemeData), `appColors` (DarkCodeColors)
 - Defined in `lib/theme/theme_helper.dart` and `lib/theme/text_style_helper.dart`
 - **Current**: Dark theme implemented as 'lightCode' variant (naming is legacy, will be refactored)
 - **PLANNED**: Light theme implementation with theme switching support

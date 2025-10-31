@@ -19,12 +19,12 @@ class MosqueImageTile extends StatelessWidget {
       width: 47.h,
       height: 47.h,
       decoration: BoxDecoration(
-        color: appTheme.gray_900,
+        color: appColors.gray_900,
         borderRadius: BorderRadius.circular(3.h),
         border: Border.all(
           color: isExpanded
-              ? appTheme.orange_200
-              : appTheme.gray_700.withAlpha((0.5 * 255).round()),
+              ? appColors.orange_200
+              : appColors.gray_700.withAlpha((0.5 * 255).round()),
           width: 1,
         ),
       ),
@@ -42,7 +42,7 @@ class MosqueImageTile extends StatelessWidget {
               child: Text(
                 'No Image',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: appTheme.whiteA700.withAlpha((0.5 * 255).round()),
+                  color: appColors.whiteA700.withAlpha((0.5 * 255).round()),
                   fontSize: 7.fSize,
                   fontWeight: FontWeight.w300,
                 ),

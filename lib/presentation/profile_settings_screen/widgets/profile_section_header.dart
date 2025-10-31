@@ -44,13 +44,13 @@ class ProfileSectionHeader extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyleHelper.instance.title18SemiBoldPoppins
-                        .copyWith(color: appTheme.gray_100),
+                        .copyWith(color: appColors.gray_100),
                   ),
                   SizedBox(height: 2.h),
                   Text(
                     subtitle,
                     style: TextStyleHelper.instance.label10LightPoppins
-                        .copyWith(color: appTheme.gray_100),
+                        .copyWith(color: appColors.gray_100),
                   ),
                 ],
               ),

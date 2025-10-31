@@ -10,7 +10,7 @@ class SectionHeader extends StatelessWidget {
     return Text(
       title,
       style: TextStyleHelper.instance.body14SemiBoldPoppins
-          .copyWith(color: appTheme.whiteA700),
+          .copyWith(color: appColors.whiteA700),
     );
   }
 }

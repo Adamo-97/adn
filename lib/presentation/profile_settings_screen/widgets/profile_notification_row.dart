@@ -26,7 +26,7 @@ class ProfileNotificationRow extends StatelessWidget {
             child: Text(
               title,
               style: TextStyleHelper.instance.body15RegularPoppins
-                  .copyWith(color: appTheme.gray_100),
+                  .copyWith(color: appColors.gray_100),
             ),
           ),
           Container(

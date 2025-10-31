@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import '../models/profile_settings_model.dart';
 import '../../../core/app_export.dart';
+import '../../../../notifier/theme_notifier.dart';
 
 part 'profile_settings_state.dart';
 
@@ -33,9 +35,16 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
   }
 
   void toggleDarkMode() {
+    final newDarkMode = !(state.darkMode ?? false);
     state = state.copyWith(
-      darkMode: !(state.darkMode ?? false),
+      darkMode: newDarkMode,
     );
+
+    // Also update the global theme provider so the app theme switches
+    // immediately when the user toggles the setting in profile.
+    ref
+        .read(themeNotifierProvider.notifier)
+        .setMode(newDarkMode ? ThemeMode.dark : ThemeMode.light);
   }
 
   void toggleHijriCalendar() {

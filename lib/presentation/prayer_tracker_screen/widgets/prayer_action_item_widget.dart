@@ -57,7 +57,7 @@ class PrayerActionItemWidget extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyleHelper.instance.label10LightPoppins
-                .copyWith(color: appTheme.colorCCFFFF),
+                .copyWith(color: appColors.colorCCFFFF),
           ),
         ],
       ),

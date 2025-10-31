@@ -72,10 +72,10 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
     return Container(
       padding: EdgeInsets.fromLTRB(20.h, widget.topInset + 16.h, 20.h, 20.h),
       decoration: BoxDecoration(
-        color: appTheme.gray_900,
+        color: appColors.gray_900,
         border: Border(
           bottom: BorderSide(
-            color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
+            color: appColors.gray_700.withAlpha((0.3 * 255).round()),
             width: 1,
           ),
         ),
@@ -87,7 +87,7 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
           Text(
             widget.title,
             style: TextStyleHelper.instance.title20BoldPoppins.copyWith(
-              color: appTheme.whiteA700,
+              color: appColors.whiteA700,
               fontSize: 22.fSize,
               fontWeight: FontWeight.w700,
             ),
@@ -107,7 +107,7 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
             child: Container(
               height: 48.h,
               decoration: BoxDecoration(
-                color: appTheme.gray_700.withAlpha((0.3 * 255).round()),
+                color: appColors.gray_700.withAlpha((0.3 * 255).round()),
                 borderRadius: BorderRadius.circular(12.h),
               ),
               padding: EdgeInsets.symmetric(horizontal: 14.h),
@@ -116,7 +116,7 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
                   // Search icon
                   CustomImageView(
                     imagePath: ImageConstant.imgSearch,
-                    color: appTheme.gray_600,
+                    color: appColors.gray_600,
                   ),
                   SizedBox(width: 10.h),
 
@@ -133,8 +133,8 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
                         style: TextStyleHelper.instance.body15RegularPoppins
                             .copyWith(
                           color: _exceeded
-                              ? appTheme.whiteA700
-                              : appTheme.whiteA700,
+                              ? appColors.whiteA700
+                              : appColors.whiteA700,
                         ),
                         decoration: InputDecoration(
                           isDense: true,
@@ -143,7 +143,7 @@ class _SalahHeaderWithSearchState extends State<SalahHeaderWithSearch>
                           hintStyle: TextStyleHelper
                               .instance.body15RegularPoppins
                               .copyWith(
-                            color: appTheme.gray_600,
+                            color: appColors.gray_600,
                           ),
                         ),
                       ),

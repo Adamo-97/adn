@@ -39,7 +39,7 @@ class ProfileLanguageOption extends StatelessWidget {
               style: isArabic
                   ? TextStyleHelper.instance.body15MediumNotoKufiArabic
                   : TextStyleHelper.instance.body15RegularPoppins
-                      .copyWith(color: appTheme.whiteA700),
+                      .copyWith(color: appColors.whiteA700),
             ),
           ),
         ],

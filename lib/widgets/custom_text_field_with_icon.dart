@@ -72,7 +72,7 @@ class CustomTextFieldWithIcon extends StatelessWidget {
         controller: controller,
         style: textStyle ??
             TextStyleHelper.instance.body15RegularPoppins
-                .copyWith(color: appTheme.whiteA700),
+                .copyWith(color: appColors.whiteA700),
         decoration: InputDecoration(
           hintText: hintText ?? "Enter text",
           hintStyle: hintStyle ??
@@ -112,19 +112,19 @@ class CustomTextFieldWithIcon extends StatelessWidget {
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.h),
             borderSide: BorderSide(
-              color: appTheme.redCustom,
+              color: appColors.redCustom,
               width: 1.h,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.h),
             borderSide: BorderSide(
-              color: appTheme.redCustom,
+              color: appColors.redCustom,
               width: 1.h,
             ),
           ),
           filled: true,
-          fillColor: appTheme.transparentCustom,
+          fillColor: appColors.transparentCustom,
         ),
         validator: validator,
         keyboardType: keyboardType ?? TextInputType.text,

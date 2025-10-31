@@ -37,7 +37,7 @@ class _CardRow extends ConsumerWidget {
         item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
     final decorationColor =
         item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
-    final bgColor = item.isCurrent ? appTheme.gray_700 : nonCurrentBg;
+    final bgColor = item.isCurrent ? appColors.gray_700 : nonCurrentBg;
 
     return Opacity(
       opacity: item.isAfterCurrent ? 0.5 : 1.0,
@@ -63,11 +63,11 @@ class _CardRow extends ConsumerWidget {
                 size: 24.h, // icon visual size
                 // colors match your current vs non-current scheme
                 fillColor:
-                    item.isCurrent ? appTheme.orange_200 : appTheme.gray_700,
+                    item.isCurrent ? appColors.orange_200 : appColors.gray_700,
                 borderColor: item.isCurrent
-                    ? appTheme.orange_200
-                    : appTheme.whiteA700.withValues(alpha: 0.5),
-                checkColor: appTheme.whiteA700, // contrast on orange fill
+                    ? appColors.orange_200
+                    : appColors.whiteA700.withValues(alpha: 0.5),
+                checkColor: appColors.whiteA700, // contrast on orange fill
               ),
             ),
             SizedBox(width: 10.h),

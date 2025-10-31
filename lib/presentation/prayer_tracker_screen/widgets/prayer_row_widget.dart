@@ -28,7 +28,7 @@ class PrayerRowWidget extends StatelessWidget {
 
         return Container(
           decoration: BoxDecoration(
-            color: appTheme.gray_900_01,
+            color: appColors.gray_900_01,
             borderRadius: isLastRow
                 ? BorderRadius.only(
                     bottomLeft: Radius.circular(10.h),
@@ -57,7 +57,7 @@ class PrayerRowWidget extends StatelessWidget {
                     width: 36.h,
                     height: 36.h,
                     decoration: BoxDecoration(
-                      border: Border.all(color: appTheme.gray_700, width: 3.h),
+                      border: Border.all(color: appColors.gray_700, width: 3.h),
                       borderRadius: BorderRadius.circular(18.h),
                     ),
                     child: Center(
