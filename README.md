@@ -43,5 +43,46 @@ This project is made publicly available for educational purposes. You are free t
 
 Please refer to the [LICENSE](LICENSE) file for more details.
 
----
 © 2025 Adam Abdullah — All Rights Reserved
+
+## Coverage (tests)
+
+This project can generate test coverage reports locally and in CI. The coverage artifacts are generated into the `coverage/` folder and are intentionally ignored in git (see `.gitignore`).
+
+Quick local steps:
+
+- Run all tests and generate an lcov report:
+
+  ```powershell
+  flutter test --coverage
+  ```
+
+- This produces `coverage/lcov.info`. To view an HTML report locally you can use `lcov`/`genhtml` or a small tool like `lcov_to_html`:
+
+  ```powershell
+  # convert lcov to HTML (example, requires lcov tools installed)
+  genhtml coverage/lcov.info -o coverage/html
+  # then open coverage/html/index.html in your browser
+  ```
+
+Publishing coverage in CI:
+
+- Codecov (example): upload `coverage/lcov.info` using their bash uploader or CI integration. On GitHub Actions you can use the `codecov/codecov-action`.
+
+- Coveralls: use the appropriate uploader for your CI and language. Many CI providers have first-class Coveralls or Codecov actions.
+
+Example (GitHub Actions snippet):
+
+```yaml
+# ... run tests step that runs `flutter test --coverage` ...
+- name: Upload coverage to Codecov
+  uses: codecov/codecov-action@v4
+  with:
+    files: coverage/lcov.info
+    fail_ci_if_error: true
+```
+
+Notes:
+
+- The `coverage/` folder is generated output and is excluded from version control to avoid repository churn.
+- Keep CI tokens (Codecov/Coveralls) secret — store them in your repo's CI secrets.
