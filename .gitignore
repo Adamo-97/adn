@@ -16,3 +16,4 @@ android/.gradle/
 android/app/build/
 build/
 .dart_tool/
+coverage/
