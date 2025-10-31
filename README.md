@@ -27,6 +27,7 @@ This application is designed to be a comprehensive daily companion for Muslims, 
 ## 📁 Project Structure
 
 The project follows a clean architecture to separate concerns:
+
 - `lib/presentation/`: Contains all UI-related code, including screens, widgets, and visual elements.
 - `lib/data/`: Contains the business logic, data models, and repositories for fetching data from external APIs.
 - `lib/core/`: Holds shared utilities, constants, and core application setup.
@@ -35,7 +36,7 @@ The project follows a clean architecture to separate concerns:
 
 ## ⚖️ License & Usage
 
-**For Educational Use Only**
+### For Educational Use Only
 
 This project is made publicly available for educational purposes. You are free to clone, study, and modify the code to learn about Flutter development and application architecture.
 
