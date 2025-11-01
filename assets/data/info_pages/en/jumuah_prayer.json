@@ -1,0 +1,33 @@
+{
+  "title": "Jumu‘ah Prayer",
+  "sections": [
+    {
+      "type": "section_title",
+      "text": "Obligation"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The Friday congregational prayer is an obligation for men wherever there are groups of Muslims. See Surah 62:9.",
+        "Women and children may attend but are not required to do so.",
+        "Travelers and sick people are excused."
+      ]
+    },
+    {
+      "type": "section_title",
+      "text": "Rak‘ahs & Timing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Jumu‘ah consists of two rak‘ahs which replace the usual four rak‘ahs of Thuhr prayer. Anyone attending Jumu‘ah does not pray Thuhr at home, but those not attending Jumu‘ah pray the regular four rak‘ahs of Thuhr. The prayer is preceded by an address (khutbah) given by the imam, to which the congregation should listen without speaking."
+    },
+    {
+      "type": "section_title",
+      "text": "Sunnah Practices"
+    },
+    {
+      "type": "paragraph",
+      "text": "It is sunnah before attending Friday prayer to make ghusl and to wear good clothes. Women must always take care to observe Islamic dress in mosques and, generally, at all times."
+    }
+  ]
+}

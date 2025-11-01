@@ -31,6 +31,8 @@ flutter:
     - assets/images/salah_guide/
     - assets/images/mosques/
     - assets/images/profile/
+    - assets/images/info_pages/
+    - assets/data/info_pages/en/
   fonts: 
     - family: Poppins
       fonts: 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/app_export.dart';
+import '../info_page_screen/info_page_screen.dart';
 import 'models/salah_guide_card_model.dart';
 import 'notifier/salah_guide_notifier.dart';
 import 'widgets/salah_guide_card.dart';
@@ -227,7 +228,16 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
                     ref
                         .read(salahGuideNotifier.notifier)
                         .selectCard(cards[index]);
-                    // TODO: Navigate to card details
+                    // Navigate to InfoPageScreen with card details using root navigator
+                    // This hides the bottom navigation bar
+                    Navigator.of(context, rootNavigator: true).push(
+                      MaterialPageRoute(
+                        builder: (context) => InfoPageScreen(
+                          cardTitle: cards[index].title ?? '',
+                          category: cards[index].category ?? category,
+                        ),
+                      ),
+                    );
                   },
                 );
               },
