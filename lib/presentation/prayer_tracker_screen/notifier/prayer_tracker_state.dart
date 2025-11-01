@@ -46,6 +46,19 @@ class PrayerTrackerState extends Equatable {
 
   int get currentIndexInAll => kAllPrayerKeys.indexOf(currentPrayer);
 
+  /// Get the next prayer after the current prayer (single source of truth).
+  /// Wraps around to Fajr if current is Isha (last prayer of the day).
+  String get nextPrayer {
+    final currentIndex = currentIndexInAll;
+    if (currentIndex < 0 || currentIndex >= kAllPrayerKeys.length - 1) {
+      return kAllPrayerKeys[0]; // Default to Fajr if current is Isha or invalid
+    }
+    return kAllPrayerKeys[currentIndex + 1];
+  }
+
+  /// Get the time for the next prayer from dailyTimes.
+  String get nextPrayerTime => dailyTimes[nextPrayer] ?? '00:00';
+
   final Map<String, PrayerBellMode> bellByPrayer;
 
   // Track scroll position for reset on navigation/tab switch
@@ -115,14 +128,14 @@ class PrayerTrackerState extends Equatable {
         calendarOpen = calendarOpen ?? false,
         qiblaOpen = qiblaOpen ?? false,
         bellByPrayer = bellByPrayer ??
-                const {
-                  'Fajr': PrayerBellMode.adhan,
-                  'Sunrise': PrayerBellMode.mute,
-                  'Dhuhr': PrayerBellMode.pling,
-                  'Asr': PrayerBellMode.pling,
-                  'Maghrib': PrayerBellMode.adhan,
-                  'Isha': PrayerBellMode.pling,
-                },
+            const {
+              'Fajr': PrayerBellMode.adhan,
+              'Sunrise': PrayerBellMode.mute,
+              'Dhuhr': PrayerBellMode.pling,
+              'Asr': PrayerBellMode.pling,
+              'Maghrib': PrayerBellMode.adhan,
+              'Isha': PrayerBellMode.pling,
+            },
         scrollPosition = scrollPosition ?? 0.0,
         resetTimestamp = resetTimestamp ?? 0;
 
@@ -269,8 +282,8 @@ class PrayerTrackerState extends Equatable {
         calendarOpen,
         qiblaOpen,
         openStatButton,
-    bellByPrayer,
-    scrollPosition,
-    resetTimestamp,
+        bellByPrayer,
+        scrollPosition,
+        resetTimestamp,
       ];
 }

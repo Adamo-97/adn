@@ -5,6 +5,7 @@ import 'package:adam_s_application/presentation/prayer_tracker_screen/widgets/ne
 import 'package:adam_s_application/presentation/prayer_tracker_screen/notifier/prayer_tracker_notifier.dart';
 import 'package:adam_s_application/presentation/prayer_tracker_screen/models/prayer_tracker_model.dart';
 import 'package:adam_s_application/widgets/custom_image_view.dart';
+import 'package:adam_s_application/core/utils/time_format_utils.dart';
 
 /// Comprehensive test suite for NextPrayerCard widget.
 /// Tests cover rendering, state management, responsive design, and visual consistency.
@@ -44,8 +45,12 @@ void main() {
       await tester.pumpAndSettle();
 
       // Assert - verify all text elements are present (no "Next Prayer" label)
-      // Placeholder data from default model
-      expect(find.textContaining('Next Prayer is Fajr'), findsOneWidget);
+      // Default currentPrayer is 'Asr', so next prayer should be 'Maghrib'
+      final state = container.read(prayerTrackerNotifierProvider);
+      expect(state.currentPrayer, 'Asr');
+      expect(state.nextPrayer, 'Maghrib');
+
+      expect(find.text('Next Prayer is Maghrib'), findsOneWidget);
       // Time is now fetched from dailyTimes ('00:00') and formatted to 12-hour ('12:00 AM')
       expect(find.text('12:00 AM'), findsOneWidget);
       expect(find.text('Ronneby, SE'), findsOneWidget);
@@ -188,12 +193,13 @@ void main() {
 
     group('Boundary Value Analysis - Content Tests', () {
       testWidgets('handles short prayer name', (WidgetTester tester) async {
-        // Arrange & Act - prayer name: "Next Prayer is Fajr"
+        // Arrange & Act - next prayer depends on currentPrayer state
         await tester.pumpWidget(buildTestWidget());
         await tester.pumpAndSettle();
 
-        // Assert - renders without overflow
-        expect(find.textContaining('Fajr'), findsOneWidget);
+        final state = container.read(prayerTrackerNotifierProvider);
+        // Assert - renders without overflow (next prayer is Maghrib when current is Asr)
+        expect(find.text('Next Prayer is ${state.nextPrayer}'), findsOneWidget);
         expect(tester.takeException(), isNull);
       });
 
@@ -373,6 +379,74 @@ void main() {
         final container =
             tester.widget<Container>(find.byType(Container).first);
         expect(container.padding, EdgeInsets.all(16.h));
+      });
+    });
+
+    group('Next Prayer Logic Tests (Single Source of Truth)', () {
+      testWidgets('displays correct next prayer based on current prayer state',
+          (WidgetTester tester) async {
+        // Arrange - Default current prayer is Asr (from PrayerTrackerState init)
+        await tester.pumpWidget(buildTestWidget());
+        await tester.pumpAndSettle();
+
+        final state = container.read(prayerTrackerNotifierProvider);
+
+        // Assert - Next prayer should be computed correctly from state
+        expect(state.currentPrayer, isA<String>());
+        expect(state.nextPrayer, isA<String>());
+        expect(find.text('Next Prayer is ${state.nextPrayer}'), findsOneWidget);
+      });
+
+      testWidgets('nextPrayer getter computes correctly for different values',
+          (WidgetTester tester) async {
+        // Arrange
+        await tester.pumpWidget(buildTestWidget());
+        await tester.pumpAndSettle();
+
+        final state = container.read(prayerTrackerNotifierProvider);
+
+        // Assert - Verify logic: next prayer is the one after current in kAllPrayerKeys
+        final currentIndex = kAllPrayerKeys.indexOf(state.currentPrayer);
+        final expectedNextIndex = (currentIndex + 1 < kAllPrayerKeys.length)
+            ? currentIndex + 1
+            : 0; // Wraps to Fajr
+        final expectedNextPrayer = kAllPrayerKeys[expectedNextIndex];
+
+        expect(state.nextPrayer, expectedNextPrayer);
+      });
+
+      testWidgets('displays correct icon for next prayer',
+          (WidgetTester tester) async {
+        // Arrange
+        await tester.pumpWidget(buildTestWidget());
+        await tester.pumpAndSettle();
+
+        final state = container.read(prayerTrackerNotifierProvider);
+
+        // Assert - Verify icon path matches next prayer
+        final customImageViews =
+            tester.widgetList<CustomImageView>(find.byType(CustomImageView));
+        final prayerIcon = customImageViews.firstWhere(
+          (img) => img.height == 38.h && img.width == 38.h,
+        );
+        expect(prayerIcon.imagePath,
+            ImageConstant.iconForPrayer(state.nextPrayer));
+      });
+
+      testWidgets('displays correct time for next prayer from dailyTimes',
+          (WidgetTester tester) async {
+        // Arrange
+        await tester.pumpWidget(buildTestWidget());
+        await tester.pumpAndSettle();
+
+        final state = container.read(prayerTrackerNotifierProvider);
+        final nextPrayerTime = state.dailyTimes[state.nextPrayer] ?? '00:00';
+
+        // Format the time (default is 12-hour format)
+        final formattedTime = TimeFormatUtils.formatTime(nextPrayerTime, false);
+
+        // Assert - Check that formatted time is displayed
+        expect(find.text(formattedTime), findsOneWidget);
       });
     });
   });

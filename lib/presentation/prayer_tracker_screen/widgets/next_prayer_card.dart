@@ -23,13 +23,13 @@ class NextPrayerCard extends ConsumerWidget {
     final profileState = ref.watch(profileSettingsNotifier);
     final use24HourFormat = profileState.use24HourFormat ?? false;
 
-    // Get the next prayer's time from dailyTimes instead of the hardcoded prayerTime field
-    // Extract prayer name from the display string (e.g., "Next Prayer is Fajr" -> "Fajr")
-    final nextPrayerName = m.nextPrayer.replaceAll('Next Prayer is ', '');
-    final rawTime = state.dailyTimes[nextPrayerName] ?? '00:00';
+    // Get next prayer name and time from state (single source of truth)
+    final nextPrayerName = state.nextPrayer;
+    final rawTime = state.nextPrayerTime;
 
     // Format the prayer time based on user preference
     final formattedTime = TimeFormatUtils.formatTime(rawTime, use24HourFormat);
+
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.all(16.h),
@@ -58,9 +58,9 @@ class NextPrayerCard extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Prayer name
+                // Prayer name - display as "Next Prayer is [Name]"
                 Text(
-                  m.nextPrayer,
+                  'Next Prayer is $nextPrayerName',
                   style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
                     color: appColors.whiteA700,
                     fontSize: 18.fSize,
@@ -119,7 +119,7 @@ class NextPrayerCard extends ConsumerWidget {
 
           SizedBox(width: 12.h),
 
-          // Right: Prayer icon with background circle
+          // Right: Prayer icon with background circle (showing next prayer icon)
           Container(
             width: 56.h,
             height: 56.h,
@@ -129,7 +129,7 @@ class NextPrayerCard extends ConsumerWidget {
             ),
             child: Center(
               child: CustomImageView(
-                imagePath: ImageConstant.iconForPrayer(state.currentPrayer),
+                imagePath: ImageConstant.iconForPrayer(nextPrayerName),
                 height: 38.h,
                 width: 38.h,
               ),
