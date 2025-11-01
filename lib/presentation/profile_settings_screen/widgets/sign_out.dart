@@ -15,32 +15,59 @@ class SignOut extends ConsumerWidget {
       child: GestureDetector(
         onTap: notifier.signOut,
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 4.h),
-          padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 10.h),
+          margin: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.h),
+          padding: EdgeInsets.symmetric(horizontal: 32.h, vertical: 14.h),
           decoration: BoxDecoration(
-            color: const Color(0xFFFF4444).withValues(alpha: 0.15),
-            borderRadius: BorderRadius.circular(100.h), // Full pill shape
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                const Color(0xFFFF4444).withValues(alpha: 0.2),
+                const Color(0xFFFF4444).withValues(alpha: 0.15),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(16.h),
             border: Border.all(
-              color: const Color(0xFFFF4444),
+              color: const Color(0xFFFF4444).withValues(alpha: 0.6),
               width: 1.5,
             ),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFFFF4444).withValues(alpha: 0.3),
+                blurRadius: 8,
+                offset: Offset(0, 2),
+                spreadRadius: -2,
+              ),
+            ],
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CustomImageView(
-                imagePath: ImageConstant.imgSignOutIcon,
-                height: 18.h,
-                width: 18.h,
-                color: const Color(0xFFFF4444),
+              Container(
+                padding: EdgeInsets.all(6.h),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFF4444).withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(8.h),
+                  border: Border.all(
+                    color: const Color(0xFFFF4444).withValues(alpha: 0.3),
+                    width: 1,
+                  ),
+                ),
+                child: CustomImageView(
+                  imagePath: ImageConstant.imgSignOutIcon,
+                  height: 16.h,
+                  width: 16.h,
+                  color: const Color(0xFFFF4444),
+                ),
               ),
-              SizedBox(width: 10.h),
+              SizedBox(width: 12.h),
               Text(
                 'Sign Out',
                 style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
                   fontSize: 15.fSize,
                   fontWeight: FontWeight.w600,
                   color: const Color(0xFFFF4444),
+                  letterSpacing: 0.3,
                 ),
               ),
             ],

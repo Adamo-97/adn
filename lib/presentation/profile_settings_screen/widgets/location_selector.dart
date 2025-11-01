@@ -113,8 +113,8 @@ class LocationSelector extends ConsumerWidget {
               : Container(
                   key: const ValueKey('location-open'),
                   margin: EdgeInsets.only(
-                    left: 20.h,
-                    right: 20.h,
+                    left: 4.h,
+                    right: 4.h,
                     top: 8.h,
                   ),
                   padding: EdgeInsets.all(12.h),

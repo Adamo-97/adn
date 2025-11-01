@@ -117,23 +117,39 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
     return Container(
       width: double.maxFinite,
       decoration: BoxDecoration(
-        color: appColors.gray_900,
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            appColors.gray_900,
+            appColors.gray_900.withValues(alpha: 0.95),
+          ],
+        ),
         border: Border(
           bottom: BorderSide(
-            color: appColors.gray_700,
+            color: appColors.gray_700.withValues(alpha: 0.5),
             width: 1,
           ),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.3),
+            blurRadius: 8,
+            offset: Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         children: [
-          SizedBox(height: MediaQuery.of(context).padding.top + 16.h),
-          SizedBox(height: 16.h),
+          SizedBox(height: MediaQuery.of(context).padding.top + 12.h),
           Text(
-            'Profile',
-            style: TextStyleHelper.instance.title20BoldPoppins,
+            'Profile Settings',
+            style: TextStyleHelper.instance.title20BoldPoppins.copyWith(
+              fontSize: 18.fSize,
+              letterSpacing: 0.3,
+            ),
           ),
-          SizedBox(height: 16.h),
+          SizedBox(height: 12.h),
         ],
       ),
     );
@@ -147,24 +163,147 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
   ) {
     return Container(
       width: double.maxFinite,
-      padding: EdgeInsets.symmetric(horizontal: 24.h).copyWith(
+      padding: EdgeInsets.symmetric(horizontal: 20.h).copyWith(
         bottom: 76.h + 24.h, // Bottom padding: navbar height + extra clearance
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const DarkMode(),
-          const HijriCalendar(),
-          const PrayerReminders(),
-          const LanguageSelector(),
-          const LocationSelector(),
-          const RateApp(),
-          const AboutApp(),
-          const ShareApp(),
-          const TermsConditions(),
+          SizedBox(height: 12.h),
+
+          // Preferences Section
+          _buildSectionHeader('Preferences'),
+          SizedBox(height: 8.h),
+          _buildSettingsCard(
+            children: [
+              const DarkMode(),
+              _buildDivider(),
+              const HijriCalendar(),
+              _buildDivider(),
+              const PrayerReminders(),
+            ],
+          ),
+
+          SizedBox(height: 20.h),
+
+          // Location & Language Section
+          _buildSectionHeader('Location & Language'),
+          SizedBox(height: 8.h),
+          _buildSettingsCard(
+            children: [
+              const LocationSelector(),
+              _buildDivider(),
+              const LanguageSelector(),
+            ],
+          ),
+
+          SizedBox(height: 20.h),
+
+          // Support & About Section
+          _buildSectionHeader('Support & About'),
+          SizedBox(height: 8.h),
+          _buildSettingsCard(
+            children: [
+              const RateApp(),
+              _buildDivider(),
+              const AboutApp(),
+              _buildDivider(),
+              const ShareApp(),
+              _buildDivider(),
+              const TermsConditions(),
+            ],
+          ),
+
+          SizedBox(height: 20.h),
+
+          // Sign Out
           const SignOut(),
+
           SizedBox(height: 24.h),
         ],
+      ),
+    );
+  }
+
+  /// Build section header with modern styling
+  Widget _buildSectionHeader(String title) {
+    return Padding(
+      padding: EdgeInsets.only(left: 4.h, bottom: 4.h),
+      child: Text(
+        title,
+        style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
+          fontSize: 13.fSize,
+          fontWeight: FontWeight.w600,
+          color: appColors.gray_100.withValues(alpha: 0.6),
+          letterSpacing: 0.5,
+        ),
+      ),
+    );
+  }
+
+  /// Build modern settings card with gradient and styling
+  Widget _buildSettingsCard({required List<Widget> children}) {
+    return Container(
+      decoration: BoxDecoration(
+        color: appColors.gray_700.withValues(alpha: 0.3),
+        borderRadius: BorderRadius.circular(16.h),
+        border: Border.all(
+          color: appColors.gray_700.withValues(alpha: 0.6),
+          width: 1.5,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.2),
+            blurRadius: 8,
+            offset: Offset(0, 2),
+            spreadRadius: -2,
+          ),
+        ],
+      ),
+      child: Stack(
+        children: [
+          // Subtle gradient overlay
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.h),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    appColors.gray_900.withValues(alpha: 0.3),
+                    appColors.gray_900.withValues(alpha: 0.5),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          // Content
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 8.h),
+            child: Column(
+              children: children,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Build subtle divider between settings items
+  Widget _buildDivider() {
+    return Container(
+      height: 1,
+      margin: EdgeInsets.symmetric(vertical: 4.h),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.transparent,
+            appColors.gray_700.withValues(alpha: 0.4),
+            Colors.transparent,
+          ],
+        ),
       ),
     );
   }
