@@ -26,11 +26,9 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
       hijriCalendar: false,
       selectedLocation: 'Stockholm, Sweden',
       selectedLanguage: 'English',
-      allNotifications: true,
-      athanNotifications: true,
       prayerReminders: true,
-      azkarNotifications: true,
       locationDropdownOpen: false,
+      languageDropdownOpen: false,
     );
   }
 
@@ -73,27 +71,9 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
     );
   }
 
-  void toggleAllNotifications() {
-    state = state.copyWith(
-      allNotifications: !(state.allNotifications ?? false),
-    );
-  }
-
-  void toggleAthanNotifications() {
-    state = state.copyWith(
-      athanNotifications: !(state.athanNotifications ?? false),
-    );
-  }
-
   void togglePrayerReminders() {
     state = state.copyWith(
       prayerReminders: !(state.prayerReminders ?? false),
-    );
-  }
-
-  void toggleAzkarNotifications() {
-    state = state.copyWith(
-      azkarNotifications: !(state.azkarNotifications ?? false),
     );
   }
 
@@ -105,6 +85,11 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
 
   void updateSearchQuery(String query) {
     state = state.copyWith(searchQuery: query);
+  }
+
+  void signOut() {
+    // TODO: Implement sign-out logic (clear auth, navigate to login, etc.)
+    debugPrint('Sign out requested');
   }
 
   /// Reset state to initial when navigating away
