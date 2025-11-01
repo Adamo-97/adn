@@ -16,7 +16,7 @@
     },
     {
       "type": "paragraph",
-      "illustration": "assets/icons/info_pages/wudu_step1.svg",
+      "illustration": "assets/images/info_pages/wudu_step1.svg",
       "text": "Wash the hands up to the wrist three times starting with the right hand. Interlace your fingers to allow the water to penetrate between them."
     },
 
@@ -26,7 +26,7 @@
     },
     {
       "type": "paragraph",
-      "illustration": "assets/icons/info_pages/wudu_step2.svg",
+      "illustration": "assets/images/info_pages/wudu_step2.svg",
       "text": "With the right hand, rinse the mouth out with water three times."
     },
 
@@ -36,7 +36,7 @@
     },
     {
       "type": "paragraph",
-      "illustration": "assets/icons/info_pages/wudu_step3.svg",
+      "illustration": "assets/images/info_pages/wudu_step3.svg",
       "text": "Take the water with your right hand, sniff it into your nose, and release it out three times."
     },
 
@@ -46,7 +46,7 @@
     },
     {
       "type": "paragraph",
-      "illustration": "assets/icons/info_pages/wudu_step4.svg",
+      "illustration": "assets/images/info_pages/wudu_step4.svg",
       "text": "Wash your face three times, making sure that water reaches all parts of your face."
     },
 
@@ -56,7 +56,7 @@
     },
     {
       "type": "paragraph",
-      "illustration": "assets/icons/info_pages/wudu_step5.svg",
+      "illustration": "assets/images/info_pages/wudu_step5.svg",
       "text": "Wash the right hand up to the elbow three times, then the left hand three times."
     },
 
@@ -66,7 +66,7 @@
     },
     {
       "type": "paragraph",
-      "illustration": "assets/icons/info_pages/wudu_step6.svg",
+      "illustration": "assets/images/info_pages/wudu_step6.svg",
       "text": "Wipe the head from the hairline to the back one time."
     },
 
@@ -76,7 +76,7 @@
     },
     {
       "type": "paragraph",
-      "illustration": "assets/icons/info_pages/wudu_step7.svg",
+      "illustration": "assets/images/info_pages/wudu_step7.svg",
       "text": "Rub your ears inside and outside with your thumbs one time."
     },
 
@@ -86,7 +86,7 @@
     },
     {
       "type": "paragraph",
-      "illustration": "assets/icons/info_pages/wudu_step8.svg",
+      "illustration": "assets/images/info_pages/wudu_step8.svg",
       "text": "Wash the two feet up to the ankles beginning with the right foot, allowing water to penetrate among the toes—three times."
     }
   ]

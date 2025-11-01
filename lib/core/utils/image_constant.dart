@@ -29,6 +29,7 @@ class ImageConstant {
   static final String _mosquesPath = 'assets/images/mosques/';
   static final String _profilePath = 'assets/images/profile/';
   static final String _salahGuidePath = 'assets/images/salah_guide/';
+  static final String _infoPagesPath = 'assets/images/info_pages/';
 
   // Placeholder image for fallback
   static String imgPlaceholder = '${_basePath}placeholder.png';
@@ -199,6 +200,30 @@ class ImageConstant {
 
   // Purification Selection Screen
   static String imgBackButton = '${_basePath}img_back_button.svg';
+
+  // Info Pages - Back button, share icon, and illustrations
+  static String imgInfoPageBackButton = '${_infoPagesPath}back_button.svg';
+  static String imgInfoPageShareIcon = '${_infoPagesPath}share_icon_colorable.svg';
+  
+  // Wudu illustrations
+  static String imgWuduStep1 = '${_infoPagesPath}wudu_step1.svg';
+  static String imgWuduStep2 = '${_infoPagesPath}wudu_step2.svg';
+  static String imgWuduStep3 = '${_infoPagesPath}wudu_step3.svg';
+  static String imgWuduStep4 = '${_infoPagesPath}wudu_step4.svg';
+  static String imgWuduStep5 = '${_infoPagesPath}wudu_step5.svg';
+  static String imgWuduStep6 = '${_infoPagesPath}wudu_step6.svg';
+  static String imgWuduStep7 = '${_infoPagesPath}wudu_step7.svg';
+  static String imgWuduStep8 = '${_infoPagesPath}wudu_step8.svg';
+  
+  // How to Pray illustrations
+  static String imgHowToPrayStep2 = '${_infoPagesPath}how_to_pray_step2.svg';
+  static String imgHowToPrayStep3 = '${_infoPagesPath}how_to_pray_step3.svg';
+  static String imgHowToPrayStep5 = '${_infoPagesPath}how_to_pray_step5.svg';
+  static String imgHowToPrayStep6 = '${_infoPagesPath}how_to_pray_step6.svg';
+  static String imgHowToPrayStep7 = '${_infoPagesPath}how_to_pray_step7.svg';
+  static String imgHowToPrayStep8 = '${_infoPagesPath}how_to_pray_step8.svg';
+  static String imgHowToPrayStep9 = '${_infoPagesPath}how_to_pray_step9.svg';
+  static String imgHowToPrayStep11 = '${_infoPagesPath}how_to_pray_step11.svg';
 
   // Quran Main Screen
   static String imgGroup1 = '${_basePath}img_group_1.svg';

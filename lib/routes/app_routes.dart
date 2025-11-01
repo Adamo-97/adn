@@ -13,6 +13,7 @@ class AppRoutes {
   static const String nearbyMosquesScreen = '/nearby_mosques_screen';
   static const String profileSettingsScreen = '/profile_settings_screen';
   static const String fullAnalyticsScreen = '/full_analytics_screen';
+  static const String infoPageScreen = '/info_page_screen';
 
   static const String initialRoute = '/';
 
@@ -22,6 +23,7 @@ class AppRoutes {
         nearbyMosquesScreen: (context) => NearbyMosquesScreen(),
         profileSettingsScreen: (context) => ProfileSettingsScreen(),
         fullAnalyticsScreen: (context) => FullAnalyticsScreen(),
+        // Note: infoPageScreen requires parameters, use Navigator.push instead
         initialRoute: (context) => PrayerTrackerScreen()
       };
 }
