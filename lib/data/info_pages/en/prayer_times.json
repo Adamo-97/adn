@@ -1,0 +1,53 @@
+{
+  "title": "Times of Required Prayers",
+  "sections": [
+    {
+      "type": "section_title",
+      "text": "General Guidance"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Muslim should make a serious effort to pray each prayer at the beginning of its period, as the Prophet (ﷺ) stated that this is the deed most liked by Allah. The additional time is allowed as a mercy from Allah for those who, for some reason, are unable or would find difficulty in doing so. The only compensation for a person who has forgotten or unintentionally slept through a prayer period is that he pray the missed prayer immediately as soon as he remembers."
+    },
+    {
+      "type": "section_title",
+      "text": "Fajr (Dawn)"
+    },
+    {
+      "type": "paragraph",
+      "text": "From the first light appearing in the sky (about one and a half hours before sunrise) until sunrise."
+    },
+    {
+      "type": "section_title",
+      "text": "Dhuhr (Noon)"
+    },
+    {
+      "type": "paragraph",
+      "text": "From the decline of the sun (about 20 minutes after it has reached its zenith) until ʿAsr."
+    },
+    {
+      "type": "section_title",
+      "text": "ʿAsr (Afternoon)"
+    },
+    {
+      "type": "paragraph",
+      "text": "From mid‑afternoon (when the length of a shadow is equal to the length of its object) until Maghrib."
+    },
+    {
+      "type": "section_title",
+      "text": "Maghrib (Sunset)"
+    },
+    {
+      "type": "paragraph",
+      "text": "From the disappearance of the sun until ʿIshaʾ."
+    },
+    {
+      "type": "section_title",
+      "text": "ʿIshaʾ (Night)"
+    },
+    {
+      "type": "paragraph",
+      "text": "From the disappearance of the red glow in the sky (about one and a quarter hours after sunset) until midnight, and extending to Fajr."
+    }
+  ]
+}

@@ -29,15 +29,15 @@ extension SalahCategoryExtension on SalahCategory {
   Color get accentColor {
     switch (this) {
       case SalahCategory.essentials:
-        return const Color(0xFF4DB6AC); // Teal
+        return appColors.salahEssentials;
       case SalahCategory.optionalPrayers:
-        return const Color(0xFFE0C389); // Gold
+        return appColors.salahOptionalPrayers;
       case SalahCategory.specialSituations:
-        return const Color(0xFFFF7043); // Deep Orange/Coral
+        return appColors.salahSpecialSituations;
       case SalahCategory.purification:
-        return const Color(0xFF8F9B87); // Green
+        return appColors.salahPurification;
       case SalahCategory.rituals:
-        return const Color(0xFFAB87CE); // Purple/Violet
+        return appColors.salahRituals;
     }
   }
 }

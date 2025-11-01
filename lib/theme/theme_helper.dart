@@ -10,7 +10,6 @@ ThemeData get theme => ThemeHelper().themeData();
 
 /// Helper class for managing themes and colors.
 
-// ignore_for_file: must_be_immutable
 class ThemeHelper {
   // The current selected theme key.
   // NOTE: Historically this project used the name "lightCode" for the
@@ -145,6 +144,22 @@ class DarkCodeColors {
   Color get color195C62 => Color(0x195C6248);
   Color get color7FFFFF => Color(0x7FFFFFFF);
   Color get color48195C => Color(0x48195C62);
+
+  // Salah Guide category accent colors
+  /// Accent color for the "Essentials" category (Teal)
+  Color get salahEssentials => Color(0xFF4DB6AC);
+
+  /// Accent color for the "Optional Prayers" category (Gold)
+  Color get salahOptionalPrayers => Color(0xFFE0C389);
+
+  /// Accent color for the "Special Situations" category (Deep Orange/Coral)
+  Color get salahSpecialSituations => Color(0xFFFF7043);
+
+  /// Accent color for the "Purification" category (Green)
+  Color get salahPurification => Color(0xFF8F9B87);
+
+  /// Accent color for the "Rituals" category (Purple/Violet)
+  Color get salahRituals => Color(0xFFAB87CE);
 
   // Color Shades - Each shade has its own dedicated constant
   Color get grey200 => Colors.grey.shade200;

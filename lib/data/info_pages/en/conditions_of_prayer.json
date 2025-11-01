@@ -1,0 +1,52 @@
+{
+  "title": "Conditions of Prayer",
+  "sections": [
+    {
+      "type": "section_title",
+      "text": "Prerequisites"
+    },
+    {
+      "type": "list",
+      "items": [
+        "INTENTION: The intention in the heart to perform a particular prayer",
+        "QIBLA: Facing the direction of the qiblah (the Ka‘bah) – if one cannot determine the direction for certain, he estimates to the best of his ability. If he cannot face the qiblah due to prevention by an enemy, fear or illness, he may pray as he is. This also applies to a traveler who cannot stop or turn himself toward the qiblah, such as an airplane passenger. He may pray in his seat in the direction it faces.",
+        "COVERING: Adequate covering of the body – a man must be covered at least from the navel to (and including) the knees. The shoulders should be covered as well. (Related by al‑Bukhari and Muslim.) A woman must cover all of her body except the face and hands.",
+        "PURITY: Freedom of the body, clothing, and place of prayer from contamination by any unclean substances (najasat). These include blood, vomit, urine, excrement, dead animals not slaughtered Islamically, pigs and dogs, unless it is impossible.",
+        "WUDU’: An ablution (wudhu’), which is still in effect; otherwise a new wudhu’ must be performed.",
+        "TIMING: For obligatory prayers, the knowledge that the time for the particular prayer has arrived."
+      ]
+    },
+    {
+      "type": "section_title",
+      "text": "What Invalidates Prayer?"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Loss of wudhu’ (except for those with valid medical problems).",
+        "Eating or drinking during prayer.",
+        "Speaking any word not connected to the prayer.",
+        "Laughing aloud.",
+        "Excessive unnecessary movements (slight movements such as adjusting clothing, scratching or signaling with the hand are allowed).",
+        "Omission of any essential part of the prayer, such as one of its movements or recitation of al‑Fātiḥah."
+      ]
+    },
+    {
+      "type": "section_title",
+      "text": "What Is Allowed During Prayer?"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Weeping or uncontrollable moaning from pain or other causes.",
+        "Killing a snake or scorpion.",
+        "Signaling with the hand or bowing the head in response to a greeting or other speech.",
+        "Moving something out of the way of the place of prostration.",
+        "Taking a few steps when necessary.",
+        "Carrying a small child or allowing him to cling to one's neck or body while praying.",
+        "Saying “Subḥān Allah” for men and clapping for women in order to draw attention to something important or a mistake made by the imam.",
+        "Reading verses of the Qur’ān from a book or a paper when necessary."
+      ]
+    }
+  ]
+}

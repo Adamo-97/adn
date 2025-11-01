@@ -7,7 +7,7 @@ class InfoPageTemplateEN extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     onBackButtonIconPress() {
-      // Please sync "purification_screen_EN" to the project
+      // Please sync "salah_guide screen" to the project
     }
 
     return SafeArea(

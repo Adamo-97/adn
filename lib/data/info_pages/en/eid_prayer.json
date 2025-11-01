@@ -1,0 +1,32 @@
+{
+  "title": "Eid Prayer",
+  "sections": [
+    {
+      "type": "section_title",
+      "text": "Occasions"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Eid al-Fitr: the festival prayer held shortly after the month of Ramaḍān.",
+        "Eid al-Adha: the festival prayer on the tenth of the Hajj month."
+      ]
+    },
+    {
+      "type": "section_title",
+      "text": "Location"
+    },
+    {
+      "type": "paragraph",
+      "text": "It is preferred in an open area outside the city but can also be performed in a masjid."
+    },
+    {
+      "type": "section_title",
+      "text": "Rak‘ahs & Sermon"
+    },
+    {
+      "type": "paragraph",
+      "text": "The prayer consists of two rak‘ahs followed by the imam’s speech (khutbah)."
+    }
+  ]
+}
