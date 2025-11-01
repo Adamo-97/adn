@@ -86,10 +86,12 @@ void main() {
     test('togglePrayerReminders changes prayer reminders state', () {
       final notifier = container.read(profileSettingsNotifier.notifier);
 
+      // First toggle: true -> false
       notifier.togglePrayerReminders();
       var state = container.read(profileSettingsNotifier);
       expect(state.prayerReminders, false);
 
+      // Second toggle: false -> true
       notifier.togglePrayerReminders();
       state = container.read(profileSettingsNotifier);
       expect(state.prayerReminders, true);
