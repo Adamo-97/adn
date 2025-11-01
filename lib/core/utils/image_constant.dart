@@ -83,9 +83,10 @@ class ImageConstant {
   static String imgCompassIcon = '${_homePath}img_compass_icon.svg';
 
   static String imgConditionsIcon = '${_salahGuidePath}img_conditions_icon.svg';
-  static String imgCongregationalPrayerIcon = '${_salahGuidePath}img_congregational_prayer_icon.svg';
+  static String imgCongregationalPrayerIcon =
+      '${_salahGuidePath}img_congregational_prayer_icon.svg';
   static String imgDhuhrIcon = '${_basePath}img_dhuhr_icon.svg';
-  static String imgEidPrayerIcon ='${_salahGuidePath}img_eid_prayer_icon.svg';
+  static String imgEidPrayerIcon = '${_salahGuidePath}img_eid_prayer_icon.svg';
   static String imgForgetfulnessProstrationIcon =
       '${_salahGuidePath}img_forgetfulness_prostration_icon.svg';
   static String imgGhuslIcon = '${_salahGuidePath}img_ghusl_icon.svg';
@@ -104,8 +105,7 @@ class ImageConstant {
   static String imgIconPlaceholderWhiteA70030x30 =
       '${_basePath}img_icon_placeholder_white_a700_30x30.svg';
   static String imgIconPplaceholder = '${_basePath}img_icon_pplaceholder.svg';
-  static String imgImportantIcon =
-      '${_salahGuidePath}img_important_icon.svg';
+  static String imgImportantIcon = '${_salahGuidePath}img_important_icon.svg';
   static String imgIstikaharahPrayerIcon =
       '${_salahGuidePath}img_istikharah_prayer_icon.svg';
   static String imgJanazahPrayerIcon =
@@ -117,8 +117,7 @@ class ImageConstant {
       '${_salahGuidePath}img_kusuf_prayer_icon.svg';
   static String imgLocationIcon = '${_homePath}img_location_icon.svg';
   static String imgMobileIcon = '${_homePath}img_mobile_icon.svg';
-  static String imgPrayerIllIcon =
-      '${_salahGuidePath}img_prayer_ill_icon.svg';
+  static String imgPrayerIllIcon = '${_salahGuidePath}img_prayer_ill_icon.svg';
   static String imgPrayerTimes = '${_salahGuidePath}img_prayer_times.svg';
   static String imgQiblaButton = '${_homePath}img_qibla_button_unselected.svg';
   static String imgQiblaButtonSelected =
@@ -160,6 +159,7 @@ class ImageConstant {
   static String imgAppmodeIconWhiteA70024x24 =
       '${_profilePath}img_appmode_icon_white_a700_24x24.svg';
   static String imgCalendarIcon = '${_profilePath}img_calendar_icon.svg';
+  static String imgTimeFormatIcon = '${_profilePath}time_format.svg';
   static String imgVectorWhiteA700 = '${_profilePath}img_vector_white_a700.svg';
 
   // Prayer Tracker Screen
@@ -203,8 +203,9 @@ class ImageConstant {
 
   // Info Pages - Back button, share icon, and illustrations
   static String imgInfoPageBackButton = '${_infoPagesPath}back_button.svg';
-  static String imgInfoPageShareIcon = '${_infoPagesPath}share_icon_colorable.svg';
-  
+  static String imgInfoPageShareIcon =
+      '${_infoPagesPath}share_icon_colorable.svg';
+
   // Wudu illustrations
   static String imgWuduStep1 = '${_infoPagesPath}wudu_step1.svg';
   static String imgWuduStep2 = '${_infoPagesPath}wudu_step2.svg';
@@ -214,7 +215,7 @@ class ImageConstant {
   static String imgWuduStep6 = '${_infoPagesPath}wudu_step6.svg';
   static String imgWuduStep7 = '${_infoPagesPath}wudu_step7.svg';
   static String imgWuduStep8 = '${_infoPagesPath}wudu_step8.svg';
-  
+
   // How to Pray illustrations
   static String imgHowToPrayStep2 = '${_infoPagesPath}how_to_pray_step2.svg';
   static String imgHowToPrayStep3 = '${_infoPagesPath}how_to_pray_step3.svg';

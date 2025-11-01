@@ -5,6 +5,7 @@ import './models/prayer_tracker_model.dart';
 import 'notifier/prayer_tracker_notifier.dart';
 
 import './widgets/fixed_prayer_header.dart';
+import './widgets/next_prayer_card.dart';
 import './widgets/prayer_actions.dart';
 import './widgets/qibla_panel.dart';
 import './widgets/weekly_stats_panel.dart';
@@ -94,7 +95,8 @@ class PrayerTrackerInitialPageState
     });
 
     final topInset = MediaQuery.of(context).padding.top;
-    final double headerBodyHeight = 125.h; // visible part below the status bar
+    // Simplified header: just title, matching other pages
+    final double headerBodyHeight = 60.h; // visible part below the status bar
     final double headerTotalHeight = topInset + headerBodyHeight;
     final double navbarHeight = 76.h; // Bottom navbar height
 
@@ -159,6 +161,10 @@ class PrayerTrackerInitialPageState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        // Next Prayer Card - modern design with location and icon
+        const NextPrayerCard(),
+        SizedBox(height: 16.h),
+
         PrayerActions(
           onActionTap: _onPrayerActionTap,
           qiblaSelected: m.qiblaOpen,

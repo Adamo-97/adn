@@ -19,7 +19,8 @@ class PrayerTrackerModel extends Equatable {
         weekDays = weekDays ?? [],
         prayerRows = prayerRows ?? [],
         nextPrayer = nextPrayer ?? 'Next Prayer is Fajr',
-        prayerTime = prayerTime ?? '00:00 AM',
+        prayerTime =
+            prayerTime ?? '00:00', // Fixed: removed hardcoded AM suffix
         location = location ?? 'Ronneby, SE';
 
   @override

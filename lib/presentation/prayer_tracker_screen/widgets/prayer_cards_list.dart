@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:adam_s_application/core/app_export.dart';
+import '../../../core/utils/time_format_utils.dart';
 import '../notifier/prayer_tracker_notifier.dart';
+import '../../profile_settings_screen/notifier/profile_settings_notifier.dart';
 import '../widgets/prayer_notification_icon.dart';
 
 class PrayerCardsList extends ConsumerWidget {
@@ -12,10 +14,14 @@ class PrayerCardsList extends ConsumerWidget {
     final state = ref.watch(prayerTrackerNotifierProvider);
     final items = state.cardItems;
 
+    // Get time format preference from profile settings (single source of truth)
+    final use24HourFormat = ref.watch(
+        profileSettingsNotifier.select((s) => s.use24HourFormat ?? false));
+
     return Column(
       children: [
         for (final item in items) ...[
-          _CardRow(item: item),
+          _CardRow(item: item, use24HourFormat: use24HourFormat),
           SizedBox(height: 5.h),
         ],
       ],
@@ -25,7 +31,9 @@ class PrayerCardsList extends ConsumerWidget {
 
 class _CardRow extends ConsumerWidget {
   final PrayerCardItem item;
-  const _CardRow({required this.item});
+  final bool use24HourFormat;
+
+  const _CardRow({required this.item, required this.use24HourFormat});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -89,9 +97,9 @@ class _CardRow extends ConsumerWidget {
             ),
             SizedBox(width: 12.h),
 
-            // Time (no strike-through)
+            // Time (no strike-through) - formatted based on user preference
             Text(
-              item.time,
+              TimeFormatUtils.formatTime(item.time, use24HourFormat),
               style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
                 color: timeColor,
               ),

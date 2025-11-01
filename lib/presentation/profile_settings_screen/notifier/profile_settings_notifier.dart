@@ -27,6 +27,7 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
       selectedLocation: 'Stockholm, Sweden',
       selectedLanguage: 'English',
       prayerReminders: true,
+      use24HourFormat: false,
       locationDropdownOpen: false,
       languageDropdownOpen: false,
     );
@@ -74,6 +75,12 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
   void togglePrayerReminders() {
     state = state.copyWith(
       prayerReminders: !(state.prayerReminders ?? false),
+    );
+  }
+
+  void toggle24HourFormat() {
+    state = state.copyWith(
+      use24HourFormat: !(state.use24HourFormat ?? false),
     );
   }
 

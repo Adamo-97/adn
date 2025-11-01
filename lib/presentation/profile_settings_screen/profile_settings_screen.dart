@@ -4,6 +4,7 @@ import 'notifier/profile_settings_notifier.dart';
 import 'widgets/dark_mode.dart';
 import 'widgets/hijri_calendar.dart';
 import 'widgets/prayer_reminders.dart';
+import 'widgets/time_format_24hour.dart';
 import 'widgets/location_selector.dart';
 import 'widgets/language_selector.dart';
 import 'widgets/rate_app.dart';
@@ -181,6 +182,8 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
               const HijriCalendar(),
               _buildDivider(),
               const PrayerReminders(),
+              _buildDivider(),
+              const TimeFormat24Hour(),
             ],
           ),
 

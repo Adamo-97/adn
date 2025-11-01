@@ -7,6 +7,7 @@ class ProfileSettingsState extends Equatable {
   final String? selectedLocation;
   final String? selectedLanguage;
   final bool? prayerReminders;
+  final bool? use24HourFormat;
   final bool? locationDropdownOpen;
   final bool? languageDropdownOpen;
   final String searchQuery;
@@ -20,6 +21,7 @@ class ProfileSettingsState extends Equatable {
     this.selectedLocation,
     this.selectedLanguage,
     this.prayerReminders,
+    this.use24HourFormat,
     this.locationDropdownOpen,
     this.languageDropdownOpen,
     this.searchQuery = '',
@@ -35,6 +37,7 @@ class ProfileSettingsState extends Equatable {
         selectedLocation,
         selectedLanguage,
         prayerReminders,
+        use24HourFormat,
         locationDropdownOpen,
         languageDropdownOpen,
         searchQuery,
@@ -49,6 +52,7 @@ class ProfileSettingsState extends Equatable {
     String? selectedLocation,
     String? selectedLanguage,
     bool? prayerReminders,
+    bool? use24HourFormat,
     bool? locationDropdownOpen,
     bool? languageDropdownOpen,
     String? searchQuery,
@@ -62,6 +66,7 @@ class ProfileSettingsState extends Equatable {
       selectedLocation: selectedLocation ?? this.selectedLocation,
       selectedLanguage: selectedLanguage ?? this.selectedLanguage,
       prayerReminders: prayerReminders ?? this.prayerReminders,
+      use24HourFormat: use24HourFormat ?? this.use24HourFormat,
       locationDropdownOpen: locationDropdownOpen ?? this.locationDropdownOpen,
       languageDropdownOpen: languageDropdownOpen ?? this.languageDropdownOpen,
       searchQuery: searchQuery ?? this.searchQuery,
