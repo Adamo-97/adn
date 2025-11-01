@@ -6,10 +6,7 @@ class ProfileSettingsState extends Equatable {
   final bool? hijriCalendar;
   final String? selectedLocation;
   final String? selectedLanguage;
-  final bool? allNotifications;
-  final bool? athanNotifications;
   final bool? prayerReminders;
-  final bool? azkarNotifications;
   final bool? locationDropdownOpen;
   final bool? languageDropdownOpen;
   final String searchQuery;
@@ -22,10 +19,7 @@ class ProfileSettingsState extends Equatable {
     this.hijriCalendar,
     this.selectedLocation,
     this.selectedLanguage,
-    this.allNotifications,
-    this.athanNotifications,
     this.prayerReminders,
-    this.azkarNotifications,
     this.locationDropdownOpen,
     this.languageDropdownOpen,
     this.searchQuery = '',
@@ -40,10 +34,7 @@ class ProfileSettingsState extends Equatable {
         hijriCalendar,
         selectedLocation,
         selectedLanguage,
-        allNotifications,
-        athanNotifications,
         prayerReminders,
-        azkarNotifications,
         locationDropdownOpen,
         languageDropdownOpen,
         searchQuery,
@@ -57,10 +48,7 @@ class ProfileSettingsState extends Equatable {
     bool? hijriCalendar,
     String? selectedLocation,
     String? selectedLanguage,
-    bool? allNotifications,
-    bool? athanNotifications,
     bool? prayerReminders,
-    bool? azkarNotifications,
     bool? locationDropdownOpen,
     bool? languageDropdownOpen,
     String? searchQuery,
@@ -73,10 +61,7 @@ class ProfileSettingsState extends Equatable {
       hijriCalendar: hijriCalendar ?? this.hijriCalendar,
       selectedLocation: selectedLocation ?? this.selectedLocation,
       selectedLanguage: selectedLanguage ?? this.selectedLanguage,
-      allNotifications: allNotifications ?? this.allNotifications,
-      athanNotifications: athanNotifications ?? this.athanNotifications,
       prayerReminders: prayerReminders ?? this.prayerReminders,
-      azkarNotifications: azkarNotifications ?? this.azkarNotifications,
       locationDropdownOpen: locationDropdownOpen ?? this.locationDropdownOpen,
       languageDropdownOpen: languageDropdownOpen ?? this.languageDropdownOpen,
       searchQuery: searchQuery ?? this.searchQuery,

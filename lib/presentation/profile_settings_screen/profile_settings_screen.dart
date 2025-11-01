@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../core/app_export.dart';
 import 'notifier/profile_settings_notifier.dart';
-import 'widgets/profile_settings_list.dart';
-import 'widgets/profile_location_section.dart';
-import 'widgets/profile_language_section.dart';
-import 'widgets/profile_notifications_section.dart';
-import 'widgets/profile_actions_section.dart';
+import 'widgets/dark_mode.dart';
+import 'widgets/hijri_calendar.dart';
+import 'widgets/prayer_reminders.dart';
+import 'widgets/location_selector.dart';
+import 'widgets/language_selector.dart';
+import 'widgets/rate_app.dart';
+import 'widgets/terms_conditions.dart';
+import 'widgets/about_app.dart';
+import 'widgets/share_app.dart';
+import 'widgets/sign_out.dart';
 
 class ProfileSettingsScreen extends ConsumerStatefulWidget {
   const ProfileSettingsScreen({super.key});
@@ -111,20 +116,24 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
   Widget _buildHeader(BuildContext context) {
     return Container(
       width: double.maxFinite,
-      padding: EdgeInsets.only(
-        top: MediaQuery.of(context).padding.top + 16.h,
-        bottom: 16.h,
-      ),
       decoration: BoxDecoration(
         color: appColors.gray_900,
+        border: Border(
+          bottom: BorderSide(
+            color: appColors.gray_700,
+            width: 1,
+          ),
+        ),
       ),
       child: Column(
         children: [
+          SizedBox(height: MediaQuery.of(context).padding.top + 16.h),
           SizedBox(height: 16.h),
           Text(
             'Profile',
             style: TextStyleHelper.instance.title20BoldPoppins,
           ),
+          SizedBox(height: 16.h),
         ],
       ),
     );
@@ -138,22 +147,23 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
   ) {
     return Container(
       width: double.maxFinite,
-      margin: EdgeInsets.only(left: 24.h),
-      padding: EdgeInsets.only(
-          bottom:
-              76.h + 24.h), // Bottom padding: navbar height + extra clearance
+      padding: EdgeInsets.symmetric(horizontal: 24.h).copyWith(
+        bottom: 76.h + 24.h, // Bottom padding: navbar height + extra clearance
+      ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const ProfileSettingsList(),
-          SizedBox(height: 10.h),
-          const ProfileLocationSection(),
-          SizedBox(height: 16.h),
-          const ProfileLanguageSection(),
-          SizedBox(height: 20.h),
-          const ProfileNotificationsSection(),
-          SizedBox(height: 28.h),
-          const ProfileActionsSection(),
+          const DarkMode(),
+          const HijriCalendar(),
+          const PrayerReminders(),
+          const LanguageSelector(),
+          const LocationSelector(),
+          const RateApp(),
+          const AboutApp(),
+          const ShareApp(),
+          const TermsConditions(),
+          const SignOut(),
+          SizedBox(height: 24.h),
         ],
       ),
     );

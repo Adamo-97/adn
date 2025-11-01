@@ -193,6 +193,7 @@ class ImageConstant {
   static String imgStatusChecked = '${_profilePath}img_status_checked.svg';
   static String imgStatusUnchecked = '${_profilePath}img_status_unchecked.svg';
   static String imgUnselected = '${_profilePath}img_unselected.svg';
+  static String imgSignOutIcon = '${_profilePath}sign_out_icon.svg';
 
   // Purification Selection Screen
   static String imgBackButton = '${_basePath}img_back_button.svg';

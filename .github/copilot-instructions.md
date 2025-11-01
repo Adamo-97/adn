@@ -87,6 +87,200 @@ This is a Flutter-based Islamic prayer application (Athan/Adhan app) that helps 
 - **NEVER** remove `flutter:`, `flutter_localizations:`, or `flutter_test:` from `pubspec.yaml` (marked with 🚨 CRITICAL)
 - **NEVER** remove `uses-material-design: true` from `pubspec.yaml`
 
+### Deprecated APIs and Modern Alternatives (MANDATORY)
+
+**CRITICAL**: Always use current, non-deprecated Flutter/Dart APIs to avoid compiler warnings and future compatibility issues.
+
+#### Color Opacity (REQUIRED)
+
+- **NEVER** use `Color.withOpacity(double)` - it's deprecated and causes precision loss warnings
+- **ALWAYS** use `Color.withValues(alpha: double)` instead
+- Examples:
+  - ❌ `Color(0xFFFF4444).withOpacity(0.15)` - Deprecated, will show warnings
+  - ✅ `Color(0xFFFF4444).withValues(alpha: 0.15)` - Correct modern API
+- Apply to ALL color transparency operations throughout the codebase
+
+#### Other Deprecated APIs to Avoid
+
+- Monitor Flutter deprecation warnings during development
+- Immediately replace any deprecated APIs when encountered
+- Check Flutter changelog for migration guides when updating Flutter SDK version
+- Run `flutter analyze` regularly to catch deprecated API usage
+
+## Testing Strategy (COMPREHENSIVE & MANDATORY)
+
+**CRITICAL**: All features must have thorough, production-grade test coverage using proper testing techniques.
+
+### Test Organization
+
+Tests mirror production structure under `test/presentation/<feature_name>/`:
+
+```
+test/presentation/<feature_name>/
+├── widgets/                    # Widget tests for UI components
+│   ├── <widget_name>_test.dart
+├── notifier/                   # Unit tests for state management
+│   ├── <feature>_notifier_test.dart
+├── models/                     # Unit tests for data models (if complex logic)
+│   ├── <model_name>_test.dart
+```
+
+### Testing Techniques (MANDATORY)
+
+#### Boundary Value Analysis (BVA)
+
+- Test minimum, maximum, and edge case values for all inputs
+- Example: For a counter with range 0-100:
+  - Test: -1 (below min), 0 (min), 1 (min+1), 50 (middle), 99 (max-1), 100 (max), 101 (above max)
+- Apply to: numeric inputs, string lengths, list sizes, date ranges
+
+#### Equivalence Partitioning (EP)
+
+- Divide input ranges into valid and invalid partitions
+- Test at least one value from each partition
+- Example: Age field accepting 18-65:
+  - Invalid partition: < 18 (test: 17)
+  - Valid partition: 18-65 (test: 18, 40, 65)
+  - Invalid partition: > 65 (test: 66)
+
+#### State Transition Testing
+
+- Test all state changes in notifiers/state machines
+- Verify state consistency after each transition
+- Example: Toggle settings (on/off states)
+  ```dart
+  test('toggleDarkMode transitions correctly', () {
+    // Initial state: true
+    expect(state.darkMode, true);
+
+    // First toggle: true -> false
+    notifier.toggleDarkMode();
+    expect(state.darkMode, false);
+
+    // Second toggle: false -> true
+    notifier.toggleDarkMode();
+    expect(state.darkMode, true);
+  });
+  ```
+
+#### Widget Interaction Testing
+
+- Test all user interactions: taps, long presses, swipes, text input
+- Verify UI updates correctly after interactions
+- Test gesture target areas (minimum 44.h x 44.h hit boxes)
+- Example:
+  ```dart
+  testWidgets('button tap triggers callback', (tester) async {
+    bool callbackFired = false;
+
+    await tester.pumpWidget(
+      CustomButton(onTap: () => callbackFired = true),
+    );
+
+    await tester.tap(find.byType(CustomButton));
+    await tester.pumpAndSettle();
+
+    expect(callbackFired, true);
+  });
+  ```
+
+#### Async Operations Testing
+
+- Use `Future.microtask(() {})` or `tester.pumpAndSettle()` to wait for async operations
+- Test loading states, success states, and error states
+- Verify timeout handling and error recovery
+
+#### Immutability Testing
+
+- Verify state objects are immutable (new instances on change)
+- Test that old state references remain unchanged
+- Example:
+  ```dart
+  test('state maintains immutability', () {
+    final initialState = container.read(notifierProvider);
+
+    notifier.updateValue('new value');
+    final newState = container.read(notifierProvider);
+
+    // States should be different objects
+    expect(identical(initialState, newState), false);
+    // Original state unchanged
+    expect(initialState.value, 'old value');
+  });
+  ```
+
+#### Rendering and Layout Testing
+
+- Verify all UI elements render correctly
+- Test responsive sizing (different screen sizes)
+- Check spacing consistency (use `.h` and `.fSize` extensions)
+- Verify color correctness (including alpha/transparency)
+- Test icon presence and sizing
+- Example:
+  ```dart
+  testWidgets('renders with correct spacing', (tester) async {
+    await tester.pumpWidget(MyWidget());
+
+    final container = tester.widget<Container>(
+      find.byType(Container).first,
+    );
+
+    expect(container.padding, EdgeInsets.all(10.h));
+    expect(container.decoration.color, Colors.blue.withValues(alpha: 0.5));
+  });
+  ```
+
+#### Error Handling Testing
+
+- Test invalid inputs and edge cases
+- Verify error messages are displayed correctly
+- Test error recovery mechanisms
+
+### Test Coverage Requirements
+
+- **Minimum Coverage**: 80% for all new code
+- **Widget Tests**: Cover all user-facing components
+- **Notifier Tests**: Cover all state management logic
+- **Integration Tests**: Cover multi-screen user flows (planned)
+- **Golden Tests**: UI consistency verification (planned)
+
+### Test Execution
+
+- Run tests after every significant change: `flutter test`
+- Run specific test files: `flutter test test/path/to/test_file.dart`
+- Run tests for a feature: `flutter test test/presentation/<feature_name>/`
+- Check coverage: `flutter test --coverage` (generates `coverage/lcov.info`)
+
+### Mocking Dependencies
+
+- Mock external dependencies (APIs, SharedPreferences, platform channels)
+- Use Riverpod's `overrideWith` for provider mocking
+- Example:
+  ```dart
+  setUp(() {
+    container = ProviderContainer(
+      overrides: [
+        apiProvider.overrideWith(() => MockApiClient()),
+        themeProvider.overrideWith(() => MockThemeNotifier()),
+      ],
+    );
+  });
+  ```
+
+### Test Naming Conventions
+
+- Test files: `<widget_or_class_name>_test.dart`
+- Test groups: Describe the class/widget being tested
+- Test cases: Use descriptive names that explain what is being tested
+- Example:
+  ```dart
+  group('DarkModeWidget Tests', () {
+    testWidgets('renders correctly with dark mode enabled', ...);
+    testWidgets('toggles dark mode when tapped', ...);
+    testWidgets('displays correct icon based on state', ...);
+  });
+  ```
+
 ## Architecture Patterns
 
 ### Feature Organization (Feature-First Structure)
@@ -151,6 +345,50 @@ Example: `prayer_tracker_screen/` contains models, notifier (with state), widget
 - Use `.fSize` for responsive font sizes
 - All measurements automatically adapt via `Sizer` widget wrapper in `main.dart`
 - Device type detected automatically (mobile/tablet/desktop)
+
+### Cross-Platform Consistency (Android & iOS)
+
+**CRITICAL**: All UI components, sizing, spacing, and interactions must work consistently across both Android and iOS platforms.
+
+#### Font Sizing (MANDATORY)
+
+- **ALWAYS** use `.fSize` extension for font sizes, NEVER use `.h` for text
+- `.fSize` properly handles platform-specific font rendering differences between Android and iOS
+- Examples:
+  - ✅ `fontSize: 16.fSize` - Correct
+  - ❌ `fontSize: 16.h` - Wrong, causes inconsistent text rendering
+- Apply to ALL text: titles, subtitles, body text, buttons, labels, hints, placeholders
+
+#### Spacing & Sizing
+
+- **Width/Height**: Use `.h` for containers, padding, margins, icons (e.g., `height: 40.h`, `padding: EdgeInsets.all(10.h)`)
+- **Font Sizes**: Use `.fSize` exclusively for all text styling (e.g., `fontSize: 15.fSize`)
+- **Border Radius**: Use `.h` for consistent rounded corners (e.g., `borderRadius: BorderRadius.circular(10.h)`)
+
+#### Touch Targets
+
+- Minimum touch target size: `44.h x 44.h` for both platforms (follows iOS HIG and Material Design guidelines)
+- Ensure adequate spacing between interactive elements
+- Use `GestureDetector` or `InkWell` with proper hit boxes
+
+#### Platform-Specific Behaviors
+
+- Scrolling physics: Flutter automatically handles platform-specific scroll behavior (bounce on iOS, glow on Android)
+- Back button: Android hardware back button supported via `WillPopScope` where needed
+- Safe areas: Always respect `MediaQuery.of(context).padding` for notches, status bars, home indicators
+
+#### Visual Consistency
+
+- Use Material Design widgets that adapt to both platforms via Flutter
+- Avoid platform-specific UI patterns unless explicitly required
+- Icons should render identically using SVG format
+- Colors must have consistent appearance (use hex values, not platform-named colors)
+
+#### Testing Requirements
+
+- Test on both Android and iOS emulators/devices before considering features complete
+- Verify text rendering, spacing, and interaction on both platforms
+- Check performance and animations on lower-end devices from both ecosystems
 
 ## Development Workflows
 
