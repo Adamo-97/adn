@@ -49,22 +49,22 @@ class SalahGuideNotifier extends Notifier<SalahGuideState> {
       SalahCategory.optionalPrayers: [
         SalahGuideCardModel(
           title: 'Rawatib Prayers',
-          iconPath: ImageConstant.imgIconPlaceholder7,
+          iconPath: ImageConstant.imgRawatibPrayersIcon,
           category: SalahCategory.optionalPrayers,
         ),
         SalahGuideCardModel(
           title: 'Witr Prayer',
-          iconPath: ImageConstant.imgIconPlaceholder9,
+          iconPath: ImageConstant.imgWitrPrayerIcon,
           category: SalahCategory.optionalPrayers,
         ),
         SalahGuideCardModel(
           title: 'Tahajjud Prayer',
-          iconPath: ImageConstant.imgIconPlaceholoder,
+          iconPath: ImageConstant.imgTahajjudPrayerIcon,
           category: SalahCategory.optionalPrayers,
         ),
         SalahGuideCardModel(
           title: 'Istikharah Prayer',
-          iconPath: ImageConstant.imgIconPlaceholder5,
+          iconPath: ImageConstant.imgIstikaharahPrayerIcon,
           category: SalahCategory.optionalPrayers,
         ),
       ],
@@ -73,37 +73,42 @@ class SalahGuideNotifier extends Notifier<SalahGuideState> {
       SalahCategory.specialSituations: [
         SalahGuideCardModel(
           title: 'Traveling Prayer',
-          iconPath: ImageConstant.imgIconPlaceholder11,
+          iconPath: ImageConstant.imgTravelingPrayerIcon,
           category: SalahCategory.specialSituations,
         ),
         SalahGuideCardModel(
           title: 'Prayer of the Ill',
-          iconPath: ImageConstant.imgIconPlaceholder8,
+          iconPath: ImageConstant.imgPrayerIllIcon,
           category: SalahCategory.specialSituations,
         ),
         SalahGuideCardModel(
           title: 'Janazah Prayer',
-          iconPath: ImageConstant.imgIconPlaceholder12,
+          iconPath: ImageConstant.imgJanazahPrayerIcon,
+          category: SalahCategory.specialSituations,
+        ),
+        SalahGuideCardModel(
+          title: 'Kusuf Prayer',
+          iconPath: ImageConstant.imgKusufPrayerIcon,
           category: SalahCategory.specialSituations,
         ),
         SalahGuideCardModel(
           title: 'Congregational Prayer',
-          iconPath: ImageConstant.imgIconPlaceholder10,
+          iconPath: ImageConstant.imgCongregationalPrayerIcon,
           category: SalahCategory.specialSituations,
         ),
         SalahGuideCardModel(
           title: 'Forgetfulness Prostration',
-          iconPath: ImageConstant.imgIconPlaceholder6,
+          iconPath: ImageConstant.imgForgetfulnessProstrationIcon,
           category: SalahCategory.specialSituations,
         ),
         SalahGuideCardModel(
           title: 'Eid Prayer',
-          iconPath: ImageConstant.imgIconPlaceholder13,
+          iconPath: ImageConstant.imgEidPrayerIcon,
           category: SalahCategory.specialSituations,
         ),
         SalahGuideCardModel(
           title: 'Jumu\'ah Prayer',
-          iconPath: ImageConstant.imgIconPlaceholder14,
+          iconPath: ImageConstant.imgJumuahPrayerIcon,
           category: SalahCategory.specialSituations,
         ),
       ],
@@ -124,6 +129,25 @@ class SalahGuideNotifier extends Notifier<SalahGuideState> {
           title: 'Tayammum',
           iconPath: ImageConstant.imgTayammumIcon,
           category: SalahCategory.purification,
+        ),
+      ],
+
+      // Rituals Category (Hajj & Umrah)
+      SalahCategory.rituals: [
+        SalahGuideCardModel(
+          title: 'Historical Overview',
+          iconPath: ImageConstant.imgHistoricalOverview,
+          category: SalahCategory.rituals,
+        ),
+        SalahGuideCardModel(
+          title: 'Hajj Guide',
+          iconPath: ImageConstant.imgKabaaIcon,
+          category: SalahCategory.rituals,
+        ),
+        SalahGuideCardModel(
+          title: 'Umrah Guide',
+          iconPath: ImageConstant.imgKabaaIcon,
+          category: SalahCategory.rituals,
         ),
       ],
     };

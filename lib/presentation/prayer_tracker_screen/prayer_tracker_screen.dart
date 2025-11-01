@@ -148,7 +148,7 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
         width: 34.h,
       ),
       CustomBottomBarItem(
-        icon: ImageConstant.imgIconPlaceholder7,
+        icon: ImageConstant.imgRawatibPrayersIcon,
         routeName: AppRoutes.salahGuideScreen,
         height: 32.h,
         width: 34.h,

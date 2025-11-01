@@ -7,6 +7,7 @@ enum SalahCategory {
   optionalPrayers,
   specialSituations,
   purification,
+  rituals,
 }
 
 extension SalahCategoryExtension on SalahCategory {
@@ -20,6 +21,8 @@ extension SalahCategoryExtension on SalahCategory {
         return 'Special Situations';
       case SalahCategory.purification:
         return 'Purification';
+      case SalahCategory.rituals:
+        return 'Hajj & Umrah';
     }
   }
 
@@ -33,6 +36,8 @@ extension SalahCategoryExtension on SalahCategory {
         return const Color(0xFFFF7043); // Deep Orange/Coral
       case SalahCategory.purification:
         return const Color(0xFF8F9B87); // Green
+      case SalahCategory.rituals:
+        return const Color(0xFFAB87CE); // Purple/Violet
     }
   }
 }
