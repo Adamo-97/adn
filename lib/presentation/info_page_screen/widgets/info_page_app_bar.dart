@@ -21,6 +21,7 @@ class InfoPageAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: appColors.gray_900,
+      surfaceTintColor: Colors.transparent,
       elevation: 0,
       leading: GestureDetector(
         onTap: onBackPressed,

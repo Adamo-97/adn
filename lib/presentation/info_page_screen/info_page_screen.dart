@@ -138,13 +138,27 @@ class _InfoPageScreenState extends ConsumerState<InfoPageScreen> {
   }
 
   /// Build individual section based on type
-  /// Handles section titles, paragraphs, and lists
+  /// Handles section titles, subheadings, paragraphs, and lists
   Widget _buildSection(InfoPageSection section, Color accentColor) {
     switch (section.type) {
       case SectionType.sectionTitle:
         return SectionTitleWidget(
           text: section.text ?? '',
           accentColor: accentColor,
+        );
+
+      case SectionType.subheading:
+        // Render subheading as a smaller section title
+        return Padding(
+          padding: EdgeInsets.only(top: 8.h),
+          child: Text(
+            section.text ?? '',
+            style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
+              color: appColors.whiteA700,
+              fontSize: 14.fSize,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         );
 
       case SectionType.paragraph:

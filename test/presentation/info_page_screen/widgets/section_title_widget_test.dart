@@ -57,7 +57,8 @@ void main() {
         );
 
         final decoration = container.decoration as BoxDecoration?;
-        expect(decoration?.color, accentColor);
+        // Background uses 15% opacity
+        expect(decoration?.color, accentColor.withValues(alpha: 0.15));
       });
 
       testWidgets('handles empty text', (tester) async {
@@ -211,7 +212,8 @@ void main() {
           );
 
           final decoration = container.decoration as BoxDecoration?;
-          expect(decoration?.color, test.$2);
+          // Background uses 15% opacity
+          expect(decoration?.color, test.$2.withValues(alpha: 0.15));
           expect(find.text('Test Title'), findsOneWidget);
         });
       }

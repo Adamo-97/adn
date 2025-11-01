@@ -3,6 +3,7 @@ import '../../../core/app_export.dart';
 /// Enum representing the type of content in an info page section
 enum SectionType {
   sectionTitle,
+  subheading,
   paragraph,
   list,
 }
@@ -13,6 +14,8 @@ extension SectionTypeExtension on SectionType {
     switch (value) {
       case 'section_title':
         return SectionType.sectionTitle;
+      case 'subheading':
+        return SectionType.subheading;
       case 'paragraph':
         return SectionType.paragraph;
       case 'list':
@@ -27,6 +30,8 @@ extension SectionTypeExtension on SectionType {
     switch (this) {
       case SectionType.sectionTitle:
         return 'section_title';
+      case SectionType.subheading:
+        return 'subheading';
       case SectionType.paragraph:
         return 'paragraph';
       case SectionType.list:

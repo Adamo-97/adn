@@ -23,7 +23,7 @@ void main() {
 
         expect(state.cardTitle, '');
         expect(state.category, SalahCategory.essentials);
-        expect(state.isLoading, false);
+        expect(state.isLoading, true); // Auto-initializes with isLoading = true
         expect(state.error, null);
         expect(state.content, null);
       });
