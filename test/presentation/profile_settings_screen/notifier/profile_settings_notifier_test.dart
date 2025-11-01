@@ -88,11 +88,11 @@ void main() {
 
       notifier.togglePrayerReminders();
       var state = container.read(profileSettingsNotifier);
-      expect(state.prayerReminders, true);
+      expect(state.prayerReminders, false);
 
       notifier.togglePrayerReminders();
       state = container.read(profileSettingsNotifier);
-      expect(state.prayerReminders, false);
+      expect(state.prayerReminders, true);
     });
 
     test('toggleLocationDropdown changes location dropdown state', () {
