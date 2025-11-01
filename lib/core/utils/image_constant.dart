@@ -28,6 +28,8 @@ class ImageConstant {
   static final String _homePath = 'assets/images/home/';
   static final String _mosquesPath = 'assets/images/mosques/';
   static final String _profilePath = 'assets/images/profile/';
+  static final String _salahGuidePath = 'assets/images/salah_guide/';
+
   // Placeholder image for fallback
   static String imgPlaceholder = '${_basePath}placeholder.png';
 
@@ -78,20 +80,18 @@ class ImageConstant {
   static String imgCheck = '${_homePath}img_check.svg';
   static String imgCheckedIcon = '${_basePath}img_checked_icon.svg';
   static String imgCompassIcon = '${_homePath}img_compass_icon.svg';
-  static String imgConditionsIcon =
-      '${_basePath}salah_guide/img_conditions_icon.svg';
-  static String imgCongregationalPrayerIcon =
-      '${_basePath}salah_guide/img_congregational_prayer_icon.svg';
+
+  static String imgConditionsIcon = '${_salahGuidePath}img_conditions_icon.svg';
+  static String imgCongregationalPrayerIcon = '${_salahGuidePath}img_congregational_prayer_icon.svg';
   static String imgDhuhrIcon = '${_basePath}img_dhuhr_icon.svg';
-  static String imgEidPrayerIcon =
-      '${_basePath}salah_guide/img_eid_prayer_icon.svg';
+  static String imgEidPrayerIcon ='${_salahGuidePath}img_eid_prayer_icon.svg';
   static String imgForgetfulnessProstrationIcon =
-      '${_basePath}salah_guide/img_forgetfulness_prostration_icon.svg';
-  static String imgGhuslIcon = '${_basePath}img_ghusl_icon.svg';
+      '${_salahGuidePath}img_forgetfulness_prostration_icon.svg';
+  static String imgGhuslIcon = '${_salahGuidePath}img_ghusl_icon.svg';
   static String imgGroup10 = '${_basePath}img_group_10.svg';
   static String imgHistoricalOverview =
-      '${_basePath}salah_guide/historical_overview.svg';
-  static String imgHowToIcon = '${_basePath}salah_guide/img_how_to_icon.svg';
+      '${_salahGuidePath}historical_overview.svg';
+  static String imgHowToIcon = '${_salahGuidePath}img_how_to_icon.svg';
   static String imgIconPlaceholder = '${_basePath}img_icon_placeholder.svg';
   static String imgIconPlaceholder2 = '${_basePath}img_icon_placeholder_2.svg';
   static String imgIconPlaceholder3 = '${_basePath}img_icon_placeholder_3.svg';
@@ -104,32 +104,32 @@ class ImageConstant {
       '${_basePath}img_icon_placeholder_white_a700_30x30.svg';
   static String imgIconPplaceholder = '${_basePath}img_icon_pplaceholder.svg';
   static String imgImportantIcon =
-      '${_basePath}salah_guide/img_important_icon.svg';
+      '${_salahGuidePath}img_important_icon.svg';
   static String imgIstikaharahPrayerIcon =
-      '${_basePath}salah_guide/img_istikharah_prayer_icon.svg';
+      '${_salahGuidePath}img_istikharah_prayer_icon.svg';
   static String imgJanazahPrayerIcon =
-      '${_basePath}salah_guide/img_janazah_prayer_icon.svg';
+      '${_salahGuidePath}img_janazah_prayer_icon.svg';
   static String imgJumuahPrayerIcon =
-      '${_basePath}salah_guide/img_jumuah_prayer_icon.svg';
-  static String imgKabaaIcon = '${_basePath}salah_guide/kabaa_icon.svg';
+      '${_salahGuidePath}img_jumuah_prayer_icon.svg';
+  static String imgKabaaIcon = '${_salahGuidePath}kabaa_icon.svg';
   static String imgKusufPrayerIcon =
-      '${_basePath}salah_guide/img_kusuf_prayer_icon.svg';
+      '${_salahGuidePath}img_kusuf_prayer_icon.svg';
   static String imgLocationIcon = '${_homePath}img_location_icon.svg';
   static String imgMobileIcon = '${_homePath}img_mobile_icon.svg';
   static String imgPrayerIllIcon =
-      '${_basePath}salah_guide/img_prayer_ill_icon.svg';
-  static String imgPrayerTimes = '${_basePath}salah_guide/img_prayer_times.svg';
+      '${_salahGuidePath}img_prayer_ill_icon.svg';
+  static String imgPrayerTimes = '${_salahGuidePath}img_prayer_times.svg';
   static String imgQiblaButton = '${_homePath}img_qibla_button_unselected.svg';
   static String imgQiblaButtonSelected =
       '${_homePath}img_qibla_button_selected.svg';
   static String imgRawatibPrayersIcon =
-      '${_basePath}salah_guide/img_rawatib_prayers_icon.svg';
+      '${_salahGuidePath}img_rawatib_prayers_icon.svg';
   static String imgTahajjudPrayerIcon =
-      '${_basePath}salah_guide/img_tahajjud_prayer_icon.svg';
+      '${_salahGuidePath}img_tahajjud_prayer_icon.svg';
   static String imgTravelingPrayerIcon =
-      '${_basePath}salah_guide/img_traveling_prayer_icon.svg';
+      '${_salahGuidePath}img_traveling_prayer_icon.svg';
   static String imgWitrPrayerIcon =
-      '${_basePath}salah_guide/img_witr_prayer_icon.svg';
+      '${_salahGuidePath}img_witr_prayer_icon.svg';
 
   // Stats buttons - Weekly (7 days), Monthly (30 days), Quarterly (90 days)
   static String imgWeeklyStat = '${_homePath}weekly_stat.svg';
@@ -140,10 +140,8 @@ class ImageConstant {
   static String imgQuadStat = '${_homePath}quad_stat.svg';
   static String imgQuadStatSelected = '${_homePath}quad_stat_selected.svg';
 
-  static String imgSearchWhiteA700 = '${_basePath}img_search_white_a700.svg';
-  static String imgShadowButtom1 = '${_basePath}img_shadow_buttom_1.png';
-  static String imgTayammumIcon = '${_basePath}img_tayammum_icon.svg';
-  static String imgWuduIcon = '${_basePath}img_wudu_icon.svg';
+  static String imgTayammumIcon = '${_salahGuidePath}img_tayammum_icon.svg';
+  static String imgWuduIcon = '${_salahGuidePath}img_wudu_icon.svg';
 
   // Salah Guide Screen
   static String imgAddicon = '${_basePath}img_addicon.svg';
