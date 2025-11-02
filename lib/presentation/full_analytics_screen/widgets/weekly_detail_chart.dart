@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/presentation/prayer_tracker_screen/notifier/prayer_analytics_notifier.dart';
+import 'package:adam_s_application/presentation/prayer_tracker_screen/models/prayer_analytics_data.dart';
 
 class WeeklyDetailChart extends ConsumerStatefulWidget {
-  const WeeklyDetailChart({super.key});
+  final Function(DailyPrayerData?)? onDaySelected;
+  final Function(int)?
+      onWeekOffsetChanged; // New callback for week offset changes
+
+  const WeeklyDetailChart({
+    super.key,
+    this.onDaySelected,
+    this.onWeekOffsetChanged,
+  });
 
   @override
   ConsumerState<WeeklyDetailChart> createState() => _WeeklyDetailChartState();
@@ -13,12 +22,17 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
   int _weekOffset = 0;
   int? _selectedDayIndex;
 
-  List<Map<String, dynamic>> _getWeekData() {
+  List<DailyPrayerData> _getWeekData() {
     // Get data from analytics provider
     final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
     final weekStats = analyticsNotifier.getWeekData(_weekOffset);
+    return weekStats.dailyData;
+  }
 
-    return weekStats.dailyData.asMap().entries.map((entry) {
+  List<Map<String, dynamic>> _getWeekDataForDisplay() {
+    final dailyData = _getWeekData();
+
+    return dailyData.asMap().entries.map((entry) {
       final index = entry.key;
       final dayData = entry.value;
       final dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -36,8 +50,9 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
   @override
   Widget build(BuildContext context) {
     final weekData = _getWeekData();
-    final firstDay = weekData.first['date'] as DateTime;
-    final lastDay = weekData.last['date'] as DateTime;
+    final weekDataForDisplay = _getWeekDataForDisplay();
+    final firstDay = weekData.first.date;
+    final lastDay = weekData.last.date;
     final dateRange =
         '${firstDay.day}/${firstDay.month} - ${lastDay.day}/${lastDay.month}';
 
@@ -45,10 +60,10 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
       height: 280.h,
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        color: appColors.gray_700.withAlpha((0.2 * 255).round()),
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(12.h),
         border: Border.all(
-          color: appColors.gray_700.withAlpha((0.3 * 255).round()),
+          color: appColors.gray_700.withValues(alpha: 0.3),
           width: 1.h,
         ),
       ),
@@ -62,6 +77,7 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
                 onPressed: () => setState(() {
                   _weekOffset--;
                   _selectedDayIndex = null;
+                  widget.onWeekOffsetChanged?.call(_weekOffset);
                 }),
               ),
               Text(
@@ -80,6 +96,7 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
                     ? () => setState(() {
                           _weekOffset++;
                           _selectedDayIndex = null;
+                          widget.onWeekOffsetChanged?.call(_weekOffset);
                         })
                     : null,
               ),
@@ -88,7 +105,7 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
           Expanded(
             child: CustomPaint(
               painter: WeeklyDetailPainter(
-                weekData: weekData,
+                weekData: weekDataForDisplay,
                 selectedIndex: _selectedDayIndex,
                 theme: appColors,
               ),
@@ -106,8 +123,13 @@ class _WeeklyDetailChartState extends ConsumerState<WeeklyDetailChart> {
                           .clamp(0, 6);
 
                   setState(() {
-                    _selectedDayIndex =
-                        tappedIndex == _selectedDayIndex ? null : tappedIndex;
+                    if (tappedIndex == _selectedDayIndex) {
+                      _selectedDayIndex = null;
+                      widget.onDaySelected?.call(null);
+                    } else {
+                      _selectedDayIndex = tappedIndex;
+                      widget.onDaySelected?.call(weekData[tappedIndex]);
+                    }
                   });
                 },
                 behavior: HitTestBehavior.opaque,

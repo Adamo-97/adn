@@ -49,12 +49,14 @@ class PrayerAnalyticsNotifier extends Notifier<PrayerAnalyticsData?> {
     final dailyData = List.generate(7, (index) {
       final date = weekStart.add(Duration(days: index));
       final isFuture = date.isAfter(today);
-      final completed = _getMockPrayerCount(date, isFuture);
+      final (prayerStatuses, completed) =
+          _getMockPrayerStatuses(date, isFuture);
 
       return DailyPrayerData(
         date: date,
         completedPrayers: completed,
         isFuture: isFuture,
+        prayerStatuses: prayerStatuses,
       );
     });
 
@@ -87,12 +89,14 @@ class PrayerAnalyticsNotifier extends Notifier<PrayerAnalyticsData?> {
     for (int day = 1; day <= monthEnd.day; day++) {
       final date = DateTime(targetMonth.year, targetMonth.month, day);
       final isFuture = date.isAfter(today);
-      final completed = _getMockPrayerCount(date, isFuture);
+      final (prayerStatuses, completed) =
+          _getMockPrayerStatuses(date, isFuture);
 
       dailyData.add(DailyPrayerData(
         date: date,
         completedPrayers: completed,
         isFuture: isFuture,
+        prayerStatuses: prayerStatuses,
       ));
     }
 
@@ -111,11 +115,13 @@ class PrayerAnalyticsNotifier extends Notifier<PrayerAnalyticsData?> {
         final date = currentWeekStart.add(Duration(days: i));
         if (date.month == targetMonth.month) {
           final isFuture = date.isAfter(today);
-          final completed = _getMockPrayerCount(date, isFuture);
+          final (prayerStatuses, completed) =
+              _getMockPrayerStatuses(date, isFuture);
           weekDailyData.add(DailyPrayerData(
             date: date,
             completedPrayers: completed,
             isFuture: isFuture,
+            prayerStatuses: prayerStatuses,
           ));
         }
       }
@@ -193,12 +199,14 @@ class PrayerAnalyticsNotifier extends Notifier<PrayerAnalyticsData?> {
     while (currentDate.isBefore(quarterEnd) ||
         currentDate.isAtSameMomentAs(quarterEnd)) {
       final isFuture = currentDate.isAfter(today);
-      final completed = _getMockPrayerCount(currentDate, isFuture);
+      final (prayerStatuses, completed) =
+          _getMockPrayerStatuses(currentDate, isFuture);
 
       dailyData.add(DailyPrayerData(
         date: currentDate,
         completedPrayers: completed,
         isFuture: isFuture,
+        prayerStatuses: prayerStatuses,
       ));
 
       currentDate = currentDate.add(const Duration(days: 1));
@@ -230,11 +238,13 @@ class PrayerAnalyticsNotifier extends Notifier<PrayerAnalyticsData?> {
                 date.isAtSameMomentAs(quarterStart)) &&
             date.isBefore(quarterEnd.add(const Duration(days: 1)))) {
           final isFuture = date.isAfter(today);
-          final completed = _getMockPrayerCount(date, isFuture);
+          final (prayerStatuses, completed) =
+              _getMockPrayerStatuses(date, isFuture);
           weekDailyData.add(DailyPrayerData(
             date: date,
             completedPrayers: completed,
             isFuture: isFuture,
+            prayerStatuses: prayerStatuses,
           ));
         }
       }
@@ -280,10 +290,39 @@ class PrayerAnalyticsNotifier extends Notifier<PrayerAnalyticsData?> {
   }
 
   /// Mock data generator - TODO: Replace with actual data from backend
+  /// Returns a map of prayer statuses and the total count
+  (Map<String, bool>, int) _getMockPrayerStatuses(
+      DateTime date, bool isFuture) {
+    const prayers = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+    final statuses = <String, bool>{};
+
+    if (isFuture) {
+      for (final prayer in prayers) {
+        statuses[prayer] = false;
+      }
+      return (statuses, 0);
+    }
+
+    // Generate consistent mock data based on date and prayer
+    // Use date properties to create deterministic but varied patterns
+    final baseValue = date.day + date.month + date.year;
+    int completedCount = 0;
+
+    for (int i = 0; i < prayers.length; i++) {
+      // Each prayer has different probability based on position and date
+      final prayerValue = (baseValue + i * 7) % 10;
+      final isCompleted = prayerValue >= (2 + i % 3); // Varied completion rates
+      statuses[prayers[i]] = isCompleted;
+      if (isCompleted) completedCount++;
+    }
+
+    return (statuses, completedCount);
+  }
+
+  /// Legacy helper for backward compatibility - returns only count
   int _getMockPrayerCount(DateTime date, bool isFuture) {
-    if (isFuture) return 0;
-    // Generate consistent mock data based on date
-    return (3 + (date.day % 3)).clamp(0, 5);
+    final (_, count) = _getMockPrayerStatuses(date, isFuture);
+    return count;
   }
 
   /// Generates mock comprehensive analytics data
