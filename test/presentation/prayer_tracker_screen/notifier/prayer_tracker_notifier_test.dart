@@ -19,10 +19,16 @@ void main() {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
+      // Keep provider alive by maintaining a listener
+      final subscription = container.listen(
+        prayerTrackerNotifierProvider,
+        (_, __) {},
+      );
+
       final notifier = container.read(prayerTrackerNotifierProvider.notifier);
 
       // Wait for initialization to complete
-      await Future.delayed(Duration(milliseconds: 100));
+      await Future.delayed(Duration(milliseconds: 150));
 
       // initial state: qibla closed
       expect(container.read(prayerTrackerNotifierProvider).qiblaOpen, isFalse);
@@ -39,11 +45,18 @@ void main() {
 
       // Wait for any pending async operations
       await Future.delayed(Duration(milliseconds: 100));
+      subscription.close();
     });
 
     test('toggleStatButton opens and closes correctly', () async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
+
+      // Keep provider alive by maintaining a listener
+      final subscription = container.listen(
+        prayerTrackerNotifierProvider,
+        (_, __) {},
+      );
 
       final notifier = container.read(prayerTrackerNotifierProvider.notifier);
 
@@ -65,6 +78,7 @@ void main() {
 
       // Wait for any pending async operations
       await Future.delayed(Duration(milliseconds: 100));
+      subscription.close();
     });
   });
 }

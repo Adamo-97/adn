@@ -3,6 +3,7 @@
 /// This mock eliminates the need for SharedPreferences (which requires Flutter bindings)
 /// in unit tests. It provides an in-memory only implementation that behaves identically
 /// to the real service but without persistence.
+library;
 
 class MockSettingsStorageService {
   // In-memory storage simulating SharedPreferences

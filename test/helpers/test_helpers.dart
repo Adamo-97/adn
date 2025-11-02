@@ -2,6 +2,7 @@
 ///
 /// This file provides utilities to properly initialize and configure
 /// the test environment for Flutter widget and unit tests.
+library;
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
