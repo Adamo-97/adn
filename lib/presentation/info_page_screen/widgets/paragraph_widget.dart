@@ -63,54 +63,125 @@ class ParagraphWidget extends StatelessWidget {
   }
 
   /// Build formatted text with proper fonts and RTL support
+  /// Quranic verses are centered on their own line with brackets
+  /// Translations are in italic below the verse
   Widget _buildFormattedText() {
-    return RichText(
-      textDirection: TextDirection.ltr, // Container is LTR
-      text: TextSpan(
-        children: formattedText!.map((segment) {
-          return _buildTextSegment(segment);
-        }).toList(),
-      ),
+    List<Widget> widgets = [];
+    List<TextSegment> currentLineSegments = [];
+    bool hasQuranVerse = false;
+
+    for (int i = 0; i < formattedText!.length; i++) {
+      final segment = formattedText![i];
+
+      if (segment.type == 'quran_verse') {
+        // Flush any pending segments before the verse
+        if (currentLineSegments.isNotEmpty) {
+          widgets.add(_buildInlineText(currentLineSegments));
+          currentLineSegments = [];
+        }
+
+        // Add the Quranic verse centered with brackets
+        widgets.add(
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 12.h),
+            child: Center(
+              child: Text(
+                '﴿${segment.text}﴾',
+                textAlign: TextAlign.center,
+                textDirection: TextDirection.rtl,
+                style:
+                    TextStyleHelper.instance.body16RegularAmiriQuran.copyWith(
+                  fontSize: 18.fSize,
+                  color: appColors.whiteA700.withValues(alpha: 0.95),
+                  height: 1.8,
+                ),
+              ),
+            ),
+          ),
+        );
+        hasQuranVerse = true;
+      } else if (segment.type == 'english_text' &&
+          hasQuranVerse &&
+          segment.text.trim().startsWith('"')) {
+        // This is likely a translation after a Quran verse - make it italic
+        widgets.add(
+          Padding(
+            padding: EdgeInsets.only(bottom: 12.h),
+            child: Text(
+              segment.text.trim(),
+              textAlign: TextAlign.center,
+              style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
+                fontSize: 14.fSize,
+                color: appColors.whiteA700.withValues(alpha: 0.85),
+                height: 1.5,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ),
+        );
+        hasQuranVerse = false; // Reset after translation
+      } else if (segment.type == 'arabic_text') {
+        // Flush any pending English segments
+        if (currentLineSegments.isNotEmpty &&
+            currentLineSegments.last.type == 'english_text') {
+          widgets.add(_buildInlineText(currentLineSegments));
+          currentLineSegments = [];
+        }
+
+        // Add Arabic text on its own line, RTL aligned
+        widgets.add(
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.h),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                segment.text,
+                textAlign: TextAlign.right,
+                textDirection: TextDirection.rtl,
+                style: TextStyleHelper.instance.body16MediumNotoKufiArabic
+                    .copyWith(
+                  fontSize: 16.fSize,
+                  color: appColors.whiteA700.withValues(alpha: 0.95),
+                  height: 1.7,
+                ),
+              ),
+            ),
+          ),
+        );
+        hasQuranVerse = false;
+      } else {
+        // Regular English text - accumulate for inline display
+        currentLineSegments.add(segment);
+      }
+    }
+
+    // Flush any remaining segments
+    if (currentLineSegments.isNotEmpty) {
+      widgets.add(_buildInlineText(currentLineSegments));
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: widgets,
     );
   }
 
-  /// Build a single text segment with appropriate font and direction
-  TextSpan _buildTextSegment(TextSegment segment) {
-    final type = segment.type;
-    final text = segment.text;
-
-    if (type == 'quran_verse') {
-      // Quranic verse - use Amiri Quran font with RTL
-      return TextSpan(
-        text: text,
-        style: TextStyleHelper.instance.body16RegularAmiriQuran.copyWith(
-          fontSize: 16.fSize,
-          color: appColors.whiteA700.withValues(alpha: 0.95),
-          height: 1.8,
-        ),
-        locale: const Locale('ar'),
-      );
-    } else if (type == 'arabic_text') {
-      // Non-Quranic Arabic - use Noto Kufi Arabic font with RTL
-      return TextSpan(
-        text: text,
-        style: TextStyleHelper.instance.body15MediumNotoKufiArabic.copyWith(
-          fontSize: 15.fSize,
-          color: appColors.whiteA700.withValues(alpha: 0.95),
-          height: 1.7,
-        ),
-        locale: const Locale('ar'),
-      );
-    } else {
-      // English text - use default Poppins font
-      return TextSpan(
-        text: text,
-        style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
-          fontSize: 14.fSize,
-          color: appColors.whiteA700.withValues(alpha: 0.9),
-          height: 1.5,
-        ),
-      );
-    }
+  /// Build inline text for English segments (LTR)
+  Widget _buildInlineText(List<TextSegment> segments) {
+    return RichText(
+      textDirection: TextDirection.ltr,
+      text: TextSpan(
+        children: segments.map((segment) {
+          return TextSpan(
+            text: segment.text,
+            style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
+              fontSize: 14.fSize,
+              color: appColors.whiteA700.withValues(alpha: 0.9),
+              height: 1.5,
+            ),
+          );
+        }).toList(),
+      ),
+    );
   }
 }
