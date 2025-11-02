@@ -47,25 +47,7 @@
         },
         {
           "type": "arabic_text",
-          "text": "لَبَّيْكَ",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "اللَّهُمَّ",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "لَبَّيْكَ",
+          "text": "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ",
           "font": "Noto Kufi Arabic"
         },
         {

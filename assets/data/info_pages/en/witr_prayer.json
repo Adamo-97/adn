@@ -74,475 +74,106 @@
       "formatted_text": [
         {
           "type": "arabic_text",
-          "text": "اللهم",
+          "text": "اللهم اهدِنا فيمَن هديت",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " "
+          "text": ".. "
         },
         {
           "type": "arabic_text",
-          "text": "اهدِنا",
+          "text": "وعافنا فيمن عافيت",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " "
+          "text": ".. "
         },
         {
           "type": "arabic_text",
-          "text": "فيمَن",
+          "text": "وتولنا فيمن توليت",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " "
+          "text": "..\n"
         },
         {
           "type": "arabic_text",
-          "text": "هديت",
+          "text": "وبارك لنا فيما أعطيت",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " .. "
+          "text": ".. "
         },
         {
           "type": "arabic_text",
-          "text": "وعافنا",
+          "text": "وقِنا شر ما قضيت",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " "
+          "text": ".. "
         },
         {
           "type": "arabic_text",
-          "text": "فيمن",
+          "text": "انك تقضي ولا يقضى عليك",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " "
+          "text": "..\n"
         },
         {
           "type": "arabic_text",
-          "text": "عافيت",
+          "text": "انه لا يذل مَن واليت",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " .. "
+          "text": ".. "
         },
         {
           "type": "arabic_text",
-          "text": "وتولنا",
+          "text": "ولا يعز من عاديت",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " "
+          "text": ".. "
         },
         {
           "type": "arabic_text",
-          "text": "فيمن",
+          "text": "تباركت ربنا وتعاليت",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " "
+          "text": "..\n"
         },
         {
           "type": "arabic_text",
-          "text": "توليت",
+          "text": "لك الحمد على ما قضيت",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " ..\n"
+          "text": ".. "
         },
         {
           "type": "arabic_text",
-          "text": "وبارك",
+          "text": "ولك الشكر على ما أعطيت",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": " "
+          "text": "..\n"
         },
         {
           "type": "arabic_text",
-          "text": "لنا",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "فيما",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "أعطيت",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " .. "
-        },
-        {
-          "type": "arabic_text",
-          "text": "وقِنا",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "شر",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "ما",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "قضيت",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " .. "
-        },
-        {
-          "type": "arabic_text",
-          "text": "انك",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "تقضي",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "ولا",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "يقضى",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "عليك",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " ..\n"
-        },
-        {
-          "type": "arabic_text",
-          "text": "انه",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "لا",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "يذل",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "مَن",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "واليت",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " .. "
-        },
-        {
-          "type": "arabic_text",
-          "text": "ولا",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "يعز",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "من",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "عاديت",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " .. "
-        },
-        {
-          "type": "arabic_text",
-          "text": "تباركت",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "ربنا",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "وتعاليت",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " ..\n"
-        },
-        {
-          "type": "arabic_text",
-          "text": "لك",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "الحمد",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "على",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "ما",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "قضيت",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " .. "
-        },
-        {
-          "type": "arabic_text",
-          "text": "ولك",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "الشكر",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "على",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "ما",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "أعطيت",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " ..\n"
-        },
-        {
-          "type": "arabic_text",
-          "text": "نستغفرك",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "اللهم",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "من",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "جميع",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "الذنوب",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "والخطايا",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "ونتوب",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": " "
-        },
-        {
-          "type": "arabic_text",
-          "text": "إليك",
+          "text": "نستغفرك اللهم من جميع الذنوب والخطايا ونتوب إليك",
           "font": "Noto Kufi Arabic"
         },
         {

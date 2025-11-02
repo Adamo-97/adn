@@ -57,6 +57,7 @@ def split_arabic_english(text: str) -> List[Dict[str, Any]]:
     """
     Split text with mixed Arabic and English into segments.
     This handles cases where Arabic text (non-Quranic) is mixed with English.
+    Keeps consecutive Arabic characters together.
     """
     segments = []
     current_segment = ""
@@ -64,11 +65,13 @@ def split_arabic_english(text: str) -> List[Dict[str, Any]]:
     
     for char in text:
         is_arabic_char = bool(re.match(r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]', char))
+        # Also include Arabic punctuation and spacing
+        is_arabic_space = char in [' ', '\n', '\u200F', '\u200E'] and current_type == "arabic"
         
-        if is_arabic_char:
+        if is_arabic_char or is_arabic_space:
             # Switch to Arabic segment
             if current_type != "arabic":
-                if current_segment:
+                if current_segment.strip():
                     segments.append({"type": "english_text", "text": current_segment})
                 current_segment = char
                 current_type = "arabic"
@@ -77,8 +80,8 @@ def split_arabic_english(text: str) -> List[Dict[str, Any]]:
         else:
             # Switch to English segment
             if current_type == "arabic":
-                if current_segment:
-                    segments.append({"type": "arabic_text", "text": current_segment, "font": "Noto Kufi Arabic"})
+                if current_segment.strip():
+                    segments.append({"type": "arabic_text", "text": current_segment.strip(), "font": "Noto Kufi Arabic"})
                 current_segment = char
                 current_type = "english"
             else:
@@ -87,9 +90,9 @@ def split_arabic_english(text: str) -> List[Dict[str, Any]]:
                     current_type = "english"
     
     # Add last segment
-    if current_segment:
+    if current_segment.strip():
         if current_type == "arabic":
-            segments.append({"type": "arabic_text", "text": current_segment, "font": "Noto Kufi Arabic"})
+            segments.append({"type": "arabic_text", "text": current_segment.strip(), "font": "Noto Kufi Arabic"})
         else:
             segments.append({"type": "english_text", "text": current_segment})
     
@@ -205,6 +208,11 @@ def process_json_file(filepath: Path, dry_run: bool = False) -> bool:
         if section.get('type') == 'list' and 'items' in section:
             new_items = []
             for item in section['items']:
+                # Handle items that are already formatted
+                if isinstance(item, dict):
+                    new_items.append(item)
+                    continue
+                    
                 original_item = item
                 
                 # Fix unsupported characters
