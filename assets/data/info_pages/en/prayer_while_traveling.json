@@ -23,7 +23,22 @@
     },
     {
       "type": "paragraph",
-      "text": "The scholars differed concerning the length of time during which, when a traveler stays in one place, he may shorten his prayers. But the practice of the Prophet (ﷺ) and his companions after him was to continue to shorten four-rak‘ah prayers (without joining them) indefinitely as long as they were waiting to return home."
+      "text": "The scholars differed concerning the length of time during which, when a traveler stays in one place, he may shorten his prayers. But the practice of the Prophet (ﷺ) and his companions after him was to continue to shorten four-rak‘ah prayers (without joining them) indefinitely as long as they were waiting to return home.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "The scholars differed concerning the length of time during which, when a traveler stays in one place, he may shorten his prayers. But the practice of the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") and his companions after him was to continue to shorten four-rak‘ah prayers (without joining them) indefinitely as long as they were waiting to return home."
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -31,7 +46,22 @@
     },
     {
       "type": "paragraph",
-      "text": "Among sunnah prayers, only Fajr sunnah and Witr were maintained by the Prophet (ﷺ) during a journey, and he did not pray the rawātib of Thuhr, ‘Asr, Maghrib or ‘Isha’ when joining prayers. However, the majority of scholars are of the opinion that it is not disliked to perform nawāfil during a journey in which one is shortening his ṣalāh."
+      "text": "Among sunnah prayers, only Fajr sunnah and Witr were maintained by the Prophet (ﷺ) during a journey, and he did not pray the rawatib of Thuhr, ‘Asr, Maghrib or ‘Isha’ when joining prayers. However, the majority of scholars are of the opinion that it is not disliked to perform nawafil during a journey in which one is shortening his salah.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Among sunnah prayers, only Fajr sunnah and Witr were maintained by the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") during a journey, and he did not pray the rawatib of Thuhr, ‘Asr, Maghrib or ‘Isha’ when joining prayers. However, the majority of scholars are of the opinion that it is not disliked to perform nawafil during a journey in which one is shortening his salah."
+        }
+      ]
     },
     {
       "type": "section_title",

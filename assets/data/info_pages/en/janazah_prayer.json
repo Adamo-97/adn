@@ -7,7 +7,7 @@
     },
     {
       "type": "paragraph",
-      "text": "When a Muslim dies, it is the duty of the community that janāzah prayer is held for him by some (at least one) of its members, but the more the better. Janāzah prayer is conducted standing throughout, without rukuʿ, sujud or julūs. It can be conducted at any time. Wudhu’, adequate covering of the body, and facing the qiblah are required, as in any prayer."
+      "text": "When a Muslim dies, it is the duty of the community that janazah prayer is held for him by some (at least one) of its members, but the more the better. Janazah prayer is conducted standing throughout, without ruku', sujud or julus. It can be conducted at any time. Wudhu’, adequate covering of the body, and facing the qiblah are required, as in any prayer."
     },
     {
       "type": "section_title",
@@ -15,7 +15,7 @@
     },
     {
       "type": "paragraph",
-      "text": "The body (or bodies) is placed between the imām and the qiblah. The imām stands opposite the head if the deceased is a man, and opposite the waist if it is a woman. If there are both sexes among the deceased the men are placed nearest the imām, the women nearest the qiblah. An-Nasā’ī related the witness of four companions to the fact that this is a sunnah from a sound chain."
+      "text": "The body (or bodies) is placed between the imam and the qiblah. The imam stands opposite the head if the deceased is a man, and opposite the waist if it is a woman. If there are both sexes among the deceased the men are placed nearest the imam, the women nearest the qiblah. An-Nasa’i related the witness of four companions to the fact that this is a sunnah from a sound chain."
     },
     {
       "type": "section_title",
@@ -24,10 +24,27 @@
     {
       "type": "list",
       "items": [
-        "Takbīr 1: After niyyah (intention) the imām, followed by the congregation, raises his hands to shoulder-ear level and says “Allāhu akbar,” placing his hands on his chest, then recites al-Fātiḥah silently.",
-        "Takbīr 2: He says “Allāhu akbar” again, raises his hands, then recites silently the prayer for blessings upon the Prophet (ﷺ).",
-        "Takbīr 3: Saying “Allāhu akbar” for the third time (raising hands), he then recites duʿā’s taken from the sunnah—either aloud or silently—or, if none are memorized, any supplication for the deceased.",
-        "Takbīr 4: After “Allāhu akbar” a fourth time, he continues duʿā’ briefly, concluding with taslīm (salam), said once to the right or twice as in regular prayers."
+        "Takbir 1: After niyyah (intention) the imam, followed by the congregation, raises his hands to shoulder-ear level and says “Allahu akbar,” placing his hands on his chest, then recites al-Fatihah silently.",
+        {
+          "text": "Takbir 2: He says “Allahu akbar” again, raises his hands, then recites silently the prayer for blessings upon the Prophet (ﷺ).",
+          "formatted_text": [
+            {
+              "type": "english_text",
+              "text": "Takbir 2: He says “Allahu akbar” again, raises his hands, then recites silently the prayer for blessings upon the Prophet ("
+            },
+            {
+              "type": "arabic_text",
+              "text": "ﷺ",
+              "font": "Noto Kufi Arabic"
+            },
+            {
+              "type": "english_text",
+              "text": ")."
+            }
+          ]
+        },
+        "Takbir 3: Saying “Allahu akbar” for the third time (raising hands), he then recites du'a’s taken from the sunnah—either aloud or silently—or, if none are memorized, any supplication for the deceased.",
+        "Takbir 4: After “Allahu akbar” a fourth time, he continues du'a’ briefly, concluding with taslim (salam), said once to the right or twice as in regular prayers."
       ]
     },
     {
@@ -36,7 +53,428 @@
     },
     {
       "type": "paragraph",
-      "text": "اللهم اغفر له، وارحمه، وعافه، واعفُ عنه، وأكرم نُزُله، ووسّع مُدخله،\nواغسله بالماء والثلج والبرد، ونقِّه من الخطايا كما نقَّيتَ الثوبَ الأبيضَ من الدَّنس،\nوأبدله دارًا خيرًا من داره، وأهلاً خيرًا من أهله، وزوجًا خيرًا من زوجه،\nوأدخله الجنةَ، وَأَعِذْهُ من عذاب القبر، أو من عذاب النار"
+      "text": "اللهم اغفر له، وارحمه، وعافه، واعفُ عنه، وأكرم نُزُله، ووسّع مُدخله،\nواغسله بالماء والثلج والبرد، ونقِّه من الخطايا كما نقَّيتَ الثوبَ الأبيضَ من الدَّنس،\nوأبدله دارًا خيرًا من داره، وأهلاً خيرًا من أهله، وزوجًا خيرًا من زوجه،\nوأدخله الجنةَ، وَأَعِذْهُ من عذاب القبر، أو من عذاب النار",
+      "formatted_text": [
+        {
+          "type": "arabic_text",
+          "text": "اللهم",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "اغفر",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "له،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "وارحمه،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "وعافه،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "واعفُ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "عنه،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "وأكرم",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "نُزُله،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "ووسّع",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "مُدخله،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": "\n"
+        },
+        {
+          "type": "arabic_text",
+          "text": "واغسله",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "بالماء",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "والثلج",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "والبرد،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "ونقِّه",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "من",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "الخطايا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "كما",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "نقَّيتَ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "الثوبَ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "الأبيضَ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "من",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "الدَّنس،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": "\n"
+        },
+        {
+          "type": "arabic_text",
+          "text": "وأبدله",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "دارًا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "خيرًا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "من",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "داره،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "وأهلاً",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "خيرًا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "من",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "أهله،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "وزوجًا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "خيرًا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "من",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "زوجه،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": "\n"
+        },
+        {
+          "type": "arabic_text",
+          "text": "وأدخله",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "الجنةَ،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "وَأَعِذْهُ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "من",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "عذاب",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "القبر،",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "أو",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "من",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "عذاب",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "النار",
+          "font": "Noto Kufi Arabic"
+        }
+      ]
     },
     {
       "type": "paragraph",
@@ -48,7 +486,22 @@
     },
     {
       "type": "paragraph",
-      "text": "If it is not possible to perform janāzah on someone present, the same prayer may be offered in absence by an imām and congregation. It was related in authentic hadiths that the Prophet (ﷺ) did this upon the death of an-Najāshī in Abyssinia. The procedure is identical except that the bodies are not present before the imām."
+      "text": "If it is not possible to perform janazah on someone present, the same prayer may be offered in absence by an imam and congregation. It was related in authentic hadiths that the Prophet (ﷺ) did this upon the death of an-Najashi in Abyssinia. The procedure is identical except that the bodies are not present before the imam.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "If it is not possible to perform janazah on someone present, the same prayer may be offered in absence by an imam and congregation. It was related in authentic hadiths that the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") did this upon the death of an-Najashi in Abyssinia. The procedure is identical except that the bodies are not present before the imam."
+        }
+      ]
     }
   ]
 }

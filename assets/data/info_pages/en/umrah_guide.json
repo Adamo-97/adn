@@ -7,7 +7,7 @@
     },
     {
       "type": "paragraph",
-      "text": "Before crossing the Miqāt boundary (the designated points around Makkah), quietly form in your heart: “O Allah, I intend to perform Hajj purely for Your sake, seeking Your pleasure.”"
+      "text": "Before crossing the Miqat boundary (the designated points around Makkah), quietly form in your heart: “O Allah, I intend to perform Hajj purely for Your sake, seeking Your pleasure.”"
     },
     {
       "type": "section_title",
@@ -16,7 +16,7 @@
     {
       "type": "list",
       "items": [
-        "Men: Two unstitched white sheets (riḍāʾ over the shoulder; izār around the waist), no head covering.",
+        "Men: Two unstitched white sheets (rida' over the shoulder; izar around the waist), no head covering.",
         "Women: Any modest, loose clothing covering everything except face and hands; no gloves or face veil."
       ]
     },
@@ -39,7 +39,40 @@
     },
     {
       "type": "paragraph",
-      "text": "With hands raised, begin chanting: “لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ… Here I am, O Allah, here I am!” Continue repeating it throughout your journey into Makkah."
+      "text": "With hands raised, begin chanting: “لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ… Here I am, O Allah, here I am!” Continue repeating it throughout your journey into Makkah.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "With hands raised, begin chanting: “"
+        },
+        {
+          "type": "arabic_text",
+          "text": "لَبَّيْكَ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "اللَّهُمَّ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "لَبَّيْكَ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": "… Here I am, O Allah, here I am!” Continue repeating it throughout your journey into Makkah."
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -52,11 +85,11 @@
     {
       "type": "list",
       "items": [
-        "Stand facing the Black Stone (al-Ḥajar al-Aswad).",
-        "Say “Allāhu Akbar” and touch or point toward the Black Stone.",
+        "Stand facing the Black Stone (al-Hajar al-Aswad).",
+        "Say “Allahu Akbar” and touch or point toward the Black Stone.",
         "Begin your first of seven circuits, keeping the Ka‘bah on your left.",
         "Men may briskly walk the first three rounds (riql); women proceed at normal pace.",
-        "After each circuit, you may recite any du‘ā’ or quietly reflect on Allah’s mercy."
+        "After each circuit, you may recite any du‘a’ or quietly reflect on Allah’s mercy."
       ]
     },
     {
@@ -65,7 +98,7 @@
     },
     {
       "type": "paragraph",
-      "text": "After your seventh circuit, proceed to the small enclosed chamber called Maqām Ibrāhīm. There, pray two rak‘ahs quietly, reciting Sūrat al-Fātiḥah and another short surah."
+      "text": "After your seventh circuit, proceed to the small enclosed chamber called Maqam Ibrahim. There, pray two rak‘ahs quietly, reciting Surat al-Fatihah and another short surah."
     },
     {
       "type": "section_title",
@@ -73,7 +106,7 @@
     },
     {
       "type": "paragraph",
-      "text": "Drink deeply from the Zamzam well—its water is praised in Ṣaḥīḥ Muslim: “The water of Zamzam is for whatever it is drunk for.” Use this moment to make heartfelt du‘ā’."
+      "text": "Drink deeply from the Zamzam well—its water is praised in Sahih Muslim: “The water of Zamzam is for whatever it is drunk for.” Use this moment to make heartfelt du‘a’."
     },
     {
       "type": "section_title",
@@ -114,7 +147,7 @@
       "type": "list",
       "items": [
         "Timing: Many pilgrims choose early morning (Fajr) or just before Maghrib to avoid crowds.",
-        "Spiritual Focus: Keep your tongue moist with remembrance—takbīr, tahmīd, and du‘ā’.",
+        "Spiritual Focus: Keep your tongue moist with remembrance—takbir, tahmid, and du‘a’.",
         "Physical Preparation: Break in sandals, stay hydrated, and pace yourself—especially during sa‘y’s riql section.",
         "Group Etiquette: Respect personal space; assist elders and the less able."
       ]

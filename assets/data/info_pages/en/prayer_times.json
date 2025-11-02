@@ -7,7 +7,22 @@
     },
     {
       "type": "paragraph",
-      "text": "The Muslim should make a serious effort to pray each prayer at the beginning of its period, as the Prophet (ﷺ) stated that this is the deed most liked by Allah. The additional time is allowed as a mercy from Allah for those who, for some reason, are unable or would find difficulty in doing so. The only compensation for a person who has forgotten or unintentionally slept through a prayer period is that he pray the missed prayer immediately as soon as he remembers."
+      "text": "The Muslim should make a serious effort to pray each prayer at the beginning of its period, as the Prophet (ﷺ) stated that this is the deed most liked by Allah. The additional time is allowed as a mercy from Allah for those who, for some reason, are unable or would find difficulty in doing so. The only compensation for a person who has forgotten or unintentionally slept through a prayer period is that he pray the missed prayer immediately as soon as he remembers.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "The Muslim should make a serious effort to pray each prayer at the beginning of its period, as the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") stated that this is the deed most liked by Allah. The additional time is allowed as a mercy from Allah for those who, for some reason, are unable or would find difficulty in doing so. The only compensation for a person who has forgotten or unintentionally slept through a prayer period is that he pray the missed prayer immediately as soon as he remembers."
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -23,7 +38,7 @@
     },
     {
       "type": "paragraph",
-      "text": "From the decline of the sun (about 20 minutes after it has reached its zenith) until ʿAsr."
+      "text": "From the decline of the sun (about 20 minutes after it has reached its zenith) until 'Asr."
     },
     {
       "type": "section_title",
@@ -39,7 +54,7 @@
     },
     {
       "type": "paragraph",
-      "text": "From the disappearance of the sun until ʿIshaʾ."
+      "text": "From the disappearance of the sun until 'Isha'."
     },
     {
       "type": "section_title",

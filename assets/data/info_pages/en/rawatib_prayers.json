@@ -15,7 +15,22 @@
     },
     {
       "type": "paragraph",
-      "text": "The Prophet (ﷺ) usually recited Surah 109 (al-Kāfirūn) in the first rak‘ah and Surah 112 (al-Ikhlāṣ) in the second rak‘ah of both the fajr and maghrib sunnah prayers."
+      "text": "The Prophet (ﷺ) usually recited Surah 109 (al-Kafirun) in the first rak‘ah and Surah 112 (al-Ikhlas) in the second rak‘ah of both the fajr and maghrib sunnah prayers.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "The Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") usually recited Surah 109 (al-Kafirun) in the first rak‘ah and Surah 112 (al-Ikhlas) in the second rak‘ah of both the fajr and maghrib sunnah prayers."
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -23,7 +38,22 @@
     },
     {
       "type": "paragraph",
-      "text": "These are called rawātib (regular sunnah prayers) because the Prophet (ﷺ) used to perform them regularly at home. But during travel he did not maintain except the sunnah prayer of fajr and the witr prayer."
+      "text": "These are called rawatib (regular sunnah prayers) because the Prophet (ﷺ) used to perform them regularly at home. But during travel he did not maintain except the sunnah prayer of fajr and the witr prayer.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "These are called rawatib (regular sunnah prayers) because the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") used to perform them regularly at home. But during travel he did not maintain except the sunnah prayer of fajr and the witr prayer."
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -31,7 +61,22 @@
     },
     {
       "type": "paragraph",
-      "text": "It is better to pray these rawātib prayers and the witr at home, but it is all right if they are prayed in the mosque. Allah’s Messenger (ﷺ) said: “The best of a person’s prayers is in his house except for the obligatory one.” The obligatory prayer should be performed by men in the masjid."
+      "text": "It is better to pray these rawatib prayers and the witr at home, but it is all right if they are prayed in the mosque. Allah’s Messenger (ﷺ) said: “The best of a person’s prayers is in his house except for the obligatory one.” The obligatory prayer should be performed by men in the masjid.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "It is better to pray these rawatib prayers and the witr at home, but it is all right if they are prayed in the mosque. Allah’s Messenger ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") said: “The best of a person’s prayers is in his house except for the obligatory one.” The obligatory prayer should be performed by men in the masjid."
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -39,7 +84,22 @@
     },
     {
       "type": "paragraph",
-      "text": "The adherence to twelve sunnah rak‘ahs is among the causes of entrance to Paradise, as the Prophet (ﷺ) has said: “Whoever prays twelve rak‘ahs voluntarily during his day and night, Allah will build for him a house in Paradise.”"
+      "text": "The adherence to twelve sunnah rak‘ahs is among the causes of entrance to Paradise, as the Prophet (ﷺ) has said: “Whoever prays twelve rak‘ahs voluntarily during his day and night, Allah will build for him a house in Paradise.”",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "The adherence to twelve sunnah rak‘ahs is among the causes of entrance to Paradise, as the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") has said: “Whoever prays twelve rak‘ahs voluntarily during his day and night, Allah will build for him a house in Paradise.”"
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -47,7 +107,40 @@
     },
     {
       "type": "paragraph",
-      "text": "Additionally, if one prays four rak‘ahs before ‘asr prayer, two before maghrib and two before ‘isha it is good, for the Prophet (ﷺ) either encouraged or approved these prayers and said: “Between every adhan and iqāmah is a prayer,” and then added, “for whoever wishes.” He (ﷺ) is reported to have prayed four rak‘ahs before ‘asr on occasion. Besides these specific prayers, one may earn additional reward through voluntary prayers at any time of the day or night, excepting the three periods forbidden by the Prophet (ﷺ), which are: sunrise and immediately thereafter, sunset and immediately preceding it, and when the sun is directly overhead (just before dhuhr adhan). Voluntary prayers also make up for deficiencies in obligatory ones."
+      "text": "Additionally, if one prays four rak‘ahs before ‘asr prayer, two before maghrib and two before ‘isha it is good, for the Prophet (ﷺ) either encouraged or approved these prayers and said: “Between every adhan and iqamah is a prayer,” and then added, “for whoever wishes.” He (ﷺ) is reported to have prayed four rak‘ahs before ‘asr on occasion. Besides these specific prayers, one may earn additional reward through voluntary prayers at any time of the day or night, excepting the three periods forbidden by the Prophet (ﷺ), which are: sunrise and immediately thereafter, sunset and immediately preceding it, and when the sun is directly overhead (just before dhuhr adhan). Voluntary prayers also make up for deficiencies in obligatory ones.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Additionally, if one prays four rak‘ahs before ‘asr prayer, two before maghrib and two before ‘isha it is good, for the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") either encouraged or approved these prayers and said: “Between every adhan and iqamah is a prayer,” and then added, “for whoever wishes.” He ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") is reported to have prayed four rak‘ahs before ‘asr on occasion. Besides these specific prayers, one may earn additional reward through voluntary prayers at any time of the day or night, excepting the three periods forbidden by the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": "), which are: sunrise and immediately thereafter, sunset and immediately preceding it, and when the sun is directly overhead (just before dhuhr adhan). Voluntary prayers also make up for deficiencies in obligatory ones."
+        }
+      ]
     },
     {
       "type": "section_title",

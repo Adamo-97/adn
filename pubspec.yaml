@@ -50,6 +50,10 @@ flutter:
       fonts: 
         - asset: assets/fonts/NotoKufiArabicMedium.ttf
           weight: 500
+    - family: Amiri Quran
+      fonts: 
+        - asset: assets/fonts/AmiriQuran-Regular.ttf
+          weight: 400
 
 flutter_launcher_icons:
   android: true

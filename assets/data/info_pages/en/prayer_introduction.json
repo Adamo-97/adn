@@ -16,10 +16,62 @@
     {
       "type": "list",
       "items": [
-        "﴿رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ﴾ “My Lord, make me an establisher of prayer and [also] my descendants.”",
-        "﴿وَأَقِمِ الصَّلَاةَ لِذِكْرِي﴾ “And establish prayer for the remembrance of Me.”",
-        "﴿وَأَوْصَانِي بِالصَّلَاةِ وَالزَّكَاةِ مَا دُمْتُ حَيًّا﴾ “And He has enjoined upon me prayer and charity as long as I live.”",
-        "﴿اتْلُ مَا أُوحِيَ إِلَيْكَ مِنَ الْكِتَابِ وَأَقِمِ الصَّلَاةَ ۖ﴾ “Recite what was revealed to you of the Book and establish prayer.”"
+        {
+          "text": "﴿رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ﴾ “My Lord, make me an establisher of prayer and [also] my descendants.”",
+          "formatted_text": [
+            {
+              "type": "quran_verse",
+              "text": "رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ",
+              "font": "Amiri Quran"
+            },
+            {
+              "type": "english_text",
+              "text": "“My Lord, make me an establisher of prayer and [also] my descendants.”"
+            }
+          ]
+        },
+        {
+          "text": "﴿وَأَقِمِ الصَّلَاةَ لِذِكْرِي﴾ “And establish prayer for the remembrance of Me.”",
+          "formatted_text": [
+            {
+              "type": "quran_verse",
+              "text": "وَأَقِمِ الصَّلَاةَ لِذِكْرِي",
+              "font": "Amiri Quran"
+            },
+            {
+              "type": "english_text",
+              "text": "“And establish prayer for the remembrance of Me.”"
+            }
+          ]
+        },
+        {
+          "text": "﴿وَأَوْصَانِي بِالصَّلَاةِ وَالزَّكَاةِ مَا دُمْتُ حَيًّا﴾ “And He has enjoined upon me prayer and charity as long as I live.”",
+          "formatted_text": [
+            {
+              "type": "quran_verse",
+              "text": "وَأَوْصَانِي بِالصَّلَاةِ وَالزَّكَاةِ مَا دُمْتُ حَيًّا",
+              "font": "Amiri Quran"
+            },
+            {
+              "type": "english_text",
+              "text": "“And He has enjoined upon me prayer and charity as long as I live.”"
+            }
+          ]
+        },
+        {
+          "text": "﴿اتْلُ مَا أُوحِيَ إِلَيْكَ مِنَ الْكِتَابِ وَأَقِمِ الصَّلَاةَ ۖ﴾ “Recite what was revealed to you of the Book and establish prayer.”",
+          "formatted_text": [
+            {
+              "type": "quran_verse",
+              "text": "اتْلُ مَا أُوحِيَ إِلَيْكَ مِنَ الْكِتَابِ وَأَقِمِ الصَّلَاةَ ۖ",
+              "font": "Amiri Quran"
+            },
+            {
+              "type": "english_text",
+              "text": "“Recite what was revealed to you of the Book and establish prayer.”"
+            }
+          ]
+        }
       ]
     },
     {
@@ -44,7 +96,22 @@
     },
     {
       "type": "paragraph",
-      "text": "Our Prophet (ﷺ) informed us: “The first thing for which the servant [of Allah] shall be called to account is the prayer. If it was good, all of his work was good, but if it was bad, then all of his work was bad.”"
+      "text": "Our Prophet (ﷺ) informed us: “The first thing for which the servant [of Allah] shall be called to account is the prayer. If it was good, all of his work was good, but if it was bad, then all of his work was bad.”",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Our Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") informed us: “The first thing for which the servant [of Allah] shall be called to account is the prayer. If it was good, all of his work was good, but if it was bad, then all of his work was bad.”"
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -52,7 +119,22 @@
     },
     {
       "type": "paragraph",
-      "text": "Prayer was the first duty ordered of the Muslim community in Makkah. The five daily prayers were made obligatory on the night of Isra’ and Mi‘raj. It is sufficient proof of the Creator's concern that this communication between Himself and His servants be established that prayer alone was ordered in the heavens, whereas all other obligations were revealed to Prophet Muhammad (ﷺ) upon the earth."
+      "text": "Prayer was the first duty ordered of the Muslim community in Makkah. The five daily prayers were made obligatory on the night of Isra’ and Mi‘raj. It is sufficient proof of the Creator's concern that this communication between Himself and His servants be established that prayer alone was ordered in the heavens, whereas all other obligations were revealed to Prophet Muhammad (ﷺ) upon the earth.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Prayer was the first duty ordered of the Muslim community in Makkah. The five daily prayers were made obligatory on the night of Isra’ and Mi‘raj. It is sufficient proof of the Creator's concern that this communication between Himself and His servants be established that prayer alone was ordered in the heavens, whereas all other obligations were revealed to Prophet Muhammad ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") upon the earth."
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -60,7 +142,22 @@
     },
     {
       "type": "paragraph",
-      "text": "Prayer is expected of every Muslim who is sane and of age, for Aishah (may Allah be pleased with her) reported that the Prophet (ﷺ) said: “The pen has been lifted [i.e., does not register] for three: the sleeping one until he awakens, the boy until he reaches puberty, and the insane until he becomes sane.” All others are responsible for their duties before Allah, and the foremost of these duties is prayer."
+      "text": "Prayer is expected of every Muslim who is sane and of age, for Aishah (may Allah be pleased with her) reported that the Prophet (ﷺ) said: “The pen has been lifted [i.e., does not register] for three: the sleeping one until he awakens, the boy until he reaches puberty, and the insane until he becomes sane.” All others are responsible for their duties before Allah, and the foremost of these duties is prayer.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Prayer is expected of every Muslim who is sane and of age, for Aishah (may Allah be pleased with her) reported that the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") said: “The pen has been lifted [i.e., does not register] for three: the sleeping one until he awakens, the boy until he reaches puberty, and the insane until he becomes sane.” All others are responsible for their duties before Allah, and the foremost of these duties is prayer."
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -69,8 +166,34 @@
     {
       "type": "list",
       "items": [
-        "﴿حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ وَقُومُوا لِلَّهِ قَانِتِينَ﴾ “Keep carefully [i.e., adhere] to the prayers, [not forgetting] the middle prayer, and stand before Allah in obedience.”",
-        "﴿إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا﴾ “Certainly has prayer been decreed upon the believers a decree of specified times.”"
+        {
+          "text": "﴿حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ وَقُومُوا لِلَّهِ قَانِتِينَ﴾ “Keep carefully [i.e., adhere] to the prayers, [not forgetting] the middle prayer, and stand before Allah in obedience.”",
+          "formatted_text": [
+            {
+              "type": "quran_verse",
+              "text": "حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ وَقُومُوا لِلَّهِ قَانِتِينَ",
+              "font": "Amiri Quran"
+            },
+            {
+              "type": "english_text",
+              "text": "“Keep carefully [i.e., adhere] to the prayers, [not forgetting] the middle prayer, and stand before Allah in obedience.”"
+            }
+          ]
+        },
+        {
+          "text": "﴿إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا﴾ “Certainly has prayer been decreed upon the believers a decree of specified times.”",
+          "formatted_text": [
+            {
+              "type": "quran_verse",
+              "text": "إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا",
+              "font": "Amiri Quran"
+            },
+            {
+              "type": "english_text",
+              "text": "“Certainly has prayer been decreed upon the believers a decree of specified times.”"
+            }
+          ]
+        }
       ]
     },
     {
@@ -79,11 +202,37 @@
     },
     {
       "type": "paragraph",
-      "text": "We know from the sayings of the Prophet (ﷺ) that an important purpose of prayer is to remove sins. Another is its effect on the believer's conscience. But most important is the remembrance of Allah, for He is the source of all benefit."
+      "text": "We know from the sayings of the Prophet (ﷺ) that an important purpose of prayer is to remove sins. Another is its effect on the believer's conscience. But most important is the remembrance of Allah, for He is the source of all benefit.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "We know from the sayings of the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") that an important purpose of prayer is to remove sins. Another is its effect on the believer's conscience. But most important is the remembrance of Allah, for He is the source of all benefit."
+        }
+      ]
     },
     {
       "type": "paragraph",
-      "text": "﴿إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ ۗ وَلَذِكْرُ اللَّهِ أَكْبَرُ ۗ﴾ “Certainly does prayer prevent the shameful and unjust, and the remembrance of Allah is greater.”"
+      "text": "﴿إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ ۗ وَلَذِكْرُ اللَّهِ أَكْبَرُ ۗ﴾ “Certainly does prayer prevent the shameful and unjust, and the remembrance of Allah is greater.”",
+      "formatted_text": [
+        {
+          "type": "quran_verse",
+          "text": "إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ ۗ وَلَذِكْرُ اللَّهِ أَكْبَرُ ۗ",
+          "font": "Amiri Quran"
+        },
+        {
+          "type": "english_text",
+          "text": "“Certainly does prayer prevent the shameful and unjust, and the remembrance of Allah is greater.”"
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -106,7 +255,31 @@
     },
     {
       "type": "paragraph",
-      "text": "Some scholars have interpreted these words to mean that anyone who does not pray cannot be considered a Muslim. Others have divided such people into categories, judging them by intention since the Prophet (ﷺ) said: “Deeds are only according to intentions.” The person who denies the words of Allah and His Messenger (ﷺ) that prayer is obligatory upon him and refrains from it deliberately removes himself from Islam because of his disbelief. The person who admits that he should pray, neglecting it due to laziness or preoccupation with worldly pursuits is still considered a Muslim, although an extremely disobedient one, subject to severe punishment in the Hereafter. It is generally conceded that a person who claims to believe in prayer, yet not once in his life has prayed (actions being more convincing than words) has died in a state of disbelief."
+      "text": "Some scholars have interpreted these words to mean that anyone who does not pray cannot be considered a Muslim. Others have divided such people into categories, judging them by intention since the Prophet (ﷺ) said: “Deeds are only according to intentions.” The person who denies the words of Allah and His Messenger (ﷺ) that prayer is obligatory upon him and refrains from it deliberately removes himself from Islam because of his disbelief. The person who admits that he should pray, neglecting it due to laziness or preoccupation with worldly pursuits is still considered a Muslim, although an extremely disobedient one, subject to severe punishment in the Hereafter. It is generally conceded that a person who claims to believe in prayer, yet not once in his life has prayed (actions being more convincing than words) has died in a state of disbelief.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Some scholars have interpreted these words to mean that anyone who does not pray cannot be considered a Muslim. Others have divided such people into categories, judging them by intention since the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") said: “Deeds are only according to intentions.” The person who denies the words of Allah and His Messenger ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") that prayer is obligatory upon him and refrains from it deliberately removes himself from Islam because of his disbelief. The person who admits that he should pray, neglecting it due to laziness or preoccupation with worldly pursuits is still considered a Muslim, although an extremely disobedient one, subject to severe punishment in the Hereafter. It is generally conceded that a person who claims to believe in prayer, yet not once in his life has prayed (actions being more convincing than words) has died in a state of disbelief."
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -114,7 +287,22 @@
     },
     {
       "type": "paragraph",
-      "text": "Shaykh al‑Islam Aḥmad bin Taymiyyah continues, “But many people perform prayers at times and leave them at times, not keeping to it regularly. Those are the ones who come under the threat, and it is them about whom the saying came that is among the traditions – the hadith of ‘Ubadah in which the Prophet (ﷺ) said: ‘Five prayers did Allah decree upon [His] servants during the day and night. Whoever keeps fast to them has a contract with Allah that He will let him enter Paradise. But he who does not keep fast to them has no contract with Allah. If He wishes, He will punish him; and if He wishes, He will forgive him.’”"
+      "text": "Shaykh al‑Islam Ahmad bin Taymiyyah continues, “But many people perform prayers at times and leave them at times, not keeping to it regularly. Those are the ones who come under the threat, and it is them about whom the saying came that is among the traditions – the hadith of ‘Ubadah in which the Prophet (ﷺ) said: ‘Five prayers did Allah decree upon [His] servants during the day and night. Whoever keeps fast to them has a contract with Allah that He will let him enter Paradise. But he who does not keep fast to them has no contract with Allah. If He wishes, He will punish him; and if He wishes, He will forgive him.’”",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Shaykh al‑Islam Ahmad bin Taymiyyah continues, “But many people perform prayers at times and leave them at times, not keeping to it regularly. Those are the ones who come under the threat, and it is them about whom the saying came that is among the traditions – the hadith of ‘Ubadah in which the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") said: ‘Five prayers did Allah decree upon [His] servants during the day and night. Whoever keeps fast to them has a contract with Allah that He will let him enter Paradise. But he who does not keep fast to them has no contract with Allah. If He wishes, He will punish him; and if He wishes, He will forgive him.’”"
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -138,7 +326,41 @@
     },
     {
       "type": "paragraph",
-      "text": "Do the negligent people of today belong to this category of deliberate rejecters, or are they simply ignorant of their duties? Could any believer commit such a sin except out of ignorance? On the other hand, is it possible that ignorance could be so completely widespread? In the Qur’an, Allah reproaches mankind:\n\n﴿يَا أَيُّهَا الْإِنسَانُ مَا غَرَّكَ بِرَبِّكَ الْكَرِيمِ. الَّذِي خَلَقَكَ فَسَوَّاكَ فَعَدَلَكَ. فِي أَيِّ صُورَةٍ مَّا شَاءَ رَكَّبَكَ﴾\n\n\"O man, what has deceived you concerning your generous Lord – who has created you, proportioned you and balanced you? In any form He wills has He assembled you.\"\n\nWhat has seduced you, O man, into such a state that you neglect the One who created and sustains you, inducing you to disobey Him and to feel secure from His punishment, neither admitting His right upon you nor showing gratitude for the countless blessings bestowed upon you...? Since refusing the invitation of our Creator to establish this permanent relationship with Him is the ultimate ingratitude and rejection of His mercy, we can be sure that on the contrary, the person who responds and strives to please his Lord will be loved by Him and gain the happiness of both worlds. As in the previously mentioned hadith, he is the only one who has a covenant with Allah, and the reward of righteous servants shall be \"what no eye has seen and no ear has heard and has never occurred to a human heart.\"\n\nFinally, no soul should despair because of sin. The door of repentance (tawbah) is open to all, whatever their previous condition. Most scholars are of the opinion that sincere repentance and regret for the past and determination to correct the situation is all that is needed to be accepted by Allah. One can start anew at any time without even the burden of compensation for years past, for the Prophet (ﷺ) has said, \"Islam destroys what was before it, and repentance destroys what was before it.\"\n\nThe final word is spoken by the Lord Himself:\n\n﴿قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ﴾\n\n\"Say, 'O My servants who have committed excess [i.e., sinned] against themselves, do not despair of Allah's mercy. Certainly does Allah forgive all sins, for it is He who is the Ever-Forgiving, the Merciful.'\"\n\n﴿ وَإِذَا جَاءَكَ الَّذِينَ يُؤْمِنُونَ بِآيَاتِنَا فَقُلْ سَلَامٌ عَلَيْكُمْ ۖ كَتَبَ رَبُّكُمْ عَلَىٰ نَفْسِهِ الرَّحْمَةَ ۖ أَنَّهُ مَنْ عَمِلَ مِنكُمْ سُوءًا بِجَهَالَةٍ ثُمَّ تَابَ مِن بَعْدِهِ وَأَصْلَحَ فَأَنَّهُ غَفُورٌ رَّحִيمٌ﴾\n\n\"And when those who believe in Our signs come to you, say, 'Peace be upon you. Your Lord has decreed upon Himself mercy – that any of you who does wrong out of ignorance and then repents after that and corrects himself, surely is He Forgiving and Merciful.'\""
+      "text": "Do the negligent people of today belong to this category of deliberate rejecters, or are they simply ignorant of their duties? Could any believer commit such a sin except out of ignorance? On the other hand, is it possible that ignorance could be so completely widespread? In the Qur’an, Allah reproaches mankind:\n\n﴿يَا أَيُّهَا الْإِنسَانُ مَا غَرَّكَ بِرَبِّكَ الْكَرِيمِ. الَّذِي خَلَقَكَ فَسَوَّاكَ فَعَدَلَكَ. فِي أَيِّ صُورَةٍ مَّا شَاءَ رَكَّبَكَ﴾\n\n\"O man, what has deceived you concerning your generous Lord – who has created you, proportioned you and balanced you? In any form He wills has He assembled you.\"\n\nWhat has seduced you, O man, into such a state that you neglect the One who created and sustains you, inducing you to disobey Him and to feel secure from His punishment, neither admitting His right upon you nor showing gratitude for the countless blessings bestowed upon you...? Since refusing the invitation of our Creator to establish this permanent relationship with Him is the ultimate ingratitude and rejection of His mercy, we can be sure that on the contrary, the person who responds and strives to please his Lord will be loved by Him and gain the happiness of both worlds. As in the previously mentioned hadith, he is the only one who has a covenant with Allah, and the reward of righteous servants shall be \"what no eye has seen and no ear has heard and has never occurred to a human heart.\"\n\nFinally, no soul should despair because of sin. The door of repentance (tawbah) is open to all, whatever their previous condition. Most scholars are of the opinion that sincere repentance and regret for the past and determination to correct the situation is all that is needed to be accepted by Allah. One can start anew at any time without even the burden of compensation for years past, for the Prophet (ﷺ) has said, \"Islam destroys what was before it, and repentance destroys what was before it.\"\n\nThe final word is spoken by the Lord Himself:\n\n﴿قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ﴾\n\n\"Say, 'O My servants who have committed excess [i.e., sinned] against themselves, do not despair of Allah's mercy. Certainly does Allah forgive all sins, for it is He who is the Ever-Forgiving, the Merciful.'\"\n\n﴿ وَإِذَا جَاءَكَ الَّذِينَ يُؤْمِنُونَ بِآيَاتِنَا فَقُلْ سَلَامٌ عَلَيْكُمْ ۖ كَتَبَ رَبُّكُمْ عَلَىٰ نَفْسِهِ الرَّحْمَةَ ۖ أَنَّهُ مَنْ عَمِلَ مِنكُمْ سُوءًا بِجَهَالَةٍ ثُمَّ تَابَ مِن بَعْدِهِ وَأَصْلَحَ فَأَنَّهُ غَفُورٌ رَّحִيمٌ﴾\n\n\"And when those who believe in Our signs come to you, say, 'Peace be upon you. Your Lord has decreed upon Himself mercy – that any of you who does wrong out of ignorance and then repents after that and corrects himself, surely is He Forgiving and Merciful.'\"",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Do the negligent people of today belong to this category of deliberate rejecters, or are they simply ignorant of their duties? Could any believer commit such a sin except out of ignorance? On the other hand, is it possible that ignorance could be so completely widespread? In the Qur’an, Allah reproaches mankind:"
+        },
+        {
+          "type": "quran_verse",
+          "text": "يَا أَيُّهَا الْإِنسَانُ مَا غَرَّكَ بِرَبِّكَ الْكَرِيمِ. الَّذِي خَلَقَكَ فَسَوَّاكَ فَعَدَلَكَ. فِي أَيِّ صُورَةٍ مَّا شَاءَ رَكَّبَكَ",
+          "font": "Amiri Quran"
+        },
+        {
+          "type": "arabic_text",
+          "text": "\"O man, what has deceived you concerning your generous Lord – who has created you, proportioned you and balanced you? In any form He wills has He assembled you.\"\n\nWhat has seduced you, O man, into such a state that you neglect the One who created and sustains you, inducing you to disobey Him and to feel secure from His punishment, neither admitting His right upon you nor showing gratitude for the countless blessings bestowed upon you...? Since refusing the invitation of our Creator to establish this permanent relationship with Him is the ultimate ingratitude and rejection of His mercy, we can be sure that on the contrary, the person who responds and strives to please his Lord will be loved by Him and gain the happiness of both worlds. As in the previously mentioned hadith, he is the only one who has a covenant with Allah, and the reward of righteous servants shall be \"what no eye has seen and no ear has heard and has never occurred to a human heart.\"\n\nFinally, no soul should despair because of sin. The door of repentance (tawbah) is open to all, whatever their previous condition. Most scholars are of the opinion that sincere repentance and regret for the past and determination to correct the situation is all that is needed to be accepted by Allah. One can start anew at any time without even the burden of compensation for years past, for the Prophet (ﷺ) has said, \"Islam destroys what was before it, and repentance destroys what was before it.\"\n\nThe final word is spoken by the Lord Himself:",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "quran_verse",
+          "text": "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ",
+          "font": "Amiri Quran"
+        },
+        {
+          "type": "english_text",
+          "text": "\"Say, 'O My servants who have committed excess [i.e., sinned] against themselves, do not despair of Allah's mercy. Certainly does Allah forgive all sins, for it is He who is the Ever-Forgiving, the Merciful.'\""
+        },
+        {
+          "type": "quran_verse",
+          "text": "وَإِذَا جَاءَكَ الَّذِينَ يُؤْمِنُونَ بِآيَاتِنَا فَقُلْ سَلَامٌ عَلَيْكُمْ ۖ كَتَبَ رَبُّكُمْ عَلَىٰ نَفْسِهِ الرَّحْمَةَ ۖ أَنَّهُ مَنْ عَمِلَ مِنكُمْ سُوءًا بِجَهَالَةٍ ثُمَّ تَابَ مِن بَعْدِهِ وَأَصْلَحَ فَأَنَّهُ غَفُورٌ رَّحִيمٌ",
+          "font": "Amiri Quran"
+        },
+        {
+          "type": "english_text",
+          "text": "\"And when those who believe in Our signs come to you, say, 'Peace be upon you. Your Lord has decreed upon Himself mercy – that any of you who does wrong out of ignorance and then repents after that and corrects himself, surely is He Forgiving and Merciful.'\""
+        }
+      ]
     }
   ]
 }

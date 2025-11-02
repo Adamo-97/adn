@@ -3,7 +3,14 @@
   "sections": [
     {
       "type": "paragraph",
-      "text": "﴾لاَ يُكَلِّفُ اللّهُ نَفْساً إِلاَّ وُسْعَهَا﴿ \"Allah does not charge any soul except with what it can bear.\" Surah 2:286"
+      "text": "﴾لاَ يُكَلِّفُ اللّهُ نَفْساً إِلاَّ وُسْعَهَا﴿ \"Allah does not charge any soul except with what it can bear.\" Surah 2:286",
+      "formatted_text": [
+        {
+          "type": "arabic_text",
+          "text": "﴾لاَ يُكَلِّفُ اللّهُ نَفْساً إِلاَّ وُسْعَهَا﴿ \"Allah does not charge any soul except with what it can bear.\" Surah 2:286",
+          "font": "Noto Kufi Arabic"
+        }
+      ]
     },
     {
       "type": "section_title",

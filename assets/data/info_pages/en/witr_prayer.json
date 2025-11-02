@@ -7,7 +7,22 @@
     },
     {
       "type": "paragraph",
-      "text": "Witr is the last prayer of the night. It was strongly encouraged by the Prophet (ﷺ) and done by him regularly even during travels. Witr refers to the single rak‘ah which concludes the voluntary night prayers so that they become an odd number."
+      "text": "Witr is the last prayer of the night. It was strongly encouraged by the Prophet (ﷺ) and done by him regularly even during travels. Witr refers to the single rak‘ah which concludes the voluntary night prayers so that they become an odd number.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Witr is the last prayer of the night. It was strongly encouraged by the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") and done by him regularly even during travels. Witr refers to the single rak‘ah which concludes the voluntary night prayers so that they become an odd number."
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -23,7 +38,7 @@
     },
     {
       "type": "paragraph",
-      "text": "One may pray two rak‘ahs at a time followed by the single rak‘ah.\nOr all rak‘ahs can be prayed continuously, with julūs only at the end of the final rak‘ah.\nOr with julūs and salam in the next-to-last rak‘ah, followed by the single rak‘ah. All of these forms were related in authentic hadiths."
+      "text": "One may pray two rak‘ahs at a time followed by the single rak‘ah.\nOr all rak‘ahs can be prayed continuously, with julus only at the end of the final rak‘ah.\nOr with julus and salam in the next-to-last rak‘ah, followed by the single rak‘ah. All of these forms were related in authentic hadiths."
     },
     {
       "type": "section_title",
@@ -40,14 +55,14 @@
     {
       "type": "list",
       "items": [
-        "After al-Fātiḥah in the 1st rak‘ah: Sūrah al-A‘lā (87)",
-        "After al-Fātiḥah in the 2nd rak‘ah: Sūrah al-Kāfirūn (109)",
-        "After al-Fātiḥah in the 3rd rak‘ah: Sūrah al-Ikhlāṣ (112)"
+        "After al-Fatihah in the 1st rak‘ah: Surah al-A‘la (87)",
+        "After al-Fatihah in the 2nd rak‘ah: Surah al-Kafirun (109)",
+        "After al-Fatihah in the 3rd rak‘ah: Surah al-Ikhlas (112)"
       ]
     },
     {
       "type": "paragraph",
-      "text": "(Any other portions of the Qur’ān are also acceptable.)"
+      "text": "(Any other portions of the Qur’an are also acceptable.)"
     },
     {
       "type": "section_title",
@@ -55,7 +70,486 @@
     },
     {
       "type": "paragraph",
-      "text": "اللهم اهدِنا فيمَن هديت .. وعافنا فيمن عافيت .. وتولنا فيمن توليت ..\nوبارك لنا فيما أعطيت .. وقِنا شر ما قضيت .. انك تقضي ولا يقضى عليك ..\nانه لا يذل مَن واليت .. ولا يعز من عاديت .. تباركت ربنا وتعاليت ..\nلك الحمد على ما قضيت .. ولك الشكر على ما أعطيت ..\nنستغفرك اللهم من جميع الذنوب والخطايا ونتوب إليك.\n\n“O Allah, guide me among those You have guided, grant me well-being among those You have granted it, choose me among those You have chosen, bless for me what You have given, and protect me from the evil of what You have decreed—for You decree and nothing is decreed over You. He whom You ally is never humiliated, and he whom You oppose is never honored. Blessed are You, our Lord, and Exalted. We ask Your forgiveness, O Allah, for all sins and turn in repentance to You. And may Allah’s blessings be upon the Prophet Muhammad.”"
+      "text": "اللهم اهدِنا فيمَن هديت .. وعافنا فيمن عافيت .. وتولنا فيمن توليت ..\nوبارك لنا فيما أعطيت .. وقِنا شر ما قضيت .. انك تقضي ولا يقضى عليك ..\nانه لا يذل مَن واليت .. ولا يعز من عاديت .. تباركت ربنا وتعاليت ..\nلك الحمد على ما قضيت .. ولك الشكر على ما أعطيت ..\nنستغفرك اللهم من جميع الذنوب والخطايا ونتوب إليك.\n\n“O Allah, guide me among those You have guided, grant me well-being among those You have granted it, choose me among those You have chosen, bless for me what You have given, and protect me from the evil of what You have decreed—for You decree and nothing is decreed over You. He whom You ally is never humiliated, and he whom You oppose is never honored. Blessed are You, our Lord, and Exalted. We ask Your forgiveness, O Allah, for all sins and turn in repentance to You. And may Allah’s blessings be upon the Prophet Muhammad.”",
+      "formatted_text": [
+        {
+          "type": "arabic_text",
+          "text": "اللهم",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "اهدِنا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "فيمَن",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "هديت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " .. "
+        },
+        {
+          "type": "arabic_text",
+          "text": "وعافنا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "فيمن",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "عافيت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " .. "
+        },
+        {
+          "type": "arabic_text",
+          "text": "وتولنا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "فيمن",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "توليت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " ..\n"
+        },
+        {
+          "type": "arabic_text",
+          "text": "وبارك",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "لنا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "فيما",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "أعطيت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " .. "
+        },
+        {
+          "type": "arabic_text",
+          "text": "وقِنا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "شر",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "ما",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "قضيت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " .. "
+        },
+        {
+          "type": "arabic_text",
+          "text": "انك",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "تقضي",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "ولا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "يقضى",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "عليك",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " ..\n"
+        },
+        {
+          "type": "arabic_text",
+          "text": "انه",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "لا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "يذل",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "مَن",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "واليت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " .. "
+        },
+        {
+          "type": "arabic_text",
+          "text": "ولا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "يعز",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "من",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "عاديت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " .. "
+        },
+        {
+          "type": "arabic_text",
+          "text": "تباركت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "ربنا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "وتعاليت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " ..\n"
+        },
+        {
+          "type": "arabic_text",
+          "text": "لك",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "الحمد",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "على",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "ما",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "قضيت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " .. "
+        },
+        {
+          "type": "arabic_text",
+          "text": "ولك",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "الشكر",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "على",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "ما",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "أعطيت",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " ..\n"
+        },
+        {
+          "type": "arabic_text",
+          "text": "نستغفرك",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "اللهم",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "من",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "جميع",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "الذنوب",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "والخطايا",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "ونتوب",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": " "
+        },
+        {
+          "type": "arabic_text",
+          "text": "إليك",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ".\n\n“O Allah, guide me among those You have guided, grant me well-being among those You have granted it, choose me among those You have chosen, bless for me what You have given, and protect me from the evil of what You have decreed—for You decree and nothing is decreed over You. He whom You ally is never humiliated, and he whom You oppose is never honored. Blessed are You, our Lord, and Exalted. We ask Your forgiveness, O Allah, for all sins and turn in repentance to You. And may Allah’s blessings be upon the Prophet Muhammad.”"
+        }
+      ]
     },
     {
       "type": "section_title",
@@ -63,7 +557,22 @@
     },
     {
       "type": "paragraph",
-      "text": "Narrated by Aḥmad, Abū Dāwūd and at-Tirmidhī, who graded it ḥasan and said, “Nothing is known about qunut from the Prophet (ﷺ) more authentic than this.”"
+      "text": "Narrated by Ahmad, Abu Dawud and at-Tirmidhi, who graded it hasan and said, “Nothing is known about qunut from the Prophet (ﷺ) more authentic than this.”",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Narrated by Ahmad, Abu Dawud and at-Tirmidhi, who graded it hasan and said, “Nothing is known about qunut from the Prophet ("
+        },
+        {
+          "type": "arabic_text",
+          "text": "ﷺ",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "english_text",
+          "text": ") more authentic than this.”"
+        }
+      ]
     }
   ]
 }
