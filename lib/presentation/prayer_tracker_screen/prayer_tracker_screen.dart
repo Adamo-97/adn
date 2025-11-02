@@ -199,7 +199,7 @@ class PrayerTrackerScreenState extends ConsumerState<PrayerTrackerScreen> {
             color: appColors.gray_900, // Match page background to eliminate gap
             child: Container(
               decoration: BoxDecoration(
-                color: const Color(0xFF5C6248), // olive bar
+                color: appColors.gray_700, // olive bar
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16.h),
                   topRight: Radius.circular(16.h),

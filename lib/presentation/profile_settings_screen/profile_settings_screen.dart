@@ -134,7 +134,7 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.3),
+            color: appColors.shadowOverlay_30,
             blurRadius: 8,
             offset: Offset(0, 2),
           ),
@@ -256,7 +256,7 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.2),
+            color: appColors.shadowSubtle_20,
             blurRadius: 8,
             offset: Offset(0, 2),
             spreadRadius: -2,
@@ -302,9 +302,9 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.transparent,
+            appColors.transparentCustom,
             appColors.gray_700.withValues(alpha: 0.4),
-            Colors.transparent,
+            appColors.transparentCustom,
           ],
         ),
       ),

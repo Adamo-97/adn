@@ -90,9 +90,9 @@ class StatCard extends StatelessWidget {
     Color valueColor = appColors.orange_200;
     if (isComparison) {
       if (value.startsWith('+')) {
-        valueColor = const Color(0xFF4CAF50); // Green for positive
+        valueColor = appColors.success; // Green for positive
       } else if (value.startsWith('-')) {
-        valueColor = const Color(0xFFF44336); // Red for negative
+        valueColor = appColors.error; // Red for negative
       }
     }
 

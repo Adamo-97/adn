@@ -16,7 +16,7 @@ class SalahGuideCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final category = card.category;
-    final accentColor = category?.accentColor ?? const Color(0xFF8F9B87);
+    final accentColor = category?.accentColor ?? appColors.gray_500;
 
     return GestureDetector(
       onTap: onTap,

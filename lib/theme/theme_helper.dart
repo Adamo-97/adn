@@ -161,6 +161,55 @@ class DarkCodeColors {
   /// Accent color for the "Rituals" category (Purple/Violet)
   Color get salahRituals => Color(0xFFAB87CE);
 
+  // Shadow colors for elevation effects
+  /// Shadow color for cards and elevated surfaces (25% opacity black)
+  Color get shadowColor => Color(0x40000000); // 25% opacity black
+
+  /// Shadow color for overlays and bottom sheets (30% opacity black)
+  Color get shadowOverlay_30 => Color(0x4D000000); // 30% opacity black
+
+  /// Shadow color for subtle shadows (20% opacity black)
+  Color get shadowSubtle_20 => Color(0x33000000); // 20% opacity black
+
+  // Semi-transparent colors for UI states
+  /// White with 50% opacity for inactive/dimmed text
+  Color get whiteA700_50 => whiteA700.withValues(alpha: 0.5);
+
+  /// White with 70% opacity for secondary text
+  Color get whiteA700_70 => whiteA700.withValues(alpha: 0.7);
+
+  /// White with 30% opacity for subtle borders and overlays
+  Color get whiteA700_30 => whiteA700.withValues(alpha: 0.3);
+
+  /// Non-current prayer card background (10% opacity on gray_700)
+  Color get gray_700_10 => Color(0x1A5C6248); // 10% alpha on #5C6248
+
+  /// Orange with 30% opacity for button backgrounds
+  Color get orange_200_30 => orange_200.withValues(alpha: 0.3);
+
+  // Danger/Error colors for destructive actions
+  /// Primary danger color (bright red for sign out, delete, etc.)
+  Color get danger => Color(0xFFFF4444);
+
+  /// Danger color with 60% opacity
+  Color get danger_60 => danger.withValues(alpha: 0.6);
+
+  /// Danger color with 30% opacity
+  Color get danger_30 => danger.withValues(alpha: 0.3);
+
+  /// Danger color with 20% opacity for backgrounds
+  Color get danger_20 => danger.withValues(alpha: 0.2);
+
+  /// Danger color with 15% opacity for subtle backgrounds
+  Color get danger_15 => danger.withValues(alpha: 0.15);
+
+  // Success/Error colors for analytics and statistics
+  /// Success color for positive trends (green)
+  Color get success => Color(0xFF4CAF50);
+
+  /// Error color for negative trends (red)
+  Color get error => Color(0xFFF44336);
+
   // Color Shades - Each shade has its own dedicated constant
   Color get grey200 => Colors.grey.shade200;
   Color get grey100 => Colors.grey.shade100;

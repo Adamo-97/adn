@@ -22,18 +22,18 @@ class SignOut extends ConsumerWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                const Color(0xFFFF4444).withValues(alpha: 0.2),
-                const Color(0xFFFF4444).withValues(alpha: 0.15),
+                appColors.danger_20,
+                appColors.danger_15,
               ],
             ),
             borderRadius: BorderRadius.circular(16.h),
             border: Border.all(
-              color: const Color(0xFFFF4444).withValues(alpha: 0.6),
+              color: appColors.danger_60,
               width: 1.5,
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFFFF4444).withValues(alpha: 0.3),
+                color: appColors.danger_30,
                 blurRadius: 8,
                 offset: Offset(0, 2),
                 spreadRadius: -2,
@@ -46,10 +46,10 @@ class SignOut extends ConsumerWidget {
               Container(
                 padding: EdgeInsets.all(6.h),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFF4444).withValues(alpha: 0.15),
+                  color: appColors.danger_15,
                   borderRadius: BorderRadius.circular(8.h),
                   border: Border.all(
-                    color: const Color(0xFFFF4444).withValues(alpha: 0.3),
+                    color: appColors.danger_30,
                     width: 1,
                   ),
                 ),
@@ -57,7 +57,7 @@ class SignOut extends ConsumerWidget {
                   imagePath: ImageConstant.imgSignOutIcon,
                   height: 16.h,
                   width: 16.h,
-                  color: const Color(0xFFFF4444),
+                  color: appColors.danger,
                 ),
               ),
               SizedBox(width: 12.h),
@@ -66,7 +66,7 @@ class SignOut extends ConsumerWidget {
                 style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
                   fontSize: 15.fSize,
                   fontWeight: FontWeight.w600,
-                  color: const Color(0xFFFF4444),
+                  color: appColors.danger,
                   letterSpacing: 0.3,
                 ),
               ),

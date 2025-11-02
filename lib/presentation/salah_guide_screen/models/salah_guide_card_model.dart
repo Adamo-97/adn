@@ -56,8 +56,8 @@ class SalahGuideCardModel extends Equatable {
   }) {
     title = title ?? "";
     iconPath = iconPath ?? "";
-    backgroundColor = backgroundColor ?? Color(0xFF5C6248);
-    borderColor = borderColor ?? Color(0xFF8F9B87);
+    backgroundColor = backgroundColor ?? appColors.gray_700;
+    borderColor = borderColor ?? appColors.gray_500;
     isSelected = isSelected ?? false;
     category = category;
   }

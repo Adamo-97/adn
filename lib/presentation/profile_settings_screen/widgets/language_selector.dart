@@ -141,7 +141,7 @@ class LanguageSelector extends ConsumerWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 12.h),
         decoration: BoxDecoration(
-          color: isSelected ? appColors.gray_900 : Colors.transparent,
+          color: isSelected ? appColors.gray_900 : appColors.transparentCustom,
           borderRadius: BorderRadius.circular(8.h),
         ),
         child: Row(

@@ -106,9 +106,9 @@ class CustomIconButton extends StatelessWidget {
   Color _getDefaultBackgroundColor() {
     switch (variant) {
       case CustomIconButtonVariant.large:
-        return Color(0xFF8F9B87);
+        return appColors.gray_500;
       case CustomIconButtonVariant.small:
-        return Color(0xFFFFFFFF);
+        return appColors.whiteA700;
     }
   }
 

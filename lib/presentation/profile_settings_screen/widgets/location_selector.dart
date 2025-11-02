@@ -218,7 +218,7 @@ class LocationSelector extends ConsumerWidget {
         margin: EdgeInsets.only(bottom: 4.h),
         padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 12.h),
         decoration: BoxDecoration(
-          color: isSelected ? appColors.gray_900 : Colors.transparent,
+          color: isSelected ? appColors.gray_900 : appColors.transparentCustom,
           borderRadius: BorderRadius.circular(6.h),
         ),
         child: Row(

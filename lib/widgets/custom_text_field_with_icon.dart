@@ -77,7 +77,7 @@ class CustomTextFieldWithIcon extends StatelessWidget {
           hintText: hintText ?? "Enter text",
           hintStyle: hintStyle ??
               TextStyleHelper.instance.body15RegularPoppins
-                  .copyWith(color: Color(0xFFFFFFFF).withAlpha(179)),
+                  .copyWith(color: appColors.whiteA700_70),
           prefixIcon: leftIcon != null
               ? Container(
                   padding: EdgeInsets.all(12.h),
@@ -105,7 +105,7 @@ class CustomTextFieldWithIcon extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.h),
             borderSide: BorderSide(
-              color: Color(0xFFFFFFFF).withAlpha(77),
+              color: appColors.whiteA700_30,
               width: 1.h,
             ),
           ),

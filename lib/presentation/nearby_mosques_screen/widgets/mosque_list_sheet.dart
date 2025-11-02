@@ -75,7 +75,7 @@ class _MosqueListSheetState extends State<MosqueListSheet> {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withAlpha((0.25 * 255).round()),
+                color: appColors.shadowColor,
                 blurRadius: 4,
                 offset: const Offset(0, -4),
               ),

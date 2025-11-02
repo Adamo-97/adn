@@ -37,14 +37,14 @@ class _CardRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Colors per your spec
-    const nonCurrentBg = Color(0x1A5C6248); // 10% alpha on #5C6248
+    // Colors from theme (single source of truth)
+    final nonCurrentBg = appColors.gray_700_10;
     final nameColor =
-        item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
+        item.isCurrent ? appColors.whiteA700 : appColors.whiteA700_50;
     final timeColor =
-        item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
+        item.isCurrent ? appColors.whiteA700 : appColors.whiteA700_50;
     final decorationColor =
-        item.isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.5);
+        item.isCurrent ? appColors.whiteA700 : appColors.whiteA700_50;
     final bgColor = item.isCurrent ? appColors.gray_700 : nonCurrentBg;
 
     return Opacity(
@@ -74,7 +74,7 @@ class _CardRow extends ConsumerWidget {
                     item.isCurrent ? appColors.orange_200 : appColors.gray_700,
                 borderColor: item.isCurrent
                     ? appColors.orange_200
-                    : appColors.whiteA700.withValues(alpha: 0.5),
+                    : appColors.whiteA700_50,
                 checkColor: appColors.whiteA700, // contrast on orange fill
               ),
             ),
@@ -145,7 +145,7 @@ class _RoundCheckbox extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: checked ? fillColor : Colors.transparent,
+        color: checked ? fillColor : appColors.transparentCustom,
         border: Border.all(color: borderColor, width: 2.h),
       ),
       child: checked

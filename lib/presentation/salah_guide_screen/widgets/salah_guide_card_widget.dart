@@ -23,9 +23,9 @@ class SalahGuideCardWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 6.h),
         constraints: BoxConstraints(minHeight: 44.h), // compact but tappable
         decoration: BoxDecoration(
-          color: card.backgroundColor ?? Color(0xFF5C6248),
+          color: card.backgroundColor ?? appColors.gray_700,
           border: Border.all(
-            color: card.borderColor ?? Color(0xFF8F9B87),
+            color: card.borderColor ?? appColors.gray_500,
             width: 2.h, // slimmer border reduces overall height feel
           ),
           borderRadius: BorderRadius.circular(12.h),

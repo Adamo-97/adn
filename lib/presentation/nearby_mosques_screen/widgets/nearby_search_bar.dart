@@ -39,7 +39,7 @@ class NearbySearchBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(64.h),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withAlpha((0.3 * 255).round()),
+                  color: appColors.shadowOverlay_30,
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),

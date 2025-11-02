@@ -125,8 +125,8 @@ class _CustomBottomBarState extends State<CustomBottomBar>
 
   @override
   Widget build(BuildContext context) {
-    const goldActive = Color(0xFFE0C389);
-    const lightGreenCircle = Color(0xFF8F9B87);
+    final goldActive = appColors.orange_200;
+    final lightGreenCircle = appColors.gray_500;
     final holeColor = appColors.gray_900;
     final liftY = 12.h;
     final notchTop = 0.h;

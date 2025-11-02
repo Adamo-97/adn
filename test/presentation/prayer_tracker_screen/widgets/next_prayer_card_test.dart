@@ -94,8 +94,7 @@ void main() {
       expect(decoration.boxShadow, isNotNull);
       expect(decoration.boxShadow!.length, 1);
       expect(decoration.boxShadow![0].blurRadius, 12);
-      expect(
-          decoration.boxShadow![0].color, Colors.black.withValues(alpha: 0.25));
+      expect(decoration.boxShadow![0].color, appColors.shadowColor);
     });
 
     testWidgets('applies correct padding', (WidgetTester tester) async {

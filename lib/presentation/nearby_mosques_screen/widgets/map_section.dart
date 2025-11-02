@@ -30,7 +30,7 @@ class MapSection extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.transparent,
+                    appColors.transparentCustom,
                     appColors.gray_900.withAlpha((0.3 * 255).round()),
                   ],
                 ),
