@@ -8,11 +8,19 @@ final prayerAnalyticsProvider =
         () => PrayerAnalyticsNotifier());
 
 class PrayerAnalyticsNotifier extends Notifier<PrayerAnalyticsData?> {
+  /// Flag to skip delays in tests (set by test setup)
+  bool _skipDelays = false;
+
   @override
   PrayerAnalyticsData? build() {
     // Initialize with null, then load data
     Future.microtask(() => _loadAnalyticsData());
     return null;
+  }
+
+  /// Enable immediate data loading without delays (for testing)
+  void enableTestMode() {
+    _skipDelays = true;
   }
 
   /// Loads and calculates all analytics data
@@ -327,8 +335,10 @@ class PrayerAnalyticsNotifier extends Notifier<PrayerAnalyticsData?> {
 
   /// Generates mock comprehensive analytics data
   Future<PrayerAnalyticsData> _generateMockData() async {
-    // Simulate network delay
-    await Future.delayed(const Duration(milliseconds: 500));
+    // Simulate network delay (skip in test mode)
+    if (!_skipDelays) {
+      await Future.delayed(const Duration(milliseconds: 500));
+    }
 
     final currentWeek = getWeekData(0);
     final currentMonth = getMonthData(0);

@@ -13,9 +13,16 @@ void main() {
 
   group('WeeklyStatistics Tests', () {
     late ProviderContainer container;
+    late PrayerAnalyticsNotifier notifier;
 
     setUp(() {
-      container = ProviderContainer();
+      notifier = PrayerAnalyticsNotifier();
+      notifier.enableTestMode(); // Skip delays in tests
+      container = ProviderContainer(
+        overrides: [
+          prayerAnalyticsProvider.overrideWith(() => notifier),
+        ],
+      );
     });
 
     tearDown(() {
@@ -55,7 +62,7 @@ void main() {
       testWidgets('shows "In Progress" for incomplete current week',
           (tester) async {
         await tester.pumpWidget(createTestWidget(weekOffset: 0));
-        await tester.pumpAndSettle(const Duration(seconds: 1));
+        await tester.pumpAndSettle();
 
         final analyticsNotifier =
             container.read(prayerAnalyticsProvider.notifier);
@@ -80,7 +87,7 @@ void main() {
 
       testWidgets('compares with previous week correctly', (tester) async {
         await tester.pumpWidget(createTestWidget(weekOffset: 0));
-        await tester.pumpAndSettle(const Duration(seconds: 1));
+        await tester.pumpAndSettle();
 
         final analyticsNotifier =
             container.read(prayerAnalyticsProvider.notifier);
@@ -116,7 +123,7 @@ void main() {
             container.read(prayerAnalyticsProvider.notifier);
         final previousWeek = analyticsNotifier.getWeekData(-1);
 
-        await tester.pumpAndSettle(const Duration(seconds: 1));
+        await tester.pumpAndSettle();
         expect(
           find.text(
               '${previousWeek.totalCompleted}/${previousWeek.totalPossible}'),

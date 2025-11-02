@@ -40,6 +40,8 @@ class _FullAnalyticsScreenState extends ConsumerState<FullAnalyticsScreen> {
       backgroundColor: appColors.gray_900,
       appBar: AppBar(
         backgroundColor: appColors.gray_900,
+        surfaceTintColor: Colors.transparent,
+        scrolledUnderElevation: 0,
         elevation: 0,
         leadingWidth: 70.h,
         leading: GestureDetector(
@@ -48,8 +50,8 @@ class _FullAnalyticsScreenState extends ConsumerState<FullAnalyticsScreen> {
             padding: EdgeInsets.only(left: 25.h, top: 12.h, bottom: 12.h),
             child: CustomImageView(
               imagePath: ImageConstant.imgBackButton,
-              height: 20.h,
-              width: 20.h,
+              height: 18.h,
+              width: 18.h,
               color: appColors.whiteA700,
             ),
           ),
@@ -57,7 +59,9 @@ class _FullAnalyticsScreenState extends ConsumerState<FullAnalyticsScreen> {
         title: Text(
           _getTitle(),
           style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
-              color: appColors.whiteA700, fontWeight: FontWeight.w600),
+            color: appColors.whiteA700,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         centerTitle: true,
       ),
