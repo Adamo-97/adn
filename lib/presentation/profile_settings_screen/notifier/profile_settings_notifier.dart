@@ -22,8 +22,25 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
     _storage = SettingsStorageService();
     _locationService = LocationService();
 
+    // Set sensible defaults immediately (will be overwritten by initialize())
     final initialState = ProfileSettingsState(
       profileSettingsModel: ProfileSettingsModel(),
+      darkMode: true,
+      hijriCalendar: false,
+      use24HourFormat: false,
+      prayerReminders: true,
+      selectedLocation: 'Mecca, Saudi Arabia',
+      selectedLanguage: 'English',
+      locationDropdownOpen: false,
+      languageDropdownOpen: false,
+      islamicSchoolDropdownOpen: false,
+      calculationMethodDropdownOpen: false,
+      selectedIslamicSchool: 0,
+      selectedCalculationMethod: 4,
+      searchQuery: '',
+      calculationMethodSearchQuery: '',
+      scrollPosition: 0.0,
+      resetTimestamp: 0,
     );
     Future.microtask(() => initialize());
     return initialState;
@@ -41,6 +58,9 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
       debugPrint('Failed to initialize settings storage, using defaults');
     }
 
+    // Check if provider is still mounted after async operation
+    if (!ref.mounted) return;
+
     // Load settings from storage
     final darkMode = _storage.darkMode;
     final hijriCalendar = _storage.hijriCalendar;
@@ -54,10 +74,15 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
     String finalLocation = location;
     if (!_storage.isLocationCustomized()) {
       final locationResult = await _locationService.getCurrentLocation();
+      // Check again after async operation
+      if (!ref.mounted) return;
+
       if (locationResult.success && locationResult.location != null) {
         finalLocation = locationResult.location!;
         // Save detected location
         await _storage.setLocation(finalLocation);
+        // Check again after async operation
+        if (!ref.mounted) return;
       }
     }
 

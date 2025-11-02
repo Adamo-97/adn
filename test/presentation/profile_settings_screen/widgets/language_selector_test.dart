@@ -4,9 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:adam_s_application/presentation/profile_settings_screen/widgets/language_selector.dart';
 import 'package:adam_s_application/presentation/profile_settings_screen/notifier/profile_settings_notifier.dart';
 import 'package:adam_s_application/core/utils/size_utils.dart';
+import '../../../helpers/test_helpers.dart';
 
 void main() {
   setUp(() {
+    // Initialize test environment for each test
+    initializeTestEnvironment();
     SizeUtils.width = 375;
     SizeUtils.height = 812;
   });

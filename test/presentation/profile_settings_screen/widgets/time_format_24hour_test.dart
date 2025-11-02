@@ -4,6 +4,7 @@ import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/presentation/profile_settings_screen/widgets/time_format_24hour.dart';
 import 'package:adam_s_application/presentation/profile_settings_screen/notifier/profile_settings_notifier.dart';
 import 'package:adam_s_application/widgets/custom_image_view.dart';
+import '../../../helpers/test_helpers.dart';
 
 /// Comprehensive test suite for TimeFormat24Hour widget.
 /// Tests rendering, state management, user interactions, and visual consistency.
@@ -12,6 +13,8 @@ void main() {
     late ProviderContainer container;
 
     setUp(() {
+      // Initialize test environment for each test
+      initializeTestEnvironment();
       container = ProviderContainer();
     });
 

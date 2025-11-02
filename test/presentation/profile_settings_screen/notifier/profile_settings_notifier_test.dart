@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:adam_s_application/presentation/profile_settings_screen/notifier/profile_settings_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:adam_s_application/notifier/theme_notifier.dart';
+import '../../../helpers/test_helpers.dart';
 
 // Mock ThemeNotifier that doesn't require SharedPreferences
 class _MockThemeNotifier extends ThemeNotifier {
@@ -16,7 +17,15 @@ class _MockThemeNotifier extends ThemeNotifier {
 }
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
+  // Initialize test environment before all tests
+  setUpAll(() {
+    initializeTestEnvironment();
+  });
+
+  // Clean up after all tests
+  tearDownAll(() {
+    resetTestEnvironment();
+  });
 
   group('ProfileSettingsNotifier Tests', () {
     late ProviderContainer container;
@@ -38,8 +47,10 @@ void main() {
       // Trigger provider creation
       container.read(profileSettingsNotifier);
 
-      // Wait for microtask to complete
+      // Wait for microtask to complete (initialization)
       await Future.microtask(() {});
+      await Future.delayed(
+          Duration(milliseconds: 100)); // Give time for async initialize
 
       final state = container.read(profileSettingsNotifier);
 
@@ -47,7 +58,8 @@ void main() {
       expect(state.hijriCalendar, false);
       expect(state.prayerReminders, true);
       expect(state.selectedLanguage, 'English');
-      expect(state.selectedLocation, 'Stockholm, Sweden');
+      expect(state.selectedLocation,
+          'Mecca, Saudi Arabia'); // Updated to match SettingsStorageService default
       expect(state.locationDropdownOpen, false);
       expect(state.languageDropdownOpen, false);
       expect(state.searchQuery, '');

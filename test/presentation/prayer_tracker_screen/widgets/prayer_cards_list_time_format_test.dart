@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/presentation/prayer_tracker_screen/widgets/prayer_cards_list.dart';
 import 'package:adam_s_application/presentation/profile_settings_screen/notifier/profile_settings_notifier.dart';
+import '../../../helpers/test_helpers.dart';
 
 /// Tests for PrayerCardsList widget to verify time format changes based on settings.
 void main() {
@@ -10,6 +11,8 @@ void main() {
     late ProviderContainer container;
 
     setUp(() {
+      // Initialize test environment for each test
+      initializeTestEnvironment();
       container = ProviderContainer();
     });
 
