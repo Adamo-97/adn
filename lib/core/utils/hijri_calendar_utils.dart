@@ -107,7 +107,7 @@ class HijriCalendarUtils {
   }
 
   /// Get Hijri calendar grid for a given Gregorian date's corresponding Hijri month
-  /// Returns a 6x7 grid of Gregorian dates that map to the Hijri month
+  /// Returns a 5x7 or 6x7 grid of Gregorian dates that map to the Hijri month
   static List<List<DateTime>> getHijriMonthGrid(DateTime referenceDate) {
     final hijri = HijriCalendar.fromDate(referenceDate);
     final hijriYear = hijri.hYear;
@@ -126,7 +126,7 @@ class HijriCalendarUtils {
     final weekday = firstDayOfMonth.weekday; // 1=Mon, 7=Sun
     final gridStart = firstDayOfMonth.subtract(Duration(days: weekday - 1));
 
-    // Build 6x7 grid
+    // Build all 6 rows initially
     final grid = <List<DateTime>>[];
     for (int week = 0; week < 6; week++) {
       final row = <DateTime>[];
@@ -135,6 +135,21 @@ class HijriCalendarUtils {
         row.add(date);
       }
       grid.add(row);
+    }
+
+    // Check if the last row contains any dates from the current Hijri month
+    if (grid.isNotEmpty) {
+      final lastRow = grid.last;
+      final hasCurrentMonthDate = lastRow.any((date) {
+        final dateHijri = gregorianToHijri(date);
+        return dateHijri['month'] == hijriMonth &&
+            dateHijri['year'] == hijriYear;
+      });
+
+      // If last row has no dates from current Hijri month, exclude it
+      if (!hasCurrentMonthDate) {
+        return grid.sublist(0, 5);
+      }
     }
 
     return grid;
