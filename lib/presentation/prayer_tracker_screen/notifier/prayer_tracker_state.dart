@@ -194,6 +194,34 @@ class PrayerTrackerState extends Equatable {
     return '${months[calendarMonth.month - 1]} ${calendarMonth.year}';
   }
 
+  // —— Hijri Calendar Support ——
+  /// Get Hijri-formatted nav label (e.g., "Monday, 15/09/1446")
+  String getHijriNavLabel() {
+    return HijriCalendarUtils.formatHijriDateWithWeekday(selectedDate);
+  }
+
+  /// Get Hijri-formatted month label (e.g., "Ramadan 1446")
+  String getHijriMonthLabel() {
+    return HijriCalendarUtils.formatHijriMonthYear(calendarMonth);
+  }
+
+  /// Get the Hijri day number for a given Gregorian date
+  int getHijriDay(DateTime date) {
+    final hijriData = HijriCalendarUtils.gregorianToHijri(date);
+    return hijriData['day'] as int;
+  }
+
+  /// Get the Hijri month number for the calendar month
+  int get hijriCalendarMonth {
+    final hijriData = HijriCalendarUtils.gregorianToHijri(calendarMonth);
+    return hijriData['month'] as int;
+  }
+
+  /// Get Hijri month grid (6x7 grid of Gregorian dates for Hijri month view)
+  List<List<DateTime>> get hijriMonthWeeks {
+    return HijriCalendarUtils.getHijriMonthGrid(calendarMonth);
+  }
+
   // Grid uses the displayed month (calendarMonth) when open
   List<List<DateTime>> get monthWeeks {
     final firstOfMonth = DateTime(calendarMonth.year, calendarMonth.month, 1);

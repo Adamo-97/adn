@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import '../notifier/prayer_tracker_notifier.dart';
 import '../models/prayer_tracker_model.dart';
+// Import profile settings to read Hijri calendar preference
+import '../../profile_settings_screen/notifier/profile_settings_notifier.dart';
 // CustomImageView lives in lib/widgets; from here it's 3 levels up:
 import '../../../widgets/custom_image_view.dart';
 
@@ -12,11 +14,17 @@ class DateNavCalendar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(prayerTrackerNotifierProvider);
+    final profileState = ref.watch(profileSettingsNotifier);
     final m = state.prayerTrackerModel ?? PrayerTrackerModel();
+
+    // Check if Hijri calendar is enabled
+    final useHijri = profileState.hijriCalendar ?? false;
 
     // label text + color depend on open/closed
     final isOpen = state.calendarOpen;
-    final labelText = isOpen ? state.monthLabel : state.navLabel;
+    final labelText = isOpen
+        ? (useHijri ? state.getHijriMonthLabel() : state.monthLabel)
+        : (useHijri ? state.getHijriNavLabel() : state.navLabel);
     final labelColor = isOpen ? appColors.orange_200 : appColors.whiteA700;
 
     // 7 equal columns
@@ -161,9 +169,13 @@ class DateNavCalendar extends ConsumerWidget {
                             columnWidths: cols,
                             defaultVerticalAlignment:
                                 TableCellVerticalAlignment.middle,
-                            children:
-                                List.generate(state.monthWeeks.length, (r) {
-                              final row = state.monthWeeks[r];
+                            children: List.generate(
+                                useHijri
+                                    ? state.hijriMonthWeeks.length
+                                    : state.monthWeeks.length, (r) {
+                              final row = useHijri
+                                  ? state.hijriMonthWeeks[r]
+                                  : state.monthWeeks[r];
 
                               // DEBUG row logging removed
 
@@ -172,8 +184,15 @@ class DateNavCalendar extends ConsumerWidget {
                                   final date = row[c];
                                   final isSelected =
                                       _sameDay(date, state.selectedDate);
-                                  final isOutOfMonth =
-                                      date.month != state.calendarMonth.month;
+
+                                  // For Hijri mode, check if date is in current Hijri month
+                                  // For Gregorian mode, check if date is in current Gregorian month
+                                  final isOutOfMonth = useHijri
+                                      ? (state.getHijriDay(date) > 0 &&
+                                          HijriCalendarUtils.gregorianToHijri(
+                                                  date)['month'] !=
+                                              state.hijriCalendarMonth)
+                                      : date.month != state.calendarMonth.month;
 
                                   // detailed debug logging removed
 
@@ -186,6 +205,11 @@ class DateNavCalendar extends ConsumerWidget {
                                   final textStyle = TextStyleHelper
                                       .instance.body12SemiBoldPoppins
                                       .copyWith(color: dayColor);
+
+                                  // Get the day number to display (Hijri or Gregorian)
+                                  final dayNumber = useHijri
+                                      ? state.getHijriDay(date)
+                                      : date.day;
 
                                   // fixed cell height → symmetric grid
                                   final child = Center(
@@ -205,14 +229,14 @@ class DateNavCalendar extends ConsumerWidget {
                                                   BorderRadius.circular(19.h),
                                             ),
                                             child: Center(
-                                              child: Text('${date.day}',
+                                              child: Text('$dayNumber',
                                                   style: textStyle.copyWith(
                                                     color: appColors.orange_200,
                                                     fontWeight: FontWeight.w600,
                                                   )),
                                             ),
                                           )
-                                        : Text('${date.day}', style: textStyle),
+                                        : Text('$dayNumber', style: textStyle),
                                   );
 
                                   return Padding(
