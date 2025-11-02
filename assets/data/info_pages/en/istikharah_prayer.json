@@ -37,8 +37,9 @@
           "font": "Noto Kufi Arabic"
         },
         {
-          "type": "english_text",
-          "text": "[mention matter] "
+          "type": "arabic_text",
+          "text": "[يسمي حاجته] ",
+          "font":"Noto Kufi Arabic"
         },
         {
           "type": "arabic_text",
