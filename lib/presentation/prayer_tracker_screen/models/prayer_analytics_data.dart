@@ -6,11 +6,16 @@ class DailyPrayerData extends Equatable {
   final int completedPrayers; // 0-5
   final bool isFuture;
 
+  /// Map of prayer name to completion status
+  /// Keys: 'Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'
+  final Map<String, bool> prayerStatuses;
+
   const DailyPrayerData({
     required this.date,
     required this.completedPrayers,
     this.isFuture = false,
-  });
+    Map<String, bool>? prayerStatuses,
+  }) : prayerStatuses = prayerStatuses ?? const {};
 
   bool get isToday {
     final now = DateTime.now();
@@ -19,8 +24,24 @@ class DailyPrayerData extends Equatable {
         date.day == now.day;
   }
 
+  /// Get list of prayer names that were completed
+  List<String> get completedPrayerNames {
+    return prayerStatuses.entries
+        .where((entry) => entry.value == true)
+        .map((entry) => entry.key)
+        .toList();
+  }
+
+  /// Get list of prayer names that were missed
+  List<String> get missedPrayerNames {
+    return prayerStatuses.entries
+        .where((entry) => entry.value == false)
+        .map((entry) => entry.key)
+        .toList();
+  }
+
   @override
-  List<Object?> get props => [date, completedPrayers, isFuture];
+  List<Object?> get props => [date, completedPrayers, isFuture, prayerStatuses];
 }
 
 /// Model representing weekly prayer statistics

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
+import 'package:adam_s_application/widgets/custom_image_view.dart';
 import 'widgets/weekly_analytics.dart';
 import 'widgets/monthly_analytics.dart';
 import 'widgets/quarterly_analytics.dart';
@@ -37,18 +38,30 @@ class _FullAnalyticsScreenState extends ConsumerState<FullAnalyticsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appColors.gray_900,
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: appColors.gray_900,
+        surfaceTintColor: Colors.transparent,
+        scrolledUnderElevation: 0,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: appColors.whiteA700),
-          onPressed: () => Navigator.of(context).pop(),
+        leadingWidth: 70.h,
+        leading: GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: Padding(
+            padding: EdgeInsets.only(left: 25.h, top: 12.h, bottom: 12.h),
+            child: CustomImageView(
+              imagePath: ImageConstant.imgBackButton,
+              height: 18.h,
+              width: 18.h,
+              color: appColors.whiteA700,
+            ),
+          ),
         ),
         title: Text(
           _getTitle(),
-          style: TextStyleHelper.instance.body14SemiBoldPoppins
-              .copyWith(color: appColors.whiteA700),
+          style: TextStyleHelper.instance.body15RegularPoppins.copyWith(
+            color: appColors.whiteA700,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         centerTitle: true,
       ),

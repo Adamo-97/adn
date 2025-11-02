@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/presentation/prayer_tracker_screen/notifier/prayer_analytics_notifier.dart';
+import 'package:adam_s_application/presentation/prayer_tracker_screen/models/prayer_analytics_data.dart';
 
 class NinetyDayTrendChart extends ConsumerStatefulWidget {
   final bool showNavigation;
+  final Function(DailyPrayerData?)? onDaySelected;
+  final Function(int)?
+      onQuarterOffsetChanged; // New callback for quarter offset changes
 
-  const NinetyDayTrendChart({super.key, this.showNavigation = true});
+  const NinetyDayTrendChart({
+    super.key,
+    this.showNavigation = true,
+    this.onDaySelected,
+    this.onQuarterOffsetChanged,
+  });
 
   @override
   ConsumerState<NinetyDayTrendChart> createState() =>
@@ -50,6 +59,7 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
         _quarterOffset++;
         _selectedWeekIndex = null;
       });
+      widget.onQuarterOffsetChanged?.call(_quarterOffset);
     }
   }
 
@@ -59,6 +69,7 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
         _quarterOffset--;
         _selectedWeekIndex = null;
       });
+      widget.onQuarterOffsetChanged?.call(_quarterOffset);
     }
   }
 
@@ -69,10 +80,10 @@ class _NinetyDayTrendChartState extends ConsumerState<NinetyDayTrendChart> {
     return Container(
       padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        color: appColors.gray_700.withAlpha((0.2 * 255).round()),
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(12.h),
         border: Border.all(
-          color: appColors.gray_700.withAlpha((0.3 * 255).round()),
+          color: appColors.gray_700.withValues(alpha: 0.3),
           width: 1.h,
         ),
       ),

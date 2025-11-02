@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/presentation/prayer_tracker_screen/notifier/prayer_analytics_notifier.dart';
+import 'package:adam_s_application/presentation/prayer_tracker_screen/models/prayer_analytics_data.dart';
 
 class MonthlyHeatmapChart extends ConsumerStatefulWidget {
   final bool showNavigation;
+  final Function(DailyPrayerData?)? onDaySelected;
+  final Function(int)? onMonthOffsetChanged;
 
-  const MonthlyHeatmapChart({super.key, this.showNavigation = true});
+  const MonthlyHeatmapChart({
+    super.key,
+    this.showNavigation = true,
+    this.onDaySelected,
+    this.onMonthOffsetChanged,
+  });
 
   @override
   ConsumerState<MonthlyHeatmapChart> createState() =>
@@ -47,6 +55,13 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
     return -1; // Today not in this month
   }
 
+  int _getMonthStartDayOfWeek() {
+    // Get which day of week the month starts on (0 = Sunday, 6 = Saturday)
+    final analyticsNotifier = ref.read(prayerAnalyticsProvider.notifier);
+    final monthStats = analyticsNotifier.getMonthData(_monthOffset);
+    return monthStats.monthStart.weekday % 7; // Convert to 0-6 where 0=Sunday
+  }
+
   bool _canGoNext() => _monthOffset < 0;
   bool _canGoPrev() => true;
 
@@ -56,6 +71,8 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
         _monthOffset++;
         _selectedDayIndex = null;
       });
+      widget.onMonthOffsetChanged?.call(_monthOffset);
+      widget.onDaySelected?.call(null); // Clear selection
     }
   }
 
@@ -65,6 +82,8 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
         _monthOffset--;
         _selectedDayIndex = null;
       });
+      widget.onMonthOffsetChanged?.call(_monthOffset);
+      widget.onDaySelected?.call(null); // Clear selection
     }
   }
 
@@ -145,36 +164,68 @@ class _MonthlyHeatmapChartState extends ConsumerState<MonthlyHeatmapChart> {
                 .toList(),
           ),
           SizedBox(height: 12.h),
-          // Heatmap grid
-          SizedBox(
-            height: 200.h,
-            child: CustomPaint(
-              painter: MonthlyHeatmapPainter(
-                monthData: monthData,
-                selectedIndex: _selectedDayIndex,
-                theme: appColors,
-                today: _getTodayIndex(),
-              ),
-              child: GestureDetector(
-                onTapDown: (details) {
-                  final RenderBox box = context.findRenderObject() as RenderBox;
-                  final localPosition =
-                      box.globalToLocal(details.globalPosition);
-                  final cellSize = (box.size.width / 7);
-                  final row = (localPosition.dy / (cellSize + 4)).floor();
-                  final col = (localPosition.dx / (cellSize + 4)).floor();
-                  final tappedIndex = (row * 7 + col);
+          // Heatmap grid with dynamic height
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final monthStartOffset = _getMonthStartDayOfWeek();
+              final totalCells = monthData.length + monthStartOffset;
+              final rows = (totalCells / 7).ceil();
+              final cellSize = (constraints.maxWidth / 7) - 4;
+              final spacing = 4.0;
+              final gridHeight = rows * (cellSize + spacing);
 
-                  if (tappedIndex < monthData.length) {
-                    setState(() {
-                      _selectedDayIndex =
-                          tappedIndex == _selectedDayIndex ? null : tappedIndex;
-                    });
-                  }
-                },
-                behavior: HitTestBehavior.opaque,
-              ),
-            ),
+              return SizedBox(
+                height: gridHeight,
+                child: CustomPaint(
+                  painter: MonthlyHeatmapPainter(
+                    monthData: monthData,
+                    selectedIndex: _selectedDayIndex,
+                    theme: appColors,
+                    today: _getTodayIndex(),
+                    monthStartDayOfWeek: monthStartOffset,
+                  ),
+                  child: GestureDetector(
+                    onTapDown: (details) {
+                      final RenderBox box =
+                          context.findRenderObject() as RenderBox;
+                      final localPosition =
+                          box.globalToLocal(details.globalPosition);
+
+                      // Match painter calculation exactly
+                      final cellSize = (box.size.width / 7) - 4;
+                      final spacing = 4.0;
+                      final cellWithSpacing = cellSize + spacing;
+
+                      final col = (localPosition.dx / cellWithSpacing).floor();
+                      final row = (localPosition.dy / cellWithSpacing).floor();
+                      final gridIndex = (row * 7 + col);
+
+                      // Account for offset from month start day
+                      final dayIndex = gridIndex - monthStartOffset;
+
+                      if (dayIndex >= 0 && dayIndex < monthData.length) {
+                        final analyticsNotifier =
+                            ref.read(prayerAnalyticsProvider.notifier);
+                        final monthStats =
+                            analyticsNotifier.getMonthData(_monthOffset);
+
+                        setState(() {
+                          if (dayIndex == _selectedDayIndex) {
+                            _selectedDayIndex = null;
+                            widget.onDaySelected?.call(null);
+                          } else {
+                            _selectedDayIndex = dayIndex;
+                            widget.onDaySelected
+                                ?.call(monthStats.dailyData[dayIndex]);
+                          }
+                        });
+                      }
+                    },
+                    behavior: HitTestBehavior.opaque,
+                  ),
+                ),
+              );
+            },
           ),
           SizedBox(height: 12.h),
           // Legend
@@ -227,12 +278,14 @@ class MonthlyHeatmapPainter extends CustomPainter {
   final int? selectedIndex;
   final DarkCodeColors theme;
   final int today;
+  final int monthStartDayOfWeek; // 0=Sunday, 6=Saturday
 
   MonthlyHeatmapPainter({
     required this.monthData,
     required this.selectedIndex,
     required this.theme,
     required this.today,
+    required this.monthStartDayOfWeek,
   });
 
   @override
@@ -240,15 +293,17 @@ class MonthlyHeatmapPainter extends CustomPainter {
     final cellSize = (size.width / 7) - 4;
     final spacing = 4.0;
 
-    for (int i = 0; i < monthData.length; i++) {
-      final row = i ~/ 7;
-      final col = i % 7;
+    for (int dayIndex = 0; dayIndex < monthData.length; dayIndex++) {
+      // Add offset for which day of week the month starts on
+      final gridIndex = dayIndex + monthStartDayOfWeek;
+      final row = gridIndex ~/ 7;
+      final col = gridIndex % 7;
       final x = col * (cellSize + spacing);
       final y = row * (cellSize + spacing);
 
-      final count = monthData[i];
-      final isSelected = i == selectedIndex;
-      final isToday = i == today - 1; // 0-indexed
+      final count = monthData[dayIndex];
+      final isSelected = dayIndex == selectedIndex;
+      final isToday = dayIndex == today;
 
       // Cell background
       final cellPaint = Paint()
