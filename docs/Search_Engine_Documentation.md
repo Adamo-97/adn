@@ -210,6 +210,18 @@ enum SearchMatchType {
 
 ## Search Algorithm
 
+### Algorithm Classification
+
+This is a **custom hybrid TF-like algorithm** (Term Frequency-like) combining multiple techniques:
+
+- **Content-based Type Inference**: Pattern matching for automatic content classification (dua detection via supplication phrases)
+- **Proximity-based Relevance**: Phrase matching with distance scoring (similar to Elasticsearch phrase queries)
+- **Multi-stage Cascading**: Waterfall model - exact matches first, fallback to broader searches
+- **Semantic Expansion**: Synonym dictionary for query enhancement
+- **Weighted Scoring**: Different content types receive different base weights
+
+**Not** a pure algorithm like BM25, TF-IDF, or cosine similarity - optimized specifically for Islamic prayer content.
+
 ### 4-Stage Matching Pipeline
 
 ```
@@ -242,19 +254,120 @@ enum SearchMatchType {
 └───────────────────────────────────────────────────────────────┘
                             ↓
 ┌───────────────────────────────────────────────────────────────┐
-│ Stage 4: Content Scanning (Section-level)                    │
+│ Stage 4: Content Scanning (Section-level with Proximity)     │
 │ ─────────────────────────────────────────────────────────────│
-│ Input:  "dua qunut"                                           │
+│ Input:  "o allah I ask your choice"                           │
 │ Process: Load cached content → sections[0..N]                │
+│          Filter query words (length > 2) → ["allah", "ask",  │
+│                                              "your", "choice"]│
 │          For each section:                                    │
 │            1. Extract text (plain + formatted + lists)        │
-│            2. Detect content type (dua/steps/conditions)      │
-│            3. Check if query words in section text            │
-│            4. Calculate relevance score                       │
-│          Section 5: Has "Dua al-Qunut" + Arabic text          │
-│ Output: SearchResult(matchType: dua, score: 7.5, section: 5) │
+│            2. Check exact phrase match → Yes in section 5     │
+│            3. Calculate proximity score → 1.0 (exact)         │
+│            4. Detect content type → dua (supplication pattern)│
+│            5. Apply relevance formula with boosts             │
+│          Section 5: Exact phrase + dua type + Arabic text     │
+│ Output: SearchResult(matchType: dua, score: 18.75, section:5)│
 └───────────────────────────────────────────────────────────────┘
 ```
+
+### Phrase Proximity Scoring (NEW)
+
+Prevents scattered word matches from ranking high by measuring word distance:
+
+```dart
+double calculateProximityScore(
+  String sectionText,
+  List<String> matchedWords,
+  bool hasExactPhrase,
+) {
+  if (hasExactPhrase) {
+    return 1.0;  // Perfect match - all words in exact sequence
+  }
+  
+  if (matchedWords.length >= 3) {
+    // Multi-word query - check word distance
+    final firstPos = sectionText.indexOf(matchedWords.first);
+    final lastPos = sectionText.indexOf(matchedWords.last);
+    final distance = (lastPos - firstPos).abs();
+    
+    if (distance < 100) return 0.8;      // High proximity
+    else if (distance < 200) return 0.5; // Medium proximity
+    else return 0.2;                     // Low proximity (likely filtered)
+  }
+  
+  return 0.4;  // Single/double word queries - accept with lower score
+}
+```
+
+**Filtering Rules**:
+- Multi-word queries (≥3 words) require proximity ≥0.5
+- Prevents "Historical Overview" from matching "o allah I ask your choice" (words scattered 500+ chars apart)
+- Single-word queries always accepted (e.g., "niyyah" → finds Ghusl)
+
+### Content Type Detection (Pattern-Based)
+
+Automatic classification of section content for weighted scoring:
+
+```dart
+String? _detectContentType(InfoPageSection section, String query) {
+  final sectionText = _normalizeText(_extractSectionText(section));
+  final sectionTitle = _normalizeText(section.title);
+
+  // Priority 1: Explicit title keywords
+  if (sectionTitle.contains('dua') || 
+      sectionTitle.contains('supplication') ||
+      sectionTitle.contains('recite')) {
+    return 'dua';
+  }
+
+  // Priority 2: Supplication phrase patterns (GENERAL - not hardcoded)
+  final isSupplication = 
+    sectionText.contains('o allah') ||
+    (sectionText.contains('allah') && 
+     (sectionText.contains('i ask') || 
+      sectionText.contains('grant me') ||
+      sectionText.contains('guide me') ||
+      sectionText.contains('forgive me') ||
+      sectionText.contains('bless me') ||
+      sectionText.contains('your mercy') ||
+      sectionText.contains('your knowledge') ||
+      sectionText.contains('you are able') ||
+      sectionText.contains('you know')));
+  
+  if (isSupplication) return 'dua';
+
+  // Priority 3: Arabic text presence
+  if (section.formattedText?.any((seg) => seg.type == 'arabic_text')) {
+    if (query.contains('dua')) return 'dua';
+  }
+
+  // Priority 4: Content type keywords
+  // Check against _contentTypeKeywords map...
+}
+```
+
+**Key Features**:
+- ✅ Works for ALL Islamic supplications (Istikharah, Witr, Tahajjud, etc.)
+- ✅ Not hardcoded for specific duas
+- ✅ Detects prayer phrases in any language (English translations)
+- ✅ Handles paragraphs without explicit "dua" titles
+
+### Title-to-Filename Mapping
+
+Special handling for cards with display titles that differ from JSON filenames:
+
+```dart
+const titleToFilename = {
+  'Importance of Prayer': 'prayer_introduction',
+  'Traveling Prayer': 'prayer_while_traveling',
+  'Wudu (Ablution)': 'wudu_guide',
+  'Ghusl (Full Bath)': 'ghusl_guide',
+  'Tayammum': 'substitute_ablution',
+};
+```
+
+**Why Needed**: User-friendly display titles (e.g., "Ghusl (Full Bath)") don't always match filesystem conventions (e.g., `ghusl_guide.json`).
 
 ### Text Normalization
 
@@ -265,15 +378,33 @@ String _normalizeText(String text) {
   return text
       .toLowerCase()                     // "WUDU" → "wudu"
       .replaceAll(RegExp(r"['\'`''""]"), '') // "jumu'ah" → "jumuah"
-      .replaceAll(RegExp(r'[^\w\s]'), '') // Remove punctuation
-      .trim();                           // Remove extra whitespace
+      .replaceAll(RegExp(r'[^\w\s\u0600-\u06FF]'), ' ') // Keep Arabic
+      .replaceAll(RegExp(r'\s+'), ' ')   // Collapse whitespace
+      .trim();
 }
 ```
 
 **Supported Special Characters**:
 - Apostrophes: `'`, `'`, `` ` ``
 - Quotes: `"`, `"`, `"`
-- All punctuation removed except alphanumeric and spaces
+- Arabic characters: U+0600 to U+06FF preserved
+- All other punctuation removed
+
+### Query Word Filtering
+
+Short words (≤2 characters) are filtered to reduce noise:
+
+```dart
+final queryWords = normalizedQuery
+    .split(' ')
+    .where((word) => word.length > 2)
+    .toList();
+```
+
+**Examples**:
+- "o allah I ask your choice" → ["allah", "ask", "your", "choice"]
+- "a prayer" → ["prayer"]
+- "niyyah" → ["niyyah"] (preserved - meaningful term)
 
 ### Relevance Scoring
 

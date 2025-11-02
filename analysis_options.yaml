@@ -17,9 +17,11 @@ include: package:flutter_lints/flutter.yaml
 # Exclude generated or staging code directories that should not be
 # statically analyzed. NEW_SCREENS/ is a staging area for screens that
 # are not yet integrated into the main app (see project README).
+# Markdown files are excluded to prevent MD lint rules from causing analyze failures.
 analyzer:
   exclude:
     - NEW_SCREENS/**
+    - "**/*.md"
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

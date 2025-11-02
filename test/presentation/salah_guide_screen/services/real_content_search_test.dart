@@ -57,18 +57,6 @@ void main() {
       final results =
           await searchService.search('o allah I ask your choice', allCards);
 
-      // Debugging output
-      print('\n=== SEARCH RESULTS FOR: "o allah I ask your choice" ===');
-      print('Total results: ${results.length}');
-      for (int i = 0; i < results.length && i < 5; i++) {
-        final r = results[i];
-        print(
-            '${i + 1}. ${r.card.title} - Score: ${r.relevanceScore.toStringAsFixed(2)} - Type: ${r.matchType}');
-        print(
-            '   Section: ${r.sectionIndex}, Snippet: ${r.matchedSnippet?.substring(0, r.matchedSnippet!.length.clamp(0, 100))}...');
-      }
-      print('=========================================\n');
-
       // Assertions
       expect(results, isNotEmpty,
           reason: 'Should find results for Istikharah dua phrase');
@@ -111,14 +99,6 @@ void main() {
     test('Search for "dua" should prioritize actual dua sections', () async {
       final results = await searchService.search('dua', allCards);
 
-      print('\n=== SEARCH RESULTS FOR: "dua" ===');
-      for (int i = 0; i < results.length && i < 10; i++) {
-        final r = results[i];
-        print(
-            '${i + 1}. ${r.card.title} - Score: ${r.relevanceScore.toStringAsFixed(2)} - Type: ${r.matchType}');
-      }
-      print('================================\n');
-
       expect(results, isNotEmpty);
 
       // Check that dua match types have high scores
@@ -135,14 +115,6 @@ void main() {
 
     test('Search for "istikharah dua" should find Istikharah Prayer', () async {
       final results = await searchService.search('istikharah dua', allCards);
-
-      print('\n=== SEARCH RESULTS FOR: "istikharah dua" ===');
-      for (int i = 0; i < results.length && i < 5; i++) {
-        final r = results[i];
-        print(
-            '${i + 1}. ${r.card.title} - Score: ${r.relevanceScore.toStringAsFixed(2)} - Type: ${r.matchType}');
-      }
-      print('==========================================\n');
 
       expect(results, isNotEmpty);
 
@@ -166,13 +138,6 @@ void main() {
       for (final query in queries) {
         final results = await searchService.search(query, allCards);
 
-        print('\n=== SEARCH: "$query" ===');
-        print('Results: ${results.length}');
-        if (results.isNotEmpty) {
-          print(
-              'Top: ${results.first.card.title} - ${results.first.relevanceScore.toStringAsFixed(2)}');
-        }
-
         // Should find at least one result for dua-related queries
         expect(results.length, greaterThan(0),
             reason: 'Should find results for dua phrase: "$query"');
@@ -188,6 +153,28 @@ void main() {
             reason:
                 'All results should meet minimum relevance threshold of 2.5');
       }
+    });
+
+    test('Single word "niyyah" should find Ghusl Guide', () async {
+      // Add Ghusl Guide card with ACTUAL app title
+      allCards.add(SalahGuideCardModel(
+        title: 'Ghusl (Full Bath)',
+        category: SalahCategory.purification,
+        iconPath: 'assets/images/salah_guide/ghusl.svg',
+      ));
+
+      // Re-initialize to load Ghusl content
+      await searchService.initialize(allCards);
+
+      final results = await searchService.search('niyyah', allCards);
+
+      expect(results.isNotEmpty, true,
+          reason: 'Should find results for "niyyah"');
+      expect(
+        results.any((r) => r.card.title == 'Ghusl (Full Bath)'),
+        true,
+        reason: 'Ghusl (Full Bath) contains "niyyah" and should be found',
+      );
     });
 
     test('Result limit caps at 8 results to avoid overwhelming', () async {

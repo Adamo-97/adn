@@ -7,7 +7,7 @@ import '../models/search_result.dart';
 /// Service for searching through Salah Guide content with advanced matching
 class SalahGuideSearchService {
   /// Cached content index for fast searching
-  Map<String, List<InfoPageSection>> _contentIndex = {};
+  final Map<String, List<InfoPageSection>> _contentIndex = {};
 
   /// Synonyms and alternative terms for better search results
   static final Map<String, List<String>> _searchSynonyms = {
@@ -548,7 +548,21 @@ class SalahGuideSearchService {
 
   /// Get JSON file path from card title
   String _getJsonPath(String title) {
-    // Convert title to snake_case filename
+    // Special mappings for titles that don't match JSON filenames
+    const titleToFilename = {
+      'Importance of Prayer': 'prayer_introduction',
+      'Traveling Prayer': 'prayer_while_traveling',
+      'Wudu (Ablution)': 'wudu_guide',
+      'Ghusl (Full Bath)': 'ghusl_guide',
+      'Tayammum': 'substitute_ablution',
+    };
+
+    // Check if there's a special mapping
+    if (titleToFilename.containsKey(title)) {
+      return 'assets/data/info_pages/en/${titleToFilename[title]}.json';
+    }
+
+    // Otherwise convert title to snake_case filename
     final filename = title
         .toLowerCase()
         .replaceAll(RegExp(r'[^\w\s]'), '')
