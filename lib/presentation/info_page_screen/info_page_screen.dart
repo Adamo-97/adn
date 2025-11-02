@@ -51,7 +51,9 @@ class _InfoPageScreenState extends ConsumerState<InfoPageScreen> {
       ),
       body: _buildBody(state),
     );
-  }  /// Build the main body content
+  }
+
+  /// Build the main body content
   /// Shows loading indicator, error message, or scrollable content
   Widget _buildBody(InfoPageState state) {
     if (state.isLoading) {
@@ -118,12 +120,13 @@ class _InfoPageScreenState extends ConsumerState<InfoPageScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20.h),
-            
+
             // Render all sections from JSON
             ...state.content!.sections.asMap().entries.map((entry) {
               final section = entry.value;
-              final isLastSection = entry.key == state.content!.sections.length - 1;
-              
+              final isLastSection =
+                  entry.key == state.content!.sections.length - 1;
+
               return Padding(
                 padding: EdgeInsets.only(
                   bottom: isLastSection ? 40.h : 20.h,
@@ -165,6 +168,7 @@ class _InfoPageScreenState extends ConsumerState<InfoPageScreen> {
         return ParagraphWidget(
           text: section.text ?? '',
           illustrationPath: section.illustration,
+          formattedText: section.formattedText,
         );
 
       case SectionType.list:
