@@ -160,6 +160,9 @@ class ImageConstant {
       '${_profilePath}img_appmode_icon_white_a700_24x24.svg';
   static String imgCalendarIcon = '${_profilePath}img_calendar_icon.svg';
   static String imgTimeFormatIcon = '${_profilePath}time_format.svg';
+  static String imgIslamicSchoolIcon = '${_profilePath}islamic_school.svg';
+  static String imgCalculationMethodIcon =
+      '${_profilePath}calculation_method.svg';
   static String imgVectorWhiteA700 = '${_profilePath}img_vector_white_a700.svg';
 
   // Prayer Tracker Screen

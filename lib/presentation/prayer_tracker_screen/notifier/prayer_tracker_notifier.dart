@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
 import '../../../core/app_export.dart';
 import '../models/prayer_tracker_model.dart';
+import '../../../services/prayer_times/prayer_times.dart';
+import '../../profile_settings_screen/notifier/profile_settings_notifier.dart';
 
 part 'prayer_tracker_state.dart';
 
@@ -98,28 +101,124 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
     // state = state.copyWith(currentPrayer: _computeCurrentPrayerFromTimes(state.dailyTimes, state.selectedDate));
   }
 
-  /// Fetch daily times for [date]. Currently a placeholder returning "00:00".
-  /// TODO: Replace with real API call and map into the 6 prayer keys.
+  /// Fetch daily prayer times for [date] using the API and caching service
+  ///
+  /// This method:
+  /// 1. Retrieves user's location and calculation settings from profile settings
+  /// 2. Calls the prayer times service (which handles caching automatically)
+  /// 3. Updates state with fetched times
+  /// 4. Computes current prayer based on fetched times
+  ///
+  /// The service ensures API is called only once per day (or when settings change).
   Future<void> fetchDailyTimes(DateTime date) async {
-    // TODO: after real API: recompute currentPrayer
-    // state = state.copyWith(currentPrayer: _computeCurrentPrayerFromTimes(times, date));
-    // Example shape (replace with actual API integration):
-    // final result = await api.getPrayerTimes(lat, lng, date, method: ...);
-    // final times = {
-    //   'Fajr': result.fajr,
-    //   'Sunrise': result.sunrise,
-    //   'Dhuhr': result.dhuhr,
-    //   'Asr': result.asr,
-    //   'Maghrib': result.maghrib,
-    //   'Isha': result.isha,
-    // };
-    final Map<String, String> times = {
-      for (final p in _prayers) p: '00:00',
-    };
-    state = state.copyWith(dailyTimes: times);
+    try {
+      // Get prayer times service
+      final prayerTimesService = ref.read(prayerTimesServiceProvider);
+
+      // Get user's settings from profile settings
+      final profileSettings = ref.read(profileSettingsNotifier);
+      final selectedLocation =
+          profileSettings.selectedLocation ?? 'Stockholm, Sweden';
+
+      // Parse location (format: "City, Country")
+      final locationParts =
+          selectedLocation.split(',').map((s) => s.trim()).toList();
+      final city = locationParts.isNotEmpty ? locationParts[0] : 'Stockholm';
+      final country = locationParts.length > 1 ? locationParts[1] : 'Sweden';
+
+      // Get calculation settings
+      final calculationMethod = profileSettings.selectedCalculationMethod;
+      final islamicSchool = profileSettings.selectedIslamicSchool;
+
+      // Fetch prayer times (service handles caching automatically)
+      final result = await prayerTimesService.getPrayerTimes(
+        city: city,
+        country: country,
+        date: date,
+        calculationMethod: calculationMethod,
+        school: islamicSchool,
+      );
+
+      if (result.isSuccess && result.data != null) {
+        // Success - update state with fetched times
+        final times = result.data!.toUiMap();
+        state = state.copyWith(dailyTimes: times);
+
+        // Compute current prayer based on real times
+        _updateCurrentPrayer();
+      } else {
+        // Error - keep placeholder times and log error
+        // ignore: avoid_print
+        print('Failed to fetch prayer times: ${result.error}');
+
+        // Fall back to placeholder times
+        final Map<String, String> times = {
+          for (final p in _prayers) p: '00:00',
+        };
+        state = state.copyWith(dailyTimes: times);
+      }
+    } catch (e) {
+      // Catch-all error handler
+      // ignore: avoid_print
+      print('Exception in fetchDailyTimes: $e');
+
+      // Fall back to placeholder times
+      final Map<String, String> times = {
+        for (final p in _prayers) p: '00:00',
+      };
+      state = state.copyWith(dailyTimes: times);
+    }
   }
 
-  /// Set the selected calendar day (date-only).
+  /// Compute and update the current prayer based on current time and daily times
+  ///
+  /// Logic:
+  /// - Before Fajr: Current is "Isha" (previous day's last prayer)
+  /// - Between prayers: Current is the most recent past prayer
+  /// - After Isha: Current is "Isha"
+  void _updateCurrentPrayer() {
+    try {
+      final now = DateTime.now();
+      final currentTime = TimeOfDay(hour: now.hour, minute: now.minute);
+
+      // Convert prayer times to TimeOfDay for comparison
+      final prayerTimes = <String, TimeOfDay>{};
+      for (final entry in state.dailyTimes.entries) {
+        final timeParts = entry.value.split(':');
+        if (timeParts.length == 2) {
+          final hour = int.tryParse(timeParts[0]) ?? 0;
+          final minute = int.tryParse(timeParts[1]) ?? 0;
+          prayerTimes[entry.key] = TimeOfDay(hour: hour, minute: minute);
+        }
+      }
+
+      // Find current prayer (the most recent prayer that has passed)
+      String currentPrayer = 'Fajr'; // Default
+
+      for (final prayerName in kOrderedPrayerKeys.reversed) {
+        final prayerTime = prayerTimes[prayerName];
+        if (prayerTime != null && _isTimeBefore(prayerTime, currentTime)) {
+          currentPrayer = prayerName;
+          break;
+        }
+      }
+
+      state = state.copyWith(currentPrayer: currentPrayer);
+    } catch (e) {
+      // If computation fails, keep current state
+      // ignore: avoid_print
+      print('Failed to compute current prayer: $e');
+    }
+  }
+
+  /// Compare two TimeOfDay objects (returns true if time1 <= time2)
+  bool _isTimeBefore(TimeOfDay time1, TimeOfDay time2) {
+    if (time1.hour < time2.hour) return true;
+    if (time1.hour > time2.hour) return false;
+    return time1.minute <= time2.minute;
+  }
+
+  /// Set the selected calendar day (date-only) and fetch prayer times for that date
   void selectDate(DateTime date) {
     final d = DateTime(date.year, date.month, date.day);
     state = state.copyWith(
@@ -127,8 +226,8 @@ class PrayerTrackerNotifier extends Notifier<PrayerTrackerState> {
       calendarMonth: DateTime(d.year, d.month, 1), // ensure month view matches
       calendarOpen: false, // close calendar after pick
     );
-    // Kick off fetching times for the newly selected day (placeholder today).
-    fetchDailyTimes(d); // TODO: implement with real API
+    // Fetch prayer times for the newly selected day
+    fetchDailyTimes(d);
   }
 
   /// Toggle done/undone for a prayer card.

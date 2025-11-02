@@ -7,6 +7,8 @@ import 'widgets/prayer_reminders.dart';
 import 'widgets/time_format_24hour.dart';
 import 'widgets/location_selector.dart';
 import 'widgets/language_selector.dart';
+import 'widgets/islamic_school_selector.dart';
+import 'widgets/calculation_method_selector.dart';
 import 'widgets/rate_app.dart';
 import 'widgets/terms_conditions.dart';
 import 'widgets/about_app.dart';
@@ -197,6 +199,19 @@ class ProfileSettingsScreenState extends ConsumerState<ProfileSettingsScreen> {
               const LocationSelector(),
               _buildDivider(),
               const LanguageSelector(),
+            ],
+          ),
+
+          SizedBox(height: 20.h),
+
+          // Prayer Time Settings Section
+          _buildSectionHeader('Prayer Time Settings'),
+          SizedBox(height: 8.h),
+          _buildSettingsCard(
+            children: [
+              const IslamicSchoolSelector(),
+              _buildDivider(),
+              const CalculationMethodSelector(),
             ],
           ),
 

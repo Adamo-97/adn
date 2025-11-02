@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/profile_settings_model.dart';
 import '../../../core/app_export.dart';
 import '../../../../notifier/theme_notifier.dart';
+import '../../../services/prayer_times/prayer_times.dart';
 
 part 'profile_settings_state.dart';
 
@@ -30,6 +31,10 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
       use24HourFormat: false,
       locationDropdownOpen: false,
       languageDropdownOpen: false,
+      selectedIslamicSchool: 0, // Standard
+      selectedCalculationMethod: 3, // Muslim World League
+      islamicSchoolDropdownOpen: false,
+      calculationMethodDropdownOpen: false,
     );
   }
 
@@ -94,6 +99,52 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
     state = state.copyWith(searchQuery: query);
   }
 
+  void updateCalculationMethodSearchQuery(String query) {
+    state = state.copyWith(calculationMethodSearchQuery: query);
+  }
+
+  void toggleIslamicSchoolDropdown() {
+    state = state.copyWith(
+      islamicSchoolDropdownOpen: !(state.islamicSchoolDropdownOpen ?? false),
+    );
+  }
+
+  void selectIslamicSchool(int school) {
+    state = state.copyWith(
+      selectedIslamicSchool: school,
+      islamicSchoolDropdownOpen: false,
+    );
+
+    // Clear prayer times cache when settings change
+    _clearPrayerTimesCache();
+  }
+
+  void toggleCalculationMethodDropdown() {
+    state = state.copyWith(
+      calculationMethodDropdownOpen:
+          !(state.calculationMethodDropdownOpen ?? false),
+    );
+  }
+
+  void selectCalculationMethod(int method) {
+    state = state.copyWith(
+      selectedCalculationMethod: method,
+      calculationMethodDropdownOpen: false,
+    );
+
+    // Clear prayer times cache when settings change
+    _clearPrayerTimesCache();
+  }
+
+  /// Clear prayer times cache when location or calculation settings change
+  ///
+  /// This forces the app to re-fetch prayer times with updated parameters
+  /// on the next prayer tracker screen load.
+  void _clearPrayerTimesCache() {
+    final service = ref.read(prayerTimesServiceProvider);
+    service.clearCache();
+  }
+
   void signOut() {
     // TODO: Implement sign-out logic (clear auth, navigate to login, etc.)
     debugPrint('Sign out requested');
@@ -104,7 +155,10 @@ class ProfileSettingsNotifier extends Notifier<ProfileSettingsState> {
     state = state.copyWith(
       locationDropdownOpen: false,
       languageDropdownOpen: false,
+      islamicSchoolDropdownOpen: false,
+      calculationMethodDropdownOpen: false,
       searchQuery: '',
+      calculationMethodSearchQuery: '',
       scrollPosition: 0.0,
       resetTimestamp: DateTime.now().millisecondsSinceEpoch,
     );
