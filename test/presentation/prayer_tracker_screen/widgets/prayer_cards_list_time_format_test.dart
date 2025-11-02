@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:adam_s_application/core/app_export.dart';
 import 'package:adam_s_application/presentation/prayer_tracker_screen/widgets/prayer_cards_list.dart';
