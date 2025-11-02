@@ -4,11 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:adam_s_application/presentation/profile_settings_screen/widgets/location_selector.dart';
 import 'package:adam_s_application/presentation/profile_settings_screen/notifier/profile_settings_notifier.dart';
 import 'package:adam_s_application/core/utils/size_utils.dart';
+import '../../../helpers/test_helpers.dart';
 
 void main() {
   setUp(() {
     SizeUtils.width = 375;
     SizeUtils.height = 812;
+    initializeTestEnvironment();
   });
 
   group('LocationSelector Widget Tests', () {
@@ -23,8 +25,12 @@ void main() {
         ),
       );
 
+      // Wait for provider initialization
+      await tester.pumpAndSettle();
+
       expect(find.text('Location'), findsOneWidget);
-      expect(find.text('Select your location'), findsOneWidget);
+      // Default location from test_helpers is "Mecca, Saudi Arabia"
+      expect(find.text('Mecca, Saudi Arabia'), findsOneWidget);
       expect(find.byType(TextField), findsNothing); // Search field not visible
     });
 
