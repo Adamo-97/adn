@@ -48,5 +48,9 @@
         <key>NSAllowsArbitraryLoads</key>
         <true />
     </dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to your location to automatically detect your city for accurate prayer times.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to your location to provide accurate prayer times based on your current location.</string>
 </dict>
 </plist>
