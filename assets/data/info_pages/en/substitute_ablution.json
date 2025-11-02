@@ -38,16 +38,7 @@
             },
             {
               "type": "arabic_text",
-              "text": "بِسْمِ",
-              "font": "Noto Kufi Arabic"
-            },
-            {
-              "type": "english_text",
-              "text": " "
-            },
-            {
-              "type": "arabic_text",
-              "text": "اللهِ",
+              "text": "بِسْمِ اللهِ",
               "font": "Noto Kufi Arabic"
             },
             {

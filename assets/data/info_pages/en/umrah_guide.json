@@ -39,20 +39,20 @@
     },
     {
       "type": "paragraph",
-      "text": "With hands raised, begin chanting: “لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ… Here I am, O Allah, here I am!” Continue repeating it throughout your journey into Makkah.",
+      "text": "With hands raised, begin chanting: لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ… \"Here I am, O Allah, here I am!\" Continue repeating it throughout your journey into Makkah.",
       "formatted_text": [
         {
           "type": "english_text",
-          "text": "With hands raised, begin chanting: “"
+          "text": "With hands raised, begin chanting: "
         },
         {
           "type": "arabic_text",
-          "text": "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ",
+          "text": "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ…",
           "font": "Noto Kufi Arabic"
         },
         {
           "type": "english_text",
-          "text": "… Here I am, O Allah, here I am!” Continue repeating it throughout your journey into Makkah."
+          "text": " \"Here I am, O Allah, here I am!\" Continue repeating it throughout your journey into Makkah."
         }
       ]
     },

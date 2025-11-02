@@ -19,12 +19,7 @@
       "formatted_text": [
         {
           "type": "english_text",
-          "text": "In 630 CE, Muhammad "
-        },
-        {
-          "type": "arabic_text",
-          "text": "ﷺ",
-          "font": "Noto Kufi Arabic"
+          "text": "In 630 CE, Muhammad ﷺ"
         },
         {
           "type": "english_text",
@@ -54,18 +49,7 @@
     },
     {
       "type": "paragraph",
-      "text": "﴿2:144 We have certainly seen the turning of your face, [O Muhammad], toward the heaven, and We will surely turn you to a qiblah with which you will be pleased. So turn your face toward al-Masjid al-Haram. And wherever you [believers] are, turn your faces toward it [in prayer]. Indeed, those who have been given the Scripture well know that it is the truth from their Lord. And Allah is not unaware of what they do.﹄",
-      "formatted_text": [
-        {
-          "type": "arabic_text",
-          "text": "﴿",
-          "font": "Noto Kufi Arabic"
-        },
-        {
-          "type": "english_text",
-          "text": "2:144 We have certainly seen the turning of your face, [O Muhammad], toward the heaven, and We will surely turn you to a qiblah with which you will be pleased. So turn your face toward al-Masjid al-Haram. And wherever you [believers] are, turn your faces toward it [in prayer]. Indeed, those who have been given the Scripture well know that it is the truth from their Lord. And Allah is not unaware of what they do.﹄"
-        }
-      ]
+      "text": "﴿2:144 We have certainly seen the turning of your face, [O Muhammad], toward the heaven, and We will surely turn you to a qiblah with which you will be pleased. So turn your face toward al-Masjid al-Haram. And wherever you [believers] are, turn your faces toward it [in prayer]. Indeed, those who have been given the Scripture well know that it is the truth from their Lord. And Allah is not unaware of what they do.﴾"
     },
     {
       "type": "paragraph",
@@ -81,12 +65,7 @@
       "formatted_text": [
         {
           "type": "english_text",
-          "text": "When Muhammad "
-        },
-        {
-          "type": "arabic_text",
-          "text": "ﷺ",
-          "font": "Noto Kufi Arabic"
+          "text": "When Muhammad ﷺ"
         },
         {
           "type": "english_text",
