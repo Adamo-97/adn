@@ -8,6 +8,9 @@ class SalahGuideState extends Equatable {
   final SalahGuideModel? salahGuideModel;
   final double scrollPosition; // Track scroll position for reset
   final int resetTimestamp; // Forces state change on reset
+  final List<SearchResult> searchResults; // Search results
+  final String searchQuery; // Current search query
+  final bool isSearching; // Loading state for search
 
   const SalahGuideState({
     this.cards,
@@ -17,7 +20,14 @@ class SalahGuideState extends Equatable {
     this.salahGuideModel,
     this.scrollPosition = 0.0,
     this.resetTimestamp = 0,
+    this.searchResults = const [],
+    this.searchQuery = '',
+    this.isSearching = false,
   });
+
+  /// Check if search is active
+  bool get hasSearchResults =>
+      searchQuery.isNotEmpty && searchResults.isNotEmpty;
 
   @override
   List<Object?> get props => [
@@ -28,6 +38,9 @@ class SalahGuideState extends Equatable {
         salahGuideModel,
         scrollPosition,
         resetTimestamp,
+        searchResults,
+        searchQuery,
+        isSearching,
       ];
 
   SalahGuideState copyWith({
@@ -38,6 +51,9 @@ class SalahGuideState extends Equatable {
     SalahGuideModel? salahGuideModel,
     double? scrollPosition,
     int? resetTimestamp,
+    List<SearchResult>? searchResults,
+    String? searchQuery,
+    bool? isSearching,
   }) {
     return SalahGuideState(
       cards: cards ?? this.cards,
@@ -47,6 +63,9 @@ class SalahGuideState extends Equatable {
       salahGuideModel: salahGuideModel ?? this.salahGuideModel,
       scrollPosition: scrollPosition ?? this.scrollPosition,
       resetTimestamp: resetTimestamp ?? this.resetTimestamp,
+      searchResults: searchResults ?? this.searchResults,
+      searchQuery: searchQuery ?? this.searchQuery,
+      isSearching: isSearching ?? this.isSearching,
     );
   }
 }

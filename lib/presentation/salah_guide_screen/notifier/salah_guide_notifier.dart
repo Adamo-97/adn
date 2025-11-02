@@ -1,6 +1,8 @@
 import '../../../core/app_export.dart';
 import '../models/salah_guide_model.dart';
 import '../models/salah_guide_card_model.dart';
+import '../models/search_result.dart';
+import '../services/salah_guide_search_service.dart';
 
 part 'salah_guide_state.dart';
 
@@ -10,6 +12,8 @@ final salahGuideNotifier =
 );
 
 class SalahGuideNotifier extends Notifier<SalahGuideState> {
+  final _searchService = SalahGuideSearchService();
+
   @override
   SalahGuideState build() {
     final initialState = SalahGuideState(
@@ -155,6 +159,51 @@ class SalahGuideNotifier extends Notifier<SalahGuideState> {
     state = state.copyWith(
       categorizedCards: categorizedCards,
       isLoading: false,
+    );
+
+    // Initialize search service with all cards
+    final allCards = categorizedCards.values.expand((list) => list).toList();
+    _searchService.initialize(allCards);
+  }
+
+  /// Perform search with debouncing
+  Future<void> search(String query) async {
+    // Clear results if query is empty
+    if (query.trim().isEmpty) {
+      state = state.copyWith(
+        searchQuery: '',
+        searchResults: [],
+        isSearching: false,
+      );
+      return;
+    }
+
+    // Set searching state
+    state = state.copyWith(
+      searchQuery: query,
+      isSearching: true,
+    );
+
+    // Get all cards
+    final allCards =
+        state.categorizedCards.values.expand((list) => list).toList();
+
+    // Perform search
+    final results = await _searchService.search(query, allCards);
+
+    // Update state with results
+    state = state.copyWith(
+      searchResults: results,
+      isSearching: false,
+    );
+  }
+
+  /// Clear search results
+  void clearSearch() {
+    state = state.copyWith(
+      searchQuery: '',
+      searchResults: [],
+      isSearching: false,
     );
   }
 

@@ -15,21 +15,46 @@ import 'widgets/section_title_widget.dart';
 class InfoPageScreen extends ConsumerStatefulWidget {
   final String cardTitle;
   final SalahCategory category;
+  final int? initialSectionIndex; // Optional: scroll to this section index
 
   const InfoPageScreen({
     super.key,
     required this.cardTitle,
     required this.category,
+    this.initialSectionIndex,
   });
 
   @override
   ConsumerState<InfoPageScreen> createState() => _InfoPageScreenState();
 }
 
-class _InfoPageScreenState extends ConsumerState<InfoPageScreen> {
+class _InfoPageScreenState extends ConsumerState<InfoPageScreen>
+    with SingleTickerProviderStateMixin {
+  final ScrollController _scrollController = ScrollController();
+  final Map<int, GlobalKey> _sectionKeys = {}; // Keys for each section
+  int? _highlightedSectionIndex; // Track which section to highlight
+  late AnimationController _highlightController;
+  late Animation<double> _highlightAnimation;
+  bool _hasScrolledToSection = false; // Prevent multiple scrolls
+
   @override
   void initState() {
     super.initState();
+
+    // Initialize highlight animation
+    _highlightController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+    _highlightAnimation = Tween<double>(begin: 0.15, end: 0.0).animate(
+      CurvedAnimation(parent: _highlightController, curve: Curves.easeOut),
+    );
+
+    // Set highlighted section if provided
+    if (widget.initialSectionIndex != null) {
+      _highlightedSectionIndex = widget.initialSectionIndex;
+    }
+
     // Initialize notifier with card title and category
     Future.microtask(() {
       ref
@@ -39,8 +64,33 @@ class _InfoPageScreenState extends ConsumerState<InfoPageScreen> {
   }
 
   @override
+  void dispose() {
+    _highlightController.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = ref.watch(infoPageNotifierProvider);
+
+    // Scroll to target section when content is loaded (only once)
+    if (!state.isLoading &&
+        state.content != null &&
+        widget.initialSectionIndex != null &&
+        !_hasScrolledToSection) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _scrollToSection(widget.initialSectionIndex!);
+        _hasScrolledToSection = true;
+
+        // Start highlight animation after scroll
+        Future.delayed(const Duration(milliseconds: 600), () {
+          if (mounted) {
+            _highlightController.forward();
+          }
+        });
+      });
+    }
 
     return Scaffold(
       backgroundColor: appColors.gray_900,
@@ -114,6 +164,7 @@ class _InfoPageScreenState extends ConsumerState<InfoPageScreen> {
     }
 
     return SingleChildScrollView(
+      controller: _scrollController,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.h),
         child: Column(
@@ -123,21 +174,63 @@ class _InfoPageScreenState extends ConsumerState<InfoPageScreen> {
 
             // Render all sections from JSON
             ...state.content!.sections.asMap().entries.map((entry) {
+              final index = entry.key;
               final section = entry.value;
               final isLastSection =
                   entry.key == state.content!.sections.length - 1;
 
-              return Padding(
-                padding: EdgeInsets.only(
-                  bottom: isLastSection ? 40.h : 20.h,
-                ),
-                child: _buildSection(section, state.accentColor),
+              // Create a key for this section if needed for scrolling
+              final sectionKey =
+                  _sectionKeys.putIfAbsent(index, () => GlobalKey());
+
+              // Check if this section should be highlighted
+              final isHighlighted = _highlightedSectionIndex == index;
+
+              return AnimatedBuilder(
+                key: sectionKey,
+                animation: _highlightAnimation,
+                builder: (context, child) {
+                  final highlightOpacity =
+                      isHighlighted ? _highlightAnimation.value : 0.0;
+
+                  return Container(
+                    margin: EdgeInsets.only(
+                      bottom: isLastSection
+                          ? 80.h
+                          : 20.h, // Extra padding for last section (navbar)
+                    ),
+                    padding: isHighlighted
+                        ? EdgeInsets.symmetric(horizontal: 12.h, vertical: 12.h)
+                        : EdgeInsets.zero,
+                    decoration: highlightOpacity > 0.01
+                        ? BoxDecoration(
+                            color: state.accentColor
+                                .withAlpha((highlightOpacity * 255).round()),
+                            borderRadius: BorderRadius.circular(8.h),
+                          )
+                        : null,
+                    child: _buildSection(section, state.accentColor),
+                  );
+                },
               );
             }),
           ],
         ),
       ),
     );
+  }
+
+  /// Scroll to a specific section by index
+  void _scrollToSection(int sectionIndex) {
+    final key = _sectionKeys[sectionIndex];
+    if (key?.currentContext != null) {
+      Scrollable.ensureVisible(
+        key!.currentContext!,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+        alignment: 0.1, // Position near top of viewport
+      );
+    }
   }
 
   /// Build individual section based on type
