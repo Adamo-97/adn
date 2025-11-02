@@ -429,7 +429,7 @@ class SalahGuideScreenState extends ConsumerState<SalahGuideScreen> {
                       imagePath: card.iconPath,
                       height: 24.h,
                       width: 24.h,
-                      color: card.category?.accentColor ?? appColors.whiteA700,
+                      color: appColors.whiteA700, // White icon like main cards
                     ),
                   ),
                 ),
