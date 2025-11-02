@@ -7,7 +7,17 @@
     },
     {
       "type": "paragraph",
-      "text": "Sujud as-sahu compensates for certain mistakes so that the prayer need not be repeated. It is two prostrations which are made at the end of the prayer either before the salam or after it. Both ways were done by the Prophet (ﷺ). According to the type of error – whether omission, addition or doubt."
+      "text": "Sujud as-sahu compensates for certain mistakes so that the prayer need not be repeated. It is two prostrations which are made at the end of the prayer either before the salam or after it. Both ways were done by the Prophet (ﷺ). According to the type of error – whether omission, addition or doubt.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Sujud as-sahu compensates for certain mistakes so that the prayer need not be repeated. It is two prostrations which are made at the end of the prayer either before the salam or after it. Both ways were done by the Prophet (ﷺ"
+        },
+        {
+          "type": "english_text",
+          "text": "). According to the type of error – whether omission, addition or doubt."
+        }
+      ]
     },
     {
       "type": "section_title",

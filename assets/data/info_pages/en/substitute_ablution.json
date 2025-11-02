@@ -7,7 +7,7 @@
     },
     {
       "type": "paragraph",
-      "text": "Tayammum replaces wudūʾ or ghusl whenever:"
+      "text": "Tayammum replaces wudu' or ghusl whenever:"
     },
     {
       "type": "list",
@@ -19,7 +19,7 @@
     },
     {
       "type": "paragraph",
-      "text": "It takes the place of both minor (wudūʾ) and major (ghusl) ablutions in these cases, enabling the person to pray as usual. Prayers offered with tayammum are not repeated once water becomes available.  However, if tayammum was done instead of ghusl, one must take a complete bath as soon as possible.  If a person cannot even perform tayammum, they should pray in their state of impurity rather than miss the prayer."
+      "text": "It takes the place of both minor (wudu') and major (ghusl) ablutions in these cases, enabling the person to pray as usual. Prayers offered with tayammum are not repeated once water becomes available.  However, if tayammum was done instead of ghusl, one must take a complete bath as soon as possible.  If a person cannot even perform tayammum, they should pray in their state of impurity rather than miss the prayer."
     },
     {
       "type": "section_title",
@@ -28,8 +28,21 @@
     {
       "type": "list",
       "items": [
-        "Niyyah (Intention): Form in the heart: “I intend to purify myself by tayammum for the sake of Allāh.”.",
-        "Basmala: Say بِسْمِ اللهِ.",
+        "Niyyah (Intention): Form in the heart: “I intend to purify myself by tayammum for the sake of Allah.”.",
+        {
+          "text": "Basmala: Say بِسْمِ اللهِ.",
+          "formatted_text": [
+            {
+              "type": "english_text",
+              "text": "Basmala: Say "
+            },
+            {
+              "type": "arabic_text",
+              "text": "بِسْمِ اللهِ",
+              "font": "Noto Kufi Arabic"
+            }
+          ]
+        },
         "Source: Strike both open palms once on any clean earth (sand, soil, stone, or dust).",
         "Remove Excess: Gently blow off loose dust from the palms.",
         "Wipe the Face: Pass both palms, one after the other, over the entire face once.",
@@ -43,7 +56,7 @@
     {
       "type": "list",
       "items": [
-        "Tayammum covers both wudūʾ and ghusl in its valid cases",
+        "Tayammum covers both wudu' and ghusl in its valid cases",
         "Prayers aren’t repeated when water returns",
         "Must still take full ghusl as soon as possible if tayammum stood in for it",
         "If even tayammum is impossible, pray anyway rather than skip"

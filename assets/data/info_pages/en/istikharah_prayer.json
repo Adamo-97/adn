@@ -15,11 +15,38 @@
     },
     {
       "type": "paragraph",
-      "text": "The Prophet (ﷺ) used to teach his companions the istikharah for all matters great or small. It is narrated by al-Bukhari as follows:"
+      "text": "The Prophet (ﷺ) used to teach his companions the istikharah for all matters great or small. It is narrated by al-Bukhari as follows:",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "The Prophet (ﷺ"
+        },
+        {
+          "type": "english_text",
+          "text": ") used to teach his companions the istikharah for all matters great or small. It is narrated by al-Bukhari as follows:"
+        }
+      ]
     },
     {
       "type": "paragraph",
-      "text": "اللهم إني أستخيرك بعلمك وأستقدرك بقدرتك، وأسألك من فضلك العظيم، فإنك تقدر ولا أقدر، وتعلم ولا أعلم وأنت علام الغيوب، اللهم إن كنت تعلم أن هذا الأمر [mention matter] خير لي في ديني ومعاشي وعاقبة أمري، فاقدره لي ويسره لي ثم بارك لي فيه، وإن كنت تعلم أن هذا الأمر شر لي في ديني ومعاشي وعاقبة أمري، فاصرفه عني واصرفني عنه واقدر لي الخير حيث كان ثم رضني به"
+      "text": "اللهم إني أستخيرك بعلمك وأستقدرك بقدرتك، وأسألك من فضلك العظيم، فإنك تقدر ولا أقدر، وتعلم ولا أعلم وأنت علام الغيوب، اللهم إن كنت تعلم أن هذا الأمر [mention matter] خير لي في ديني ومعاشي وعاقبة أمري، فاقدره لي ويسره لي ثم بارك لي فيه، وإن كنت تعلم أن هذا الأمر شر لي في ديني ومعاشي وعاقبة أمري، فاصرفه عني واصرفني عنه واقدر لي الخير حيث كان ثم رضني به",
+      "formatted_text": [
+        {
+          "type": "arabic_text",
+          "text": "اللهم إني أستخيرك بعلمك وأستقدرك بقدرتك، وأسألك من فضلك العظيم، فإنك تقدر ولا أقدر، وتعلم ولا أعلم وأنت علام الغيوب، اللهم إن كنت تعلم أن هذا الأمر",
+          "font": "Noto Kufi Arabic"
+        },
+        {
+          "type": "arabic_text",
+          "text": "[يسمي حاجته] ",
+          "font":"Noto Kufi Arabic"
+        },
+        {
+          "type": "arabic_text",
+          "text": "خير لي في ديني ومعاشي وعاقبة أمري، فاقدره لي ويسره لي ثم بارك لي فيه، وإن كنت تعلم أن هذا الأمر شر لي في ديني ومعاشي وعاقبة أمري، فاصرفه عني واصرفني عنه واقدر لي الخير حيث كان ثم رضني به",
+          "font": "Noto Kufi Arabic"
+        }
+      ]
     },
     {
       "type": "paragraph",

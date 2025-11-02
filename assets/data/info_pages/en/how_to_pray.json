@@ -7,7 +7,7 @@
     },
     {
       "type": "paragraph",
-      "text": "Once wudu’ has been properly made, one proceeds to pray ṣalāh, which is composed of units called rak‘ahs. Each rak‘ah follows the same sequence of movements and recitations:"
+      "text": "Once wudu’ has been properly made, one proceeds to pray salah, which is composed of units called rak‘ahs. Each rak‘ah follows the same sequence of movements and recitations:"
     },
     {
       "type": "section_title",
@@ -16,17 +16,17 @@
     {
       "type": "list",
       "items": [
-        "Standing (Qiyām) – Begin in an upright position.",
-        "Takbīr – Say “Allāhu akbar” to enter the prayer.",
-        "Recitation (Qirā’ah) – Recite Sūrat al‑Fātiḥah, then a portion of the Qur’ān.",
-        "Bowing (Ruku‘) – Bow, saying “Subḥāna Rabī al‑‘Aẓīm.”",
-        "Prostration (Sujūd) – Prostrate, saying “Subḥāna Rabī al‑A‘lā.”",
+        "Standing (Qiyam) – Begin in an upright position.",
+        "Takbir – Say “Allahu akbar” to enter the prayer.",
+        "Recitation (Qira’ah) – Recite Surat al‑Fatihah, then a portion of the Qur’an.",
+        "Bowing (Ruku‘) – Bow, saying “Subhana Rabi al‑‘Azim.”",
+        "Prostration (Sujud) – Prostrate, saying “Subhana Rabi al‑A‘la.”",
         "Tashahhud (in final rak‘ah) – Sit and recite the testimony before concluding."
       ]
     },
     {
       "type": "paragraph",
-      "text": "To understand the steps of the ṣalāh it is important to understand that the prayer is made up of rak‘ahs, or units of prayer. Every rak‘ah has the same basic steps within it."
+      "text": "To understand the steps of the salah it is important to understand that the prayer is made up of rak‘ahs, or units of prayer. Every rak‘ah has the same basic steps within it."
     },
     {
       "type": "list",
@@ -44,18 +44,17 @@
     {
       "type": "list",
       "items": [
-        "Fajr (2 rak‘ah): Both rak‘ahs recited aloud—Fātiḥah + another sūrah.",
-        "Dhuhr (4 rak‘ah): All silent—Rakah 1–2: Fātiḥah + another sūrah; Rakah 3–4: Fātiḥah only.",
+        "Fajr (2 rak‘ah): Both rak‘ahs recited aloud—Fatihah + another surah.",
+        "Dhuhr (4 rak‘ah): All silent—Rakah 1–2: Fatihah + another surah; Rakah 3–4: Fatihah only.",
         "‘Asr (4 rak‘ah): Same as Dhuhr.",
-        "Maghrib (3 rak‘ah): Rakah 1–2 aloud: Fātiḥah + another sūrah; Rakah 3 silent: Fātiḥah only.",
+        "Maghrib (3 rak‘ah): Rakah 1–2 aloud: Fatihah + another surah; Rakah 3 silent: Fatihah only.",
         "‘Isha’ (4 rak‘ah): Rakah 1–2 aloud; Rakah 3–4 silent (same pattern as Maghrib)."
       ]
     },
     {
       "type": "paragraph",
-      "text": "Let us break down how each rak‘ah of the ṣalāh is performed, step by step."
+      "text": "Let us break down how each rak‘ah of the salah is performed, step by step."
     },
-
     {
       "type": "section_title",
       "text": "Step 1"
@@ -64,7 +63,6 @@
       "type": "paragraph",
       "text": "We first began the prayer by making an intention from the heart to pray to Allah. As soon as you begin, your entire focus should be on the prayer itself and nothing else."
     },
-
     {
       "type": "section_title",
       "text": "Step 2"
@@ -74,7 +72,6 @@
       "illustration": "assets/images/info_pages/how_to_pray_step2.svg",
       "text": "Raise your hands to your ears and say “Allahu Akbar”.\n\nThe moment you say “Allahu Akbar” the prayer officially begins. From this point forward you should focus wholeheartedly on the prayer and ignore all distractions.\n\nFun Fact: In Arabic, “Allahu Akbar” literally means “Allah is Greater,” reminding you in prayer that Allah is greater than all other thoughts and actions."
     },
-
     {
       "type": "section_title",
       "text": "Step 3"
@@ -82,18 +79,26 @@
     {
       "type": "paragraph",
       "illustration": "assets/images/info_pages/how_to_pray_step3.svg",
-      "text": "Lower your hands and place them over your navel. Your right hand should be placed over your left hand. Keep your eyes focused on the ground in front of you. Prophet Muhammad (ﷺ) said that while praying your eyes should always look to where you will prostrate."
+      "text": "Lower your hands and place them over your navel. Your right hand should be placed over your left hand. Keep your eyes focused on the ground in front of you. Prophet Muhammad (ﷺ) said that while praying your eyes should always look to where you will prostrate.",
+      "formatted_text": [
+        {
+          "type": "english_text",
+          "text": "Lower your hands and place them over your navel. Your right hand should be placed over your left hand. Keep your eyes focused on the ground in front of you. Prophet Muhammad (ﷺ"
+        },
+        {
+          "type": "english_text",
+          "text": ") said that while praying your eyes should always look to where you will prostrate."
+        }
+      ]
     },
-
     {
       "type": "section_title",
       "text": "Step 4"
     },
     {
       "type": "paragraph",
-      "text": "Recite the opening chapter of the Qur’an, “Surah Al‑Fātiḥah.” After reciting Surah Al‑Fātiḥah, you may recite another chapter from the Qur’an. At a minimum you must recite Surah Al‑Fātiḥah in every rak‘ah of prayer."
+      "text": "Recite the opening chapter of the Qur’an, “Surah Al‑Fatihah.” After reciting Surah Al‑Fatihah, you may recite another chapter from the Qur’an. At a minimum you must recite Surah Al‑Fatihah in every rak‘ah of prayer."
     },
-
     {
       "type": "section_title",
       "text": "Step 5"
@@ -101,9 +106,8 @@
     {
       "type": "paragraph",
       "illustration": "assets/images/info_pages/how_to_pray_step5.svg",
-      "text": "Bow down (Ruku‘). As you are bowing, say “Allahu Akbar.” Keep your back straight, hands on your knees, and eyes on the ground where you will prostrate. In this position say three times: “Subḥāna Rabī al‑‘Aẓīm” (“How perfect is my Lord, the Magnificent”)."
+      "text": "Bow down (Ruku‘). As you are bowing, say “Allahu Akbar.” Keep your back straight, hands on your knees, and eyes on the ground where you will prostrate. In this position say three times: “Subhana Rabi al‑‘Azim” (“How perfect is my Lord, the Magnificent”)."
     },
-
     {
       "type": "section_title",
       "text": "Step 6"
@@ -111,9 +115,8 @@
     {
       "type": "paragraph",
       "illustration": "assets/images/info_pages/how_to_pray_step6.svg",
-      "text": "Return to standing. As you rise from Ruku‘, raise your hands to your ears and say “Samiʿa Allāhu liman ḥamidah” (“Allah hears those who praise Him”). Then lower your hands to your waist and say “Rabbana wa laka al‑ḥamd” (“Our Lord, to You is all praise”)."
+      "text": "Return to standing. As you rise from Ruku‘, raise your hands to your ears and say “Sami'a Allahu liman hamidah” (“Allah hears those who praise Him”). Then lower your hands to your waist and say “Rabbana wa laka al‑hamd” (“Our Lord, to You is all praise”)."
     },
-
     {
       "type": "section_title",
       "text": "Step 7"
@@ -121,9 +124,8 @@
     {
       "type": "paragraph",
       "illustration": "assets/images/info_pages/how_to_pray_step7.svg",
-      "text": "Go down to prostrate (Sujūd). As you move into this position say “Allahu Akbar,” and ensure your forehead, nose, palms, knees, and toes touch the ground. While in Sujūd say three times: “Subḥāna Rabī al‑‘Alā” (“How perfect is my Lord, the Most High”)."
+      "text": "Go down to prostrate (Sujud). As you move into this position say “Allahu Akbar,” and ensure your forehead, nose, palms, knees, and toes touch the ground. While in Sujud say three times: “Subhana Rabi al‑‘Ala” (“How perfect is my Lord, the Most High”)."
     },
-
     {
       "type": "section_title",
       "text": "Step 8"
@@ -131,9 +133,8 @@
     {
       "type": "paragraph",
       "illustration": "assets/images/info_pages/how_to_pray_step8.svg",
-      "text": "Rise from Sujūd and sit on your left leg (Tashahhud position). Say “Allahu Akbar.” Place your hands on your knees. It is recommended to ask Allah for forgiveness: “Rabbigh‑fir lī” (“O my Lord, forgive me”)."
+      "text": "Rise from Sujud and sit on your left leg (Tashahhud position). Say “Allahu Akbar.” Place your hands on your knees. It is recommended to ask Allah for forgiveness: “Rabbigh‑fir li” (“O my Lord, forgive me”)."
     },
-
     {
       "type": "section_title",
       "text": "Step 9"
@@ -141,18 +142,16 @@
     {
       "type": "paragraph",
       "illustration": "assets/images/info_pages/how_to_pray_step9.svg",
-      "text": "Return to Sujūd (second prostration) and say “Allahu Akbar.” While in Sujūd say three times: “Subḥāna Rabī al‑‘Alā.”"
+      "text": "Return to Sujud (second prostration) and say “Allahu Akbar.” While in Sujud say three times: “Subhana Rabi al‑‘Ala.”"
     },
-
     {
       "type": "section_title",
       "text": "Step 10"
     },
     {
       "type": "paragraph",
-      "text": "Arise from the second Sujūd to standing, saying “Allahu Akbar.” Congratulations—you have completed one full rak‘ah! After two rak‘ahs you will sit for Tashahhud instead of standing."
+      "text": "Arise from the second Sujud to standing, saying “Allahu Akbar.” Congratulations—you have completed one full rak‘ah! After two rak‘ahs you will sit for Tashahhud instead of standing."
     },
-
     {
       "type": "section_title",
       "text": "Step 11"
@@ -160,18 +159,16 @@
     {
       "type": "paragraph",
       "illustration": "assets/images/info_pages/how_to_pray_step11.svg",
-      "text": "Perform the Tashahhud at the end of every two rak‘ahs. Sit on your legs, raise your right index finger, and say:\n\n“At‑Taḥiyyātu li‑Llāhi wa‑ṣ‑Ṣalawātu wa‑ṭ‑Ṭayyibātu\nAs‑Salāmu ʿalayka ayyuhan‑nabiyyu wa raḥmatu Llāhi wa barakātuh\nAs‑Salāmu ʿalaynā wa ʿalā ʿibādillāhi ṣ‑ṣāliḥīn\nAsh‑hadu allā ilāha illallāh wa ash‑hadu anna Muḥammadan ʿabduhu wa rasūluh”"
+      "text": "Perform the Tashahhud at the end of every two rak‘ahs. Sit on your legs, raise your right index finger, and say:\n\n“At‑Tahiyyatu li‑Llahi wa‑s‑Salawatu wa‑t‑Tayyibatu\nAs‑Salamu 'alayka ayyuhan‑nabiyyu wa rahmatu Llahi wa barakatuh\nAs‑Salamu 'alayna wa 'ala 'ibadillahi s‑salihin\nAsh‑hadu alla ilaha illallah wa ash‑hadu anna Muhammadan 'abduhu wa rasuluh”"
     },
-
     {
       "type": "section_title",
       "text": "Final Rak‘ah"
     },
     {
       "type": "paragraph",
-      "text": "In the last rak‘ah, after sitting for Tashahhud, add the Salawāt:\n\n“Allahumma ṣalli ʿalā Muḥammadin wa ʿalā āli Muḥammad\nKamā ṣallayta ʿalā Ibrāhīma wa ʿalā āli Ibrāhīm\nInnaka Ḥamīdun Majīd\nWa bārik ʿalā Muḥammadin wa ʿalā āli Muḥammad\nKamā bārakta ʿalā Ibrāhīma wa ʿalā āli Ibrāhīm\nInnaka Ḥamīdun Majīd”\n\nThen conclude the prayer with Taslīm:\n\nTurn your head to the right and say “Assalāmu ʿalaykum wa raḥmatu Llāh”.\nTurn your head to the left and repeat “Assalāmu ʿalaykum wa raḥmatu Llāh”."
+      "text": "In the last rak‘ah, after sitting for Tashahhud, add the Salawat:\n\n“Allahumma salli 'ala Muhammadin wa 'ala ali Muhammad\nKama sallayta 'ala Ibrahima wa 'ala ali Ibrahim\nInnaka Hamidun Majid\nWa barik 'ala Muhammadin wa 'ala ali Muhammad\nKama barakta 'ala Ibrahima wa 'ala ali Ibrahim\nInnaka Hamidun Majid”\n\nThen conclude the prayer with Taslim:\n\nTurn your head to the right and say “Assalamu 'alaykum wa rahmatu Llah”.\nTurn your head to the left and repeat “Assalamu 'alaykum wa rahmatu Llah”."
     },
-
     {
       "type": "section_title",
       "text": "Summary"
@@ -179,9 +176,9 @@
     {
       "type": "list",
       "items": [
-        "Units (Rak‘ahs): Each ṣalāh consists of 2, 3, or 4 rak‘ahs, depending on the prayer.",
-        "Core steps per rak‘ah: Standing → Takbīr → Recitation → Ruku‘ → Sujūd → (Second Sujūd) → (If final rak‘ah, Tashahhud + Salawāt + Taslīm).",
-        "Final Tashahhud: In the last rak‘ah you sit for Tashahhud, send blessings (Salawāt), then conclude with Taslīm to both sides.",
+        "Units (Rak‘ahs): Each salah consists of 2, 3, or 4 rak‘ahs, depending on the prayer.",
+        "Core steps per rak‘ah: Standing → Takbir → Recitation → Ruku‘ → Sujud → (Second Sujud) → (If final rak‘ah, Tashahhud + Salawat + Taslim).",
+        "Final Tashahhud: In the last rak‘ah you sit for Tashahhud, send blessings (Salawat), then conclude with Taslim to both sides.",
         "Combining rak‘ahs: Simply repeat the core sequence the required number of times, observing which rak‘ahs are recited aloud or silently as per each prayer’s ruling."
       ]
     }

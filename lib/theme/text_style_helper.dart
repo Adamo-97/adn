@@ -58,6 +58,41 @@ class TextStyleHelper {
         color: appColors.whiteA700,
       );
 
+  TextStyle get body14RegularAmiriQuran => TextStyle(
+        fontSize: 14.fSize,
+        fontWeight: FontWeight.w400,
+        fontFamily: 'Amiri Quran',
+        color: appColors.whiteA700,
+      );
+
+  TextStyle get body16RegularAmiriQuran => TextStyle(
+        fontSize: 16.fSize,
+        fontWeight: FontWeight.w400,
+        fontFamily: 'Amiri Quran',
+        color: appColors.whiteA700,
+      );
+
+  TextStyle get body18RegularAmiriQuran => TextStyle(
+        fontSize: 18.fSize,
+        fontWeight: FontWeight.w400,
+        fontFamily: 'Amiri Quran',
+        color: appColors.whiteA700,
+      );
+
+  TextStyle get body14MediumNotoKufiArabic => TextStyle(
+        fontSize: 14.fSize,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Noto Kufi Arabic',
+        color: appColors.whiteA700,
+      );
+
+  TextStyle get body16MediumNotoKufiArabic => TextStyle(
+        fontSize: 16.fSize,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Noto Kufi Arabic',
+        color: appColors.whiteA700,
+      );
+
   TextStyle get body14SemiBoldPoppins => TextStyle(
         fontSize: 14.fSize,
         fontWeight: FontWeight.w600,

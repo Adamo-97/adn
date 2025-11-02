@@ -87,6 +87,62 @@ This is a Flutter-based Islamic prayer application (Athan/Adhan app) that helps 
 - **NEVER** remove `flutter:`, `flutter_localizations:`, or `flutter_test:` from `pubspec.yaml` (marked with 🚨 CRITICAL)
 - **NEVER** remove `uses-material-design: true` from `pubspec.yaml`
 
+### Cache Management (MANDATORY)
+
+**CRITICAL**: Prevent memory bloat and performance degradation from excessive caching.
+
+#### In-Memory Caching Rules
+
+- **Scope Limitation**: Only cache data that's actively needed and frequently accessed
+- **Size Limits**:
+  - For search indexes: Store only parsed content structures, not raw JSON strings
+  - For images: Use `cached_network_image` package which handles cache limits automatically
+  - Maximum in-memory cache per feature: ~10-20 MB (avoid caching large datasets in memory)
+- **Lifecycle Management**:
+  - Clear caches when navigating away from features (use `autoDispose` providers)
+  - Implement manual cache clear methods for user-triggered cleanup
+  - Never cache more than 50-100 items in collections without pagination
+- **Example - Search Service Cache**:
+
+  ```dart
+  // ✅ GOOD: Caches parsed sections only (lightweight structures)
+  Map<String, List<InfoPageSection>> _contentIndex = {};
+
+  // ❌ BAD: Would cache entire JSON strings (memory waste)
+  Map<String, String> _rawJsonCache = {}; // Don't do this
+  ```
+
+#### Persistent Storage Caching Rules
+
+- **SharedPreferences**:
+  - Store only lightweight settings and preferences (< 1 KB per entry)
+  - **NEVER** store large JSON data or binary content
+  - Implement periodic cleanup (remove unused keys after 30 days)
+  - Maximum total size: ~100 KB across all keys
+- **File Cache** (if implemented):
+  - Set maximum cache size limits (e.g., 50 MB for images, 10 MB for data)
+  - Implement LRU (Least Recently Used) eviction policy
+  - Add cache expiration timestamps (e.g., 7-day TTL for dynamic content)
+  - Provide user-accessible cache clear option in settings
+- **Database Cache** (if implemented):
+  - Use `sqflite` with size limits and automatic cleanup
+  - Index only necessary columns to minimize storage
+  - Implement vacuum operations to reclaim space
+
+#### Cache Monitoring
+
+- Log cache sizes in debug mode to detect bloat during development
+- Add cache statistics to debug screens (entries count, memory usage)
+- Test app performance after extended use (simulate days/weeks of usage)
+- Monitor app memory usage with Flutter DevTools
+
+#### User Controls
+
+- Provide "Clear Cache" option in app settings
+- Show cache size to users (e.g., "Cache: 23 MB")
+- Auto-clear cache on logout or app version updates
+- Warn users if cache exceeds thresholds
+
 ### Deprecated APIs and Modern Alternatives (MANDATORY)
 
 **CRITICAL**: Always use current, non-deprecated Flutter/Dart APIs to avoid compiler warnings and future compatibility issues.
@@ -148,6 +204,7 @@ test/presentation/<feature_name>/
 - Test all state changes in notifiers/state machines
 - Verify state consistency after each transition
 - Example: Toggle settings (on/off states)
+
   ```dart
   test('toggleDarkMode transitions correctly', () {
     // Initial state: true
@@ -169,6 +226,7 @@ test/presentation/<feature_name>/
 - Verify UI updates correctly after interactions
 - Test gesture target areas (minimum 44.h x 44.h hit boxes)
 - Example:
+
   ```dart
   testWidgets('button tap triggers callback', (tester) async {
     bool callbackFired = false;
@@ -195,6 +253,7 @@ test/presentation/<feature_name>/
 - Verify state objects are immutable (new instances on change)
 - Test that old state references remain unchanged
 - Example:
+
   ```dart
   test('state maintains immutability', () {
     final initialState = container.read(notifierProvider);
@@ -217,6 +276,7 @@ test/presentation/<feature_name>/
 - Verify color correctness (including alpha/transparency)
 - Test icon presence and sizing
 - Example:
+
   ```dart
   testWidgets('renders with correct spacing', (tester) async {
     await tester.pumpWidget(MyWidget());
